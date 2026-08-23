@@ -271,8 +271,9 @@ export default function Home() {
         <a className="brand-lockup" href="#top" aria-label="返回页面顶部">
           <img className="brand-mark" src={LOGO_IMAGE} alt="" />
           <span className="brand-name">
-            <span>SKY PERSONAL</span>
+            <span>SKY PERSONAL / 01</span>
             <strong>储物间</strong>
+            <em>RESOURCE ARCHIVE</em>
           </span>
         </a>
 
