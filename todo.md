@@ -95,6 +95,13 @@
 - [ ] 新建唯一的 gh-pages 自动构建与发布工作流。
 - [ ] 验证 YAML、npm 构建、分支产物和 README 操作说明。
 
+## gh-pages 404 复核与旧分支清理
+
+- [x] 核验 Pages 公开发布源为 `gh-pages` 的 `/(root)`；最新构建提交与 `gh-pages` HEAD 一致，公开 HTTP 请求返回 200。
+- [x] 核验构建入口使用 `./assets/` 相对路径，Vite 的 `base` 为 `./`，页面和静态资源均返回 200。
+- [x] 确认无需额外修复；唯一发布工作流的最新运行已成功完成。
+- [x] 在 `gh-pages` 站点正常访问后删除旧 `gh-page` 分支。
+
 ## GitHub Pages 认证修复
 
 - [ ] 审阅 Pages 工作流的认证、分支和权限配置。
