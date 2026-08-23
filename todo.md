@@ -128,6 +128,13 @@
 - [x] 将主 README 内部链接和章节长度验证加入技能质量清单。
 - [x] 验证并交付更新后的资源导航站技能包。
 
+## 原图 Logo 与浏览器图标替换
+
+- [x] 定位页面 Logo、favicon 和 Apple Touch Icon 的现有引用。
+- [x] 发布用户提供的原图并验证其公共 HTTPS 地址和 `image/jpeg` 响应。
+- [x] 用同一原图地址同步页面 Logo、favicon 与 Apple Touch Icon。
+- [x] 验证预览、类型检查、静态构建和构建产物中的图标引用。
+
 ## GitHub Pages 认证修复
 
 - [ ] 审阅 Pages 工作流的认证、分支和权限配置。
