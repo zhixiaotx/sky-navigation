@@ -232,13 +232,11 @@ export default function Home() {
   ) => {
     setSelectedCategory(id);
     setSelectedSection(section);
-    if (id !== "all")
-      setExpandedCategoryIds(ids => {
-        const next = new Set(ids);
-        if (toggleBranch) next.has(id) ? next.delete(id) : next.add(id);
-        else next.add(id);
-        return next;
-      });
+    setExpandedCategoryIds(ids => {
+      if (id === "all") return new Set();
+      if (toggleBranch && ids.has(id)) return new Set();
+      return new Set([id]);
+    });
     setIsDrawerOpen(false);
     const targetId =
       id === "all"
