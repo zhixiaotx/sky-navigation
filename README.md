@@ -99,7 +99,8 @@ npm run dev
 | `package.json` | 项目名称、依赖版本与 npm 命令脚本。 | 新增 npm 命令或依赖时。 |
 | `package-lock.json` | npm 的精确依赖锁定文件，保证本地和云端安装到一致版本。 | 由 npm 自动生成；应提交 Git，不要手工编辑。 |
 | `.npmrc` | npm 兼容配置，处理模板中既有的宽松插件依赖关系。 | 通常不要删除，否则首次安装可能遇到依赖解析冲突。 |
-| `.github/workflows/deploy-gh-pages.yml` | GitHub Actions 工作流；检查代码、构建静态站并推送到 `gh-page` 分支。 | 更改分支名、Node 版本或部署逻辑时。 |
+| `.github/workflows/deploy-gh-pages.yml` | 默认 GitHub Pages 工作流；检查代码、构建静态站并使用仓库内置临时令牌发布。 | 更改默认 Pages 部署逻辑、Node 版本或分支触发条件时。 |
+| `.github/workflows/publish-gh-page-branch.yml` | 备用分支发布工作流；手动触发后用个人令牌将构建产物推送到 `gh-page` 分支。 | 需要兼容“从分支发布 Pages”的旧流程时。 |
 | `vercel.json` | Vercel 部署设置，指定静态构建命令、输出目录与 SPA 回退。 | 部署 Vercel 或新增重写规则时。 |
 | `netlify.toml` | Netlify 构建与重定向设置。 | 部署 Netlify 或修改重定向/头部规则时。 |
 | `server/index.ts` | 模板兼容服务器入口，用于完整 `npm run build` 与托管环境。 | 本项目只做静态站时通常无需修改。 |
@@ -167,21 +168,22 @@ const LOGO_IMAGE = "./assets/archive-logo.png";
 
 同时把 `client/index.html` 中 favicon 改为 `./assets/archive-logo.png`。这样构建产物在任何静态托管平台都不会依赖原来的资源代理。
 
-## 部署到 GitHub Pages：构建后推送 `gh-page` 分支
+## 部署到 GitHub Pages：默认使用官方工作流
 
-本项目已内置 `.github/workflows/deploy-gh-pages.yml`。每当 `main` 或 `master` 分支有推送时，工作流会依次安装 npm 依赖、执行类型检查、运行 `npm run build:static`，然后将 `dist/public` 的内容写入 **`gh-page`** 分支。GitHub Pages 可以从任意分支的根目录或 `/docs` 目录发布；本项目按你的要求选择 `gh-page` 的根目录。[1]
+本项目默认使用 `.github/workflows/deploy-gh-pages.yml`。每当 `main` 或 `master` 分支有推送时，工作流会安装 npm 依赖、执行类型检查、运行 `npm run build:static`，随后将 `dist/public` 作为 Pages 构建产物发布。该流程使用 GitHub Actions 自动提供的短期令牌，不要求 `PAGES_DEPLOY_TOKEN` 或部署密钥。[1]
 
 ### 第一次发布的具体操作
 
 | 步骤 | 在哪里做 | 需要做什么 |
 | --- | --- | --- |
-| 1 | 本地终端 | 执行 `git add .`、`git commit -m "Initial site"`、`git push -u origin main`。 |
-| 2 | GitHub 仓库 | 在 **Settings → Actions → General** 确认允许工作流读写仓库内容。 |
-| 3 | GitHub 个人设置 | 创建一个可写入该仓库内容的细粒度个人访问令牌，并把它保存为仓库 Secret：`PAGES_DEPLOY_TOKEN`。 |
-| 4 | GitHub 仓库 | 在 **Settings → Pages**，将 **Source** 选为 **Deploy from a branch**，分支选 **`gh-page`**，目录选 **`/(root)`**，然后保存。 |
-| 5 | GitHub 仓库 | 打开 **Actions**，查看 “Build and publish GitHub Pages branch” 成功完成；稍后 Pages 会提供访问地址。 |
+| 1 | 本地终端 | 执行 `git add .`、`git commit -m "Enable GitHub Pages"`、`git push -u origin main`。 |
+| 2 | GitHub 仓库 | 在 **Settings → Pages**，将 **Source** 选为 **GitHub Actions**，然后保存。 |
+| 3 | GitHub 仓库 | 在 **Actions** 中查看 “Deploy GitHub Pages” 成功完成；部署任务会显示站点地址。 |
+| 4 | GitHub 仓库 | 在 **Settings → Actions → General** 确认工作流拥有所需的读写权限；默认工作流只使用仓库内置的临时发布授权。 |
 
-> GitHub 官方说明指出，使用 `GITHUB_TOKEN` 推送到发布分支不会触发 GitHub Pages 构建。因此工作流专门使用名为 `PAGES_DEPLOY_TOKEN` 的个人访问令牌，把构建产物推送到 `gh-page` 分支。[1]
+### 备用方案：构建后推送 `gh-page` 分支
+
+如果你必须让 Pages 从分支发布，可在 **Actions** 中手动运行 “Backup publish gh-page branch”。这个备用流程会将 `dist/public` 推送到 **`gh-page`** 分支，然后在 **Settings → Pages** 将 Source 改为 **Deploy from a branch**，分支选择 `gh-page`、目录选择 `/(root)`。由于它需要写入分支，必须先添加名为 `PAGES_DEPLOY_TOKEN` 的仓库 Secret，并为该令牌授予该仓库 Contents 读写权限。[1]
 
 ## 部署到 Cloudflare Pages
 
