@@ -170,6 +170,16 @@ const LOGO_IMAGE = "./assets/archive-logo.png";
 
 同时把 `client/index.html` 中 favicon 改为 `./assets/archive-logo.png`。这样构建产物在任何静态托管平台都不会依赖原来的资源代理。
 
+### GitHub 项目页：资源相对路径与前端路由要分别处理
+
+GitHub 项目页并不部署在域名根目录，而是类似 `https://用户名.github.io/仓库名/` 的子路径。本项目的 `vite.config.ts` 已使用 `base: "./"`，所以构建后的 CSS 和 JavaScript 使用 `./assets/...` 相对路径；这解决的是**资源下载**问题。
+
+但如果浏览器显示的是本项目带有 **“Page Not Found”** 和 **“Go Home”** 按钮的页面，说明 HTML、JS 已经成功下载，404 来自前端 Wouter 路由，而不是 GitHub Pages 找不到文件。当前 `client/src/App.tsx` 会在 `*.github.io` 的 `/sky-navigation/` 路径下把 `/sky-navigation` 设为路由根，因此首页会正确匹配内部 `/` 路由；本地开发、Manus 域名和自定义域名仍保持根路径行为。
+
+> 不要删除 `getRouterBase()` 或把 `/sky-navigation` 无条件设为所有环境的路由根。前者会让 GitHub 项目页重新落入站内 404，后者会影响本地与自定义域名的首页。
+
+验证时请分两步：先运行 `npm run build:static` 并检查 `dist/public/index.html` 中的 `./assets/...`；再用无痕窗口或给项目页附加查询参数（例如 `?v=1`）打开 `https://zhixiaotx.github.io/sky-navigation/`，确保浏览器加载了新的 JavaScript。
+
 ## 部署到 GitHub Pages：唯一的 gh-pages 工作流
 
 项目只有 `.github/workflows/deploy-gh-pages.yml` 一份工作流。每当 `main` 或 `master` 分支有推送时，它会执行 `npm ci`、`npm run check` 和 `npm run build:static`，确认 `dist/public/index.html`、`.nojekyll` 和 `assets/` 都存在，然后把产物发布到 **`gh-pages`** 分支根目录。流程使用 GitHub 自动提供的 `GITHUB_TOKEN` 与 `contents: write`，不需要 `PAGES_DEPLOY_TOKEN` 或部署密钥。
@@ -247,6 +257,12 @@ npm run build:static
 ### 为什么 GitHub Pages 工作流没有发布？
 
 先确认 **Settings → Pages** 中选择 **Deploy from a branch → `gh-pages` → `/(root)`**，并在 **Settings → Actions → General** 允许工作流写入仓库。随后运行 `npm run publish:status`，在 Actions 日志查看 “Build static site”“Verify Pages artifact” 和 “Publish dist/public to gh-pages” 三个步骤是否成功。
+
+### 为什么工作流成功了，但项目页显示站内的 “Page Not Found”？
+
+先区分错误来源。若页面带有本项目自己的 **“Go Home”** 按钮，通常代表 GitHub Pages 已经返回 `index.html`，但客户端路由没有识别 `/sky-navigation/` 项目路径。确认 `client/src/App.tsx` 保留了 `getRouterBase()` 与 `WouterRouter base={base}`，然后重新运行 `npm run check`、`npm run build:static` 并提交发布。若页面是 GitHub 原生的 404，再回到上一节检查 Pages 分支、目录和发布工作流。
+
+更新发布后，使用 `Ctrl/Cmd + Shift + R`、无痕窗口，或在 URL 后添加 `?v=时间戳` 复测；浏览器可能仍缓存旧的 JavaScript 文件。
 
 ### 为什么外部部署后图像没有显示？
 

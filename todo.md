@@ -109,6 +109,12 @@
 - [x] 为 GitHub 项目页加入 `/sky-navigation` 路由基路径，并完成格式化、类型检查和静态构建。
 - [x] 唯一 gh-pages 工作流已成功发布；带缓存规避参数的公开项目页返回 Sky 首页入口，未再返回站内 404 文案。
 
+## GitHub Pages 路由修复文档化
+
+- [x] 更新可复用 GitHub Pages 技能，加入 Vite 相对资源与客户端项目路径路由的双层排查。
+- [x] 更新资源导航技能与 README，说明 `/sky-navigation/` 项目页的 Wouter 基路径要求与验证步骤。
+- [x] 验证两个技能包、README 格式和项目构建后交付。
+
 ## GitHub Pages 认证修复
 
 - [ ] 审阅 Pages 工作流的认证、分支和权限配置。
