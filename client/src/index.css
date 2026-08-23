@@ -703,7 +703,6 @@ button {
   align-items: center;
   gap: 1rem;
   color: var(--muted-ink);
-  border-top: 1px solid var(--line);
   font-size: 0.65rem;
 }
 .archive-footer p {
