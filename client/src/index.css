@@ -95,7 +95,6 @@ button {
   justify-content: space-between;
   background: color-mix(in srgb, var(--background) 88%, transparent);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
 }
 .brand-lockup {
   display: inline-flex;
