@@ -1,42 +1,45 @@
-name: Build and publish gh-page backup
+name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
+# Give the workflow permission to write to the repository (required for creating/pushing to branches)
 permissions:
   contents: write
 
 concurrency:
-  group: gh-page-deployment
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
-  build-and-publish-branch:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out source
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
 
-      - name: Type-check project
-        run: npm run check
+      - name: Build application
+        run: npm run build
 
-      - name: Build static site with relative asset paths
-        run: npm run build:static
-
-      - name: Publish dist/public to gh-page
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-page
-          publish_dir: ./dist/public
-          force_orphan: true
+          folder: dist
+          branch: gh-pages
