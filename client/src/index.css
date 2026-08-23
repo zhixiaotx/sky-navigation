@@ -179,7 +179,6 @@ button {
   isolation: isolate;
   background-size: cover;
   background-position: center;
-  border-bottom: 1px solid var(--line);
 }
 .archive-hero::before {
   content: "";
