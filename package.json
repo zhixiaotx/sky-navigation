@@ -10,7 +10,9 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "publish:gh-pages": "node scripts/publish-gh-pages.mjs publish",
+    "publish:status": "node scripts/publish-gh-pages.mjs status"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
