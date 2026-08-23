@@ -105,7 +105,7 @@ export default function Home() {
     }
   });
   const [expandedCategoryIds, setExpandedCategoryIds] = useState<Set<string>>(
-    () => new Set(["01 爆火 AI🔥"])
+    () => new Set()
   );
   const searchRef = useRef<HTMLInputElement>(null);
 
