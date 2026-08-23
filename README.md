@@ -100,7 +100,7 @@ npm run dev
 | `package-lock.json` | npm 的精确依赖锁定文件，保证本地和云端安装到一致版本。 | 由 npm 自动生成；应提交 Git，不要手工编辑。 |
 | `.npmrc` | npm 兼容配置，处理模板中既有的宽松插件依赖关系。 | 通常不要删除，否则首次安装可能遇到依赖解析冲突。 |
 | `.github/workflows/deploy-gh-pages.yml` | 默认 GitHub Pages 工作流；检查代码、构建静态站并使用仓库内置临时令牌发布。 | 更改默认 Pages 部署逻辑、Node 版本或分支触发条件时。 |
-| `.github/workflows/publish-gh-page-branch.yml` | 备用分支发布工作流；手动触发后用个人令牌将构建产物推送到 `gh-page` 分支。 | 需要兼容“从分支发布 Pages”的旧流程时。 |
+| `.github/workflows/publish-gh-page-branch.yml` | 备用分支发布工作流；手动触发后用仓库内置临时令牌将构建产物推送到 `gh-page` 分支。 | 需要兼容“从分支发布 Pages”的旧流程时。 |
 | `vercel.json` | Vercel 部署设置，指定静态构建命令、输出目录与 SPA 回退。 | 部署 Vercel 或新增重写规则时。 |
 | `netlify.toml` | Netlify 构建与重定向设置。 | 部署 Netlify 或修改重定向/头部规则时。 |
 | `server/index.ts` | 模板兼容服务器入口，用于完整 `npm run build` 与托管环境。 | 本项目只做静态站时通常无需修改。 |
@@ -183,7 +183,7 @@ const LOGO_IMAGE = "./assets/archive-logo.png";
 
 ### 备用方案：构建后推送 `gh-page` 分支
 
-如果你必须让 Pages 从分支发布，可在 **Actions** 中手动运行 “Backup publish gh-page branch”。这个备用流程会将 `dist/public` 推送到 **`gh-page`** 分支，然后在 **Settings → Pages** 将 Source 改为 **Deploy from a branch**，分支选择 `gh-page`、目录选择 `/(root)`。由于它需要写入分支，必须先添加名为 `PAGES_DEPLOY_TOKEN` 的仓库 Secret，并为该令牌授予该仓库 Contents 读写权限。[1]
+如果你必须让 Pages 从分支发布，可在 **Actions** 中手动运行 “Build and publish gh-page backup”。这个备用流程会将 `dist/public` 推送到 **`gh-page`** 分支，然后在 **Settings → Pages** 将 Source 改为 **Deploy from a branch**，分支选择 `gh-page`、目录选择 `/(root)`。该流程参考了你提供的工作流，使用 GitHub 自动提供的 `GITHUB_TOKEN`，并通过 `contents: write` 写入同仓库分支，因此不再要求 `PAGES_DEPLOY_TOKEN`。
 
 ## 部署到 Cloudflare Pages
 
