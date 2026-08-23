@@ -1,8 +1,8 @@
 /**
- * 设计提醒：数字档案盒——以目录书脊、档案编号与温暖纸张肌理组织高密度资源；
- * 交互优先服务于检索和直达，避免将链接集合做成无层级的卡片墙。
+ * 设计提醒：数字档案盒——以独立的目录书脊与可滚动资源卷宗承载高密度链接；
+ * 设置入口收纳本地管理动作，让站点既可浏览也可由用户自行整理。
  */
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Archive,
   ArrowUpRight,
@@ -12,13 +12,20 @@ import {
   CircleHelp,
   FileSearch,
   FolderOpen,
+  Globe2,
   Menu,
   Moon,
+  PanelLeftClose,
+  PanelLeftOpen,
   Search,
+  Settings2,
   Sun,
   X,
 } from "lucide-react";
-import { categories, resources, type ResourceStatus } from "@/data/resources";
+import ArchiveSettingsDialog from "@/components/ArchiveSettingsDialog";
+import { loadArchiveStore, saveArchiveStore, type ArchiveStore } from "@/lib/archive-store";
+import { DEFAULT_SEARCH_ENGINE, searchEngines } from "@/lib/search-engines";
+import type { ResourceStatus } from "@/data/resources";
 
 const HERO_IMAGE = "/manus-storage/xiaoshuai-archive-hero_de3ff727.png";
 const SHELF_IMAGE = "/manus-storage/xiaoshuai-archive-shelf_884bd474.png";
@@ -35,37 +42,78 @@ const statusClass: Record<ResourceStatus, string> = {
 const cleanCategoryName = (name: string) => name.replace(/^\d{2}\s*/, "").replace(/🔥/g, "").trim();
 
 export default function Home() {
+  const [archive, setArchive] = useState<ArchiveStore>(() => loadArchiveStore());
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("01 爆火 AI🔥");
   const [selectedStatus, setSelectedStatus] = useState<ResourceStatus | "全部">("全部");
   const [isDark, setIsDark] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [searchMode, setSearchMode] = useState<"internal" | "external">("internal");
+  const [searchEngineId, setSearchEngineId] = useState(() => {
+    try { return localStorage.getItem("xiaoshuai-search-engine") || DEFAULT_SEARCH_ENGINE; } catch { return DEFAULT_SEARCH_ENGINE; }
+  });
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
+  useEffect(() => {
+    saveArchiveStore(archive);
+  }, [archive]);
+
+  useEffect(() => {
+    localStorage.setItem("xiaoshuai-search-engine", searchEngineId);
+  }, [searchEngineId]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (selectedCategory !== "all" && !archive.categories.some((category) => category.id === selectedCategory)) {
+      setSelectedCategory("all");
+    }
+  }, [archive.categories, selectedCategory]);
+
+  const navigationCategories = useMemo(() => [
+    { id: "all", label: "全部索引", count: archive.resources.length },
+    ...archive.categories.map((category) => ({
+      ...category,
+      count: archive.resources.filter((resource) => resource.category === category.id).length,
+    })),
+  ], [archive]);
+
   const filteredResources = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    return resources.filter((resource) => {
+    return archive.resources.filter((resource) => {
       const matchesCategory = selectedCategory === "all" || resource.category === selectedCategory;
       const matchesStatus = selectedStatus === "全部" || resource.status === selectedStatus;
       const haystack = `${resource.title} ${resource.category} ${resource.section}`.toLowerCase();
-      const matchesQuery = !normalizedQuery || haystack.includes(normalizedQuery);
-      return matchesCategory && matchesStatus && matchesQuery;
+      return matchesCategory && matchesStatus && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
-  }, [query, selectedCategory, selectedStatus]);
+  }, [archive.resources, query, selectedCategory, selectedStatus]);
 
   const groupedResources = useMemo(() => {
     const grouped = new Map<string, typeof filteredResources>();
     for (const resource of filteredResources) {
-      const groupName = query.trim() ? resource.category : resource.section;
+      const categoryName = archive.categories.find((category) => category.id === resource.category)?.label ?? "未分类";
+      const groupName = query.trim() ? categoryName : resource.section;
       const items = grouped.get(groupName) ?? [];
       items.push(resource);
       grouped.set(groupName, items);
     }
     return Array.from(grouped, ([name, items]) => ({ name, items }));
-  }, [filteredResources, query]);
+  }, [archive.categories, filteredResources, query]);
 
   const displayedGroups = useMemo(() => {
     if (!query.trim()) return groupedResources;
@@ -79,12 +127,21 @@ export default function Home() {
       .filter((group) => group.items.length);
   }, [groupedResources, query]);
 
-  const activeCategory = categories.find((category) => category.id === selectedCategory);
+  const activeCategory = navigationCategories.find((category) => category.id === selectedCategory);
   const totalShown = displayedGroups.reduce((total, group) => total + group.items.length, 0);
+  const selectedSearchEngine = searchEngines.find((engine) => engine.id === searchEngineId) ?? searchEngines[0];
 
   const chooseCategory = (id: string) => {
     setSelectedCategory(id);
     setIsDrawerOpen(false);
+  };
+
+  const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const keyword = query.trim();
+    if (searchMode === "external" && keyword) {
+      window.open(`${selectedSearchEngine.queryUrl}${encodeURIComponent(keyword)}`, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -92,32 +149,18 @@ export default function Home() {
       <header className="archive-topbar">
         <a className="brand-lockup" href="#top" aria-label="返回页面顶部">
           <img className="brand-mark" src={LOGO_IMAGE} alt="" />
-          <span className="brand-name">
-            <span>小帅同学的</span>
-            <strong>储物间</strong>
-          </span>
+          <span className="brand-name"><span>小帅同学的</span><strong>储物间</strong></span>
         </a>
 
         <div className="topbar-actions">
-          <span className="edition-stamp">PERSONAL INDEX · 2026</span>
-          <button
-            type="button"
-            className="icon-control"
-            onClick={() => setIsDark((value) => !value)}
-            aria-label={isDark ? "切换为浅色主题" : "切换为深色主题"}
-            title={isDark ? "切换为浅色主题" : "切换为深色主题"}
-          >
+          <span className="edition-stamp">PERSONAL INDEX · LOCAL EDITION</span>
+          <button type="button" className="settings-control" onClick={() => setIsSettingsOpen(true)} aria-label="打开资料管理设置">
+            <Settings2 size={17} /><span>管理</span>
+          </button>
+          <button type="button" className="icon-control" onClick={() => setIsDark((value) => !value)} aria-label={isDark ? "切换为浅色主题" : "切换为深色主题"} title={isDark ? "切换为浅色主题" : "切换为深色主题"}>
             {isDark ? <Sun size={17} /> : <Moon size={17} />}
           </button>
-          <button
-            type="button"
-            className="menu-control"
-            onClick={() => setIsDrawerOpen(true)}
-            aria-label="打开分类目录"
-          >
-            <Menu size={18} />
-            <span>目录</span>
-          </button>
+          <button type="button" className="menu-control" onClick={() => setIsDrawerOpen(true)} aria-label="打开分类目录"><Menu size={18} /><span>目录</span></button>
         </div>
       </header>
 
@@ -126,172 +169,91 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span /> RESOURCE SHELF / 资源索引册</p>
             <h1>把常用资源<br />收进一页索引。</h1>
-            <p className="hero-summary">
-              从学习资料到软件工具，已将原单页中的 <strong>{resources.length.toLocaleString()}</strong> 条外链按分类与用途重新归档。
-            </p>
-
-            <label className="hero-search" htmlFor="resource-search">
-              <Search size={20} aria-hidden="true" />
-              <input
-                id="resource-search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="输入关键词，直接定位到那条链接"
-                autoComplete="off"
-              />
-              {query && (
-                <button type="button" onClick={() => setQuery("")} aria-label="清空搜索">
-                  <X size={17} />
-                </button>
-              )}
-            </label>
-
+            <p className="hero-summary">从学习资料到软件工具，这间储物间现在支持分类整理、书签维护与本地备份。已收录 <strong>{archive.resources.length.toLocaleString()}</strong> 条外链。</p>
+            <form className="search-suite" onSubmit={submitSearch}>
+              <div className="search-mode-switch" aria-label="选择搜索范围">
+                <button type="button" className={searchMode === "internal" ? "is-active" : ""} onClick={() => setSearchMode("internal")}><Search size={14} /> 站内搜</button>
+                <button type="button" className={searchMode === "external" ? "is-active" : ""} onClick={() => setSearchMode("external")}><Globe2 size={14} /> 站外搜</button>
+              </div>
+              <div className="hero-search">
+                <Search size={20} aria-hidden="true" />
+                <input ref={searchRef} id="resource-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={searchMode === "internal" ? "输入关键词，直接定位到那条链接" : `使用 ${selectedSearchEngine.label} 搜索全网`} autoComplete="off" />
+                {searchMode === "external" && <select value={searchEngineId} onChange={(event) => setSearchEngineId(event.target.value)} aria-label="选择站外搜索引擎">
+                  {(["国内", "国际"] as const).map((region) => <optgroup key={region} label={`${region}搜索引擎`}>{searchEngines.filter((engine) => engine.region === region).map((engine) => <option key={engine.id} value={engine.id}>{engine.label}</option>)}</optgroup>)}
+                </select>}
+                {query && <button type="button" onClick={() => setQuery("")} aria-label="清空搜索"><X size={17} /></button>}
+                {searchMode === "external" && <button type="submit" className="external-submit" aria-label={`使用 ${selectedSearchEngine.label} 搜索`}><Globe2 size={17} /></button>}
+              </div>
+              <p className="search-helper">{searchMode === "internal" ? "站内搜：实时筛选当前储物间的资源记录。" : `站外搜：将以 ${selectedSearchEngine.label} 在新标签页打开搜索结果。`}</p>
+            </form>
             <div className="hero-metrics" aria-label="资源统计">
-              <div><strong>{categories.length - 1}</strong><span>个主题目录</span></div>
-              <div><strong>{resources.length.toLocaleString()}</strong><span>条已收录链接</span></div>
+              <div><strong>{archive.categories.length}</strong><span>个主题目录</span></div>
+              <div><strong>{archive.resources.length.toLocaleString()}</strong><span>条已收录链接</span></div>
               <div><strong>⌘ K</strong><span>聚焦搜索框</span></div>
             </div>
           </div>
-          <div className="hero-index-card" aria-hidden="true">
-            <div className="index-card-tab">ARCHIVE / 001</div>
-            <Archive size={28} strokeWidth={1.4} />
-            <span>常用资源<br />随取随用</span>
-          </div>
+          <div className="hero-index-card" aria-hidden="true"><div className="index-card-tab">ARCHIVE / LOCAL</div><Archive size={28} strokeWidth={1.4} /><span>常用资源<br />随取随用</span></div>
         </section>
 
-        <div className="archive-body">
+        <div className={`archive-body ${isSidebarCollapsed ? "is-sidebar-collapsed" : ""}`}>
           <aside className={`archive-sidebar ${isDrawerOpen ? "is-open" : ""}`} aria-label="资源分类">
             <div className="sidebar-inner">
               <div className="sidebar-heading">
-                <div>
-                  <p className="eyebrow"><span /> FOLDER INDEX</p>
-                  <h2>目录书脊</h2>
+                <div><p className="eyebrow"><span /> FOLDER INDEX</p><h2>目录书脊</h2></div>
+                <div className="sidebar-heading-actions">
+                  <button type="button" className="sidebar-collapse-control" onClick={() => setIsSidebarCollapsed((value) => !value)} aria-label={isSidebarCollapsed ? "展开左侧分类栏" : "折叠左侧分类栏"} title={isSidebarCollapsed ? "展开分类栏" : "折叠分类栏"}>{isSidebarCollapsed ? <PanelLeftOpen size={17} /> : <PanelLeftClose size={17} />}</button>
+                  <button type="button" className="drawer-close" onClick={() => setIsDrawerOpen(false)} aria-label="关闭分类目录"><X size={18} /></button>
                 </div>
-                <button type="button" className="drawer-close" onClick={() => setIsDrawerOpen(false)} aria-label="关闭分类目录">
-                  <X size={18} />
-                </button>
               </div>
-
               <nav className="category-nav">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    type="button"
-                    className={`category-link ${selectedCategory === category.id ? "is-active" : ""}`}
-                    onClick={() => chooseCategory(category.id)}
-                  >
+                {navigationCategories.map((category) => (
+                  <button key={category.id} type="button" className={`category-link ${selectedCategory === category.id ? "is-active" : ""}`} onClick={() => chooseCategory(category.id)}>
                     <span className="category-icon"><FolderOpen size={15} /></span>
                     <span className="category-label">{category.id === "all" ? category.label : cleanCategoryName(category.label)}</span>
                     <span className="category-count">{category.count}</span>
                   </button>
                 ))}
               </nav>
-
-              <div className="sidebar-note">
-                <BookOpenText size={18} />
-                <p>外链源自原始储物间，访问前请自行判断资源的时效与适用性。</p>
-              </div>
+              <button type="button" className="sidebar-manage" onClick={() => { setIsDrawerOpen(false); setIsSettingsOpen(true); }} aria-label="管理分类与书签"><Settings2 size={16} /> <span>管理分类与书签</span></button>
+              <div className="sidebar-note"><BookOpenText size={18} /><p>左侧目录与右侧资源清单是独立滚动容器。外链由你本地管理，可随时备份或恢复。</p></div>
             </div>
           </aside>
-
           {isDrawerOpen && <button type="button" className="drawer-scrim" onClick={() => setIsDrawerOpen(false)} aria-label="关闭目录遮罩" />}
 
-          <section className="resource-ledger" aria-label="资源列表">
+          <section className="resource-ledger" aria-label="资源列表" tabIndex={-1}>
             <div className="ledger-topline">
-              <div>
-                <p className="eyebrow"><span /> CURRENT FILE</p>
-                <h2>{activeCategory?.id === "all" ? "全部资源索引" : activeCategory?.label || "资源索引"}</h2>
-              </div>
-              <div className="result-counter">
-                <FileSearch size={17} />
-                <span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span>
-              </div>
+              <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>{activeCategory?.id === "all" ? "全部资源索引" : activeCategory?.label || "资源索引"}</h2></div>
+              <div className="result-counter"><FileSearch size={17} /><span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span></div>
             </div>
-
             <div className="filter-strip" aria-label="资源状态筛选">
               <span className="filter-caption">状态筛选</span>
               <div className="status-filters">
-                <button
-                  type="button"
-                  className={selectedStatus === "全部" ? "is-selected" : ""}
-                  onClick={() => setSelectedStatus("全部")}
-                >全部</button>
-                {statusOrder.map((status) => (
-                  <button
-                    key={status}
-                    type="button"
-                    className={selectedStatus === status ? "is-selected" : ""}
-                    onClick={() => setSelectedStatus(status)}
-                  >
-                    {status === "可用" && <Check size={13} />} {status}
-                  </button>
-                ))}
+                <button type="button" className={selectedStatus === "全部" ? "is-selected" : ""} onClick={() => setSelectedStatus("全部")}>全部</button>
+                {statusOrder.map((status) => <button key={status} type="button" className={selectedStatus === status ? "is-selected" : ""} onClick={() => setSelectedStatus(status)}>{status === "可用" && <Check size={13} />} {status}</button>)}
               </div>
             </div>
-
-            {displayedGroups.length ? (
-              <div className="resource-groups">
-                {displayedGroups.map((group, groupIndex) => (
-                  <section className="resource-group" key={`${group.name}-${groupIndex}`}>
-                    <div className="group-header">
-                      <div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div>
-                      <span>{group.items.length} 条记录</span>
-                    </div>
-                    <div className="resource-list">
-                      {group.items.map((resource, itemIndex) => (
-                        <a
-                          className="resource-row"
-                          key={resource.id}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} />
-                          <span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span>
-                          <span className="resource-title">{resource.title}</span>
-                          <span className="resource-meta">
-                            <span className="status-word">{resource.status}</span>
-                            <ArrowUpRight size={15} aria-hidden="true" />
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-            ) : (
-              <div className="empty-ledger">
-                <CircleHelp size={28} />
-                <h3>这本档案里暂时没有匹配项</h3>
-                <p>可以换一个关键词，或清除状态筛选后再试一次。</p>
-                <button type="button" onClick={() => { setQuery(""); setSelectedStatus("全部"); }}>重置筛选 <ChevronRight size={16} /></button>
-              </div>
-            )}
-
-            {query && filteredResources.length > totalShown && (
-              <p className="results-limit">为保持阅读顺畅，当前仅展示前 {totalShown} 条匹配记录；请进一步缩小关键词。</p>
-            )}
+            {displayedGroups.length ? <div className="resource-groups">
+              {displayedGroups.map((group, groupIndex) => <section className="resource-group" key={`${group.name}-${groupIndex}`}>
+                <div className="group-header"><div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div><span>{group.items.length} 条记录</span></div>
+                <div className="resource-list">
+                  {group.items.map((resource, itemIndex) => <a className="resource-row" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">
+                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
+                  </a>)}
+                </div>
+              </section>)}
+            </div> : <div className="empty-ledger"><CircleHelp size={28} /><h3>这本档案里暂时没有匹配项</h3><p>可以换一个关键词，或清除状态筛选后再试一次。</p><button type="button" onClick={() => { setQuery(""); setSelectedStatus("全部"); }}>重置筛选 <ChevronRight size={16} /></button></div>}
+            {query && filteredResources.length > totalShown && <p className="results-limit">为保持阅读顺畅，当前仅展示前 {totalShown} 条匹配记录；请进一步缩小关键词。</p>}
           </section>
 
           <aside className="ledger-aside" aria-label="页面提示">
             <div className="aside-image" style={{ backgroundImage: `url(${SHELF_IMAGE})` }} />
-            <div className="aside-copy">
-              <p className="eyebrow"><span /> HOW TO USE</p>
-              <h3>先检索，再取用。</h3>
-              <ol>
-                <li><span>01</span> 左栏切换主题目录</li>
-                <li><span>02</span> 搜索名称或资源用途</li>
-                <li><span>03</span> 点击记录，在新标签打开</li>
-              </ol>
-            </div>
+            <div className="aside-copy"><p className="eyebrow"><span /> HOW TO USE</p><h3>先检索，再取用。</h3><ol><li><span>01</span> 左栏切换主题目录</li><li><span>02</span> 搜索名称或资源用途</li><li><span>03</span> 点击管理，整理与备份</li></ol></div>
           </aside>
         </div>
       </main>
 
-      <footer className="archive-footer">
-        <p>小帅同学的储物间 · 已将原始单页内容整理为可检索资源索引</p>
-        <a href="#top">返回索引顶部 <ChevronRight size={14} /></a>
-      </footer>
+      <footer className="archive-footer"><p>小帅同学的储物间 · 可检索、可整理、可备份的个人资源索引</p><a href="#top">返回索引顶部 <ChevronRight size={14} /></a></footer>
+      <ArchiveSettingsDialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen} archive={archive} onArchiveChange={setArchive} />
     </div>
   );
 }

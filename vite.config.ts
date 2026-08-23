@@ -206,6 +206,8 @@ function vitePluginStorageProxy(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({
+  // 静态部署使用相对资源路径，适配 GitHub Pages 的仓库子路径与其他静态托管平台。
+  base: "./",
   plugins,
   resolve: {
     alias: {
