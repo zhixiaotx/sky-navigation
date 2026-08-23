@@ -44,6 +44,8 @@ const statusClass: Record<ResourceStatus, string> = {
 };
 
 const cleanCategoryName = (name: string) => name.replace(/^\d{2}\s*/, "").replace(/🔥/g, "").trim();
+const categoryAnchorId = (id: string) => `resource-category-${encodeURIComponent(id)}`;
+const sectionAnchorId = (categoryId: string, section: string) => `resource-section-${encodeURIComponent(categoryId)}-${encodeURIComponent(section)}`;
 const formatResourceUrl = (url: string) => {
   try {
     const parsed = new URL(url);
@@ -58,7 +60,7 @@ const formatResourceUrl = (url: string) => {
 export default function Home() {
   const [archive, setArchive] = useState<ArchiveStore>(() => loadArchiveStore());
   const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("01 爆火 AI🔥");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<ResourceStatus | "全部">("全部");
   const [isDark, setIsDark] = useState(false);
@@ -114,40 +116,47 @@ export default function Home() {
   const filteredResources = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return archive.resources.filter((resource) => {
-      const matchesCategory = selectedCategory === "all" || resource.category === selectedCategory;
-      const matchesSection = !selectedSection || resource.section === selectedSection;
       const matchesStatus = selectedStatus === "全部" || resource.status === selectedStatus;
       const haystack = `${resource.title} ${resource.category} ${resource.section}`.toLowerCase();
-      return matchesCategory && matchesSection && matchesStatus && (!normalizedQuery || haystack.includes(normalizedQuery));
+      return matchesStatus && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
-  }, [archive.resources, query, selectedCategory, selectedSection, selectedStatus]);
+  }, [archive.resources, query, selectedStatus]);
 
   const groupedResources = useMemo(() => {
-    const grouped = new Map<string, typeof filteredResources>();
+    const grouped = new Map<string, { id: string; label: string; groups: Map<string, typeof filteredResources> }>();
     for (const resource of filteredResources) {
       const categoryName = archive.categories.find((category) => category.id === resource.category)?.label ?? "未分类";
-      const groupName = query.trim() ? categoryName : resource.section;
-      const items = grouped.get(groupName) ?? [];
+      const category = grouped.get(resource.category) ?? { id: resource.category, label: categoryName, groups: new Map() };
+      const groupName = resource.section || "未分组";
+      const items = category.groups.get(groupName) ?? [];
       items.push(resource);
-      grouped.set(groupName, items);
+      category.groups.set(groupName, items);
+      grouped.set(resource.category, category);
     }
-    return Array.from(grouped, ([name, items]) => ({ name, items }));
-  }, [archive.categories, filteredResources, query]);
+    return Array.from(grouped.values()).map((category) => ({
+      ...category,
+      groups: Array.from(category.groups, ([name, items]) => ({ name, items })),
+    }));
+  }, [archive.categories, filteredResources]);
 
-  const displayedGroups = useMemo(() => {
+  const displayedCategories = useMemo(() => {
     if (!query.trim()) return groupedResources;
     let remaining = 180;
     return groupedResources
-      .map((group) => {
-        const items = group.items.slice(0, Math.max(0, remaining));
-        remaining -= items.length;
-        return { ...group, items };
+      .map((category) => {
+        const groups = category.groups
+          .map((group) => {
+            const items = group.items.slice(0, Math.max(0, remaining));
+            remaining -= items.length;
+            return { ...group, items };
+          })
+          .filter((group) => group.items.length);
+        return { ...category, groups };
       })
-      .filter((group) => group.items.length);
+      .filter((category) => category.groups.length);
   }, [groupedResources, query]);
 
-  const activeCategory = categoryTree.find((category) => category.id === selectedCategory);
-  const totalShown = displayedGroups.reduce((total, group) => total + group.items.length, 0);
+  const totalShown = displayedCategories.reduce((total, category) => total + category.groups.reduce((groupTotal, group) => groupTotal + group.items.length, 0), 0);
   const selectedSearchEngine = searchEngines.find((engine) => engine.id === searchEngineId) ?? searchEngines[0];
 
   const chooseCategory = (id: string, section: string | null = null, toggleBranch = false) => {
@@ -160,6 +169,8 @@ export default function Home() {
       return next;
     });
     setIsDrawerOpen(false);
+    const targetId = id === "all" ? "resource-ledger-start" : section ? sectionAnchorId(id, section) : categoryAnchorId(id);
+    requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" }));
   };
 
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
@@ -263,9 +274,9 @@ export default function Home() {
           </aside>
           {isDrawerOpen && <button type="button" className="drawer-scrim" onClick={() => setIsDrawerOpen(false)} aria-label="关闭目录遮罩" />}
 
-          <section className="resource-ledger" aria-label="资源列表" tabIndex={-1}>
+          <section className="resource-ledger" id="resource-ledger-start" aria-label="资源列表" tabIndex={-1}>
             <div className="ledger-topline">
-              <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>{selectedSection || (selectedCategory === "all" ? "全部资源索引" : activeCategory?.label || "资源索引")}</h2></div>
+              <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>全部资源索引</h2></div>
               <div className="ledger-actions">
                 <div className="result-counter"><FileSearch size={17} /><span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span></div>
                 <div className="resource-view-toggle" role="group" aria-label="切换资源浏览视图">
@@ -281,13 +292,18 @@ export default function Home() {
                 {statusOrder.map((status) => <button key={status} type="button" className={selectedStatus === status ? "is-selected" : ""} onClick={() => setSelectedStatus(status)}>{status === "可用" && <Check size={13} />} {status}</button>)}
               </div>
             </div>
-            {displayedGroups.length ? <div className="resource-groups">
-              {displayedGroups.map((group, groupIndex) => <section className="resource-group" key={`${group.name}-${groupIndex}`}>
-                <div className="group-header"><div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div><span>{group.items.length} 条记录</span></div>
-                <div className={`resource-list ${resourceView === "cards" ? "resource-list--cards" : "resource-list--compact"}`}>
-                  {group.items.map((resource, itemIndex) => <a className="resource-row" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">
-                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-details"><span className="resource-category-tag">{cleanCategoryName(resource.category)}</span><span className="resource-section-tag">{resource.section}</span><span className="resource-url" title={resource.url}>{formatResourceUrl(resource.url)}</span></span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
-                  </a>)}
+            {displayedCategories.length ? <div className="resource-category-groups">
+              {displayedCategories.map((category, categoryIndex) => <section className="resource-category-group" id={categoryAnchorId(category.id)} key={category.id}>
+                <div className="category-ledger-heading"><div><span>{String(categoryIndex + 1).padStart(2, "0")}</span><h3>{cleanCategoryName(category.label)}</h3></div><p>{category.groups.reduce((total, group) => total + group.items.length, 0)} 条网址模块</p></div>
+                <div className="resource-groups">
+                  {category.groups.map((group, groupIndex) => <section className="resource-group" id={sectionAnchorId(category.id, group.name)} key={`${category.id}-${group.name}`}>
+                    <div className="group-header"><div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div><span>{group.items.length} 条记录</span></div>
+                    <div className={`resource-list ${resourceView === "cards" ? "resource-list--cards" : "resource-list--compact"}`}>
+                      {group.items.map((resource, itemIndex) => <a className="resource-row" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">
+                        <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-details"><span className="resource-category-tag">{cleanCategoryName(resource.category)}</span><span className="resource-section-tag">{resource.section}</span><span className="resource-url" title={resource.url}>{formatResourceUrl(resource.url)}</span></span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
+                      </a>)}
+                    </div>
+                  </section>)}
                 </div>
               </section>)}
             </div> : <div className="empty-ledger"><CircleHelp size={28} /><h3>这本档案里暂时没有匹配项</h3><p>可以换一个关键词，或清除状态筛选后再试一次。</p><button type="button" onClick={() => { setQuery(""); setSelectedStatus("全部"); }}>重置筛选 <ChevronRight size={16} /></button></div>}
