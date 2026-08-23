@@ -697,8 +697,9 @@ button {
 .archive-footer {
   min-height: 92px;
   padding: 1.4rem clamp(1.1rem, 4vw, 4.5rem);
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   color: var(--muted-ink);
@@ -708,7 +709,13 @@ button {
 .archive-footer p {
   margin: 0;
 }
+.archive-footer-note {
+  width: 100%;
+  text-align: center;
+}
 .archive-footer a {
+  position: absolute;
+  right: clamp(1.1rem, 4vw, 4.5rem);
   display: inline-flex;
   align-items: center;
   color: var(--ink);
@@ -820,8 +827,11 @@ button {
   }
   .archive-footer {
     padding: 1.1rem 1.25rem;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+  }
+  .archive-footer a {
+    position: static;
   }
 }
 @media (max-width: 490px) {

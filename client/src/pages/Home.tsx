@@ -805,7 +805,9 @@ export default function Home() {
       </main>
 
       <footer className="archive-footer">
-        <p>Sky 的储物间 · 可检索、可整理、可备份的个人资源索引</p>
+        <p className="archive-footer-note">
+          Sky 的储物间 · 可检索、可整理、可备份的个人资源索引
+        </p>
         <a href="#top">
           返回索引顶部 <ChevronRight size={14} />
         </a>
