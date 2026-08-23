@@ -16,6 +16,8 @@ const decode = (value) =>
     .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
     .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
     .replace(/\s+/g, " ")
+    .replace(/小帅同学/g, "Sky")
+    .replace(/小帅/g, "Sky")
     .trim();
 
 const html = fs.readFileSync(sourcePath, "utf8");

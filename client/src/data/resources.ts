@@ -3479,7 +3479,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-433",
-    "title": "👍文章 《小帅教你用三种方法免费激活Windows系统》",
+    "title": "👍文章 《Sky教你用三种方法免费激活Windows系统》",
     "url": "https://mp.weixin.qq.com/s/aDxnhffxa0zis1gA8D_kZQ",
     "status": "可用",
     "category": "02 电脑软件",
@@ -4743,7 +4743,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-591",
-    "title": "IDM下载神器 - 小帅提供 各种版本👍",
+    "title": "IDM下载神器 - Sky提供 各种版本👍",
     "url": "https://pan.quark.cn/s/4051dd2a458d#/list/share",
     "status": "可用",
     "category": "02 电脑软件",
@@ -5143,7 +5143,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-641",
-    "title": "👍文章 《小帅Typora使用经验》",
+    "title": "👍文章 《SkyTypora使用经验》",
     "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247487684&idx=1&sn=f6934246bd43b0ca5943a4e3cee6655b&chksm=9b8a6967acfde071722b966ab5571129c070369f0fcca4daf40784aea4104c3c8ddc5",
     "status": "可用",
     "category": "02 电脑软件",
@@ -10239,7 +10239,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-1278",
-    "title": "WPS手机版下载【小帅提供】",
+    "title": "WPS手机版下载【Sky提供】",
     "url": "https://pan.quark.cn/s/f7501a9f5f75",
     "status": "可用",
     "category": "03 手机软件",
@@ -11063,7 +11063,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-1381",
-    "title": "👍小帅同学的储物间 「集各类资源于一身的储物间」",
+    "title": "👍Sky的储物间 「集各类资源于一身的储物间」",
     "url": "https://xiaoshuai.link/locker/",
     "status": "可用",
     "category": "04 全端软件",
@@ -18767,7 +18767,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2344",
-    "title": "👍文章 《小帅同款类型的储物间将近一百个，再也不用怕找不到资源了》",
+    "title": "👍文章 《Sky同款类型的储物间将近一百个，再也不用怕找不到资源了》",
     "url": "https://mp.weixin.qq.com/s/2pScJ-gmMYLG6yFmaQJnLA",
     "status": "可用",
     "category": "09 资源荟萃",
@@ -18791,7 +18791,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2347",
-    "title": "弃用-小帅同学的储物间",
+    "title": "弃用-Sky的储物间",
     "url": "http://gmengshuai.ys168.com/",
     "status": "可用",
     "category": "09 资源荟萃",
@@ -20143,7 +20143,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2516",
-    "title": "四六级&考研作文模板by小帅",
+    "title": "四六级&考研作文模板bySky",
     "url": "https://xiaoshuai.site/xiaoshuai/note_1750142423338_53074",
     "status": "可用",
     "category": "10 共同进步",
@@ -20151,7 +20151,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2517",
-    "title": "四六级翻译(词&短语)整理by小帅",
+    "title": "四六级翻译(词&短语)整理bySky",
     "url": "https://xiaoshuai.site/xiaoshuai/note_1750142468232_55504",
     "status": "可用",
     "category": "10 共同进步",
@@ -20159,7 +20159,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2518",
-    "title": "四级翻译真题合集【2016-2024.6】by小帅",
+    "title": "四级翻译真题合集【2016-2024.6】bySky",
     "url": "https://xiaoshuai.site/xiaoshuai/note_1750142067977_36726",
     "status": "可用",
     "category": "10 共同进步",
@@ -20167,7 +20167,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2519",
-    "title": "六级翻译真题合集【2016-2024.6】by小帅",
+    "title": "六级翻译真题合集【2016-2024.6】bySky",
     "url": "https://xiaoshuai.site/xiaoshuai/note_1750142338842_42159",
     "status": "可用",
     "category": "10 共同进步",
@@ -20175,7 +20175,7 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2520",
-    "title": "六级阅读分类型[仔细&长篇阅读]汇总（2015-2023）by小帅",
+    "title": "六级阅读分类型[仔细&长篇阅读]汇总（2015-2023）bySky",
     "url": "https://pan.quark.cn/s/799dd395db2f",
     "status": "可用",
     "category": "10 共同进步",
@@ -20855,218 +20855,218 @@ export const resources: Resource[] = [
   },
   {
     "id": "resource-2605",
-    "title": "还在满网找资源？小帅网站大汇总【粉丝必看】 👍",
+    "title": "还在满网找资源？Sky网站大汇总【粉丝必看】 👍",
     "url": "https://mp.weixin.qq.com/s/7FUYf8-8KembSqe77m9ZZw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "11 小帅随笔"
+    "category": "11 Sky随笔",
+    "section": "11 Sky随笔"
   },
   {
     "id": "resource-2606",
     "title": "👍文章 《各大网盘搜索推荐「解锁数字世界的宝藏！」》",
     "url": "https://mp.weixin.qq.com/s/1kYBPBB5HG7IIlJgqPVrGA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "01.小帅搜索技巧"
+    "category": "11 Sky随笔",
+    "section": "01.Sky搜索技巧"
   },
   {
     "id": "resource-2607",
     "title": "👍文章 《以前的你是怎样找破解软件我不知道，但希望今后你可以这样》",
     "url": "https://mp.weixin.qq.com/s/fdvLhKXq3-n8dumJScBI3g",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "01.小帅搜索技巧"
+    "category": "11 Sky随笔",
+    "section": "01.Sky搜索技巧"
   },
   {
     "id": "resource-2608",
-    "title": "👍文章 《小帅教你如何优雅的使用谷歌》",
+    "title": "👍文章 《Sky教你如何优雅的使用谷歌》",
     "url": "https://mp.weixin.qq.com/s/eX1mCQ0ASxunAeZZAPaziw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "01.小帅搜索技巧"
+    "category": "11 Sky随笔",
+    "section": "01.Sky搜索技巧"
   },
   {
     "id": "resource-2609",
     "title": "👍文章 《你确定会使用谷歌搜索吗？》",
     "url": "https://mp.weixin.qq.com/s/QHyz_GNDpn_i8O5Yo1KVvw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "01.小帅搜索技巧"
+    "category": "11 Sky随笔",
+    "section": "01.Sky搜索技巧"
   },
   {
     "id": "resource-2610",
     "title": "👍文章 《以图识图，帮你找到原图出处》",
     "url": "https://mp.weixin.qq.com/s/N9Vmz193RRINLo-MxgEi7A",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "01.小帅搜索技巧"
+    "category": "11 Sky随笔",
+    "section": "01.Sky搜索技巧"
   },
   {
     "id": "resource-2611",
     "title": "👍文章 《度盘加速再次回归！全新的 Hyperdown~》",
     "url": "https://mp.weixin.qq.com/s/UF1V0yKZGYB5zrzQBGIW1A",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2612",
     "title": "👍文章 《全网的PDF电子书任你下载【2024最新】》",
     "url": "https://mp.weixin.qq.com/s/EBIdCc9ygUF-lY6bx4zkBQ",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2613",
     "title": "👍文章 《音乐党福音：全平台的音乐下载方法》",
     "url": "https://mp.weixin.qq.com/s/doBJuCA9pEbra8so7FdSlQ",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2614",
     "title": "👍文章 《哔哩哔哩视频下载器更新》",
     "url": "https://mp.weixin.qq.com/s/UpdLNFnY6lQiM37N4c8QmA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2615",
     "title": "👍文章 《都2023年了，百度云盘不花钱还能不限速吗？》",
     "url": "https://mp.weixin.qq.com/s/PIsV3-yK25OGcG-ks2Z4qA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2616",
     "title": "👍文章 《下载个哔哩哔哩视频还不简单！》",
     "url": "https://mp.weixin.qq.com/s/7eh5hFj_MiyGc4imKJ54nw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2617",
     "title": "👍文章 《冰点凉了？百度文库、道客巴巴、豆丁、CSDN等下载神器》",
     "url": "https://mp.weixin.qq.com/s/KMmo8u07rPchB9cL6OLfbA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2618",
     "title": "👍文章 《全网的PDF电子书任你下载，下不到算我输》",
     "url": "https://mp.weixin.qq.com/s/nS4AxlO-LiLE47G5M7m-BA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2619",
     "title": "👍文章 《4个方法，2个软件，10个网站，复制和下载百度文库》",
     "url": "https://mp.weixin.qq.com/s/dCpIiQnXiGR5aoAR6hOC0w",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2620",
     "title": "👍文章 《天翼云盘终极下载教程，但愿能长久使用》",
     "url": "https://mp.weixin.qq.com/s/gZjMrwdl0CsFcOncO0y3WQ",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2621",
     "title": "👍文章 《这怕是“全网最好使”的下载教程了》",
     "url": "https://mp.weixin.qq.com/s/H0b4vfs3Xcg1xDmgmSDxqg",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2622",
     "title": "👍文章 《看完本篇，百度云无限加速》",
     "url": "https://mp.weixin.qq.com/s/WoVYOFDnOwSrqkB1eZ6RZw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "02.小帅下载技巧"
+    "category": "11 Sky随笔",
+    "section": "02.Sky下载技巧"
   },
   {
     "id": "resource-2623",
     "title": "👍文章 《看上一眼就爱上的导航「文末送码」》",
     "url": "https://mp.weixin.qq.com/s/HfyZj8KOLs8T44yQt3NuBw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2624",
     "title": "👍文章 《几百T私人云资源，免费送你要不要》",
     "url": "https://mp.weixin.qq.com/s/XvGVTpbt72ClvZoc37JZSg",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2625",
     "title": "👍文章 《有网就能上，一辆开往P站的直通车！》",
     "url": "https://mp.weixin.qq.com/s/a93uYXyu9mSY-vMEH_nUVA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2626",
     "title": "👍文章 《Telegram各种客户端下载》",
     "url": "https://xiaoshuai.site/xiaoshuai/note_1768731253431_57885",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2627",
     "title": "👍文章 《这么多可爱的表情包，不进来收藏一波？》",
     "url": "https://mp.weixin.qq.com/s/59e9aZu-vVWZszNUaD6irA",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2628",
     "title": "👍文章 《你要的不限速网盘它来了，且用且珍惜~》",
     "url": "https://mp.weixin.qq.com/s/IjX3QlAsc3AWe64_mNx8xQ",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2629",
     "title": "👍文章 《机械工业出版社 计算机科学丛书（黑皮书）全套下载 PDF》",
     "url": "https://mp.weixin.qq.com/s/lh_eOcyXYHbtZKEdoBUIJw",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2630",
     "title": "👍文章 《周星驰电影51部超清全集【国粤双语】》",
     "url": "https://mp.weixin.qq.com/s/72OncitJbMVdv1irDAlXvQ",
     "status": "可用",
-    "category": "11 小帅随笔",
-    "section": "03.小帅杂物分享"
+    "category": "11 Sky随笔",
+    "section": "03.Sky杂物分享"
   },
   {
     "id": "resource-2631",
     "title": "文章 《Win系统必备，这些截图工具让你效率飙升！》",
     "url": "https://mp.weixin.qq.com/s/JCATXzYNvldAeFkPOd211A",
     "status": "收藏",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21074,7 +21074,7 @@ export const resources: Resource[] = [
     "title": "文章 《不知道选择哪一款 OCR，进来让我告诉你》",
     "url": "https://mp.weixin.qq.com/s/DQqQ1FYyoQ9GNG6-g4bcBQ",
     "status": "收藏",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21082,15 +21082,15 @@ export const resources: Resource[] = [
     "title": "文章 《选择明智，轻量级工具让图片批处理更简单》",
     "url": "https://mp.weixin.qq.com/s/haY0NCYgemGrPjevqXxApw",
     "status": "收藏",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
     "id": "resource-2634",
-    "title": "👍文章 《小帅教你用三种方法免费激活Windows系统》",
+    "title": "👍文章 《Sky教你用三种方法免费激活Windows系统》",
     "url": "https://mp.weixin.qq.com/s/aDxnhffxa0zis1gA8D_kZQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21098,7 +21098,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《评测了国内外这么多的网盘，总有一款适合你》",
     "url": "https://mp.weixin.qq.com/s/hgyofeJjM54XRmi5__PA6A",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21106,7 +21106,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《即使电脑不在身边，依然可以流畅的远程办公》",
     "url": "https://mp.weixin.qq.com/s/glaAtwDY6wBMrRsQxmSNWw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21114,7 +21114,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《学会这些，电脑优化清理方面你也是个高手了》",
     "url": "https://mp.weixin.qq.com/s/XEee0JJD8gfqcxFpQKtKhQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21122,7 +21122,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《文字转语音保姆级教程（可免费白嫖！）》",
     "url": "https://mp.weixin.qq.com/s/wv7CiYgY-KHtIB7ACorgEg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21130,7 +21130,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《装上这些软件，让你的电脑直接起飞》",
     "url": "https://mp.weixin.qq.com/s/lJAnCJfgHD1R4OXeZH8Iuw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "04.电脑软件评测"
   },
   {
@@ -21138,7 +21138,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Instagram、Youtube、Niconico、Twitter、微博第三方APP评测》",
     "url": "https://mp.weixin.qq.com/s/pcX8-FP1OKhQdJ5AzynGkw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "05.手机软件评测"
   },
   {
@@ -21146,15 +21146,15 @@ export const resources: Resource[] = [
     "title": "👍文章 《评测了数款课程表软件，还是这些好用》",
     "url": "https://mp.weixin.qq.com/s/qwVD0fevrrmxcoE5xq8dHg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "05.手机软件评测"
   },
   {
     "id": "resource-2642",
-    "title": "👍文章 《关于小帅「内含多重福利」》",
+    "title": "👍文章 《关于Sky「内含多重福利」》",
     "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488703&idx=1&sn=88da27092fa73328a9ec9762feac8638&chksm=9b8a6d1cacfde40a465a9a745616f0341e47330a22c6c0e434fdb5bbf1a4305265a",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "06.科学研究必备"
   },
   {
@@ -21162,7 +21162,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《免翻直连谷歌、YouTube等网站（冒险分享）》",
     "url": "https://mp.weixin.qq.com/s/rs0ufS21R7P-eZvAbCSjUg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "06.科学研究必备"
   },
   {
@@ -21170,7 +21170,7 @@ export const resources: Resource[] = [
     "title": "文章 《Cursor学生认证享一年会员，恢复中国地区访问（速进）》》",
     "url": "https://mp.weixin.qq.com/s/MClClgVKY6YHGv6qyPFCkw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "07.编程相关"
   },
   {
@@ -21178,7 +21178,7 @@ export const resources: Resource[] = [
     "title": "文章 《国内免费无限制使用Claude3.5、Claude3.7、GPT4o等「官方渠道」！》",
     "url": "https://mp.weixin.qq.com/s/3lxoepD890NxYVu1Fa3JaQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "07.编程相关"
   },
   {
@@ -21186,7 +21186,7 @@ export const resources: Resource[] = [
     "title": "文章 《程序员必备《超强大的AI编程插件永久白嫖》》",
     "url": "https://mp.weixin.qq.com/s/2NASc2DHC3VV5fKzvGks0g",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "07.编程相关"
   },
   {
@@ -21194,7 +21194,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Linux环境搭建保姆级教程》",
     "url": "https://mp.weixin.qq.com/mp/homepage?__biz=MzAxNDk3MTA4NA==&hid=4&sn=637a228b8cc786cae5ddec73675b403a&scene=18&uin=&key=&devicetype=Windows+10+x64&version=63030522&lang=zh_CN&ascene=7&fontgear=2",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "07.编程相关"
   },
   {
@@ -21202,7 +21202,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《VC++6.0居然比VS使用起来更加丝滑》",
     "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488583&idx=1&sn=99b251ce40b7147098c0f1a4229ad4b3&chksm=9b8a6de4acfde4f23447a377d089fd8f2568670537583e3c33b9d775df3ab7e0fba",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "07.编程相关"
   },
   {
@@ -21210,7 +21210,7 @@ export const resources: Resource[] = [
     "title": "我用这个工具，把积压2年的书签一个下午整理完了！",
     "url": "https://mp.weixin.qq.com/s/LeYlI9QEt_Y51ZABD6KlEA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21218,7 +21218,7 @@ export const resources: Resource[] = [
     "title": "文章 《XiaoShuai Notes: 智能书签和笔记管理网站「内测中」》",
     "url": "https://mp.weixin.qq.com/s/0lxbGlP6m-hVCsyRLlQ8QA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21226,7 +21226,7 @@ export const resources: Resource[] = [
     "title": "文章 《曾经被下架的神插件二管家，完美替代方案来了》",
     "url": "https://mp.weixin.qq.com/s/x25_oAPlt7yrUmr4niPnZA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21234,7 +21234,7 @@ export const resources: Resource[] = [
     "title": "我开源了一个智能OCR工具：\"不止于识别，更懂内容\"",
     "url": "https://mp.weixin.qq.com/s/52y37Sh6SQI4DphIOBwyDA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21242,7 +21242,7 @@ export const resources: Resource[] = [
     "title": "文章 《近百款AI对话通用大模型，值得使用的有这些！》",
     "url": "https://mp.weixin.qq.com/s/zz7_Il6K1ceyluV_TkM59Q",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21250,7 +21250,7 @@ export const resources: Resource[] = [
     "title": "文章 《12306抢票攻略-Bypass》",
     "url": "https://mp.weixin.qq.com/s/IF1a0kmJ8MhlxJMdFRysig",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21258,15 +21258,15 @@ export const resources: Resource[] = [
     "title": "文章 《百度云盘不开SVIP也能在线倍速播放视频「考研党必备」》 👍",
     "url": "https://mp.weixin.qq.com/s/F8QO_AnpGu2vt7tc_DbD5g",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
     "id": "resource-2656",
-    "title": "👍文章 《无小帅必装的浏览器插件，拿来吧你！》",
+    "title": "👍文章 《无Sky必装的浏览器插件，拿来吧你！》",
     "url": "https://mp.weixin.qq.com/s/jYtNWZl7snWku8_pT5piqg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21274,7 +21274,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《独家搜集 WPS各版本来袭，满足你的办公需求》",
     "url": "https://mp.weixin.qq.com/s/cKeA09UKuy1LN1jZ1g6gaw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21282,7 +21282,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《解决【你的 Office许可证有问题】Office2016、2019的修正补丁》",
     "url": "https://mp.weixin.qq.com/s/1WxG7nXe92KsNZPXEw2sow",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21290,7 +21290,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《优化百度，让它回归本质！》",
     "url": "https://mp.weixin.qq.com/s/4uzlPwYpVINwv9ubzG_I0g",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21298,7 +21298,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《安装油猴脚本，看这一篇就够了》",
     "url": "https://mp.weixin.qq.com/s/vgWbK1nkpvSTGJeGnFIVjA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21306,7 +21306,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《安装浏览器插件，看这一篇就够了》",
     "url": "https://mp.weixin.qq.com/s/IaX3XshH2naLUiwZDp1WXQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "08.效率办公指南"
   },
   {
@@ -21314,7 +21314,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《关于考研的①点经验》",
     "url": "https://mp.weixin.qq.com/s/OW9LMIBEGYgXgJJ3FGaIPw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "09.共同进步"
   },
   {
@@ -21322,7 +21322,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《英语渣如何自救？8战四六级的我总结出这些避坑指南》",
     "url": "https://mp.weixin.qq.com/s/QcWFKhfAPtSE3s3TzPUUuA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "09.共同进步"
   },
   {
@@ -21330,7 +21330,7 @@ export const resources: Resource[] = [
     "title": "试问大学生论文查重降重哪家强？2026最新版，直接用 👍",
     "url": "https://mp.weixin.qq.com/s/710ARNZmiA7cPvY1py0s_g",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21338,7 +21338,7 @@ export const resources: Resource[] = [
     "title": "文章 《试问大学生论文查重降重哪家强？》 👍",
     "url": "https://mp.weixin.qq.com/s/h4BncgLe8An0CP6vO8PB5A",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21346,7 +21346,7 @@ export const resources: Resource[] = [
     "title": "论文格式调整太折磨人了：我把最常见的 9 个 Word 坑，一次给你整理好了 👍",
     "url": "https://mp.weixin.qq.com/s/lGoNJK-B7q96ZlxmYiJEag",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21354,7 +21354,7 @@ export const resources: Resource[] = [
     "title": "文章 《摆脱烦恼！论文格式调整小技巧大公开！》 👍",
     "url": "https://mp.weixin.qq.com/s/XtTRFApRwhF2DkE_cnGxag",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21362,7 +21362,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Zotero 第四期「扩展篇」添加常用扩展》",
     "url": "https://mp.weixin.qq.com/s/FU65l0pENtsL4NQVQA-GBA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21370,7 +21370,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Zotero 第三期「获取篇」完美获取文献》",
     "url": "https://mp.weixin.qq.com/s/57-znUmlqoVlQIMRpjjVTg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21378,7 +21378,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Zotero 第二期「同步篇」完美多端同步》",
     "url": "https://mp.weixin.qq.com/s/4mHjjMyY9OSGDqlLySoEkg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21386,7 +21386,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Zotero 第一期「管理篇」完美管理文献》",
     "url": "https://mp.weixin.qq.com/s/R79igMxP-UKu_Auc383agA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21394,7 +21394,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《如何保证在论文中插入的图片不失真？》",
     "url": "https://mp.weixin.qq.com/s/V7tFXJm8iBW7h28JHmux2w",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21402,7 +21402,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《绝了！「GPT学术优化」又放大招了》",
     "url": "https://mp.weixin.qq.com/s/l4-f7fMfqcE1entHOEdBog",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
@@ -21410,15 +21410,15 @@ export const resources: Resource[] = [
     "title": "👍文章 《英文文献&PDF [全文翻译] 最佳方案》",
     "url": "https://mp.weixin.qq.com/s/rVC4ICvX0wq_sTaiig7RKQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "10.科研生产力"
   },
   {
     "id": "resource-2675",
-    "title": "👍文章 《小帅Typora使用经验》",
+    "title": "👍文章 《SkyTypora使用经验》",
     "url": "https://mp.weixin.qq.com/s/q8-5LXCqDck3y-gaeJvBLg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "11.Typora及图床"
   },
   {
@@ -21426,7 +21426,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Typora + PicGo + Github图床详解》",
     "url": "https://mp.weixin.qq.com/s/aZ01fCb2ho7qCR5UOmlsvA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "11.Typora及图床"
   },
   {
@@ -21434,7 +21434,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Typora+阿里云图床详解（小白都能学得会）》",
     "url": "https://mp.weixin.qq.com/s/_0G5iKebK4M_MPfXsLE_KQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "11.Typora及图床"
   },
   {
@@ -21442,7 +21442,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《【建站福利】白嫖域名+免费CDN加速》",
     "url": "https://mp.weixin.qq.com/s/rBlsJ7J07XmtJLXIotpAFw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21450,7 +21450,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《从永硕E盘到智能本地化管理：3次迭代的储物间有多能打！》",
     "url": "https://mp.weixin.qq.com/s/4iu8ZsqzpAzBF2PsrYgqww",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21458,7 +21458,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Gridea+Github搭建个人静态博客》",
     "url": "https://mp.weixin.qq.com/s/jHciz8zfmrRfNAxMbROsOQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21466,7 +21466,7 @@ export const resources: Resource[] = [
     "title": "👍文章 「第一期」hexo+github搭建博客（初步形成）",
     "url": "https://mp.weixin.qq.com/s/DGMz0fCLFeAl-bnpwxlp-A",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21474,7 +21474,7 @@ export const resources: Resource[] = [
     "title": "👍文章 「第二期」 hexo+github搭建博客（发布文章）",
     "url": "https://mp.weixin.qq.com/s/RoZSaS6aa24F-WGHKcg5yA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21482,7 +21482,7 @@ export const resources: Resource[] = [
     "title": "👍文章 「第三期」 hexo+github搭建博客（主题美化）",
     "url": "https://mp.weixin.qq.com/s/SDeY_bp0cGYu8t63ZD1KyQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21490,7 +21490,7 @@ export const resources: Resource[] = [
     "title": "👍文章 「第四期」 hexo+github搭建博客（免费CDN加速）",
     "url": "https://mp.weixin.qq.com/s/awl_BCJjwdiDElmMmab6IQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21498,7 +21498,7 @@ export const resources: Resource[] = [
     "title": "👍文章 《Github或Github.io打开缓慢及无法访问解决方案》",
     "url": "https://mp.weixin.qq.com/s/d-jlCtKGa2oh7lmcY1DN-A",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "12.搭建网站系列"
   },
   {
@@ -21506,7 +21506,7 @@ export const resources: Resource[] = [
     "title": "国产 AI 套餐省钱攻略：我只推荐这几个，别再花冤枉钱! 👍",
     "url": "https://mp.weixin.qq.com/s/v-7WQKowMern0YJSPYrUyg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21514,7 +21514,7 @@ export const resources: Resource[] = [
     "title": "AI 编程到底买哪个最划算？我把 Coding Plan 和中转站全算清楚了 👍",
     "url": "https://mp.weixin.qq.com/s/d2BPpM9YNnuyLHoWS_htwg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21522,7 +21522,7 @@ export const resources: Resource[] = [
     "title": "2026 最新 Claude Code 安装 & 配置实战：10 分钟避开 99% 踩坑 👍",
     "url": "https://my.feishu.cn/wiki/U5QbwxYk0i0EcEkAPWXcPKVLnMg?from=from_copylink",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21530,7 +21530,7 @@ export const resources: Resource[] = [
     "title": "2026 年 Codex 新手教程，照着做就能跑，无需再折腾 Claude Code 👍",
     "url": "https://my.feishu.cn/wiki/U5QbwxYk0i0EcEkAPWXcPKVLnMg?from=from_copylink",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21538,7 +21538,7 @@ export const resources: Resource[] = [
     "title": "2026 OpenCode 保姆级配置指南：安装、接 API、连 VS Code 一篇讲透 👍",
     "url": "https://mp.weixin.qq.com/s/ua58epNe_-W-uOqybjmMpw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21546,7 +21546,7 @@ export const resources: Resource[] = [
     "title": "【你不知道的 Claude Code】不会配 MCP？那你只用了一半 👍",
     "url": "https://mp.weixin.qq.com/s/OUOYlAAYBkBOMZs-1i7r0w",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21554,7 +21554,7 @@ export const resources: Resource[] = [
     "title": "【你不知道的 Claude Code】大模型的外挂Skill，把你的工作方式固化进去 👍",
     "url": "https://mp.weixin.qq.com/s/4u1WXaIqj2bBjliDj-Scaw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21562,7 +21562,7 @@ export const resources: Resource[] = [
     "title": "【你不知道的 Claude Code】用好这四种交互方式，真正的效率飙升！ 👍",
     "url": "https://mp.weixin.qq.com/s/eS45r3ku4xOLjd4EO9vYLQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21570,7 +21570,7 @@ export const resources: Resource[] = [
     "title": "【你不知道的 Claude Code】斜杠命令记住这几个，日常就够用了 👍",
     "url": "https://mp.weixin.qq.com/s/rkzGJSHwU0cByI43WyMcqA",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21578,7 +21578,7 @@ export const resources: Resource[] = [
     "title": "【你不知道的 Claude Code】这 6 个快捷键，每天能省下半小时 👍",
     "url": "https://mp.weixin.qq.com/s/Hg701OW7xvZiQ6aPu-oBgw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21586,7 +21586,7 @@ export const resources: Resource[] = [
     "title": "Claude Code / OpenCode 每天免费畅享 DeepSeek V4！可长期白嫖",
     "url": "https://mp.weixin.qq.com/s/sMscKI_BIrVE5eU4BcRN_g",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21594,7 +21594,7 @@ export const resources: Resource[] = [
     "title": "2026 实测：让 Claude Code 听话的不是模型，是 Rules",
     "url": "https://mp.weixin.qq.com/s/GLifN66DSpjeACvU69MLew",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21602,7 +21602,7 @@ export const resources: Resource[] = [
     "title": "手机装了 APP 才好用，AI 也一样—Skills 才是真正让它变强的开关",
     "url": "https://mp.weixin.qq.com/s/FXKGHhgm2vIwOhGhbvfaKg",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21610,7 +21610,7 @@ export const resources: Resource[] = [
     "title": "Vibe Coding 指南1：指令(Prompt)，已开源！",
     "url": "https://mp.weixin.qq.com/s/OSJg2cTfFGGTMYnaUkKOxw?token=1351703111&lang=zh_CN",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21618,7 +21618,7 @@ export const resources: Resource[] = [
     "title": "2026 年还在手写代码? 这 17 款 AI 工具让效率提升 5 倍",
     "url": "https://mp.weixin.qq.com/s/bs3rQ__3nqF2OAJ64bFe7w",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21626,7 +21626,7 @@ export const resources: Resource[] = [
     "title": "文章 《近百款AI对话通用大模型，值得使用的有这些！》",
     "url": "https://mp.weixin.qq.com/s/zz7_Il6K1ceyluV_TkM59Q",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21634,7 +21634,7 @@ export const resources: Resource[] = [
     "title": "文章 《Cursor学生认证享一年会员，恢复中国地区访问（速进）》",
     "url": "https://mp.weixin.qq.com/s/MClClgVKY6YHGv6qyPFCkw",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21642,7 +21642,7 @@ export const resources: Resource[] = [
     "title": "文章 《国内免费无限制使用Claude3.5、Claude3.7、GPT4o等「官方渠道」》👍",
     "url": "https://mp.weixin.qq.com/s/3lxoepD890NxYVu1Fa3JaQ",
     "status": "可用",
-    "category": "11 小帅随笔",
+    "category": "11 Sky随笔",
     "section": "13 AI效率革命"
   },
   {
@@ -21720,8 +21720,8 @@ export const categories: ResourceCategory[] = [
     "count": 147
   },
   {
-    "id": "11 小帅随笔",
-    "label": "11 小帅随笔",
+    "id": "11 Sky随笔",
+    "label": "11 Sky随笔",
     "count": 99
   },
   {

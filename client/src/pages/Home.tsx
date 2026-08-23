@@ -8,10 +8,10 @@ import {
   ArrowUpRight,
   BookOpenText,
   Check,
+  ChevronDown,
   ChevronRight,
   CircleHelp,
   FileSearch,
-  FolderOpen,
   Globe2,
   Menu,
   Moon,
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import ArchiveSettingsDialog from "@/components/ArchiveSettingsDialog";
 import { loadArchiveStore, saveArchiveStore, type ArchiveStore } from "@/lib/archive-store";
+import { allResourcesIcon, buildCategoryTree } from "@/lib/category-tree";
 import { DEFAULT_SEARCH_ENGINE, searchEngines } from "@/lib/search-engines";
 import type { ResourceStatus } from "@/data/resources";
 
@@ -45,6 +46,7 @@ export default function Home() {
   const [archive, setArchive] = useState<ArchiveStore>(() => loadArchiveStore());
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("01 爆火 AI🔥");
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<ResourceStatus | "全部">("全部");
   const [isDark, setIsDark] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -54,6 +56,7 @@ export default function Home() {
   const [searchEngineId, setSearchEngineId] = useState(() => {
     try { return localStorage.getItem("xiaoshuai-search-engine") || DEFAULT_SEARCH_ENGINE; } catch { return DEFAULT_SEARCH_ENGINE; }
   });
+  const [expandedCategoryIds, setExpandedCategoryIds] = useState<Set<string>>(() => new Set(["01 爆火 AI🔥"]));
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -82,26 +85,22 @@ export default function Home() {
   useEffect(() => {
     if (selectedCategory !== "all" && !archive.categories.some((category) => category.id === selectedCategory)) {
       setSelectedCategory("all");
+      setSelectedSection(null);
     }
   }, [archive.categories, selectedCategory]);
 
-  const navigationCategories = useMemo(() => [
-    { id: "all", label: "全部索引", count: archive.resources.length },
-    ...archive.categories.map((category) => ({
-      ...category,
-      count: archive.resources.filter((resource) => resource.category === category.id).length,
-    })),
-  ], [archive]);
+  const categoryTree = useMemo(() => buildCategoryTree(archive.categories, archive.resources), [archive]);
 
   const filteredResources = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return archive.resources.filter((resource) => {
       const matchesCategory = selectedCategory === "all" || resource.category === selectedCategory;
+      const matchesSection = !selectedSection || resource.section === selectedSection;
       const matchesStatus = selectedStatus === "全部" || resource.status === selectedStatus;
       const haystack = `${resource.title} ${resource.category} ${resource.section}`.toLowerCase();
-      return matchesCategory && matchesStatus && (!normalizedQuery || haystack.includes(normalizedQuery));
+      return matchesCategory && matchesSection && matchesStatus && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
-  }, [archive.resources, query, selectedCategory, selectedStatus]);
+  }, [archive.resources, query, selectedCategory, selectedSection, selectedStatus]);
 
   const groupedResources = useMemo(() => {
     const grouped = new Map<string, typeof filteredResources>();
@@ -127,13 +126,23 @@ export default function Home() {
       .filter((group) => group.items.length);
   }, [groupedResources, query]);
 
-  const activeCategory = navigationCategories.find((category) => category.id === selectedCategory);
+  const activeCategory = categoryTree.find((category) => category.id === selectedCategory);
   const totalShown = displayedGroups.reduce((total, group) => total + group.items.length, 0);
   const selectedSearchEngine = searchEngines.find((engine) => engine.id === searchEngineId) ?? searchEngines[0];
 
-  const chooseCategory = (id: string) => {
+  const chooseCategory = (id: string, section: string | null = null) => {
     setSelectedCategory(id);
+    setSelectedSection(section);
+    if (id !== "all") setExpandedCategoryIds((ids) => new Set([...Array.from(ids), id]));
     setIsDrawerOpen(false);
+  };
+
+  const toggleCategoryBranch = (id: string) => {
+    setExpandedCategoryIds((ids) => {
+      const next = new Set(ids);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
   };
 
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
@@ -149,7 +158,7 @@ export default function Home() {
       <header className="archive-topbar">
         <a className="brand-lockup" href="#top" aria-label="返回页面顶部">
           <img className="brand-mark" src={LOGO_IMAGE} alt="" />
-          <span className="brand-name"><span>小帅同学的</span><strong>储物间</strong></span>
+          <span className="brand-name"><span>SKY PERSONAL</span><strong>储物间</strong></span>
         </a>
 
         <div className="topbar-actions">
@@ -205,24 +214,44 @@ export default function Home() {
                   <button type="button" className="drawer-close" onClick={() => setIsDrawerOpen(false)} aria-label="关闭分类目录"><X size={18} /></button>
                 </div>
               </div>
-              <nav className="category-nav">
-                {navigationCategories.map((category) => (
-                  <button key={category.id} type="button" className={`category-link ${selectedCategory === category.id ? "is-active" : ""}`} onClick={() => chooseCategory(category.id)}>
-                    <span className="category-icon"><FolderOpen size={15} /></span>
-                    <span className="category-label">{category.id === "all" ? category.label : cleanCategoryName(category.label)}</span>
-                    <span className="category-count">{category.count}</span>
-                  </button>
-                ))}
+              <nav className="category-nav category-tree" aria-label="多级资源分类">
+                <button type="button" className={`category-link category-link--all ${selectedCategory === "all" ? "is-active" : ""}`} onClick={() => chooseCategory("all")}>
+                  <span className="category-icon">{(() => { const Icon = allResourcesIcon; return <Icon size={15} />; })()}</span>
+                  <span className="category-label">全部索引</span><span className="category-count">{archive.resources.length}</span>
+                </button>
+                {categoryTree.map((category) => {
+                  const Icon = category.icon;
+                  const isExpanded = expandedCategoryIds.has(category.id);
+                  return <div className={`category-branch ${isExpanded ? "is-expanded" : ""}`} key={category.id}>
+                    <div className="category-branch-row">
+                      <button type="button" className="tree-expand" onClick={() => toggleCategoryBranch(category.id)} aria-label={isExpanded ? `收起 ${cleanCategoryName(category.label)}` : `展开 ${cleanCategoryName(category.label)}`} aria-expanded={isExpanded}>
+                        {category.children?.length ? <ChevronDown size={14} /> : <span />}
+                      </button>
+                      <button type="button" className={`category-link category-link--root ${selectedCategory === category.id && !selectedSection ? "is-active" : ""}`} onClick={() => chooseCategory(category.id)} title={cleanCategoryName(category.label)}>
+                        <span className="category-icon"><Icon size={15} /></span>
+                        <span className="category-label">{cleanCategoryName(category.label)}</span><span className="category-count">{category.count}</span>
+                      </button>
+                    </div>
+                    {isExpanded && category.children?.length ? <div className="category-children">
+                      {category.children.map((child) => {
+                        const ChildIcon = child.icon;
+                        return <button type="button" key={child.id} className={`category-link category-link--child ${selectedCategory === category.id && selectedSection === child.label ? "is-active" : ""}`} onClick={() => chooseCategory(category.id, child.label)} title={child.label}>
+                          <span className="category-icon"><ChildIcon size={14} /></span><span className="category-label">{child.label}</span><span className="category-count">{child.count}</span>
+                        </button>;
+                      })}
+                    </div> : null}
+                  </div>;
+                })}
               </nav>
               <button type="button" className="sidebar-manage" onClick={() => { setIsDrawerOpen(false); setIsSettingsOpen(true); }} aria-label="管理分类与书签"><Settings2 size={16} /> <span>管理分类与书签</span></button>
-              <div className="sidebar-note"><BookOpenText size={18} /><p>左侧目录与右侧资源清单是独立滚动容器。外链由你本地管理，可随时备份或恢复。</p></div>
+              <div className="sidebar-note"><BookOpenText size={18} /><p>Sky 的目录与资源清单独立滚动。外链由你本地管理，可随时备份或恢复。</p></div>
             </div>
           </aside>
           {isDrawerOpen && <button type="button" className="drawer-scrim" onClick={() => setIsDrawerOpen(false)} aria-label="关闭目录遮罩" />}
 
           <section className="resource-ledger" aria-label="资源列表" tabIndex={-1}>
             <div className="ledger-topline">
-              <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>{activeCategory?.id === "all" ? "全部资源索引" : activeCategory?.label || "资源索引"}</h2></div>
+              <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>{selectedSection || (selectedCategory === "all" ? "全部资源索引" : activeCategory?.label || "资源索引")}</h2></div>
               <div className="result-counter"><FileSearch size={17} /><span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span></div>
             </div>
             <div className="filter-strip" aria-label="资源状态筛选">
@@ -252,7 +281,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="archive-footer"><p>小帅同学的储物间 · 可检索、可整理、可备份的个人资源索引</p><a href="#top">返回索引顶部 <ChevronRight size={14} /></a></footer>
+      <footer className="archive-footer"><p>Sky 的储物间 · 可检索、可整理、可备份的个人资源索引</p><a href="#top">返回索引顶部 <ChevronRight size={14} /></a></footer>
       <ArchiveSettingsDialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen} archive={archive} onArchiveChange={setArchive} />
     </div>
   );

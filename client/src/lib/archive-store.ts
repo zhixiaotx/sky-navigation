@@ -30,9 +30,12 @@ export type ArchiveStore = {
   resources: ArchiveResource[];
 };
 
-const STORAGE_KEY = "xiaoshuai-archive-state-v1";
-const BACKUP_KEY = "xiaoshuai-archive-backup-v1";
+const STORAGE_KEY = "sky-archive-state-v1";
+const BACKUP_KEY = "sky-archive-backup-v1";
+const LEGACY_STORAGE_KEY = "xiaoshuai-archive-state-v1";
+const LEGACY_BACKUP_KEY = "xiaoshuai-archive-backup-v1";
 const now = () => new Date().toISOString();
+const normalizeBrand = (value: string) => value.replace(/小帅同学/g, "Sky").replace(/小帅/g, "Sky");
 
 export function createArchiveId(prefix: "category" | "bookmark") {
   const unique = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -46,8 +49,13 @@ export function createDefaultArchive(): ArchiveStore {
     updatedAt: stamp,
     categories: initialCategories
       .filter((category) => category.id !== "all")
-      .map((category) => ({ id: category.id, label: category.label, createdAt: stamp })),
-    resources: initialResources.map((resource) => ({ ...resource })),
+      .map((category) => ({ id: normalizeBrand(category.id), label: normalizeBrand(category.label), createdAt: stamp })),
+    resources: initialResources.map((resource) => ({
+      ...resource,
+      title: normalizeBrand(resource.title),
+      category: normalizeBrand(resource.category),
+      section: normalizeBrand(resource.section),
+    })),
   };
 }
 
@@ -78,16 +86,23 @@ export function isArchiveStore(value: unknown): value is ArchiveStore {
 }
 
 export function normalizeArchiveStore(value: ArchiveStore): ArchiveStore {
-  const categoryIds = new Set(value.categories.map((category) => category.id));
-  const hasOrphans = value.resources.some((resource) => !categoryIds.has(resource.category));
+  const brandedCategories = value.categories.map((category) => ({ ...category, id: normalizeBrand(category.id), label: normalizeBrand(category.label) }));
+  const brandedResources = value.resources.map((resource) => ({
+    ...resource,
+    title: normalizeBrand(resource.title),
+    category: normalizeBrand(resource.category),
+    section: normalizeBrand(resource.section),
+  }));
+  const categoryIds = new Set(brandedCategories.map((category) => category.id));
+  const hasOrphans = brandedResources.some((resource) => !categoryIds.has(resource.category));
   const categories = hasOrphans && !categoryIds.has("uncategorized")
-    ? [...value.categories, { id: "uncategorized", label: "未分类", createdAt: now(), isCustom: true }]
-    : value.categories;
+    ? [...brandedCategories, { id: "uncategorized", label: "未分类", createdAt: now(), isCustom: true }]
+    : brandedCategories;
   const resolvedCategoryIds = new Set(categories.map((category) => category.id));
   return touchArchive({
     ...value,
     categories,
-    resources: value.resources.map((resource) => ({
+    resources: brandedResources.map((resource) => ({
       ...resource,
       category: resolvedCategoryIds.has(resource.category) ? resource.category : "uncategorized",
     })),
@@ -96,7 +111,7 @@ export function normalizeArchiveStore(value: ArchiveStore): ArchiveStore {
 
 export function loadArchiveStore(): ArchiveStore {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) return createDefaultArchive();
     const parsed = JSON.parse(raw);
     return isArchiveStore(parsed) ? normalizeArchiveStore(parsed) : createDefaultArchive();
@@ -117,7 +132,7 @@ export function saveLocalBackup(archive: ArchiveStore) {
 
 export function loadLocalBackup(): ArchiveStore | null {
   try {
-    const raw = localStorage.getItem(BACKUP_KEY);
+    const raw = localStorage.getItem(BACKUP_KEY) ?? localStorage.getItem(LEGACY_BACKUP_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     return isArchiveStore(parsed) ? normalizeArchiveStore(parsed) : null;
@@ -131,7 +146,7 @@ export function downloadArchiveBackup(archive: ArchiveStore) {
   const url = URL.createObjectURL(file);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `xiaoshuai-archive-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  link.download = `sky-archive-backup-${new Date().toISOString().slice(0, 10)}.json`;
   document.body.appendChild(link);
   link.click();
   link.remove();
