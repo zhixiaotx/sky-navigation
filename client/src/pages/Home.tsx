@@ -166,6 +166,17 @@ export default function Home() {
   }, [archive.resources, query, selectedStatus]);
 
   const groupedResources = useMemo(() => {
+    const categoryOrder = new Map(
+      categoryTree.map((category, index) => [category.id, index])
+    );
+    const sectionOrders = new Map(
+      categoryTree.map(category => [
+        category.id,
+        new Map(
+          (category.children ?? []).map((child, index) => [child.label, index])
+        ),
+      ])
+    );
     const grouped = new Map<
       string,
       {
@@ -189,11 +200,27 @@ export default function Home() {
       category.groups.set(groupName, items);
       grouped.set(resource.category, category);
     }
-    return Array.from(grouped.values()).map(category => ({
-      ...category,
-      groups: Array.from(category.groups, ([name, items]) => ({ name, items })),
-    }));
-  }, [archive.categories, filteredResources]);
+    return Array.from(grouped.values())
+      .sort(
+        (left, right) =>
+          (categoryOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER) -
+          (categoryOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER)
+      )
+      .map(category => {
+        const sectionOrder = sectionOrders.get(category.id);
+        return {
+          ...category,
+          groups: Array.from(category.groups, ([name, items]) => ({
+            name,
+            items,
+          })).sort(
+            (left, right) =>
+              (sectionOrder?.get(left.name) ?? Number.MAX_SAFE_INTEGER) -
+              (sectionOrder?.get(right.name) ?? Number.MAX_SAFE_INTEGER)
+          ),
+        };
+      });
+  }, [archive.categories, categoryTree, filteredResources]);
 
   const displayedCategories = useMemo(() => {
     if (!query.trim()) return groupedResources;
