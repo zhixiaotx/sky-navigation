@@ -1,0 +1,21732 @@
+/**
+ * 由 scripts/extract-resources.mjs 从用户提供的原始单页导出。
+ * 仅包含 http(s) 外链与其所在分类，用于新版导航页面的客户端筛选与呈现。
+ */
+
+export type ResourceStatus = "可用" | "待核验" | "收藏";
+
+export type Resource = {
+  id: string;
+  title: string;
+  url: string;
+  status: ResourceStatus;
+  category: string;
+  section: string;
+};
+
+export type ResourceCategory = {
+  id: string;
+  label: string;
+  count: number;
+};
+
+export const resources: Resource[] = [
+  {
+    "id": "resource-1",
+    "title": "从永硕E盘到智能本地化管理：3次迭代的储物间有多能打！",
+    "url": "https://mp.weixin.qq.com/s/4iu8ZsqzpAzBF2PsrYgqww",
+    "status": "收藏",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-2",
+    "title": "Anniversary Gift | TRAE - Collaborate with Intelligence",
+    "url": "https://www.trae.ai/2026-anniversary-gift",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-3",
+    "title": "GitHub - AndroidCoderPeng/DailyTask: 钉钉自动打卡",
+    "url": "https://github.com/AndroidCoderPeng/DailyTask",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-4",
+    "title": "夸克网盘",
+    "url": "https://pan.quark.cn/s/44d51363b4b8",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-5",
+    "title": "GitHub - kanadeblisst00/WechatVideoSniffer2.0: 微信视频号下载工具",
+    "url": "https://github.com/kanadeblisst00/WechatVideoSniffer2.0",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-6",
+    "title": "GitHub - Frica01/WeChatMassTool: 微信自动发送信息，微信群发消息，Windows系统微信客户端（PC端",
+    "url": "https://github.com/Frica01/WeChatMassTool",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-7",
+    "title": "GitHub - fishjar/kiss-translator: 一个简约、开源的 双语对照翻译扩展 & 油猴脚本",
+    "url": "https://github.com/fishjar/kiss-translator",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-8",
+    "title": "GitHub - Bistutu/FluentRead: Open Immersive Translate. 开源的沉浸式翻译，一款革命性的浏览器翻译插件",
+    "url": "https://github.com/Bistutu/FluentRead?tab=readme-ov-file",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-9",
+    "title": "GitHub - keepalivedev/KeepAlive: Android app to notify others if you haven’t used your device in a given period of time.（安卓版：死了吗）",
+    "url": "https://github.com/keepalivedev/KeepAlive",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-10",
+    "title": "GitHub - RemotePinee/AudioVisual: 解锁所有国内媒体流的钥匙（支持腾讯视频、爱奇艺、优酷、哔哩哔哩、芒果TV等主流视频平台解析）",
+    "url": "https://github.com/RemotePinee/AudioVisual",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-11",
+    "title": "GitHub - zhi35/iptv: 📺 一个每天自动更新的 IPTV 直播源项目，开源无广告，支持IPV4/IPV6双栈访问。",
+    "url": "https://github.com/zhi35/iptv",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-12",
+    "title": "GitHub - moli-xia/global-radio: 这是一个基于 Vue 3 + Vite 的在线电台应用，包含播放、搜索、收藏、历史记录、主题切换与多语言等功能，并支持 PWA 安装。",
+    "url": "https://github.com/moli-xia/global-radio?tab=readme-ov-file",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "近期精选：开源软件和网站"
+  },
+  {
+    "id": "resource-13",
+    "title": "AIHOT——今日热点（AI 自动挑选的高价值内容）👍",
+    "url": "https://aihot.virxact.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-14",
+    "title": "Arena Leaderboard | Compare & Benchmark the Best Frontier AI Models（AI最新榜单）👍",
+    "url": "https://arena.ai/zh/leaderboard",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-15",
+    "title": "Github仓库：全网最全-2025年AI领域最值得关注的两百位博主和一手信息源盘点👍",
+    "url": "https://github.com/kaixindelele/2025-Awesome-AI-Bloggers",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-16",
+    "title": "ChatGPT/Claude最新注册教程 👍",
+    "url": "https://xiaoshuai.link/2024/01/01/chatgpt4omini%E6%9C%80%E6%96%B0%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B(%E5%8F%AF%E5%85%8D%E8%B4%B9%E5%AE%8C%E6%88%90%E6%B3%A8%E5%86%8C)/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-17",
+    "title": "ChatGPT-PLUS最新升级教程 👍",
+    "url": "https://xiaoshuai.link/2024/02/20/chatgpt_plus%E6%9C%80%E6%96%B0(2025)%E5%8D%87%E7%BA%A7%E6%95%99%E7%A8%8B/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-18",
+    "title": "教程：Vibe Vibe",
+    "url": "https://www.vibevibe.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.入门教程"
+  },
+  {
+    "id": "resource-19",
+    "title": "教程：Vibe Coding 学习路线图",
+    "url": "https://jiangren.com.au/roadmaps/vibe-coding",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.入门教程"
+  },
+  {
+    "id": "resource-20",
+    "title": "教程：Vibe Coding 指南",
+    "url": "https://github.com/MaoTouHU/vibecodingcn",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.入门教程"
+  },
+  {
+    "id": "resource-21",
+    "title": "DeepSeek-Harness GUI 桌面端 👍",
+    "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-22",
+    "title": "Cherry Studio 官方网站 - 全能 AI 工作站 👍",
+    "url": "https://www.cherryai.com.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-23",
+    "title": "OpenClaw-开源👍",
+    "url": "https://github.com/openclaw/openclaw",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-24",
+    "title": "Hermes Agent | Nous Research 👍",
+    "url": "https://hermes-agent.nousresearch.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-25",
+    "title": "OpenHands-开源👍",
+    "url": "https://github.com/OpenHands/OpenHands",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-26",
+    "title": "Nanoclaw-开源👍",
+    "url": "https://nanoclaw.net/zh/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-27",
+    "title": "Qclaw（腾讯）- 随时随地，微信一下，Qclaw帮你搞定一切",
+    "url": "https://claw.guanjia.qq.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-28",
+    "title": "WorkBuddy（腾讯）- AI Agent 办公新范式",
+    "url": "https://copilot.tencent.com/work/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-29",
+    "title": "ima.copilot-腾讯AI工作台",
+    "url": "https://ima.qq.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-30",
+    "title": "Kimi Work：知识工作者的 AI 桌面智能体工作台",
+    "url": "https://www.kimi.com/zh-cn/products/kimi-work",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-31",
+    "title": "Goose-开源（Block/Square 推出）",
+    "url": "https://block.github.io/goose/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-32",
+    "title": "AutoClaw（澳龙,智谱）- OpenClaw一键安装 | 飞书集成 | AI助手下载",
+    "url": "https://autoglm.zhipuai.cn/autoclaw/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-33",
+    "title": "LobsterAI - 有道 AI Agent 产品",
+    "url": "https://lobsterai.youdao.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-34",
+    "title": "Devin（Cognition Labs）",
+    "url": "https://devin.ai/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-35",
+    "title": "Jules（谷歌推出）",
+    "url": "https://jules.google/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01.Agent 工具（开箱即用，适合入门）"
+  },
+  {
+    "id": "resource-36",
+    "title": "软件-Cursor - The AI Code Editor👍",
+    "url": "https://www.cursor.com/cn",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-37",
+    "title": "✅历史版本下载",
+    "url": "https://github.com/oslook/cursor-ai-downloads",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-38",
+    "title": "软件-Trae 国际版 - (字节跳动)👍",
+    "url": "https://www.trae.ai/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-39",
+    "title": "✅国内版",
+    "url": "https://www.trae.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-40",
+    "title": "✅插件",
+    "url": "https://www.marscode.com/extension",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-41",
+    "title": "软件-Kiro - (亚马逊推出, 限时免费)👍",
+    "url": "https://kiro.dev",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-42",
+    "title": "软件-Antigravity（谷歌推出）👍",
+    "url": "https://www.antigravityai.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-43",
+    "title": "软件-Qoder（阿里推出）",
+    "url": "https://qoder.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-44",
+    "title": "软件-Z Code（智谱推出）",
+    "url": "https://zcode-ai.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-45",
+    "title": "软件-Windsurf - The best AI for Coding",
+    "url": "https://windsurf.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-46",
+    "title": "软件-Zed — Love your editor again",
+    "url": "https://zed.dev/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "02.Agent 代码编辑器（适合开发者）"
+  },
+  {
+    "id": "resource-47",
+    "title": "GUI/CLI-DeepSeek Harness 开发者预览版：一切皆插件 👍",
+    "url": "https://www.deepseek.com/harness/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-48",
+    "title": "CLI-Claude Code（Anthropic 推出）👍",
+    "url": "https://www.anthropic.com/claude-code",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-49",
+    "title": "CLI-Codex CLI-开源（OpenAI 推出）👍",
+    "url": "https://github.com/openai/codex",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-50",
+    "title": "CLI-OpenCode | 开源👍",
+    "url": "https://opencode.ai/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-51",
+    "title": "CLI-GitHub Copilot（Github）👍",
+    "url": "https://github.com/features/copilot/cli",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-52",
+    "title": "CLI-Qoder 下载-阿里",
+    "url": "https://qoder.com/zh/download",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-53",
+    "title": "插件-Continue-开源👍",
+    "url": "https://github.com/continuedev/continue",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-54",
+    "title": "插件-Cline-开源👍",
+    "url": "https://github.com/cline/cline",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-55",
+    "title": "插件-Augmentcode👍",
+    "url": "https://www.augmentcode.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-56",
+    "title": "插件-CodeBuddy-腾讯👍",
+    "url": "https://copilot.tencent.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-57",
+    "title": "插件-文心快码-百度",
+    "url": "https://comate.baidu.com/zh",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-58",
+    "title": "插件-Aider-开源👍",
+    "url": "https://aider.chat/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "00.AI 编程 & Vibe Coding"
+  },
+  {
+    "id": "resource-59",
+    "title": "GitHub Copilot👍",
+    "url": "https://github.com/copilot/c/c6eb74e4-33c5-408d-9d76-b9914f382998",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-60",
+    "title": "Supermaven👍",
+    "url": "https://supermaven.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-61",
+    "title": "Fitten Code",
+    "url": "https://code.fittentech.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-62",
+    "title": "MarsCode AI",
+    "url": "https://link.nettsz.com/marscode",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-63",
+    "title": "通义灵码",
+    "url": "https://tongyi.aliyun.com/lingma",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-64",
+    "title": "CodeGeeX",
+    "url": "https://codegeex.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "04.AI 代码补全插件"
+  },
+  {
+    "id": "resource-65",
+    "title": "GitHub Copilot👍",
+    "url": "https://github.com/copilot/c/c6eb74e4-33c5-408d-9d76-b9914f382998",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-66",
+    "title": "OpenBolt.dev👍",
+    "url": "https://app.openbolt.dev/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-67",
+    "title": "Frontend AI by Webcrumbs",
+    "url": "https://app.webcrumbs.ai/frontend-ai?",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-68",
+    "title": "Sparkable - AE Studio Artifacts",
+    "url": "https://www.sparkableai.com/?ref=aitoolnet.com",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-69",
+    "title": "bolt.new",
+    "url": "https://bolt.new/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-70",
+    "title": "bolt.diy",
+    "url": "https://github.com/stackblitz-labs/bolt.diy?ref=aitoolnet.com",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-71",
+    "title": "Jolt AI",
+    "url": "https://app.usejolt.ai/new",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-72",
+    "title": "WebSparks AI Agent",
+    "url": "https://chat.websparks.ai/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-73",
+    "title": "Chat2Code",
+    "url": "https://chat2code.dev/?ref=aitoolnet.com",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-74",
+    "title": "BoltAI • Native, high-performance AI app for Mac",
+    "url": "https://boltai.com/?ref=aitoolnet.com",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-75",
+    "title": "Webdraw - Free AI App Generator",
+    "url": "https://webdraw.com/?ref=aitoolnet.com",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "05.在线网站"
+  },
+  {
+    "id": "resource-76",
+    "title": "通用高质量 prompt 合集，可直接复制到聊天框使用👍",
+    "url": "https://github.com/xstongxue/best-prompts",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "06.Prompt 提示词"
+  },
+  {
+    "id": "resource-77",
+    "title": "2026年最佳AI提示词合集",
+    "url": "https://github.com/outlookcat/prompt",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "06.Prompt 提示词"
+  },
+  {
+    "id": "resource-78",
+    "title": "ChatGPT 指令_AiShort(ChatGPT Shortcut)",
+    "url": "https://www.aishort.top/?name=%C3%A7%C3%A7",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "06.Prompt 提示词"
+  },
+  {
+    "id": "resource-79",
+    "title": "ChatGPT 指令大全｜ExplainThis",
+    "url": "https://www.explainthis.io/zh-hans/chatgpt",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "06.Prompt 提示词"
+  },
+  {
+    "id": "resource-80",
+    "title": "ChatGPT 指令_Prompt 大全 (candobear.com)",
+    "url": "https://gpt.candobear.com/prompt",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "06.Prompt 提示词"
+  },
+  {
+    "id": "resource-81",
+    "title": "Claude Code Skills 文档",
+    "url": "https://code.claude.com/docs/zh-CN/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-82",
+    "title": "Codex Skills 文档",
+    "url": "https://github.com/openai/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-83",
+    "title": "Cursor Skills 文档",
+    "url": "https://cursor.com/cn/docs/context/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-84",
+    "title": "Trae Skills 文档",
+    "url": "https://docs.trae.cn/ide/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-85",
+    "title": "Github Copilot Skills 文档",
+    "url": "https://code.visualstudio.com/docs/copilot/customization/agent-skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-86",
+    "title": "OpenSkills",
+    "url": "https://github.com/numman-ali/openskills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-87",
+    "title": "OpenClaw Skills 文档",
+    "url": "https://docs.openclaw.ai/zh-CN/tools/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-88",
+    "title": "SkillsMP",
+    "url": "https://skillsmp.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-89",
+    "title": "agent-skills.md",
+    "url": "https://agent-skills.md/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-90",
+    "title": "Agent Skills Me",
+    "url": "https://agentskills.me/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-91",
+    "title": "Skills Directory",
+    "url": "https://www.skillsdirectory.com/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-92",
+    "title": "SkillStore",
+    "url": "https://skillstore.io/zh-hans",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-93",
+    "title": "Skills.sh",
+    "url": "https://skills.sh/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-94",
+    "title": "aitmpl.com/skills",
+    "url": "https://www.aitmpl.com/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-95",
+    "title": "通用高质量 skills 合集👍",
+    "url": "https://github.com/xstongxue/best-skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-96",
+    "title": "Anthropic Skills",
+    "url": "https://github.com/anthropics/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-97",
+    "title": "Antfu Skills",
+    "url": "https://github.com/antfu/skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-98",
+    "title": "Vercel Agent Skills",
+    "url": "https://github.com/vercel-labs/agent-skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-99",
+    "title": "Awesome Agent Skills",
+    "url": "https://github.com/JackyST0/awesome-agent-skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-100",
+    "title": "Ultimate Agent Skills Collection",
+    "url": "https://github.com/ZhanlinCui/Ultimate-Agent-Skills-Collection",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-101",
+    "title": "Awesome OpenClaw Skills",
+    "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-102",
+    "title": "code-review-skill",
+    "url": "https://github.com/awesome-skills/code-review-skill",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "07.Skills 技能库"
+  },
+  {
+    "id": "resource-103",
+    "title": "通用高质量 Rules 合集 - best-rules👍",
+    "url": "https://github.com/xstongxue/best-rules",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "08.Rules 规则库"
+  },
+  {
+    "id": "resource-104",
+    "title": "awesome-cursorrules（PatrickJS）",
+    "url": "https://github.com/PatrickJS/awesome-cursorrules",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "08.Rules 规则库"
+  },
+  {
+    "id": "resource-105",
+    "title": "awesome-cursor-rules（blefnk）",
+    "url": "https://github.com/blefnk/awesome-cursor-rules",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "08.Rules 规则库"
+  },
+  {
+    "id": "resource-106",
+    "title": "cursor-rules（squirrelogic）",
+    "url": "https://github.com/squirrelogic/cursor-rules",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "08.Rules 规则库"
+  },
+  {
+    "id": "resource-107",
+    "title": "cursor-rules 主题页（聚合检索）",
+    "url": "https://github.com/topics/cursor-rules",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "08.Rules 规则库"
+  },
+  {
+    "id": "resource-108",
+    "title": "MCP市场 - 收录40,000+ MCP Servers的全球最大平台 👍",
+    "url": "https://mcpmarket.cn/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-109",
+    "title": "GitHub - punkpeye/awesome-mcp-clients: A collection of MCP clients. · GitHub 👍",
+    "url": "https://github.com/punkpeye/awesome-mcp-clients",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-110",
+    "title": "GitHub - punkpeye/awesome-mcp-servers: A collection of MCP servers. · GitHub 👍",
+    "url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-111",
+    "title": "GitHub - modelcontextprotocol/servers: Model Context Protocol Servers · GitHub 👍",
+    "url": "https://github.com/modelcontextprotocol/servers",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-112",
+    "title": "发现顶尖 MCP 服务器 | MCP 市场",
+    "url": "https://mcpmarket.com/zh",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-113",
+    "title": "glama.ai",
+    "url": "https://glama.ai/mcp/servers",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-114",
+    "title": "MCP Servers",
+    "url": "https://mcp.so/",
+    "status": "可用",
+    "category": "01 爆火 AI🔥",
+    "section": "01 爆火 AI🔥"
+  },
+  {
+    "id": "resource-115",
+    "title": "ChatGPT官网👍",
+    "url": "https://chat.openai.com/auth/login",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-116",
+    "title": "OpenAI官网（3.5/4.0/API）",
+    "url": "https://openai.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-117",
+    "title": "Claude👍",
+    "url": "https://claude.ai",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-118",
+    "title": "Gemini（上下文长度: 100万tokens）👍",
+    "url": "https://aistudio.google.com",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-119",
+    "title": "官网",
+    "url": "https://aistudio.google.com",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-120",
+    "title": "GitHub Copilot · GitHub 👍",
+    "url": "https://github.com/copilot/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-121",
+    "title": "Mistral AI",
+    "url": "https://chat.mistral.ai/chat",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-122",
+    "title": "Grok3",
+    "url": "https://grok.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-123",
+    "title": "NewBingChat -> copilot",
+    "url": "https://copilot.microsoft.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.国外"
+  },
+  {
+    "id": "resource-124",
+    "title": "Xiaomi MiMo Studio👍",
+    "url": "https://aistudio.xiaomimimo.com/#/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-125",
+    "title": "Kimi.ai- 帮你看更大的世界👍",
+    "url": "https://kimi.moonshot.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-126",
+    "title": "GLM - 智谱清言👍",
+    "url": "https://chat.z.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-127",
+    "title": "Qwen-阿里👍",
+    "url": "https://chat.qwenlm.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-128",
+    "title": "豆包 - 字节跳动👍",
+    "url": "https://www.doubao.com/chat/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-129",
+    "title": "MiniMax AI（上下文长度: 100万tokens）👍",
+    "url": "https://chat.minimaxi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-130",
+    "title": "对比图",
+    "url": "https://filecdn.minimax.chat/public/b737f301-3f88-4887-b507-0280b3069601.png",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-131",
+    "title": "腾讯元宝 - 轻松工作 多点生活",
+    "url": "https://yuanbao.tencent.com/chat/naQivTmsDa",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-132",
+    "title": "文心一言-百度",
+    "url": "https://yiyan.baidu.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-133",
+    "title": "秘塔AI搜索",
+    "url": "https://metaso.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-134",
+    "title": "纳米AI搜索",
+    "url": "https://www.n.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-135",
+    "title": "星火大模型-科大讯飞",
+    "url": "https://xinghuo.xfyun.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-136",
+    "title": "通义官网",
+    "url": "https://tongyi.aliyun.com/?ref=ai.tboxn.com",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-137",
+    "title": "书生浦语",
+    "url": "https://internlm.intern-ai.org.cn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-138",
+    "title": "DeepSeek - 探索未至之境👍",
+    "url": "https://chat.deepseek.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-139",
+    "title": "国家超算平台-DeepSeek",
+    "url": "https://chat.scnet.cn/#/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-140",
+    "title": "华为小艺",
+    "url": "https://xiaoyi.huawei.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-141",
+    "title": "Lambda.chat（被墙）",
+    "url": "https://lambda.chat/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-142",
+    "title": "flowith 2.0（被墙）",
+    "url": "https://flowith.io/blank",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-143",
+    "title": "Deepinfra（被墙）",
+    "url": "https://deepinfra.com/chat",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-144",
+    "title": "腾讯元宝",
+    "url": "https://yuanbao.tencent.com/chat/naQivTmsDa",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-145",
+    "title": "支付宝百宝箱专业版",
+    "url": "https://tbox.alipay.com/pro/community",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-146",
+    "title": "博查AI搜索",
+    "url": "https://bochaai.com/search",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-147",
+    "title": "腾讯AI文档助手",
+    "url": "https://docs.qq.com/ai?source=desktop&nlc=1",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-148",
+    "title": "知乎直答",
+    "url": "https://zhida.zhihu.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-149",
+    "title": "WPS 灵犀",
+    "url": "https://copilot.wps.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-150",
+    "title": "AI 写作 · 语雀",
+    "url": "https://www.yuque.com/dashboard/ai",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-151",
+    "title": "纳米AI搜索",
+    "url": "https://www.n.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-152",
+    "title": "秘塔AI搜索",
+    "url": "https://metaso.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-153",
+    "title": "当贝AI官网_DeepSeek满血版",
+    "url": "https://ai.dangbei.com/chat",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-154",
+    "title": "跃问",
+    "url": "https://yuewen.cn/chats/new",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-155",
+    "title": "文可AI",
+    "url": "https://wenkoo.com.cn/chat/login?code=&redirect_uri=/&channelCode=",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-156",
+    "title": "DeepSeek模型-QQ浏览器专线版",
+    "url": "https://aisearch.qq.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-157",
+    "title": "问小白 - DeepSeek R1 推理图片生成独家首发",
+    "url": "https://www.wenxiaobai.com/chat/tourist?forceLogin=true&source=axutongxue&ad_source=axutongxue",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-158",
+    "title": "腾讯-ima知识库",
+    "url": "https://ima.qq.com",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-159",
+    "title": "无问芯穹大模型服务平台",
+    "url": "https://cloud.infini-ai.com/genstudio/experience",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-160",
+    "title": "天翼云平台",
+    "url": "https://www.ctyun.cn/act/xirang/deepseek",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-161",
+    "title": "火山引擎",
+    "url": "https://console.volcengine.com/auth/login?redirectURI=%2Fark%2Fregion%3Aark%2Bcn-beijing%2Fexperience",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-162",
+    "title": "硅基流动",
+    "url": "https://cloud.siliconflow.cn/i/nhFXIA8f",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-163",
+    "title": "百度智能云控制台",
+    "url": "https://console.bce.baidu.com/qianfan/modelcenter/model/buildIn/list?_=1740196116300",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-164",
+    "title": "腾讯云平台",
+    "url": "https://cloud.tencent.com/login?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Ftione%2Fv2%2Faimarket%2Fdetail%2Fdeepseek_series",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-165",
+    "title": "欧派算力云",
+    "url": "https://ppinfra.com/user/register?invited_by=O59ELW",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-166",
+    "title": "Poe",
+    "url": "https://poe.com/Deepseek-R1",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-167",
+    "title": "AskManyAI",
+    "url": "https://dazi.co/login?i=36024ef5",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-168",
+    "title": "imyai.top",
+    "url": "https://super.imyai.top/?inVitecode=RKOWHIAYOC",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-169",
+    "title": "国家超算平台-DeepSeek",
+    "url": "https://chat.scnet.cn/#/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-170",
+    "title": "Deepinfra",
+    "url": "https://deepinfra.com/chat",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-171",
+    "title": "支付宝百宝箱专业版",
+    "url": "https://tbox.alipay.com/pro/community",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-172",
+    "title": "无问芯穹大模型服务平台",
+    "url": "https://cloud.infini-ai.com/genstudio/experience",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-173",
+    "title": "天翼云平台",
+    "url": "https://www.ctyun.cn/act/xirang/deepseek",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-174",
+    "title": "百度智能云控制台",
+    "url": "https://console.bce.baidu.com/qianfan/modelcenter/model/buildIn/list?_=1740196116300",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-175",
+    "title": "腾讯云平台",
+    "url": "https://cloud.tencent.com/login?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Ftione%2Fv2%2Faimarket%2Fdetail%2Fdeepseek_series",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-176",
+    "title": "火山引擎",
+    "url": "https://console.volcengine.com/auth/login?redirectURI=%2Fark%2Fregion%3Aark%2Bcn-beijing%2Fexperience",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-177",
+    "title": "Groq",
+    "url": "https://groq.com/#",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.国内"
+  },
+  {
+    "id": "resource-178",
+    "title": "导航站 - ChatGPT 免费网站在线体验列表 (lzw.me)",
+    "url": "https://lzw.me/x/chatgpt-sites/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-179",
+    "title": "导航站 - Free ChatGPT Site List",
+    "url": "https://cc.ai55.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-180",
+    "title": "1Chat镜像站—免费 👍",
+    "url": "https://chat.littlewheat.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-181",
+    "title": "1Chat—低价付费 👍",
+    "url": "https://vip8.1ai.ink/chat",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-182",
+    "title": "伊莉思AGI-构建多模态AGI生产力/学习助手 👍",
+    "url": "https://ylsagi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-183",
+    "title": "🤍RawChat公益站点 (chatgptplus.cn)👍",
+    "url": "https://chatgptplus.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-184",
+    "title": "🤍免费ChatGPT (aifree.site) 👍",
+    "url": "https://freegptsnav.aifree.site/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-185",
+    "title": "XSimple：个人 AI 效能工具，给自己一个更聪明的大脑 👍",
+    "url": "https://xsimplechat.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-186",
+    "title": "Claude / GPT / Gemini 镜像站 | 低价付费 👍",
+    "url": "https://rawchat.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-187",
+    "title": "GPT镜像—付费版",
+    "url": "https://ad.ch-at.pw/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-188",
+    "title": "Claude国内镜像",
+    "url": "https://claude.github.cn.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-189",
+    "title": "LazyMan：个人 AI 效能工具，给自己一个更聪明的大脑",
+    "url": "https://lazymanchat.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-190",
+    "title": "AI 中文版",
+    "url": "https://chat.huoyachat.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-191",
+    "title": "AI中文版",
+    "url": "https://ai.lanjingchat.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-192",
+    "title": "AI 中文版",
+    "url": "https://ai.aihuoya.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.AI 对话通用大模型"
+  },
+  {
+    "id": "resource-193",
+    "title": "LocateAnything-3B—基模Qwen2.5👍",
+    "url": "https://www.modelscope.cn/models/nv-community/LocateAnything-3B",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-194",
+    "title": "Infinity-Parser2-Pro, Infinity-Parser2-Flash—基模Qwen3.5👍",
+    "url": "https://github.com/infly-ai/INF-MLLM",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-195",
+    "title": "chandra: OCR—基模Qwen3.5👍",
+    "url": "https://github.com/datalab-to/chandra",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-196",
+    "title": "dots.mocr👍",
+    "url": "https://github.com/rednote-hilab/dots.mocr",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-197",
+    "title": "olmocr—基模Qwen2.5-VL👍",
+    "url": "https://github.com/allenai/olmocr",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-198",
+    "title": "PaddleOCR-VL👍",
+    "url": "https://paddlepaddle.github.io/PaddleX/3.3/pipeline_usage/tutorials/ocr_pipelines/PaddleOCR-VL.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-199",
+    "title": "GLM-OCR👍",
+    "url": "https://github.com/zai-org/GLM-OCR",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-200",
+    "title": "Qianfan-OCR",
+    "url": "https://www.modelscope.cn/models/baidu-qianfan/Qianfan-OCR",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-201",
+    "title": "DeepSeek-OCR",
+    "url": "https://github.com/deepseek-ai/DeepSeek-OCR",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-202",
+    "title": "MonkeyOCR",
+    "url": "https://github.com/Yuliang-Liu/MonkeyOCR",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-203",
+    "title": "MinerU_2.5👍",
+    "url": "https://github.com/isr-wang/MinerU_2.5",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.教材文档OCR识别—支持图像或PDF"
+  },
+  {
+    "id": "resource-204",
+    "title": "OpenBMB/MiniCPM—支持iOS、Android 和 HarmonyOS，基模Qwen👍",
+    "url": "https://github.com/OpenBMB/MiniCPM-V",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.边缘设备部署推荐"
+  },
+  {
+    "id": "resource-205",
+    "title": "豆包 - 字节跳动旗下 AI 智能助手👍",
+    "url": "https://www.doubao.com/chat/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-206",
+    "title": "腾讯元宝👍",
+    "url": "https://yuanbao.tencent.com/chat/naQivTmsDa",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-207",
+    "title": "DeepSeek - 探索未至之境👍",
+    "url": "https://chat.deepseek.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-208",
+    "title": "秘塔AI搜索",
+    "url": "https://metaso.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-209",
+    "title": "Kimi.ai- 帮你看更大的世界",
+    "url": "https://kimi.moonshot.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-210",
+    "title": "博查AI搜索 - 多模态AI搜索，答案丰富多彩",
+    "url": "https://bochaai.com/search",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-211",
+    "title": "纳米AI搜索",
+    "url": "https://www.n.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-212",
+    "title": "天工AI",
+    "url": "https://www.tiangong.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-213",
+    "title": "智能交互引擎_工业知识智能搜索，解决方案精准生成",
+    "url": "https://www.cosmoplat.cn/engine",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-214",
+    "title": "开搜AI问答搜索_免费无广告直达结果",
+    "url": "https://kaisouai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-215",
+    "title": "Lepton Search",
+    "url": "https://search.lepton.run/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-216",
+    "title": "开源",
+    "url": "https://github.com/leptonai/search_with_lepton",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-217",
+    "title": "Hika AI - Free AI Knowledge Search",
+    "url": "https://hika.fyi/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-218",
+    "title": "Felo - 你的免费AI智能搜索引擎",
+    "url": "https://felo.ai/search",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-219",
+    "title": "Miku AI Search",
+    "url": "https://www.hellomiku.com/index",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-220",
+    "title": "大同搜索",
+    "url": "https://datong.info/ui/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-221",
+    "title": "知料觅得-智能AI搜索引擎sou100.com",
+    "url": "https://www.sou100.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-222",
+    "title": "首页 - YAYI雅意",
+    "url": "https://yayi.wenge.com/chat/#/chat/1658297003183144963",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-223",
+    "title": "Genspark👍",
+    "url": "https://www.genspark.ai/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-224",
+    "title": "Perplexity👍",
+    "url": "https://www.perplexity.ai/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-225",
+    "title": "Search - Consensus: AI Search Engine for Research",
+    "url": "https://consensus.app/search/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "03.AI 搜索引擎"
+  },
+  {
+    "id": "resource-226",
+    "title": "GPT学术优化👍",
+    "url": "https://academic.chatwithpaper.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.AI 科研"
+  },
+  {
+    "id": "resource-227",
+    "title": "ChatPaper👍",
+    "url": "https://chatwithpaper.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.AI 科研"
+  },
+  {
+    "id": "resource-228",
+    "title": "插件 — 豆包插件 - 浏览器 AI 助手👍",
+    "url": "https://www.doubao.com/browser-extension/landing",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.AI 科研"
+  },
+  {
+    "id": "resource-229",
+    "title": "插件 — 沉浸式翻译👍",
+    "url": "https://immersivetranslate.com/zh-Hans/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.AI 科研"
+  },
+  {
+    "id": "resource-230",
+    "title": "豆包👍",
+    "url": "https://www.doubao.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-231",
+    "title": "讯飞星火-懂我的AI助手",
+    "url": "https://xinghuo.xfyun.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-232",
+    "title": "千问-Qwen最新模型体验",
+    "url": "https://www.qianwen.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-233",
+    "title": "Z.ai Chat - Free AI powered by GLM-4.7 & GLM-4.6",
+    "url": "https://chat.z.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-234",
+    "title": "Kimi - K2长思考上线",
+    "url": "https://www.kimi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-235",
+    "title": "MiniMax AI（上下文长度: 100万tokens）👍",
+    "url": "https://chat.minimaxi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-236",
+    "title": "对比图",
+    "url": "https://filecdn.minimax.chat/public/b737f301-3f88-4887-b507-0280b3069601.png",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-237",
+    "title": "Get笔记 - 记录每一个闪光的想法👍",
+    "url": "https://www.biji.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-238",
+    "title": "Workppt : AI Presentations",
+    "url": "https://ppt.softtooler.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-239",
+    "title": "天工AI - 聊天写作对话的全能AI助手，搜索更深度，阅读更多彩",
+    "url": "https://www.tiangong.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-240",
+    "title": "AiPPT - 全智能 AI 一键生成 PPT",
+    "url": "https://www.aippt.cn/?utm_type=Navweb&utm_source=axutx&utm_page=aippt&utm_plan=ppt&utm_unit=AIPPT&utm_keyword=50646",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-241",
+    "title": "AI办公工具 - 提升工作效率，轻松应对各种办公场景 | AIGC工具导航",
+    "url": "https://www.aigc.cn/favorites/office",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.AI 办公"
+  },
+  {
+    "id": "resource-242",
+    "title": "AI 生成图像1万+提示词👍",
+    "url": "https://pan.quark.cn/s/a62efbdb3c27",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-243",
+    "title": "Nano 🍌Banana-谷歌团队,手办制作出圈👍",
+    "url": "https://aistudio.google.com",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-244",
+    "title": "官网",
+    "url": "https://aistudio.google.com",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-245",
+    "title": "Nano Banana🍌提示词",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1757168621296_94565",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-246",
+    "title": "Nano 🍌Banana国内免翻平台-在问",
+    "url": "https://www.zaiwenai.com?channel-code=6961ffa95c126e483e481817",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-247",
+    "title": "Nano 🍌Banana国内免翻平台-IMYAI",
+    "url": "https://super.imyaigc.com/?inVitecode=BYKPDITSCB",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-248",
+    "title": "Nano 🍌Banana国内免翻平台-Lovart",
+    "url": "https://www.lovart.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-249",
+    "title": "Nano 🍌Banana国内免翻平台-SparkAI",
+    "url": "https://ai.sparkaigf.com/user-center",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-250",
+    "title": "即梦AI - 即刻造梦👍",
+    "url": "https://jimeng.jianying.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-251",
+    "title": "✅国际版👍",
+    "url": "https://dreamina.capcut.com",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-252",
+    "title": "小红书图文生成",
+    "url": "https://github.com/HisMax/RedInk/tree/main",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-253",
+    "title": "Flux AI - 免费在线Flux Kontext与Flux.1图像AI👍",
+    "url": "https://flux-ai.io/cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-254",
+    "title": "豆包 - 字节跳动旗下 AI 智能助手👍",
+    "url": "https://www.doubao.com/chat/create-image",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-255",
+    "title": "百度AI图片助手👍",
+    "url": "https://image.baidu.com/pc/edit",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-256",
+    "title": "FLUX Context AI -革命性的AI图片编辑工具👍",
+    "url": "https://flux-context.org/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-257",
+    "title": "Lovart | The World’s First Design Agent👍",
+    "url": "https://www.lovart.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-258",
+    "title": "腾讯混元-实时生图",
+    "url": "https://hunyuan.tencent.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-259",
+    "title": "腾讯混元生图",
+    "url": "https://image.hunyuan.tencent.com/authorize",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-260",
+    "title": "Kling AI",
+    "url": "https://app.klingai.com/cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-261",
+    "title": "海螺视频：每个想法都是一部大片",
+    "url": "https://hailuoai.com/create",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-262",
+    "title": "LiblibAI-哩布哩布AI - 中国领先的AI创作平台",
+    "url": "https://www.liblib.art/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-263",
+    "title": "Runway",
+    "url": "https://app.runwayml.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-264",
+    "title": "PixVerse",
+    "url": "https://app.pixverse.ai/onboard",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-265",
+    "title": "Midjourney 知识库 (yuque.com)",
+    "url": "https://tob-design.yuque.com/kxcufk/mj/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-266",
+    "title": "模型🤍HOTIQ|烧脑社区|AI模型分享版块",
+    "url": "https://hotiq.cn/category/aimx",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-267",
+    "title": "模型🤍Arthub.ai: Discover, Upload and Share AI Generated Art",
+    "url": "https://arthub.ai/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-268",
+    "title": "模型🤍Tensor.Art",
+    "url": "https://tensor.art/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-269",
+    "title": "模型🤍Lexica",
+    "url": "https://lexica.art/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-270",
+    "title": "模型🤍Civitai: The Home of Open-Source Generative AI",
+    "url": "https://civitai.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-271",
+    "title": "模型🤍HsuHeinrich/SD-models-collection: AI绘画热点模型汇总+AI资源分享 (github.com)",
+    "url": "https://github.com/HsuHeinrich/SD-models-collection",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-272",
+    "title": "Stable Diffusion 法术解析 (novelai.dev)",
+    "url": "https://spell.novelai.dev/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成图片"
+  },
+  {
+    "id": "resource-273",
+    "title": "Toonflow-app: Toonflow 是开源一站式 AI 短剧创作工具，将小说、剧本快速转化为动画短剧👍",
+    "url": "https://github.com/HBAI-Ltd/Toonflow-app",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-274",
+    "title": "Veo 3 AI 视频生成器 (免费, 带音频)👍",
+    "url": "https://veo3.studio/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-275",
+    "title": "即梦AI国内版👍",
+    "url": "https://jimeng.jianying.com/ai-tool/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-276",
+    "title": "即梦AI国际版👍",
+    "url": "https://dreamina.capcut.com/ai-tool/home/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-277",
+    "title": "无限白嫖指南",
+    "url": "https://mp.weixin.qq.com/s/vgH0UKJ3uV86Gp1P1DU21A",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-278",
+    "title": "海螺视频：每个想法都是一部大片👍",
+    "url": "https://hailuoai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-279",
+    "title": "Tripo AI - Create Your First 3D Model with Text and Image in Seconds",
+    "url": "https://www.tripo3d.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-280",
+    "title": "可灵AI: Next-Gen AI Video & AI Image Generator",
+    "url": "https://app.klingai.com/cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-281",
+    "title": "Lovart | The World’s First Design Agent",
+    "url": "https://www.lovart.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-282",
+    "title": "Vidu AI - 全球领先的AI内容生产平台",
+    "url": "https://www.vidu.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-283",
+    "title": "Runway",
+    "url": "https://app.runwayml.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成视频"
+  },
+  {
+    "id": "resource-284",
+    "title": "Suno | AI Music👍",
+    "url": "https://suno.com/home",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "AI 生成音乐"
+  },
+  {
+    "id": "resource-285",
+    "title": "MiniMax：让灵感声声悦耳👍",
+    "url": "https://www.minimaxi.com/audio/music",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成音乐"
+  },
+  {
+    "id": "resource-286",
+    "title": "Noema Lab 创作实验室 - AI 歌词生成与音乐创作工具👍",
+    "url": "https://www.aimusic-tools.com/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成音乐"
+  },
+  {
+    "id": "resource-287",
+    "title": "Mureka👍",
+    "url": "https://www.mureka.cn/zh-Hans/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 生成音乐"
+  },
+  {
+    "id": "resource-288",
+    "title": "ElevenLabs官网中文站👍",
+    "url": "https://elevenlabscn.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 语音生成"
+  },
+  {
+    "id": "resource-289",
+    "title": "TTSMaker官网 | 马克配音👍",
+    "url": "https://ttsmaker.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 语音生成"
+  },
+  {
+    "id": "resource-290",
+    "title": "TTS Online.海豚Ai",
+    "url": "https://www.ttson.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 语音生成"
+  },
+  {
+    "id": "resource-291",
+    "title": "Media2MD👍",
+    "url": "https://media2md.chatpaper.top/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "AI 音频转文字"
+  },
+  {
+    "id": "resource-292",
+    "title": "New API - AI 基座搭建 👍",
+    "url": "https://www.newapi.ai/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-293",
+    "title": "CC Switch 官方网站 - AI 编程 CLI 统一管理工具 👍",
+    "url": "https://www.ccswitch.io/zh/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-294",
+    "title": "国内主流 AI 平台的 Coding Plan 套餐对比（GitHub）👍",
+    "url": "https://github.com/wmpeng/codingplan",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-295",
+    "title": "基元律动 AI API Platform 👍",
+    "url": "https://tokenrhythm.studio/i/rf_tr_ebvLvefx_ZzhutZ27pvodBfo",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-296",
+    "title": "小红书开源 Dots 模型 👍",
+    "url": "https://dots.ai/platform",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-297",
+    "title": "ModelScope 魔搭社区API👍",
+    "url": "https://www.modelscope.cn/my/access/token",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-298",
+    "title": "ZenMux",
+    "url": "https://zenmux.ai",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-299",
+    "title": "OpenRouter👍",
+    "url": "https://openrouter.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-300",
+    "title": "GPT_API_free: 免费ChatGPT&DeepSeek API",
+    "url": "https://github.com/chatanywhere/GPT_API_free",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-301",
+    "title": "Command Code GO 和 Goal 套餐 👍👍",
+    "url": "https://commandcode.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-302",
+    "title": "OpenCode Go套餐👍👍",
+    "url": "https://opencode.ai/docs/zh-cn/go/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-303",
+    "title": "Ollama Pro 👍",
+    "url": "https://ollama.com/pricing",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-304",
+    "title": "DeepSeek API 👍",
+    "url": "https://platform.deepseek.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-305",
+    "title": "MiMo API / Token Plan 👍",
+    "url": "https://mimo.mi.com/docs/zh-CN/quick-start/summary/first-api-call",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-306",
+    "title": "Claude Pro / Max 升级页👍",
+    "url": "https://claude.ai/upgrade",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-307",
+    "title": "ChatGPT Pricing / Pro 升级页👍",
+    "url": "https://chatgpt.com/zh-Hans-CN/pricing",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-308",
+    "title": "Google AI / Gemini Pro 升级页👍",
+    "url": "https://one.google.com/u/1/ai?utm_source=gemini",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-309",
+    "title": "Sakana Fugu — Multi-Agent System as a Model 👍",
+    "url": "https://sakana.ai/fugu/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-310",
+    "title": "MiniMax Token Plan",
+    "url": "https://platform.minimaxi.com/subscribe/token-plan?code=89m4O8z305&source=link",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-311",
+    "title": "智谱 GLM Coding / 邀请入口",
+    "url": "https://www.bigmodel.cn/invite?icode=E6cBM2QzHSUMO78DFLywYeZLO2QH3C0EBTSr%2BArzMw4%3D",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-312",
+    "title": "Kimi Code 订阅页",
+    "url": "https://www.kimi.com/code?track_id=6f6b0310-4474-4d70-80a5-a1824eb77f23",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-313",
+    "title": "阿里云百炼 Coding Plan",
+    "url": "https://www.aliyun.com/benefit/scene/codingplan",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-314",
+    "title": "Mistral API",
+    "url": "https://console.mistral.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-315",
+    "title": "Gemini API",
+    "url": "https://aistudio.google.com/app/prompts/new_chat",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.AI 接口(API)"
+  },
+  {
+    "id": "resource-316",
+    "title": "LD OPEN HUB — 公益站导航",
+    "url": "https://ldoh.105117.xyz/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-317",
+    "title": "付费导航 API 中转站价格榜 | PriceAI 👍",
+    "url": "https://priceai.cc/api-transit",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-318",
+    "title": "付费导航 禾维 AI 排行榜 | Claude GPT API 中转站收录 👍",
+    "url": "https://hvoy.ai/leaderboard",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-319",
+    "title": "付费导航 大模型 API 提供商 | LMSpeed",
+    "url": "https://lmspeed.net/zh/provider",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-320",
+    "title": "付费导航 aiapipk：中转站竞技场-性价比可用性对比",
+    "url": "https://www.aiapipk.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-321",
+    "title": "付费导航 helpaio：AI中转站付费站点导航",
+    "url": "https://www.helpaio.com/transit",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-322",
+    "title": "付费导航 RelayPulse - 实时监测API中转服务导航",
+    "url": "https://relaypulse.top/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-323",
+    "title": "付费导航 最全API中转站导航——人工大黑搜集整理",
+    "url": "https://api.daheiai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-324",
+    "title": "付费站点商家评价平台",
+    "url": "https://rate.linux.do",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.API 中转站聚合"
+  },
+  {
+    "id": "resource-325",
+    "title": "Agent Router 👍",
+    "url": "https://agentrouter.org/register?aff=qBBd",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-326",
+    "title": "Codex公益站（每日免费50刀额度） 👍",
+    "url": "https://new.sharedchat.cc/list/#/register?i=uibes",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-327",
+    "title": "publicvm",
+    "url": "https://new-api.publicvm.com/register?aff=6qvf",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-328",
+    "title": "Sub2API - AI API Gateway👍",
+    "url": "https://api.bwen.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-329",
+    "title": "xingyungept 公益站👍",
+    "url": "https://ai.xingyungept.cn/register?aff=7BD7",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-330",
+    "title": "restrain 公益站👍",
+    "url": "https://api.925214.xyz/register?aff=t4mS",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-331",
+    "title": "AnyRouter👍",
+    "url": "https://anyrouter.top/register?aff=S1jQ",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-332",
+    "title": "GGBOOM 公益站👍",
+    "url": "https://ai.qaq.al",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-333",
+    "title": "GGBOOM 签到站👍",
+    "url": "https://sign.qaq.al/app",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-334",
+    "title": "Embedding👍",
+    "url": "https://router.tumuer.me/register?aff=zXSH",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-335",
+    "title": "北极星👍",
+    "url": "https://api.bjxrouter.com/register?aff=xu2b",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-336",
+    "title": "BUZZ AI（GPT、Claude 低价）👍",
+    "url": "https://api.buzzgw.com/register?aff=1enF",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-337",
+    "title": "云影 👍",
+    "url": "https://www.yyapi.cloud/sign-up?aff=UIe2",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-338",
+    "title": "CodeGo👍",
+    "url": "https://shu26.cfd/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-339",
+    "title": "Unity2.Ai - AI API Gateway👍",
+    "url": "https://unity2.ai/register?ref=Zpxe98nc",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-340",
+    "title": "CallAI中转 - AI API Gateway 👍",
+    "url": "https://sub.callai.one/register?aff=6GNFJJK8FV8N",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-341",
+    "title": "ByteCat 👍",
+    "url": "https://www.bytecatcode.org/sign-up?aff=WuPs",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-342",
+    "title": "wawazz中转站",
+    "url": "https://wawazz.xyz/register?aff=XMD9CH7ME4P7",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-343",
+    "title": "TiMi CC👍",
+    "url": "https://timicc.com/register?ref=TVRRAGCK",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-344",
+    "title": "YesCode👍",
+    "url": "https://co.yes.vg/register?ref=xstongxu",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-345",
+    "title": "Codex 中转👍",
+    "url": "https://codex.packycode.com",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-346",
+    "title": "Codex 订阅方案 - ylsCode 👍",
+    "url": "https://ylscode.com/pricing",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-347",
+    "title": "Codex低价站 👍",
+    "url": "https://newapi.sharedchat.top/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-348",
+    "title": "雨醋",
+    "url": "https://www.openclaudecode.cn/register?aff=p7gK",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-349",
+    "title": "雨雾",
+    "url": "https://yunwu.ai/register?aff=u0T3",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-350",
+    "title": "简易",
+    "url": "https://jeniya.top/register?aff=UPph",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-351",
+    "title": "Lino",
+    "url": "https://linoapi.com.cn/register?aff=vmua",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-352",
+    "title": "Lucky",
+    "url": "https://cn.luckyapi.chat/register?aff=gPVt",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-353",
+    "title": "PackyCode",
+    "url": "https://www.packyapi.com/register?aff=lpjq",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-354",
+    "title": "RightCode",
+    "url": "https://www.right.codes/register?aff=ddd67dd7",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-355",
+    "title": "FoxCode",
+    "url": "https://foxcode.rjj.cc/auth/register?aff=29W07QVD",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-356",
+    "title": "AutoCode",
+    "url": "https://api.autocode.space/register?aff=rX7O",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-357",
+    "title": "AiCodeMirror",
+    "url": "https://www.aicodemirror.com/register?invitecode=GJVG0T",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-358",
+    "title": "大模型列表Github仓库👍",
+    "url": "https://github.com/wgwang/awesome-LLMs-In-China",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "08.AI 开源模型"
+  },
+  {
+    "id": "resource-359",
+    "title": "Awesome Chinese LLM👍",
+    "url": "https://github.com/HqWu-HITCS/Awesome-Chinese-LLM",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "08.AI 开源模型"
+  },
+  {
+    "id": "resource-360",
+    "title": "ModelScope - 开源模型列表页👍",
+    "url": "https://www.modelscope.cn/models",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "08.AI 开源模型"
+  },
+  {
+    "id": "resource-361",
+    "title": "Hugging Face– 开源模型列表页👍",
+    "url": "https://huggingface.co/models",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "08.AI 开源模型"
+  },
+  {
+    "id": "resource-362",
+    "title": "win10/win11易升（密码：eobn）",
+    "url": "https://gmengshuai.lanzoul.com/b00xq45cb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01 系统安全/软件卸载/禁止更新/远程工具"
+  },
+  {
+    "id": "resource-363",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/3eb46ca49fda",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01 系统安全/软件卸载/禁止更新/远程工具"
+  },
+  {
+    "id": "resource-364",
+    "title": "👍Windows10/11通用-Yamicsoft Windows Manager PRO🌀夸克云",
+    "url": "https://pan.quark.cn/s/d4bdb0097186",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-365",
+    "title": "Yamicsoft Windows Manager 2.3.2 专业版-QiuQuan’s Blog",
+    "url": "https://www.qiuquan.cc/systemtool/WindowsManager.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-366",
+    "title": "👍Windows10Manager🌀夸克云",
+    "url": "https://pan.quark.cn/s/be9ca36cc22e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-367",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=iMfIzqY7fuEn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-368",
+    "title": "👍Windows11Manager🌀夸克云",
+    "url": "https://pan.quark.cn/s/3e04988b73e1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-369",
+    "title": "👍磁盘文件分析 - WizTree绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/cec27cf8d43f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-370",
+    "title": "蓝奏云",
+    "url": "https://gndown.lanzoub.com/b047u0hqf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-371",
+    "title": "磁盘文件分析 - WinDirStat中文绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/086788c88f88",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-372",
+    "title": "磁盘文件分析 - SpaceSniffer🌀夸克云",
+    "url": "https://www.uderzo.it/main_products/space_sniffer/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-373",
+    "title": "👍360清理优化V14 2025🌀夸克云",
+    "url": "https://pan.quark.cn/s/0de544b139e0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-374",
+    "title": "👍360清理PRO🌀夸克云",
+    "url": "https://pan.quark.cn/s/72784453cd30",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-375",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=iMfIzqY7fuEn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-376",
+    "title": "360清理大师单文件版🌀夸克云",
+    "url": "https://pan.quark.cn/s/d9236200c84d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-377",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=iUra6nreEJbm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-378",
+    "title": "Wise Disk Cleaner",
+    "url": "https://cloud.189.cn/web/share?code=mYZ77n3YN7zy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-379",
+    "title": "CCleaner",
+    "url": "https://cloud.189.cn/web/share?code=IB32QfqmYBri",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-380",
+    "title": "C盘空间清理神器软件",
+    "url": "http://pan-yz.chaoxing.com/share/info/fde1a09fd1ca1752",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-381",
+    "title": "Privacy Eraser隐私橡皮擦",
+    "url": "http://pan-yz.chaoxing.com/share/info/f4b78882d485732a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-382",
+    "title": "夸克盘",
+    "url": "https://pan.quark.cn/s/75647162345d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-383",
+    "title": "蓝奏云-密码：25m5",
+    "url": "https://mefcl.lanzouw.com/b0140996f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-384",
+    "title": "123 盘",
+    "url": "https://www.123pan.com/s/QdiA-msamh.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统清理"
+  },
+  {
+    "id": "resource-385",
+    "title": "Ashampoo 2021免费安装版🌀夸克云",
+    "url": "https://pan.quark.cn/s/42f5f5d17bbe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-386",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=3u2iInUBRrum",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-387",
+    "title": "Wise_Care_365_Pro绿色破解版🌀夸克云",
+    "url": "https://pan.quark.cn/s/e311e0e6cdb0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-388",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=7nuUNjRVVRRr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-389",
+    "title": "Advanced SystemCare Pro绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/3057beab7d20",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-390",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=JvYBniJvaMjm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-391",
+    "title": "360小工具全家桶🌀夸克云",
+    "url": "https://pan.quark.cn/s/678242159cf2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-392",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=6FrYZzZ3UrQn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-393",
+    "title": "👍火绒安全官网",
+    "url": "https://www.huorong.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "系统优化"
+  },
+  {
+    "id": "resource-394",
+    "title": "👍 Uninstall Tool v3.5.10 单文件版",
+    "url": "https://gmengshuai.lanzoux.com/i0y3Enlxl0d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-395",
+    "title": "夸克网盘",
+    "url": "https://pan.quark.cn/s/80f002c0761b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-396",
+    "title": "✅ 备用地址",
+    "url": "https://pan.quark.cn/s/9028264e4ae7",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-397",
+    "title": "Ashampoo UnInstaller 安装破解版🌀夸克云",
+    "url": "https://pan.quark.cn/s/06e75699a523",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-398",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=eUjiAfRR3IBn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-399",
+    "title": "HiBit Uninstaller 单文件版🌀夸克云",
+    "url": "https://pan.quark.cn/s/249e99c2231b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-400",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=j2IvIzYnMVFz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-401",
+    "title": "IObit Uninstaller 绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/95407eda6d0b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-402",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=QFvMzmYzQvYj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-403",
+    "title": "Total Uninstall v6.24.0 绿色便携版🌀夸克云",
+    "url": "https://pan.quark.cn/s/8ddc27615cac",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-404",
+    "title": "超星云",
+    "url": "http://pan-yz.chaoxing.com/share/info/91b5e404c5dc9079",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-405",
+    "title": "电脑管家软件管理_独立安装版🌀夸克云",
+    "url": "https://pan.quark.cn/s/9e814e139ff6",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-406",
+    "title": "超星云",
+    "url": "http://pan-yz.chaoxing.com/share/info/c613288062964cf7",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-407",
+    "title": "360软件管家_7.5.0.1460_独立安装版🌀夸克云",
+    "url": "https://pan.quark.cn/s/2ce2db1db7a7",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-408",
+    "title": "超星云",
+    "url": "http://pan-yz.chaoxing.com/share/info/a41233af7487648b",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-409",
+    "title": "win10应用商店独立安装包🌀夸克云",
+    "url": "https://pan.quark.cn/s/ed05ddb9303a",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-410",
+    "title": "超星云",
+    "url": "http://pan-yz.chaoxing.com/share/info/e76fd349b1a0e2a6",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.软件下载与卸载"
+  },
+  {
+    "id": "resource-411",
+    "title": "Windows Update Blocker 支持WIN10/11👍",
+    "url": "https://gmengshuai.lanzoul.com/iNwrc1nqh2sd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-412",
+    "title": "夸克网盘",
+    "url": "https://pan.quark.cn/s/83a1e95a1238#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-413",
+    "title": "✅ 备用",
+    "url": "https://gitcode.com/qq_39714832/software/blob/main/Windows%20Update%20Blocker%20v1.8(win10%E5%92%8C11).rar",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-414",
+    "title": "关闭或开启Win10自动更新（联想出品）🌀夸克云",
+    "url": "https://pan.quark.cn/s/482a8d3d51a4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-415",
+    "title": "FILEZ",
+    "url": "https://meta.box.lenovo.com/v/link/view/267c8e73791649bfbce2ed8444c160c6",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-416",
+    "title": "Win Updates Disabler🌀夸克云",
+    "url": "https://pan.quark.cn/s/9d57b0bf16f4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-417",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=uiYnyqM7nUfe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-418",
+    "title": "Win10间谍杀手 DWS🌀夸克云",
+    "url": "https://pan.quark.cn/s/9657c21e87ab",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "03.WIN禁止更新工具"
+  },
+  {
+    "id": "resource-419",
+    "title": "【官网】网易UU远程（原GameViewer远程）_专业游戏串流远程控制软件",
+    "url": "https://uuyc.163.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-420",
+    "title": "【官网】RustDesk – 开源远程桌面访问软件",
+    "url": "https://rustdesk.com/zh/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-421",
+    "title": "【官网】Parsec（全端支持）「低延迟、高带宽、支持多人」注册时的验证码需要科学，但登陆时不需要",
+    "url": "https://parsec.app/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-422",
+    "title": "【官网】RDViewer（WIN / Android / iphone）",
+    "url": "https://www.rdviewer.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-423",
+    "title": "【官网】向日葵远程控制（全端支持）",
+    "url": "https://sunlogin.oray.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-424",
+    "title": "【官网】Teamviewer（全端支持）",
+    "url": "https://www.teamviewer.cn/cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-425",
+    "title": "【官网】Todesk（全端支持）",
+    "url": "https://www.todesk.com/download.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-426",
+    "title": "【官网】爱思远程（全端支持）",
+    "url": "https://www.i4.cn/pro_remote.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-427",
+    "title": "【官网】秒点远控—新产品（WIN / MAC）",
+    "url": "https://www.geelevel.com/softwaredownload.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-428",
+    "title": "【官网-投屏】AirDroid Cast-局域网免费投屏（无需下载软件）",
+    "url": "https://webcast.airdroid.com/?lang=zh-cn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-429",
+    "title": "【官网-投屏】AirPin投屏官网-会议投屏软件_多屏互动_有线同屏_手机投电脑",
+    "url": "https://waxrain.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-430",
+    "title": "【官网-投屏】Go2TV - Media Casting Made Easy（开源，全端）",
+    "url": "https://go2tv.app/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.远程控制/投屏"
+  },
+  {
+    "id": "resource-431",
+    "title": "👍下载地址 《激活Windows系统工具下载》",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1773205780567_95901",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.系统激活"
+  },
+  {
+    "id": "resource-432",
+    "title": "备用",
+    "url": "https://www.yuque.com/docs/share/ed6dc28c-9fda-49df-9c19-b8b117832a63",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.系统激活"
+  },
+  {
+    "id": "resource-433",
+    "title": "👍文章 《小帅教你用三种方法免费激活Windows系统》",
+    "url": "https://mp.weixin.qq.com/s/aDxnhffxa0zis1gA8D_kZQ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.系统激活"
+  },
+  {
+    "id": "resource-434",
+    "title": "IsMyHdOK_x64（硬盘检测工具）🌀夸克云",
+    "url": "https://pan.quark.cn/s/ae73380a5090",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-435",
+    "title": "CrystalDiskInfo（硬盘状态检测工具）v8.12.5标准单文件版🌀夸克云",
+    "url": "https://pan.quark.cn/s/40b652c13eca",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-436",
+    "title": "天翼云",
+    "url": "https://pan.quark.cn/s/a06a26846f41",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-437",
+    "title": "电脑维护工具收集箱🌀夸克云",
+    "url": "https://pan.quark.cn/s/088763a84375",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-438",
+    "title": "蓝奏云",
+    "url": "https://gmengshuai.lanzoux.com/iTW5Olablqj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-439",
+    "title": "AIDA64 系统检测 6.25.5400 单文件商业版🌀夸克云",
+    "url": "https://pan.quark.cn/s/c3c8f20e88e4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-440",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/2eYjimUNzYFn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-441",
+    "title": "AIDA64_Extreme_v6.30_Lite🌀夸克云",
+    "url": "https://pan.quark.cn/s/eeffd8f3d40b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-442",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/vq6VZnmQFVJj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-443",
+    "title": "SSD Fresh免注册版 一键延长硬盘寿命🌀夸克云",
+    "url": "https://pan.quark.cn/s/22726d1499ea",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-444",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/zIfy2iR7jeUn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-445",
+    "title": "CPU-Z_Ver.1.94.0_Chs🌀夸克云",
+    "url": "https://pan.quark.cn/s/a363a6d37064",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-446",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/qquieeYvUVBf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-447",
+    "title": "鲁大师各种版本🌀夸克云",
+    "url": "https://pan.quark.cn/s/13342f595576",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-448",
+    "title": "鲁大师v5.20.1260去广告绿色单文件",
+    "url": "https://cloud.189.cn/t/ANnumqQv2IB3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-449",
+    "title": "鲁大师_Green_5.20.1220",
+    "url": "https://cloud.189.cn/t/yiQNJjiuuUJn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-450",
+    "title": "鲁大师 去广告绿色单文件",
+    "url": "https://cloud.189.cn/t/iiE7V3aARZZr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-451",
+    "title": "9M鲁大师 只保留PC信息查看",
+    "url": "https://cloud.189.cn/t/nyEv2q2U32qu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.硬件检测"
+  },
+  {
+    "id": "resource-452",
+    "title": "🏆【官网】Ventoy",
+    "url": "https://www.ventoy.net/cn/index.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-453",
+    "title": "视频教程",
+    "url": "https://www.bilibili.com/video/BV13g4y1B7JQ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-454",
+    "title": "🏆【官网】微PE工具箱",
+    "url": "http://www.wepe.com.cn/download.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-455",
+    "title": "🏆【官网】Edgeless",
+    "url": "https://home.edgeless.top/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-456",
+    "title": "🏆【官网】HotPE - 一个纯净、强大、优雅的PE工具箱",
+    "url": "https://www.hotpe.top/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-457",
+    "title": "🏆【官网】FirPE Project - 也许是最适合年轻人使用的第三方WinPE",
+    "url": "https://www.firpe.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-458",
+    "title": "🏆【官网】冰封PE",
+    "url": "http://www.bfgho.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-459",
+    "title": "🏆【官网】电脑店",
+    "url": "https://u.diannaodian.com/down/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-460",
+    "title": "🏆【官网】优启通EasyU",
+    "url": "https://www.upe.net/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-461",
+    "title": "👍优启通EasyU_3.6.2020.0620",
+    "url": "https://cloud.189.cn/t/6BvIFfR3uQj2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-462",
+    "title": "WIN8PE_V4.0",
+    "url": "https://cloud.189.cn/t/n2YBz2uq6jm2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-463",
+    "title": "WePE_32_V2.1",
+    "url": "https://cloud.189.cn/t/ZBBbE32yyARr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-464",
+    "title": "ventoy-1.0.21-windows",
+    "url": "https://cloud.189.cn/t/2EZZz2y6JRji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.纯净U盘启动制作工具"
+  },
+  {
+    "id": "resource-465",
+    "title": "火绒安全官网",
+    "url": "https://www.huorong.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-466",
+    "title": "Windows10Manager",
+    "url": "https://pan.quark.cn/s/be9ca36cc22e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-467",
+    "title": "👍IObit Unlocker 绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/63f1b01e60ba",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-468",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/rmYzIrzYfE7z",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-469",
+    "title": "LockHunter3 安装版(含汉化补丁）🌀夸克云",
+    "url": "https://pan.quark.cn/s/1c522f61218b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-470",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/RbaUVjq6NrYr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-471",
+    "title": "LockHunter3 单文件英文版🌀夸克云",
+    "url": "https://pan.quark.cn/s/b0c4560df96a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-472",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/BBnqQj3maiui",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.强制解除占用"
+  },
+  {
+    "id": "resource-473",
+    "title": "DiskGenius🔥可用版本🌀夸克云",
+    "url": "https://pan.quark.cn/s/a2528900cbb7",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.数据备份恢复"
+  },
+  {
+    "id": "resource-474",
+    "title": "《软件目录及简介－使用之前必看》",
+    "url": "https://www.yuque.com/docs/share/73ac460d-189e-4e31-8a37-7d0e7ac15da2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.数据备份恢复"
+  },
+  {
+    "id": "resource-475",
+    "title": "数据恢复软件-19个🌀夸克云",
+    "url": "https://pan.quark.cn/s/e80e3fd1344d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.数据备份恢复"
+  },
+  {
+    "id": "resource-476",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/3q2uui63Ej6b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.数据备份恢复"
+  },
+  {
+    "id": "resource-477",
+    "title": "360驱动大师2.0网卡版&非网卡版🌀夸克云",
+    "url": "https://pan.quark.cn/s/4cea891c976e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-478",
+    "title": "天翼云-网卡版",
+    "url": "https://cloud.189.cn/web/share?code=fiiANzEvum6z",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-479",
+    "title": "天翼云-非网卡版",
+    "url": "https://cloud.189.cn/web/share?code=q6zIZfqAVRvy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-480",
+    "title": "驱动精灵网卡版&非网卡版🌀夸克云",
+    "url": "https://pan.quark.cn/s/e4a7f53efac2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-481",
+    "title": "天翼云-网卡版",
+    "url": "https://cloud.189.cn/t/RvUVziMfaQVv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-482",
+    "title": "天翼云-非网卡版",
+    "url": "https://cloud.189.cn/t/3y2UrmRBVvQ3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-483",
+    "title": "无线网卡驱动-推荐使用🌀夸克云",
+    "url": "https://pan.quark.cn/s/175eee383beb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-484",
+    "title": "显卡驱动升级助手-自动识别并下载最新版🌀夸克云",
+    "url": "https://pan.quark.cn/s/de7270e3f318",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-485",
+    "title": "DriverBooster Pro永久激活版",
+    "url": "https://cloud.189.cn/web/share?code=umam6fIJr2ae",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-486",
+    "title": "打印机驱动下载👍",
+    "url": "https://www.dyjqd.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.驱动软件"
+  },
+  {
+    "id": "resource-487",
+    "title": "WINRAR整合—支持分割压缩🌀夸克云",
+    "url": "https://pan.quark.cn/s/2a7bffe55322",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-488",
+    "title": "蓝奏云-密码：421a",
+    "url": "https://mefcl.lanzoux.com/b01006kcf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-489",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/2YBziyQ3Yr6f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-490",
+    "title": "👍烈火汉化绿色版WinRAR",
+    "url": "https://cloud.189.cn/web/share?code=JBjeQnzyUj6r",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-491",
+    "title": "👍Bandizip整合—支持分割压缩🌀夸克云",
+    "url": "https://pan.quark.cn/s/089ec995e2e6",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-492",
+    "title": "蓝奏云-密码：7vei",
+    "url": "https://mefcl.lanzouw.com/b013l3l3i",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-493",
+    "title": "天翼云-访问码：ed8d",
+    "url": "https://cloud.189.cn/t/yyuQRvMVrqQr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-494",
+    "title": "Bandizip_v6.26便携版_64bit（勿更新，更新后有广告）",
+    "url": "https://cloud.189.cn/t/3AZVR3umYRv2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-495",
+    "title": "Bandizip_v6.26便携版_32bit（勿更新，更新后有广告）",
+    "url": "https://cloud.189.cn/t/FZBbuu77FvYf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-496",
+    "title": "Bandizip 秘钥",
+    "url": "https://cloud.189.cn/t/I3iuAjmeUFzq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-497",
+    "title": "👍7-zip —— Win10/11 经典之作",
+    "url": "https://www.7-zip.org/download.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-498",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/ba6be63c0843",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.压缩软件"
+  },
+  {
+    "id": "resource-499",
+    "title": "Office官方版 / 精简版不限速下载（附激活工具）👍",
+    "url": "https://www.yuque.com/docs/share/9f9027f5-91a9-4a97-a61e-30b87cd09a4f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.OFFICE"
+  },
+  {
+    "id": "resource-500",
+    "title": "Office Tool Plus 部署工具【官方网站】 👍",
+    "url": "https://otp.landian.vip/zh-cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.OFFICE"
+  },
+  {
+    "id": "resource-501",
+    "title": "文章 《Batch PPT（幻灯片文档批量处理）》",
+    "url": "https://www.yuque.com/docs/share/69247421-626d-44cb-b96b-309005bb5e36?#",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-502",
+    "title": "【Office插件合集】👍",
+    "url": "https://www.aliyundrive.com/s/GCcNiq1AhKm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-503",
+    "title": "【EXCEL】EasyShu2.912 一键出图颜值图表🌀夸克云",
+    "url": "https://pan.quark.cn/s/7bbeb9d3776d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-504",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/VnYNRvrMvm2m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-505",
+    "title": "【EXCEL】效率专家1103易用宝2.2.18🌀夸克云",
+    "url": "https://pan.quark.cn/s/f2a7bf9a2723",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-506",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/YzM7ruemu2Mb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-507",
+    "title": "【EXCEL】(方方格子)FFCellV3.4.0.0附注册机(excel批量处理)🌀夸克云",
+    "url": "https://pan.quark.cn/s/d58591220c0c",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-508",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/mI7rqyqmqMjy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-509",
+    "title": "【Word】高效排版2021插件 支持WPS Office🌀夸克云",
+    "url": "https://pan.quark.cn/s/ff58f3487ac6",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-510",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/q6N7Nz3MRbYn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-511",
+    "title": "【office图片提取器】Picture_Extractor🌀夸克云",
+    "url": "https://pan.quark.cn/s/96fbad7e539d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-512",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/imiArm2IjYRf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-513",
+    "title": "【Word】Kutools for Word v9.0🌀夸克云👍",
+    "url": "https://pan.quark.cn/s/9f949c53f1b9",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-514",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/V3AVz2yERbMf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-515",
+    "title": "office官方激活修复.diagcab🌀夸克云",
+    "url": "https://pan.quark.cn/s/200b35b738c6",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-516",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=QFvMzmYzQvYj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "OFFICE辅助插件"
+  },
+  {
+    "id": "resource-517",
+    "title": "WPS政府版/安装版/绿色版/单文件版不限速下载（全网最全）👍",
+    "url": "https://www.yuque.com/docs/share/0695ca33-f650-4294-9872-6d785d02cb26",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.WPS"
+  },
+  {
+    "id": "resource-518",
+    "title": "最新 WPS 激活密钥分享 👍",
+    "url": "https://flowus.cn/share/6db5f141-086c-4511-96fb-8cbeb26a12dd?code=JK1MBY",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-519",
+    "title": "WIN序列号，提取码：xigx",
+    "url": "https://pan.xunlei.com/s/VNVZD-3D9SngKPPWvOS0hN_uA1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-520",
+    "title": "备",
+    "url": "https://pan.quark.cn/s/bc665316077d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-521",
+    "title": "WPS 永久激活工具",
+    "url": "https://pan.quark.cn/s/5cadaff35f70",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-522",
+    "title": "备，提取码：gxje",
+    "url": "https://pan.xunlei.com/s/VNVZDWJWo71wumtw3ens5X0bA1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-523",
+    "title": "WPS 2019 永久激活工具",
+    "url": "https://pan.quark.cn/s/ae771daadb12",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-524",
+    "title": "备，提取码：s4wt",
+    "url": "https://pan.xunlei.com/s/VNVZDO7yS5BITcaFxOY2nLc6A1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "WPS激活工具"
+  },
+  {
+    "id": "resource-525",
+    "title": "Infix PDF Editor Pro v7.5.0🌀夸克云",
+    "url": "https://pan.quark.cn/s/a86904143c7f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-526",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/m6f2IbfEfYRr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-527",
+    "title": "万兴PDF专家_v7.4.7.4726_简体中文绿铯特别版🌀夸克云",
+    "url": "https://pan.quark.cn/s/3cc59dd6bc8a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-528",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/6fIriqIjuQji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-529",
+    "title": "福昕高级PDF编辑器_v9.7.1.29511_绿色精简版",
+    "url": "https://pan.quark.cn/s/d40fe7cfbf00",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-530",
+    "title": "备，提取码：fycz",
+    "url": "https://pan.xunlei.com/s/VNVZf9WuRPg2e4D5C1m6MYBcA1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-531",
+    "title": "ABBYY FineReader Enterprise 14.0.107.212便携版🌀夸克云",
+    "url": "https://pan.quark.cn/s/1d8ad9d030bf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-532",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/Rj2IZrNJvimm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-533",
+    "title": "Adobe Acrobat Pro DC v2025.001.20458 PJ版 32位 & 64位🌀夸克云",
+    "url": "https://pan.quark.cn/s/b353d05aef09#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-534",
+    "title": "百度云",
+    "url": "https://pan.baidu.com/share/init?surl=8K7KNVHXiKSb-4HFEOgfSg&pwd=af1a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-535",
+    "title": "Adobe Acrobat DC2018 多国语言特别版🌀夸克云",
+    "url": "https://pan.quark.cn/s/4f0c07e2d651",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-536",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/i6BZrqnqMNBv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-537",
+    "title": "PDFdo_Converter3.0.0.0破解版🌀夸克云",
+    "url": "https://pan.quark.cn/s/f9c77eb2d6fe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-538",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/j2amMz7VFBfi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-539",
+    "title": "Sumatra快速查看PDF-3.2-64🌀夸克云",
+    "url": "https://pan.quark.cn/s/f969c418ed83",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-540",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/m63aIjymumaa",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-541",
+    "title": "PDFelement（6.8.2.3704）已激活专业绿版🌀夸克云",
+    "url": "https://pan.quark.cn/s/c5c823dc1f2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-542",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/u2Ur6b3eEZby",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-543",
+    "title": "👍PDF-Xchange Editor 多版本🌀夸克云",
+    "url": "https://pan.quark.cn/s/bc7c0c4f9c2f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-544",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/rqU7VnEvAR3a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PDF"
+  },
+  {
+    "id": "resource-545",
+    "title": "鼠标录制批量去pdf水印工具🌀夸克云",
+    "url": "https://pan.quark.cn/s/bf574fcfffaf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PDF辅助工具"
+  },
+  {
+    "id": "resource-546",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/jqyQjum2Mva2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PDF辅助工具"
+  },
+  {
+    "id": "resource-547",
+    "title": "PDF处理GaaihoReader_CHS_ALL_4.20",
+    "url": "https://pan.quark.cn/s/907f6fce8eb4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PDF辅助工具"
+  },
+  {
+    "id": "resource-548",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/fAJRzmQN3Y3u",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PDF辅助工具"
+  },
+  {
+    "id": "resource-549",
+    "title": "稻壳阅读器绿色版 🌀夸克云👍",
+    "url": "https://pan.quark.cn/s/d42003a5a3b4",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-550",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/web/share?code=a6fM7z7zMzUr",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-551",
+    "title": "官网免费下载安装版",
+    "url": "http://www.daokeyuedu.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-552",
+    "title": "Calibre_4.22.0_Portable🌀夸克云👍",
+    "url": "https://cloud.189.cn/t/Iz2A7vI3U3Yf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-553",
+    "title": "官网免费下载",
+    "url": "https://calibre-ebook.com/download",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-554",
+    "title": "可道阅读器 【 密码：1234】",
+    "url": "https://wwa.lanzoui.com/b0c90cieb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-555",
+    "title": "官网",
+    "url": "https://koodo.960960.xyz/zh",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-556",
+    "title": "EPUB File Reader🌀夸克云",
+    "url": "https://pan.quark.cn/s/fc7cd2ff17ae",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-557",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/ErMVFfJVBbi2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-558",
+    "title": "Icecream ebook reader pro 5.20🌀夸克云",
+    "url": "https://pan.quark.cn/s/0985aa31873f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-559",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/bEbymy67vMVz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-560",
+    "title": "StartReader_windows_3.1.0_47_🌀夸克云",
+    "url": "https://pan.quark.cn/s/15684ffbcf53",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-561",
+    "title": "天翼云",
+    "url": "https://cloud.189.cn/t/biUBFfeQZbEn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.EPUB等多格式阅读器"
+  },
+  {
+    "id": "resource-562",
+    "title": "搜狗拼音_9.3pojie版",
+    "url": "https://cloud.189.cn/t/V3i6fmBVJJ7v",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-563",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/b129b1f1cb16",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-564",
+    "title": "百度输入法【官网】",
+    "url": "https://shurufa.baidu.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-565",
+    "title": "HGWBime_v1.0.0_beta",
+    "url": "https://cloud.189.cn/t/7nyMNjz6raEn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-566",
+    "title": "搜狗五笔输入法_3.0.0.1694",
+    "url": "https://cloud.189.cn/t/rmUVRvqimiie",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-567",
+    "title": "QQWubi_Setup_2.3.620.400",
+    "url": "https://cloud.189.cn/t/iaIfMvqEv6Fr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-568",
+    "title": "极点10th(不兼容WIN10)",
+    "url": "https://cloud.189.cn/t/qe6Fv2miIRfq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-569",
+    "title": "五笔86便携版",
+    "url": "https://cloud.189.cn/t/n2auyqBrERVz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-570",
+    "title": "启程输入法",
+    "url": "https://cloud.189.cn/t/nAB3meN7J7zm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-571",
+    "title": "微信&QQ多开防撤回版本",
+    "url": "https://423down.lanzouo.com/b0f1ada0f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.输入法"
+  },
+  {
+    "id": "resource-572",
+    "title": "👍文库、CSDN等下载神器",
+    "url": "https://www.yuque.com/docs/share/4fc7c1e2-82ca-4d42-916a-e104b8c71fe0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-573",
+    "title": "👍CSDN资源&文章下载器（稍微便宜点）",
+    "url": "https://github.com/bigintpro/csdn_downloader",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-574",
+    "title": "📥XDM官网「多线程下载器，IDM的替换」",
+    "url": "https://xtremedownloadmanager.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-575",
+    "title": "GitHub",
+    "url": "https://github.com/subhra74/xdm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-576",
+    "title": "📥NDM官网「多线程下载器，IDM的替换」",
+    "url": "https://neatdownload.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-577",
+    "title": "📥FDM中文官网「多线程下载器，IDM的替换」",
+    "url": "https://www.freedownloadmanager.org/zh/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-578",
+    "title": "📥学无止下载器-v1.9.3(支持慕课网,网易云课堂,中国大学,爱课程,学堂在线,超星视频及课件)",
+    "url": "https://github.com/PyJun/Mooc_Downloader/releases",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-579",
+    "title": "📥WeChatDownload（微信公众号文章下载）",
+    "url": "https://cloud.189.cn/t/UvQNRrArUj6b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-580",
+    "title": "📥AntDM",
+    "url": "https://gmengshuai.lanzoul.com/ivDaY0trz0mj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-581",
+    "title": "官网",
+    "url": "https://antdownloadmanager.com",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05 下载神器（磁力/视频/音乐/文库）"
+  },
+  {
+    "id": "resource-582",
+    "title": "📥Gopeed官网「多线程下载器，IDM的替换首推」👍",
+    "url": "https://gopeed.com/zh-CN",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-583",
+    "title": "Gopeed插件: Huggingface",
+    "url": "https://github.com/monkeyWie/gopeed-extension-huggingface",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-584",
+    "title": "Gopeed插件: B 站",
+    "url": "https://github.com/monkeyWie/gopeed-extension-bilibili",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-585",
+    "title": "Gopeed插件: YouTube",
+    "url": "https://github.com/monkeyWie/gopeed-extension-youtube",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-586",
+    "title": "Gopeed插件: bandcamp",
+    "url": "https://github.com/monkeyWie/gopeed-extention-bandcamp",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-587",
+    "title": "Gopeed插件: Twitter",
+    "url": "https://github.com/monkeyWie/gopeed-extension-twitter",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-588",
+    "title": "Gopeed插件: 爱赞美",
+    "url": "https://github.com/sincerefly/gopeed-extension-aizanmei",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-589",
+    "title": "Gopeed插件: 百度网盘",
+    "url": "https://github.com/monkeyWie/gopeed-extension-baiduwp",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "00.Gopeed下载神器"
+  },
+  {
+    "id": "resource-590",
+    "title": "俄罗斯大神版-Internet Download Manager 6.42.64 (Repack) » Авторские репаки от ELCHUPACABRA - REPACK скачать 👍",
+    "url": "https://lrepacks.net/repaki-programm-dlya-interneta/56-internet-download-manager-repack.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.IDM下载神器"
+  },
+  {
+    "id": "resource-591",
+    "title": "IDM下载神器 - 小帅提供 各种版本👍",
+    "url": "https://pan.quark.cn/s/4051dd2a458d#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.IDM下载神器"
+  },
+  {
+    "id": "resource-592",
+    "title": "蓝奏云(密码:xiao)",
+    "url": "https://gmengshuai.lanzoui.com/b00u7pu5i?password=xiao",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.IDM下载神器"
+  },
+  {
+    "id": "resource-593",
+    "title": "IDM破解版 永硕e盘的长期下载链接",
+    "url": "http://idman.ys168.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.IDM下载神器"
+  },
+  {
+    "id": "resource-594",
+    "title": "M3u8Downloader_H 开源项目地址",
+    "url": "https://github.com/Harlan-H/M3u8Downloader_H?tab=readme-ov-file",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-595",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/2cd0ad2e3c99",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-596",
+    "title": "使用文档",
+    "url": "https://note.youdao.com/ynoteshare/index.html?id=fb3e738dc7aea6f5e7ff9eb81abcb64d&type=notebook&_time=1712371632637",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-597",
+    "title": "N_m3u8DL-CLI 🌀夸克云",
+    "url": "https://pan.quark.cn/s/7d08631ec9a3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-598",
+    "title": "猫抓+m3u8下载器",
+    "url": "https://cloud.189.cn/t/aqeuiyZbiyqe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-599",
+    "title": "m3u8-download-1.0.3",
+    "url": "https://cloud.189.cn/t/umQ3MjbaeIRb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-600",
+    "title": "M3U8下载器",
+    "url": "https://cloud.189.cn/t/Vbam2mq6zeim",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-601",
+    "title": "M3U8下载器2.1.6.2",
+    "url": "https://cloud.189.cn/t/NFfMnyIBZ322",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-602",
+    "title": "M3U8 1.4.5",
+    "url": "https://cloud.189.cn/t/6Rb2EvVV36F3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.M3U8下载神器"
+  },
+  {
+    "id": "resource-603",
+    "title": "👍uTorrent 中文版 | 专业 BT 种子下载工具 | u-torrent.com",
+    "url": "https://u-torrent.com/cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-604",
+    "title": "👍qBittorrent v4.6.4.10 便携版",
+    "url": "https://pan.quark.cn/s/5ffa23e1c7c3#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-605",
+    "title": "天翼云盘-v4.3.6.10绿色增强版",
+    "url": "https://cloud.189.cn/web/share?code=MNZnAbBvaQva",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-606",
+    "title": "天翼云盘-v4.3.3.10(集成搜索引擎)",
+    "url": "https://cloud.189.cn/web/share?code=QFJZ7jVvM3Qv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-607",
+    "title": "👍迅雷 12绿色免安装",
+    "url": "https://juse.lanzn.com/b038yljkob",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-608",
+    "title": "迅雷 11.1.8.1418绿色免安装，下载与云盘合并 SVIP 新版（手机号登录即SVIP）",
+    "url": "https://cloud.189.cn/t/EbABFvjaeumq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-609",
+    "title": "迅雷5官方版（只能下载种子）无视应版权方要求【安装时注意勾选】",
+    "url": "https://gmengshuai.lanzoux.com/iPrbdm2izna",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-610",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/3012dc75c19e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-611",
+    "title": "闪电下载（官网，全端支持）",
+    "url": "https://bbs.flashdown365.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-612",
+    "title": "比特彗星-BitComet（作者提供）",
+    "url": "https://wwx.lanzoux.com/b073c7g4f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-613",
+    "title": "比目鱼复活版",
+    "url": "https://cloud.189.cn/t/2uY3eymiIjUb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-614",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/3012dc75c19e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-615",
+    "title": "迅雷9极限精简融合版ThunderS_20201121",
+    "url": "https://cloud.189.cn/t/vumArer6JR7b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-616",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/3012dc75c19e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-617",
+    "title": "ThunderX【绿色版】",
+    "url": "https://cloud.189.cn/t/INFj22bmMz2u",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-618",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/3012dc75c19e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.磁力搜索下载"
+  },
+  {
+    "id": "resource-619",
+    "title": "👍全网最全的B站下载工具",
+    "url": "https://flowus.cn/share/53d1b790-bb5b-4b73-9a7b-926835d63c00",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.哔哩哔哩下载"
+  },
+  {
+    "id": "resource-620",
+    "title": "油管视频批量下载 Jerry Downloader Pro 7.8.5",
+    "url": "https://cloud.189.cn/t/ZrMRRfYbmeQb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.YouTube下载"
+  },
+  {
+    "id": "resource-621",
+    "title": "Youtube_DownloaderPro 7.9.0 单文件专业版",
+    "url": "https://cloud.189.cn/t/yQjyAzQZRbMv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.YouTube下载"
+  },
+  {
+    "id": "resource-622",
+    "title": "👍喜马拉雅专辑下载4.0（不支持付费）",
+    "url": "https://www.aliyundrive.com/s/mkt4sunsmTn",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-623",
+    "title": "👍喜马拉雅专辑音频一键下载工具 (开源项目)",
+    "url": "https://github.com/Diaoxiaozhang/Ximalaya-Downloader",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-624",
+    "title": "👍喜马拉雅免费音频专辑下载器🌀夸克云",
+    "url": "https://pan.quark.cn/s/90e07d31e304",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-625",
+    "title": "👍喜马拉雅下载器",
+    "url": "https://gmengshuai.lanzoux.com/id8mLnohngd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-626",
+    "title": "👍音乐间谍重制版【密码：bic7",
+    "url": "https://lanzoux.com/b0a2ufw8d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-627",
+    "title": "MusicDer-win32-x64",
+    "url": "https://cloud.189.cn/t/eQj6N3Q3ieei",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-628",
+    "title": "Listen1",
+    "url": "http://pan-yz.chaoxing.com/share/info/0add794d7bfa7529",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-629",
+    "title": "官网",
+    "url": "https://listen1.github.io/listen1/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-630",
+    "title": "洛雪音乐助手",
+    "url": "http://pan-yz.chaoxing.com/share/info/527f947f07d437d5",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-631",
+    "title": "开源地址",
+    "url": "https://github.com/lyswhut/lx-music-desktop",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "06.音乐下载电脑端"
+  },
+  {
+    "id": "resource-632",
+    "title": "4KVideoDownloader4.12.5.36",
+    "url": "https://cloud.189.cn/t/n2eAVvrquMZj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.短视频类下载"
+  },
+  {
+    "id": "resource-633",
+    "title": "硕鼠Nano_v0.4.8.10pojie绿化版",
+    "url": "https://cloud.189.cn/t/me2aeeeiMJj2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.短视频类下载"
+  },
+  {
+    "id": "resource-634",
+    "title": "视频下载器_52Pojie_V1.2.101.544",
+    "url": "https://cloud.189.cn/t/EVVB7n7zQVBb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.短视频类下载"
+  },
+  {
+    "id": "resource-635",
+    "title": "【WIN】NDM - 适用于API下载【官网：neatdownloadmanager.com",
+    "url": "https://cloud.189.cn/t/byueEvRZFVBv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-636",
+    "title": "【MAC】NDM - 适用于API下载",
+    "url": "https://cloud.189.cn/t/QJJbQfJzueam",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-637",
+    "title": "【Android】AriaNgGUI - 适用于RPC下载",
+    "url": "https://cloud.189.cn/t/6jMva22amEba",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-638",
+    "title": "【WIN】Aria2 - 适用于RPC下载【官网：aria2.baisheng999.com",
+    "url": "https://cloud.189.cn/t/nmiimyyEfimi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-639",
+    "title": "【WIN】Xdown - 适用于Aria下载【官网：https://xdown.org",
+    "url": "https://cloud.189.cn/t/7vYv6bYfMBja",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-640",
+    "title": "【WIN】Motrix - 适用于RPC下载【官网：https://motrix.app/zh-CN",
+    "url": "https://cloud.189.cn/t/qEZbqeeyqMFb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "利用油猴脚本下载"
+  },
+  {
+    "id": "resource-641",
+    "title": "👍文章 《小帅Typora使用经验》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247487684&idx=1&sn=f6934246bd43b0ca5943a4e3cee6655b&chksm=9b8a6967acfde071722b966ab5571129c070369f0fcca4daf40784aea4104c3c8ddc5",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-642",
+    "title": "👍Typora_0.9.92-setup-x32（推荐使用的旧版）🌀夸克云",
+    "url": "https://pan.quark.cn/s/dfc1f3ba299b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-643",
+    "title": "Gridea.Setup.0.9.2",
+    "url": "https://cloud.189.cn/t/7riAryvYnA3u",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-644",
+    "title": "👍eDiary日记本3.4.0",
+    "url": "https://cloud.189.cn/t/aIVBvivMrm22",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-645",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/55e0a3757b17",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-646",
+    "title": "myBaseDesktop6.3.3",
+    "url": "https://cloud.189.cn/t/ryEjUr367rMb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.记笔记"
+  },
+  {
+    "id": "resource-647",
+    "title": "Pot | 跨平台划词翻译和OCR👍",
+    "url": "https://pot-app.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-648",
+    "title": "uTools 是一种高效工作方式，AI 时代的轻工具平台",
+    "url": "https://www.u-tools.cn/index.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-649",
+    "title": "PowerTranslator 一个 PowerToys Run 的翻译插件",
+    "url": "https://github.com/N0I0C0K/PowerTranslator",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-650",
+    "title": "百度翻译最新1.0.2绿色化版",
+    "url": "https://cloud.189.cn/t/6n2qmiEn2aEb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-651",
+    "title": "翻译软件Lingvanex.Translator.Pro.v1.01.11.64",
+    "url": "https://cloud.189.cn/t/B3MriyVnIZzm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-652",
+    "title": "PC网易有道词典v8.6.2pojie版",
+    "url": "https://cloud.189.cn/t/IRfqEjZnyuy2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-653",
+    "title": "有道词典_纯净版",
+    "url": "https://cloud.189.cn/t/fqQvIje6bEbu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.翻译"
+  },
+  {
+    "id": "resource-654",
+    "title": "Windows端 欧陆词典破解激活1.reg",
+    "url": "https://pro.macpan.cn/index.php?mod=shares&sid=Tlo4LUZYYnJ4ZTdReFotbFVEMUNXX1BQNkhKci1PTVZzVk9N",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-655",
+    "title": "Windows端 欧陆词典破解激活2.reg",
+    "url": "https://gmengshuai.lanzoul.com/io2VIxvaarg",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-656",
+    "title": "《欧路词典打磨指南》",
+    "url": "https://zhuanlan.zhihu.com/p/64925212",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-657",
+    "title": "👍欧路词典官网",
+    "url": "http://www.eudic.net/v4/en/app/download",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-658",
+    "title": "欧路词典_win",
+    "url": "https://cloud.189.cn/t/eEJvYjyEvAfi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-659",
+    "title": "🌕词典包—牛津高阶英汉双解词典(第9版)（访问码：nm9y",
+    "url": "https://cloud.189.cn/t/iQvqEbJfmUzy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-660",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/2059a4c5dc43",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-661",
+    "title": "🌗词典包—朗文5++ V2.15（精简美化）",
+    "url": "https://pan.quark.cn/s/b8ddd2e38249",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-662",
+    "title": "🌕词典包—The little dict",
+    "url": "https://pan.quark.cn/s/7dd855b525c2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "欧陆词典+词典包"
+  },
+  {
+    "id": "resource-663",
+    "title": "👍 draw.io 在线免费使用",
+    "url": "https://app.diagrams.net/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.流程图 / UML图"
+  },
+  {
+    "id": "resource-664",
+    "title": "👍 draw.io 最新下载地址",
+    "url": "https://github.com/jgraph/drawio/releases",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.流程图 / UML图"
+  },
+  {
+    "id": "resource-665",
+    "title": "专业流程图制作软件Draw.io Desktop 13.3.5.394 简体中文绿色版",
+    "url": "https://cloud.189.cn/t/a6VbQniInyea",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.流程图 / UML图"
+  },
+  {
+    "id": "resource-666",
+    "title": "ClickCharts.exe",
+    "url": "https://cloud.189.cn/t/vYRF7naAFVzu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.流程图 / UML图"
+  },
+  {
+    "id": "resource-667",
+    "title": "Processon在线画图",
+    "url": "https://www.processon.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.思维导图"
+  },
+  {
+    "id": "resource-668",
+    "title": "MindMaster",
+    "url": "https://cloud.189.cn/t/fMV3e2FZNF73",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.思维导图"
+  },
+  {
+    "id": "resource-669",
+    "title": "excalidraw",
+    "url": "https://excalidraw.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.思维导图"
+  },
+  {
+    "id": "resource-670",
+    "title": "GitMind",
+    "url": "https://gitmind.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.思维导图"
+  },
+  {
+    "id": "resource-671",
+    "title": "👍XMind",
+    "url": "https://cloud.189.cn/t/ymA32i22e2Mv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.思维导图"
+  },
+  {
+    "id": "resource-672",
+    "title": "Notepad++ official repository · GitHub 👍",
+    "url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-673",
+    "title": "Sublime Text3_自适应【安装版】",
+    "url": "https://cloud.189.cn/t/7n2uaanInEJf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-674",
+    "title": "Sublime_Text【绿色版】",
+    "url": "https://cloud.189.cn/t/E7n2UzVFVzmy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-675",
+    "title": "Text Editor Pro 64位版 V9.2.0 最新版",
+    "url": "https://cloud.189.cn/t/NRjqaaeqMfeu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-676",
+    "title": "emed64_19.8.5（文本编辑器）",
+    "url": "https://cloud.189.cn/t/qiAjiaNVveQv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-677",
+    "title": "EditPlus 文本编辑器",
+    "url": "https://cloud.189.cn/t/zummmu7b6ZNb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-678",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/c377457d6582",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-679",
+    "title": "Notepad3多版本",
+    "url": "https://cloud.189.cn/t/EJbqAv6Zr2em",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-680",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/4a347d6569bf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.文本编辑器"
+  },
+  {
+    "id": "resource-681",
+    "title": "👍Visual Studio Code-最新版 - Mac, Linux, Windows",
+    "url": "https://code.visualstudio.com/Download",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-682",
+    "title": "👍Visual Studio Code-历史版下载方式 - Mac, Linux, Windows",
+    "url": "https://code.visualstudio.com/docs/supporting/faq#_previous-release-versions",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-683",
+    "title": "x64-green-推荐",
+    "url": "https://update.code.visualstudio.com/1.98.2/win32-x64-archive/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-684",
+    "title": "x64",
+    "url": "https://update.code.visualstudio.com/1.98.2/win32-x64-user/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-685",
+    "title": "Arm64-green",
+    "url": "https://update.code.visualstudio.com/1.98.2/win32-arm64-archive/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-686",
+    "title": "Arm64",
+    "url": "https://update.code.visualstudio.com/1.98.2/win32-arm64-user/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-687",
+    "title": "Universal",
+    "url": "https://update.code.visualstudio.com/1.98.2/darwin-universal/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-688",
+    "title": "Intel",
+    "url": "https://update.code.visualstudio.com/1.98.2/darwin/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-689",
+    "title": "silicon",
+    "url": "https://update.code.visualstudio.com/1.98.2/darwin-arm64/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-690",
+    "title": "rpm",
+    "url": "https://update.code.visualstudio.com/1.98.2/linux-rpm-x64/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-691",
+    "title": "tarball",
+    "url": "https://update.code.visualstudio.com/1.98.2/linux-x64/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-692",
+    "title": "Arm",
+    "url": "https://code.visualstudio.com/docs/supporting/faq#_previous-release-versions",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-693",
+    "title": "snap",
+    "url": "https://update.code.visualstudio.com/1.98.2/linux-snap-x64/stable",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-694",
+    "title": "March 2025 (version 1.99)",
+    "url": "https://code.visualstudio.com/updates/v1_99#_linux-legacy-server-support-has-ended",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-695",
+    "title": "VS Code in the browser",
+    "url": "https://github.com/coder/code-server",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-696",
+    "title": "汇编软件masm2015setup",
+    "url": "https://cloud.189.cn/t/IZ3qUz2qUFji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-697",
+    "title": "codeblocks-最新版",
+    "url": "https://www.codeblocks.org/post/codeblocks-25.03-is-here/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-698",
+    "title": "codeblocks17.12",
+    "url": "https://cloud.189.cn/t/YRZB7zfqMVNv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-699",
+    "title": "Cfree5_0_pro安装版",
+    "url": "https://cloud.189.cn/t/NFfYZrVryUZv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07 编程软件（VScode/VS/VB/VC/MYSQL）"
+  },
+  {
+    "id": "resource-700",
+    "title": "👍VMware-workstation-full-15.5.0 附注册码",
+    "url": "https://pan.quark.cn/s/c722c5425824",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.VMware虚拟机"
+  },
+  {
+    "id": "resource-701",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=FnUZNfnaUnau",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.VMware虚拟机"
+  },
+  {
+    "id": "resource-702",
+    "title": "visual_studio_community_2015_x86_x64（访问码：7hk5）",
+    "url": "https://cloud.189.cn/t/zaimAzZnAZz2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-703",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/d842b44aa0da",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-704",
+    "title": "visual_studio_community_2017_x86_x64",
+    "url": "https://gmengshuai.lanzoux.com/iLCk7nrg93i",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-705",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/c06daf8af065",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-706",
+    "title": "visual_studio_community_2019_x86_x64",
+    "url": "https://gmengshuai.lanzoux.com/itqOcnrg9pa",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-707",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/28b22b51f878",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.Visual✧Studio"
+  },
+  {
+    "id": "resource-708",
+    "title": "👍小熊猫C++ (DEV-CPP升级版)",
+    "url": "http://royqh.net/redpandacpp/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.DEV-CPP"
+  },
+  {
+    "id": "resource-709",
+    "title": "DEV-CPP〖各种版本〗",
+    "url": "https://www.devc.org.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.DEV-CPP"
+  },
+  {
+    "id": "resource-710",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/cb02d1a0e8fb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.DEV-CPP"
+  },
+  {
+    "id": "resource-711",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=77FZjqniyuui",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.DEV-CPP"
+  },
+  {
+    "id": "resource-712",
+    "title": "Navicat_Premium_17_Lite 官方免费版",
+    "url": "https://www.navicat.com.cn/download/navicat-premium-lite",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-713",
+    "title": "Navicat_Premium_16和17 补丁",
+    "url": "https://github.com/moshowgame/Navicat_Keygen_Patch",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-714",
+    "title": "mysql-5.7.28-winx64-debug-test.zip",
+    "url": "https://cloud.189.cn/t/EjAfeqeINbia",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-715",
+    "title": "mysql-installer-community-8.0.15.0.msi",
+    "url": "https://cloud.189.cn/t/yiM3iyRfu2Ej",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-716",
+    "title": "mysql-5.5.27-winx64.msi",
+    "url": "https://cloud.189.cn/t/VjYbeuMv2Qnq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-717",
+    "title": "MySQL5.1精简版",
+    "url": "https://cloud.189.cn/t/3QrAVbZz6VV3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-718",
+    "title": "NvctPremium.12.0.11.WT",
+    "url": "https://cloud.189.cn/t/YZruq2E3iMJb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-719",
+    "title": "👍mysql-5.6.5-m8-win32+Navicat_Premium_11.0.10",
+    "url": "https://cloud.189.cn/t/RvAvEb3i2Erq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-720",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/f086f7dbf9d7",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.MySql"
+  },
+  {
+    "id": "resource-721",
+    "title": "VB6.0〖各种版本〗",
+    "url": "https://cloud.189.cn/web/share?code=iyiu63BniQnm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.VB6.0"
+  },
+  {
+    "id": "resource-722",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/2f99d3af1772",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.VB6.0"
+  },
+  {
+    "id": "resource-723",
+    "title": "👍 VC6.0绿色安装版支持WIN10",
+    "url": "https://gmengshuai.lanzoux.com/iklYznp6ape",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.VC6.0"
+  },
+  {
+    "id": "resource-724",
+    "title": "VC6.0〖各种版本〗",
+    "url": "https://cloud.189.cn/web/share?code=iyiu63BniQnm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.VC6.0"
+  },
+  {
+    "id": "resource-725",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/2c3bf79ea35b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.VC6.0"
+  },
+  {
+    "id": "resource-726",
+    "title": "Eclipse64位安装版（2018年）",
+    "url": "http://www.123pan.com/s/46cA-G5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.Java"
+  },
+  {
+    "id": "resource-727",
+    "title": "Eclipse_2021-06-R-win32-x86_64（绿色版）",
+    "url": "http://www.123pan.com/s/46cA-85c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.Java"
+  },
+  {
+    "id": "resource-728",
+    "title": "IdeaIU_2021.2.3_64bit_Portable（绿色高级版）",
+    "url": "http://www.123pan.com/s/46cA-r5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.Java"
+  },
+  {
+    "id": "resource-729",
+    "title": "jdk-8u131（32位 和 64位）",
+    "url": "http://www.123pan.com/s/46cA-Y5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.Java"
+  },
+  {
+    "id": "resource-730",
+    "title": "GNS3模拟器+Cisco镜像",
+    "url": "https://www.123pan.com/s/46cA-75c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "08.Cisco"
+  },
+  {
+    "id": "resource-731",
+    "title": "Cisco Packet Tracer免登录版+汉化包",
+    "url": "https://www.123pan.com/s/46cA-S5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "08.Cisco"
+  },
+  {
+    "id": "resource-732",
+    "title": "Tortoise-Git 安装包+汉化包",
+    "url": "http://www.123pan.com/s/46cA-X5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "09.Git"
+  },
+  {
+    "id": "resource-733",
+    "title": "Git-2.31.1（32位 和 64位）",
+    "url": "http://www.123pan.com/s/46cA-P5c2d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "09.Git"
+  },
+  {
+    "id": "resource-734",
+    "title": "MobaXterm 22.1 汉化专业版🌀夸克云 👍",
+    "url": "https://pan.quark.cn/s/f378a0cbd21f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-735",
+    "title": "WindTerm - 强大的跨平台终端工具 👍",
+    "url": "https://www.windterm.com.cn/download.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-736",
+    "title": "FinalShell",
+    "url": "https://pan.quark.cn/s/81c16833e10c",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-737",
+    "title": "天翼云-访问码：ny0w",
+    "url": "https://cloud.189.cn/t/N3Yr6zQJJrui",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-738",
+    "title": "123",
+    "url": "https://www.123pan.com/s/QdiA-rAImh.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-739",
+    "title": "T-Shell",
+    "url": "https://pan.quark.cn/s/bf8218c6c6ed",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "10.远程Linux"
+  },
+  {
+    "id": "resource-740",
+    "title": "DbGate - SQL & noSQL database manager👍",
+    "url": "https://www.dbgate.io/zh/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "11.数据库连接"
+  },
+  {
+    "id": "resource-741",
+    "title": "DBeaver Community👍",
+    "url": "https://dbeaver.io/download/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "11.数据库连接"
+  },
+  {
+    "id": "resource-742",
+    "title": "NavicatPremium.16.3.7.0.x64绿色版 👍",
+    "url": "https://pan.quark.cn/s/701f4bd817da",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "11.数据库连接"
+  },
+  {
+    "id": "resource-743",
+    "title": "Navicat | 免费下载 Navicat Premium Lite👍",
+    "url": "https://www.navicat.com.cn/download/navicat-premium-lite",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "11.数据库连接"
+  },
+  {
+    "id": "resource-744",
+    "title": "HeidiSQL - MariaDB/MySQL, MSSQL, PostgreSQL, SQLite and Interbase/Firebird made easy",
+    "url": "https://www.heidisql.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "11.数据库连接"
+  },
+  {
+    "id": "resource-745",
+    "title": "2345看图王绿色版",
+    "url": "https://cloud.189.cn/t/VbAzQr6VNFra",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.看图"
+  },
+  {
+    "id": "resource-746",
+    "title": "👍2345看图王_v10.0.0.8806_绿色版",
+    "url": "https://cloud.189.cn/t/RjeY3e6faiay",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.看图"
+  },
+  {
+    "id": "resource-747",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/0f7167caddfa",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.看图"
+  },
+  {
+    "id": "resource-748",
+    "title": "Adobe Photoshop 2025 v26.3.0 绿色版",
+    "url": "https://pan.quark.cn/s/23460adf9ad0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-749",
+    "title": "Adobe Photoshop 2024 v25.12.0 绿色版",
+    "url": "https://pan.quark.cn/s/d0158f44c183",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-750",
+    "title": "Mac Photoshop 2025 v26.0 直装版本",
+    "url": "https://pan.quark.cn/s/74d773af278e#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-751",
+    "title": "Mac Photoshop 2024 v25.3 直装版本",
+    "url": "https://pan.quark.cn/s/6c6ced750d99#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-752",
+    "title": "Adobe Photoshop 2024 多语言直装版",
+    "url": "https://pan.quark.cn/s/ba489a7e6057#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-753",
+    "title": "茶末余香增强版（17、18、20）🌀夸克云👍",
+    "url": "https://pan.quark.cn/s/5770e89cb532",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-754",
+    "title": "Photoshop 2020释怀特别版 内置多款实用插件【提取码：ppyt",
+    "url": "https://pan.baidu.com/s/1gJgYVJ3eXn6_BtbFXDOuNQ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-755",
+    "title": "Photoshop_CC_2019_v20.0.9.28 Final【提取码：u5qg",
+    "url": "https://pan.baidu.com/s/1ZsWVAAxqE7xqCdeD4A9GmQ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-756",
+    "title": "PS CC2018增强版强悍稳定【提取码：45sa",
+    "url": "https://pan.baidu.com/s/1nOnNHvmuIQ-9Olr8jtBF4Q",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-757",
+    "title": "PhotoshopCC 2020茶末余香增强版 提取码：d2ii",
+    "url": "https://pan.baidu.com/s/1-_ONhkaiXQL02vjVx8M3Ww",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-758",
+    "title": "PhotoshopCC 2017茶末余香增强版【提取码：mxsc",
+    "url": "https://pan.baidu.com/s/1b-fqUJZeEUBg3xJqvt3rHA",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-759",
+    "title": "PS CC 2020精简版 (64bit)",
+    "url": "https://cloud.189.cn/t/6VRnUvQz6vay",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-760",
+    "title": "PS CC 14.0",
+    "url": "https://cloud.189.cn/t/beiyUnIb6Fna",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CC版本"
+  },
+  {
+    "id": "resource-761",
+    "title": "PS CS6 roustar31中文特别版(老机器使用)",
+    "url": "https://cloud.189.cn/t/6VrIvaUNbi63",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CS版本"
+  },
+  {
+    "id": "resource-762",
+    "title": "Adobe Photoshop CS6一键安装破解版（带3D功能）",
+    "url": "https://www.lanzoux.com/iWyaVgf12ji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CS版本"
+  },
+  {
+    "id": "resource-763",
+    "title": "PS CS 8.01简体精简版",
+    "url": "https://cloud.189.cn/t/eqqyair6jQNr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CS版本"
+  },
+  {
+    "id": "resource-764",
+    "title": "PhotoshopCS7.0",
+    "url": "https://cloud.189.cn/t/Izi2yqaAzQbq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CS版本"
+  },
+  {
+    "id": "resource-765",
+    "title": "Photoshop6.0单文件",
+    "url": "https://cloud.189.cn/t/2a6bMvrquQni",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "PS—CS版本"
+  },
+  {
+    "id": "resource-766",
+    "title": "Adobe CC 最新版 GenP激活器 v3.5👍",
+    "url": "https://pan.quark.cn/s/0ff2636aab5d#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-767",
+    "title": "Adobe CC 2019+2020 GenP激活器 v2.4",
+    "url": "https://cloud.189.cn/t/jYBNj2IRFjmy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-768",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/8fdbb856e1de",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-769",
+    "title": "Adobe CC2019-2020 GenP v2.5.7",
+    "url": "https://cloud.189.cn/t/2yiiQbuAZ3Uf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-770",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/92123eeb876c",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-771",
+    "title": "Aodbe2020 激活工具 (1)",
+    "url": "https://cloud.189.cn/t/nQFvAbJbEv6r",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-772",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/f6c8d7ba6a31",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.PS激活工具"
+  },
+  {
+    "id": "resource-773",
+    "title": "PS插件及安装教程【提取码: wmkq",
+    "url": "https://pan.baidu.com/s/1X9A5Aogqeg1qhVXZcerdog",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-774",
+    "title": "PS全套插件一键安装【提取码: qfaa",
+    "url": "https://pan.baidu.com/s/1JK-ZAfSpG_gKpppPsLuX6g",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-775",
+    "title": "PS插件—证件照大师",
+    "url": "https://cloud.189.cn/t/qEnaqmNvYnQj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-776",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/1d6267335e40",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-777",
+    "title": "史上最全PS插件汉化版",
+    "url": "https://cloud.189.cn/t/M3EBbqZri6Bj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-778",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/7d8eb9a7887c",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-779",
+    "title": "Photoshop CS6 八大小滤镜合集",
+    "url": "https://cloud.189.cn/t/iye2qine6Jbu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-780",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/4646b0b2d084",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-781",
+    "title": "PS插件-证件照2.0",
+    "url": "https://cloud.189.cn/t/Q7fqmqamuE3m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-782",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/259f9cb76612",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-783",
+    "title": "PS动作 一键人物照片转手绘漫画HDR特效插画",
+    "url": "https://cloud.189.cn/t/Jreemi6NNBJf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-784",
+    "title": "Duplicate Photo Finder Plus_12.0.40.0【图片重复查找清理】",
+    "url": "https://cloud.189.cn/t/viuQRjMruQby",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-785",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/aaf09d8d8300",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-786",
+    "title": "Duplicate Cleaner Pro(重复文件删除) v5.20.1 特别版🌀夸克云👍",
+    "url": "https://pan.quark.cn/s/65b8dc47674b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-787",
+    "title": "无需PS基础 强大的图片工厂处理工具",
+    "url": "https://cloud.189.cn/t/Y3URNbii6bUj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-788",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/f32fa3ac26a3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-789",
+    "title": "国外超简单顶级抠图软件 Topaz ReMask",
+    "url": "https://cloud.189.cn/t/uEJRNbbMFjIf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-790",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/9f8224454930",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-791",
+    "title": "👍图片无损放大工具PhotoZoom Pro 7.0.4 单文件PJ版",
+    "url": "https://cloud.189.cn/t/BbiUFjiYZBji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-792",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/c8862d2a890b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.PS插件"
+  },
+  {
+    "id": "resource-793",
+    "title": "👍FSCapture_9.0_CHS（可为图片添加水印）",
+    "url": "https://cloud.189.cn/t/7jmayuInE7Jr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-794",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/f0057b31397e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-795",
+    "title": "官网",
+    "url": "https://www.faststonecapture.cn/download",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-796",
+    "title": "👍Snipaste-2.5.4-Beta-x64_2",
+    "url": "https://cloud.189.cn/t/A3iyY3jmQBJ3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-797",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/69fd04b57f36",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-798",
+    "title": "官网",
+    "url": "https://zh.snipaste.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-799",
+    "title": "Ctrl+A截图",
+    "url": "https://cloud.189.cn/t/MZJVzeaU3YNv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-800",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/d5bf312e5642",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-801",
+    "title": "全功能屏幕截图工具PicPickv5.1.1 专业便携版",
+    "url": "https://cloud.189.cn/t/73iQBbJrInQb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-802",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/9a4884bb86d4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-803",
+    "title": "Win_setup-lightshot",
+    "url": "https://cloud.189.cn/t/YJrQzanMr2u2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-804",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/8c65f778363b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.截图"
+  },
+  {
+    "id": "resource-805",
+    "title": "👍图片批量添加水印",
+    "url": "https://cloud.189.cn/t/qe6fQbrY77Bz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-806",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/5badd2b833dd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-807",
+    "title": "INPAINT.7.2（去水印）",
+    "url": "https://cloud.189.cn/t/6FNRJvyeeyye",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-808",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/e1ab2c189e60",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-809",
+    "title": "BatchInpaint（图片去水印）",
+    "url": "https://cloud.189.cn/t/A7Zr6feY32Ab",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-810",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/97d66f23e258",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.去加水印"
+  },
+  {
+    "id": "resource-811",
+    "title": "👍Caesium便携版(win/mac)",
+    "url": "https://www.123pan.com/s/46cA-u9i2d.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-812",
+    "title": "备用",
+    "url": "https://gmengshuai.lanzoul.com/iKv1s10vye1c",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-813",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/bbafdf17ad5f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-814",
+    "title": "Picture Resizer(win)",
+    "url": "https://www.123pan.com/s/46cA-WEi2d.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-815",
+    "title": "备用",
+    "url": "https://gmengshuai.lanzoul.com/ivfax10vye3e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-816",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/f7700ed4f3b3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-817",
+    "title": "图片批量压缩",
+    "url": "https://cloud.189.cn/t/2QN3EnAb6NBf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-818",
+    "title": "备用",
+    "url": "https://www.123pan.com/s/46cA-CEi2d.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-819",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/70ec672a536a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.图片批量压缩"
+  },
+  {
+    "id": "resource-820",
+    "title": "👍MiniPhoto(win)",
+    "url": "https://cloud.189.cn/t/NnIFRzjUre6v",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.批量添加水印"
+  },
+  {
+    "id": "resource-821",
+    "title": "备用",
+    "url": "https://gmengshuai.lanzoul.com/iF1Um10vyjcd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "06.批量添加水印"
+  },
+  {
+    "id": "resource-822",
+    "title": "FSResizer 4.4汉化版(win)",
+    "url": "https://www.123pan.com/s/46cA-REi2d.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-823",
+    "title": "备用",
+    "url": "https://gmengshuai.lanzoul.com/iaE3110vzd5g",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-824",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/71f5f506d3b1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-825",
+    "title": "文章 《Win系统必备，这些截图工具让你效率飙升！》",
+    "url": "https://mp.weixin.qq.com/s/JCATXzYNvldAeFkPOd211A",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-826",
+    "title": "文章 《不知道选择哪一款 OCR，进来让我告诉你》",
+    "url": "https://mp.weixin.qq.com/s/DQqQ1FYyoQ9GNG6-g4bcBQ",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-827",
+    "title": "文章-《选择明智，轻量级工具让图片批处理更简单》",
+    "url": "https://mp.weixin.qq.com/s/haY0NCYgemGrPjevqXxApw",
+    "status": "收藏",
+    "category": "02 电脑软件",
+    "section": "07.批量转换格式"
+  },
+  {
+    "id": "resource-828",
+    "title": "Bandicam(班迪)_7.0.2.2138_64bit_Portable (2024-04-06更新)🌀夸克云",
+    "url": "https://pan.quark.cn/s/37f8ce26854e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-829",
+    "title": "Bandicam(班迪)_5.0.2.1813_VIP",
+    "url": "https://cloud.189.cn/t/Vzia2iBZZFFv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-830",
+    "title": "Bandicam(班迪)v4.5.7.1660",
+    "url": "https://cloud.189.cn/t/bemIvmAnI732",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-831",
+    "title": "EVCapture 4.0.2单文件PJ版(登录即VIP)",
+    "url": "https://cloud.189.cn/t/mEB7FbyYvYji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-832",
+    "title": "🌀夸克云",
+    "url": "https://pan.quark.cn/s/5cae8b6a1788",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-833",
+    "title": "EVCapture_3.8.4单文件版",
+    "url": "https://cloud.189.cn/t/Rviaumnm2YZj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-834",
+    "title": "EV录屏 3.7.1单文件版",
+    "url": "https://cloud.189.cn/t/aIbaIfyyYnYb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-835",
+    "title": "oCam_v515.0_去广告简体中文版（便携版）",
+    "url": "https://cloud.189.cn/t/qeMzUbbeMjAb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-836",
+    "title": "TechSmith_Camtasia_简体中文绿色特别版",
+    "url": "https://cloud.189.cn/t/aQNfQzvYfmA3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-837",
+    "title": "屏幕录像编辑专家 专业版 V2016 Build0218B",
+    "url": "https://cloud.189.cn/t/Qb6Bb2iUBn6v",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-838",
+    "title": "MirillisAction_4.6.0_Portable",
+    "url": "https://cloud.189.cn/t/6fQ7BfzUnUN3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-839",
+    "title": "movavi_screen_recorder_11.4.0",
+    "url": "https://cloud.189.cn/t/qiEBreRn2aqi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-840",
+    "title": "酷酷录像",
+    "url": "https://cloud.189.cn/t/VNZ32mNvyERn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.视频录制"
+  },
+  {
+    "id": "resource-841",
+    "title": "AdobePremierePro_23.1.0.86_64Bit_Portable🌀夸克云",
+    "url": "https://pan.quark.cn/s/f65715446c49",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-842",
+    "title": "剪映修改版（2026.1.20更新）🌀夸克云",
+    "url": "https://pan.quark.cn/s/b0190490b9d4",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-843",
+    "title": "剪映JYPacket_2.0.0绿色版🌀夸克云",
+    "url": "https://pan.quark.cn/s/cb85e76522dd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-844",
+    "title": "愛剪辑_v3.0.0.2000去片头片尾无广告最终紀念版V5🌀夸克云",
+    "url": "https://pan.quark.cn/s/bf8f2e867903",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-845",
+    "title": "小丸工具箱视频压缩软件2016.10.23🌀夸克云",
+    "url": "https://pan.quark.cn/s/c2701209bc75",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-846",
+    "title": "提速",
+    "url": "https://gksec.com/MarukoToolbox-With-GPU.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-847",
+    "title": "HandBrake: 大菠萝，开源的视频压缩（可用GPU加速）",
+    "url": "https://handbrake.fr/downloads.php",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-848",
+    "title": "视频剪切合并器🌀夸克云",
+    "url": "https://pan.quark.cn/s/536de5130f0d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-849",
+    "title": "kdenlive-22.12.2🌀夸克云",
+    "url": "https://pan.quark.cn/s/b71360483663",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-850",
+    "title": "LosslessCut v3.23.7 Portable🌀夸克云",
+    "url": "https://pan.quark.cn/s/7b1fd2ee6574",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-851",
+    "title": "DikDik 4.3.6.0 Portable🌀夸克云",
+    "url": "https://pan.quark.cn/s/85e61d9d25de",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-852",
+    "title": "基于 ffmpeg的视频分割软件byJoinerSplittertup_v1.5.3🌀夸克云",
+    "url": "https://pan.quark.cn/s/bf5a0432566a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.视频处理(剪辑/压缩)"
+  },
+  {
+    "id": "resource-853",
+    "title": "GIF小工具",
+    "url": "https://cloud.189.cn/t/yqEv6bJNFzmu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-854",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/fd30e9442a22",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-855",
+    "title": "GifCam",
+    "url": "https://cloud.189.cn/t/zaEz2enQb67v",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-856",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/f65a52f194b5",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-857",
+    "title": "UleadGIFAnimator-v5.05(GIF制作)",
+    "url": "https://cloud.189.cn/t/EbiQRnMNrM3e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-858",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/491861a260e7",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-859",
+    "title": "👍ScreenToGif（可以为GIF添加水印",
+    "url": "https://cloud.189.cn/t/qmqEfmZz263i",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-860",
+    "title": "开源免费",
+    "url": "https://www.screentogif.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.GIF录制"
+  },
+  {
+    "id": "resource-861",
+    "title": "👍 potplayer播放器 🌀夸克云多版本",
+    "url": "https://pan.quark.cn/s/e1795bbb8263",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-862",
+    "title": "【2020-07-15】Pot-Player64_1.7.21264_Dev",
+    "url": "https://cloud.189.cn/t/EfmUB3vMRjU3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-863",
+    "title": "【2020-06-18】Pot-Player64_1.7.21239_Public",
+    "url": "https://cloud.189.cn/t/Fr2aiqyUR7Jf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-864",
+    "title": "PotPlayerSetup64_1.7.16291_1",
+    "url": "https://cloud.189.cn/t/R3mUjeBnmAju",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-865",
+    "title": "PotPlayer64_1.7.21280Public_Green",
+    "url": "https://cloud.189.cn/t/uUZnIrzEFRVj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-866",
+    "title": "👍potplayer纯净版 v1.7.21212_64位",
+    "url": "https://cloud.189.cn/t/FNb2mmVnMRzq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-867",
+    "title": "potplayer 自制版【可复制字幕】(安装密码：Maitalen",
+    "url": "https://cloud.189.cn/t/QZBnAn36fA73",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎦potplayer播放器"
+  },
+  {
+    "id": "resource-868",
+    "title": "potplayer180个皮肤",
+    "url": "https://cloud.189.cn/t/JzyMzeURb6V3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "potplayer皮肤"
+  },
+  {
+    "id": "resource-869",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/fa071484658d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "potplayer皮肤"
+  },
+  {
+    "id": "resource-870",
+    "title": "PotPlayer皮肤 W10汉化版",
+    "url": "https://cloud.189.cn/t/vyIr2qmqEfey",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "potplayer皮肤"
+  },
+  {
+    "id": "resource-871",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/94b31bb60791",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "potplayer皮肤"
+  },
+  {
+    "id": "resource-872",
+    "title": "Mcool音乐播放器 （极简个性的本地播放器，轻，透明，无边框，嵌入桌面）",
+    "url": "https://mcool.appinn.me/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-873",
+    "title": "HQplayer播放器 音质秒天地",
+    "url": "https://cloud.189.cn/t/bIZFryRZzyum",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-874",
+    "title": "身临其境音效 FxSound增强播放完美汉化版",
+    "url": "https://cloud.189.cn/t/3aU3M3emyeyu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-875",
+    "title": "jetAudio v8.1.8 中文加强版",
+    "url": "https://cloud.189.cn/t/ENVJfq3qmEvi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-876",
+    "title": "musiccenter_setup_2.2.1【索尼播放器】",
+    "url": "https://cloud.189.cn/t/v6Nz2uryeAne",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-877",
+    "title": "AirPlay3",
+    "url": "https://cloud.189.cn/t/bmEzMfJZVVNz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-878",
+    "title": "mcooldev【简约】",
+    "url": "https://cloud.189.cn/t/uYbIfyqemUf2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-879",
+    "title": "经典流传 千千静听v5.7.9本地纯净单文件版",
+    "url": "https://cloud.189.cn/t/FnqequJFVFRb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-880",
+    "title": "👍千千静听v5.7.9绿色版(更新歌词服务器V7.0)",
+    "url": "https://cloud.189.cn/t/vMnmUzQjYF3a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-881",
+    "title": "👍Foobar2000 v6.1.5.3",
+    "url": "https://cloud.189.cn/t/zEfMfy2YZz22",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-882",
+    "title": "👍ZY Player【官网】（支持观看VIP）",
+    "url": "http://zyplayer.fun/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-883",
+    "title": "快播QvodPlayer4.4怀旧版（只是一个播放器）",
+    "url": "https://cloud.189.cn/t/rYJZfu2QvYfi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-884",
+    "title": "云之幻 哔哩UWP",
+    "url": "https://cloud.189.cn/t/UVNVNn3A363m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-885",
+    "title": "视频取字幕工具V2.0",
+    "url": "https://cloud.189.cn/t/j2m6Vn3Iz6fu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-886",
+    "title": "BlackBird-Player（附带直播源）",
+    "url": "https://cloud.189.cn/t/VraYJjqY3eyi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-887",
+    "title": "超清播放器Splash2.2.0",
+    "url": "https://cloud.189.cn/t/EJFj2mBRnUfm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-888",
+    "title": "暴风影音16-9.02.0616 去广告版 v2",
+    "url": "https://cloud.189.cn/t/iMvIB3Mfauua",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-889",
+    "title": "ZYPlayer_2.0.0_64位",
+    "url": "https://cloud.189.cn/t/zINzI3fiiueq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-890",
+    "title": "👍易影视 本地电影视频管理神器",
+    "url": "http://www.evdieo.top/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "🎵音乐播放器"
+  },
+  {
+    "id": "resource-891",
+    "title": "Chrome-官方各版本（含历史版本）",
+    "url": "https://chrome.noki.eu.org/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-892",
+    "title": "Chrome-官方各版本（含历史版本）",
+    "url": "https://chrome.clang.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-893",
+    "title": "Chrome-官方各版本",
+    "url": "https://www.iplaysoft.com/tools/chrome/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-894",
+    "title": "Chrome-官方各版本",
+    "url": "https://ihacksoft.com/tools/chrome.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-895",
+    "title": "Chrome-官方各版本",
+    "url": "https://www.osssr.com/tools/chrome-updater",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-896",
+    "title": "Chrome-奶酪定制版（含win7）",
+    "url": "https://www.lanzouo.com/b0ufru1i",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-897",
+    "title": "官网-Microsoft Edge 企业版",
+    "url": "https://www.microsoft.com/zh-cn/edge/business/download?form=MA13FJ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-898",
+    "title": "Edge-奶酪定制版（含win7）",
+    "url": "https://www.lanzouo.com/b01d5rz9vi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-899",
+    "title": "官网-火狐国际版-中文",
+    "url": "https://www.mozilla.org/zh-CN/firefox/all/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-900",
+    "title": "官网-火狐国际版-英文",
+    "url": "https://www.mozilla.org/en-US/firefox/new/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-901",
+    "title": "火狐浏览器-官方各版本",
+    "url": "https://ftp.mozilla.org/pub/firefox/releases/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-902",
+    "title": "火狐浏览器-奶酪定制版（含win7）",
+    "url": "https://github.com/runningcheese/RunningCheese-Firefox",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-903",
+    "title": "极速浏览器-360社区",
+    "url": "https://bbs.360.cn/forum.php?mod=forumdisplay&fid=142&page=1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-904",
+    "title": "官网-夸克浏览器",
+    "url": "https://www.quark.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-905",
+    "title": "Edge 引导安装程序（中文版）",
+    "url": "https://gmengshuai.lanzoui.com/iSvAdsy3z4j",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-906",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/ca2ec2ddb4bd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-907",
+    "title": "Edge 引导安装程序（英文版）",
+    "url": "https://gmengshuai.lanzoui.com/irqbbsy3z2h",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-908",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/8dd0249ad8f3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-909",
+    "title": "Google Chrome Setup引导安装程序",
+    "url": "https://cloud.189.cn/t/RNZ73yYNZJri",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-910",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/903671193ef0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-911",
+    "title": "官网-火狐国内版-中文",
+    "url": "https://www.firefox.com.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-912",
+    "title": "百分浏览器论坛",
+    "url": "https://www.centbrowser.net/zh-cn/forum.php?mod=forumdisplay&fid=2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-913",
+    "title": "奔跑中的奶酪（浏览器界的大佬，同时分享冲浪技巧） 👍",
+    "url": "https://www.runningcheese.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-914",
+    "title": "360 安全浏览器12.1.2142.0 极简绿色",
+    "url": "https://cloud.189.cn/t/jYVFJbf6JFRr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-915",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/6670414acfdc",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-916",
+    "title": "Edge 绿色版（兼容WIN7）",
+    "url": "https://cloud.189.cn/t/3AvIJr73Qjii",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-917",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/65b8aafacf69",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-918",
+    "title": "Google Chrome 浏览器 85.0.4183.102.x64 中文绿色稳定共存版",
+    "url": "https://gmengshuai.lanzoux.com/i3pKFoacf9a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-919",
+    "title": "Google Chrome 浏览器_87.0.4280.141_64bit_Setup",
+    "url": "https://gmengshuai.lanzous.com/iolYjoacdba",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-920",
+    "title": "极速 浏览器12.0.1053.0 极简原版",
+    "url": "https://moecloud.cn/s/N1kDFe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-921",
+    "title": "QQ 浏览器_9.7_(13292)_正式版｜优化版",
+    "url": "https://cloud.189.cn/t/NVN3AjE7RJri",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-922",
+    "title": "浏览器优化speedyfox",
+    "url": "https://moecloud.cn/s/mMwrIP",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.浏览器"
+  },
+  {
+    "id": "resource-923",
+    "title": "解密网易ncm / qq音乐的mflac / 酷狗kgm等加密格式",
+    "url": "https://mytools.chiser.cc/music/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-924",
+    "title": "旧版腾讯视频qlv转换器及教程",
+    "url": "https://cloud.189.cn/t/baiQ7fYV7ZNf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-925",
+    "title": "👍新版腾讯视频qlv转换器",
+    "url": "https://cloud.189.cn/t/7JBNjuRniA7r",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-926",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/c064419c83bc",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-927",
+    "title": "Danmu2Ass 字幕转换格式",
+    "url": "https://cloud.189.cn/t/YFfIN32E7ry2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-928",
+    "title": "Medlexo_Ultimate_64bit【ts合并】",
+    "url": "https://cloud.189.cn/t/euIVvyaYBb2m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-929",
+    "title": "Medlexo_Ultimate_32bit【ts合并】",
+    "url": "https://cloud.189.cn/t/vQFBV3BFr6b2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-930",
+    "title": "👍QQ影音转码工具",
+    "url": "https://cloud.189.cn/t/M3yUFjv2QJzm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-931",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/b59450296e91",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-932",
+    "title": "视频剪切合并器13.7",
+    "url": "https://cloud.189.cn/t/jea2iiJzIFrq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-933",
+    "title": "ScenicEditor(csf转换工具)",
+    "url": "https://cloud.189.cn/t/QfARNnFviQFf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-934",
+    "title": "HEX转换器",
+    "url": "https://cloud.189.cn/t/mQVZZbmaiERz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-935",
+    "title": "m4a转换器",
+    "url": "https://cloud.189.cn/t/feuEBj6ZbAbe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-936",
+    "title": "(专业媒体转换软件)Leawo Total Media Converter Ultimate",
+    "url": "https://cloud.189.cn/t/UZF3mi3qY363",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-937",
+    "title": "WonderFox HD Video Converter Factory Pro 视频转换",
+    "url": "https://cloud.189.cn/t/3Yr2Qbza2Yfy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-938",
+    "title": "万兴全能格式转换器_11.7.7.1",
+    "url": "https://cloud.189.cn/t/NZ3Uf2iuqmQf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-939",
+    "title": "国产万兴全能格式转换器v11 免激活版",
+    "url": "https://cloud.189.cn/t/mAfUjiuqYFfu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-940",
+    "title": "狸.窝转换器",
+    "url": "https://cloud.189.cn/t/ryUzAr3YnAVb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-941",
+    "title": "FormatFactory v5.4.0 去广告版",
+    "url": "https://cloud.189.cn/t/MVR7jmzyiMbe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-942",
+    "title": "微信表情包制作工具",
+    "url": "https://pan.quark.cn/s/2d1a24eb7b82",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-943",
+    "title": "👍主流视频转码工具",
+    "url": "https://pan.quark.cn/s/1edf50a3e0c2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-944",
+    "title": "👍格式工厂v5.2.1 绿色去广告版",
+    "url": "https://cloud.189.cn/t/aA7FVzeuMjEf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-945",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/5f932b544f3b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.格式转换"
+  },
+  {
+    "id": "resource-946",
+    "title": "AsrTools-音频目录生成 .srt 或 .txt 字幕文件👍",
+    "url": "https://github.com/WEIFENG2333/AsrTools",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.文字转语音/语音转文字"
+  },
+  {
+    "id": "resource-947",
+    "title": "文字转语音相关软件下载👍",
+    "url": "https://pan.quark.cn/s/fff611f80442",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.文字转语音/语音转文字"
+  },
+  {
+    "id": "resource-948",
+    "title": "蓝奏云（密码：xiao）",
+    "url": "https://gmengshuai.lanzoui.com/b00uhkjna?password=xiao",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.文字转语音/语音转文字"
+  },
+  {
+    "id": "resource-949",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=3EVrA3IBRNvi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.文字转语音/语音转文字"
+  },
+  {
+    "id": "resource-950",
+    "title": "文章 《文字转语音保姆级教程（可免费白嫖！）》",
+    "url": "https://mp.weixin.qq.com/s/wv7CiYgY-KHtIB7ACorgEg",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.文字转语音/语音转文字"
+  },
+  {
+    "id": "resource-951",
+    "title": "OCR识别转换所有软件🌀夸克云👍",
+    "url": "https://pan.quark.cn/s/7d810379d409",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.OCR识别转换"
+  },
+  {
+    "id": "resource-952",
+    "title": "VideoCaptioner-基于大语言模型(LLM)的视频字幕处理助手，支持语音识别、字幕断句、优化、翻译全流程处理👍",
+    "url": "https://github.com/WEIFENG2333/VideoCaptioner",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.视频字幕"
+  },
+  {
+    "id": "resource-953",
+    "title": "👍文章 《你要的不限速网盘它来了，且用且珍惜~》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488210&idx=1&sn=b92609385e86a0d004564716d743de4a&chksm=9b8a6b71acfde2673a171d7f21cfc2c4d3485383013239cc1c1619d5aa1cccf834e8",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-954",
+    "title": "蓝奏云PC客户端 v0.3.3 x86",
+    "url": "https://cloud.189.cn/t/feYZNnAryqia",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-955",
+    "title": "蓝奏云PC客户端 v0.3.3 x64",
+    "url": "https://cloud.189.cn/t/je6jYvvE3iie",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-956",
+    "title": "BaiduNetdisk_v7.0.2.9【绿色版】",
+    "url": "https://pan.quark.cn/s/7b8b487bc9b9",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-957",
+    "title": "BaiduNetdisk【绿色稳定版】",
+    "url": "https://cloud.189.cn/t/VBZV73myaEN3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-958",
+    "title": "天翼云盘【绿色版】_x86_22-04-50",
+    "url": "https://cloud.189.cn/t/imMry2nUN3yy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-959",
+    "title": "ecloud绿色版",
+    "url": "https://cloud.189.cn/t/FzeuMfE3IVN3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-960",
+    "title": "超星云盘",
+    "url": "https://gmengshuai.lanzous.com/i3Jmuldz77i",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "03.网盘相关"
+  },
+  {
+    "id": "resource-961",
+    "title": "👍W11ClassicMenu(win11右键菜单变win10)",
+    "url": "https://pan.quark.cn/s/a0402f68d682",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-962",
+    "title": "👍WIN10全家桶卸载（附带安装）",
+    "url": "https://cloud.189.cn/t/U3uiueNruYRz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-963",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/f17d8b5a4e4b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-964",
+    "title": "👍copyq-v3.11.1复制粘贴变得更高效",
+    "url": "https://cloud.189.cn/t/i2yAJbZFJZNb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-965",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/22e805828265",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-966",
+    "title": "👍Defender Control 1.5（禁用WIN10 defender）",
+    "url": "https://cloud.189.cn/t/VzuIn2QfEbA3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-967",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/0b58f8f343b8",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-968",
+    "title": "窗口助手",
+    "url": "https://cloud.189.cn/t/RZFvMf7rq2Mj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-969",
+    "title": "DesktopNote桌面小便签",
+    "url": "https://cloud.189.cn/t/EB3aA3UV3aAn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-970",
+    "title": "手机综合维修工具箱",
+    "url": "https://cloud.189.cn/t/IVJzQvM77jE3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-971",
+    "title": "朗读9.03绿化版",
+    "url": "https://cloud.189.cn/t/fYnABzqEjIVz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-972",
+    "title": "修复图标显示异常.bat",
+    "url": "https://cloud.189.cn/t/aINfQrbAFbMf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-973",
+    "title": "Windows 10 应用商店&计算器 恢复包 v12008",
+    "url": "https://cloud.189.cn/t/AzURviV7va2i",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-974",
+    "title": "鼠标右击的快捷方式",
+    "url": "https://cloud.189.cn/t/UVfeYzYNBz63",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-975",
+    "title": "电脑文件隐藏（免费）",
+    "url": "https://cloud.189.cn/t/yIvuYr3Yby2u",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-976",
+    "title": "EPIM951_52PoJie（本地管理软件）",
+    "url": "https://cloud.189.cn/t/ANN36bnIJJBb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-977",
+    "title": "彻底删除WIN10全家桶（无法删除edge）",
+    "url": "https://cloud.189.cn/t/I7Vnu2eMRZJ3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-978",
+    "title": "系统安装必备组件包2.0",
+    "url": "https://cloud.189.cn/t/22A7raeyIvIz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-979",
+    "title": "系统实用汉化软件",
+    "url": "https://cloud.189.cn/t/rqiqyaJr6jAn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-980",
+    "title": "Directory Monitor (文件夹监控) v2.13.5.5 便携版",
+    "url": "https://pan.quark.cn/s/52d5ddf48381",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-981",
+    "title": "备，提取码：myki",
+    "url": "https://pan.xunlei.com/s/VNVbdlTzu-rD6qSIjqpdDQuZA1",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-982",
+    "title": "绕过系统登陆密码工具Kon-Boot 2.7 支持Win Mac",
+    "url": "https://cloud.189.cn/t/IneuY3j2Ar2m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-983",
+    "title": "adguard_7.4.3153.0（屏蔽广告）",
+    "url": "https://cloud.189.cn/t/NfiYNbr2eERz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-984",
+    "title": "4个强大的系统辅助软件",
+    "url": "https://cloud.189.cn/t/yEr6NbfMRRvm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-985",
+    "title": "Win实用工具包 TriSun WinExt Pro 10.0 Build 054中文多语免费版",
+    "url": "https://cloud.189.cn/t/bq6vyeuEnIBz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-986",
+    "title": "Win10Apps-安装删除自带app",
+    "url": "https://cloud.189.cn/t/Y3ymiqN3yyum",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-987",
+    "title": "win系统版本一键转换",
+    "url": "https://cloud.189.cn/t/fqaemqriqa2e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-988",
+    "title": "win10热点开机自启",
+    "url": "https://cloud.189.cn/t/6f2ammeEJbQb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-989",
+    "title": "win10批处理工具箱",
+    "url": "https://cloud.189.cn/t/YJvEJbI773Qz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.Windows实用工具"
+  },
+  {
+    "id": "resource-990",
+    "title": "重复文件查找器TriSun Duplicate File Finder Plus v14.0",
+    "url": "https://cloud.189.cn/t/2EFBrmAzuiem",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-991",
+    "title": "指定文件夹删重复文件 Easy Duplicate Finder",
+    "url": "https://cloud.189.cn/t/zeUBzqyUJJbq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-992",
+    "title": "RunAny-master",
+    "url": "https://cloud.189.cn/t/JJrUvqEfaIVn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-993",
+    "title": "FindStr（快速查找）",
+    "url": "https://cloud.189.cn/t/eiAZza2quERv",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-994",
+    "title": "Everything开源免费下载👍",
+    "url": "https://www.voidtools.com/zh-cn/downloads/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-995",
+    "title": "Everything-1.4.1.969.x86-Setup",
+    "url": "https://cloud.189.cn/t/BzmiYzVbUVrq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-996",
+    "title": "Everything-1.4.1.969.x64-Setup",
+    "url": "https://cloud.189.cn/t/eeuaInBZRNbq",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-997",
+    "title": "Everything-1.4.1.987.x86(便携版)",
+    "url": "https://cloud.189.cn/t/QRZFNrnEj6Jj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-998",
+    "title": "Everything-1.4.1.987.x64(便携版)",
+    "url": "https://cloud.189.cn/t/eUbIjqMBBfM3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "磁盘文件快速查找删除"
+  },
+  {
+    "id": "resource-999",
+    "title": "👍单文件制作工具_v7.0.1.1（x86、x64）",
+    "url": "https://cloud.189.cn/t/jYjU3yzM7nm2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "单文件制作工具"
+  },
+  {
+    "id": "resource-1000",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/0bad312dfa3e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "单文件制作工具"
+  },
+  {
+    "id": "resource-1001",
+    "title": "👍单文件制作（X86、X64）",
+    "url": "https://gmengshuai.lanzoux.com/iUgKtlxb76d",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "单文件制作工具"
+  },
+  {
+    "id": "resource-1002",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/2f9639d048fe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "单文件制作工具"
+  },
+  {
+    "id": "resource-1003",
+    "title": "AutoOff_4.17",
+    "url": "https://cloud.189.cn/t/eUbIjqMBBfM3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "定时关机软件"
+  },
+  {
+    "id": "resource-1004",
+    "title": "定时关机",
+    "url": "https://cloud.189.cn/t/aE7zy2FfamM3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "定时关机软件"
+  },
+  {
+    "id": "resource-1005",
+    "title": "👍Q-Dir_Portable_8.97",
+    "url": "https://cloud.189.cn/t/QF7NFfZVnyi2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "分屏软件"
+  },
+  {
+    "id": "resource-1006",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/b2f4e03bf576",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "分屏软件"
+  },
+  {
+    "id": "resource-1007",
+    "title": "XYplorer_v21.10",
+    "url": "https://cloud.189.cn/t/iy2yUr2M36by",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "分屏软件"
+  },
+  {
+    "id": "resource-1008",
+    "title": "联想护眼管理 v2.6.50.4081单文件版",
+    "url": "https://cloud.189.cn/t/7ZFnArAJ3euy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1009",
+    "title": "👍flux-setup",
+    "url": "https://cloud.189.cn/t/iiUzyuy63iya",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1010",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/cb22c7bb98f6",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1011",
+    "title": "HuYanBao",
+    "url": "https://cloud.189.cn/t/AJZFfeUv2UBb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1012",
+    "title": "护眼宝单文件版",
+    "url": "https://cloud.189.cn/t/J3ie22VJvANz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1013",
+    "title": "👍Iris Pro v1.2.0",
+    "url": "https://cloud.189.cn/t/uyeQ7nNbueMn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1014",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/6b6f7da40a72",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "护眼工具"
+  },
+  {
+    "id": "resource-1015",
+    "title": "FFRenamePro_x86_4.0",
+    "url": "https://cloud.189.cn/t/qENZJn7vmY73",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1016",
+    "title": "FFRenamePro_x64_4.0",
+    "url": "https://cloud.189.cn/t/FNBzymQbUjym",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1017",
+    "title": "文件夹批量改名",
+    "url": "https://cloud.189.cn/t/ZNnY3a6VbuQn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1018",
+    "title": "批量文件改名工具",
+    "url": "https://cloud.189.cn/t/umYFNnB7fE7n",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1019",
+    "title": "批量重命名Better File Rename 6.21",
+    "url": "https://cloud.189.cn/t/rmeyeyimaU3m",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1020",
+    "title": "Advanced Renamer v3.85 （文件重命名高级版）",
+    "url": "https://cloud.189.cn/t/VjIRfuNna6f2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1021",
+    "title": "火苗批量1.0.0.2-for-win10",
+    "url": "https://cloud.189.cn/t/iUVziybU3Iny",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1022",
+    "title": "火苗批量1.0.0.2-for-win7",
+    "url": "https://cloud.189.cn/t/2UnURrJZ7VRj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1023",
+    "title": "繁星文件名批量编辑器",
+    "url": "https://cloud.189.cn/t/2yau6nQjmiIz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1024",
+    "title": "👍拖把更名器",
+    "url": "https://cloud.189.cn/t/jERZNz3qIrmm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1025",
+    "title": "夸克云",
+    "url": "https://pan.quark.cn/s/974ff3ebcea0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量文件重命名"
+  },
+  {
+    "id": "resource-1026",
+    "title": "屏幕画笔工具v1.0.0",
+    "url": "https://cloud.189.cn/t/BzUFNrVNb2yi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "屏幕画笔工具"
+  },
+  {
+    "id": "resource-1027",
+    "title": "电子教鞭 Pointofix v1.8.0-2018.05.11 中文绿色便携版",
+    "url": "https://cloud.189.cn/t/yeYzayiMBjYf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "屏幕画笔工具"
+  },
+  {
+    "id": "resource-1028",
+    "title": "MathType-win-zh_7.4.4.516",
+    "url": "https://cloud.189.cn/t/ZfQBVrb63yqi",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "数学软件"
+  },
+  {
+    "id": "resource-1029",
+    "title": "计算器fx-991EX Emulat777or单文件版",
+    "url": "https://cloud.189.cn/t/fuqQzuzEBr2a",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "数学软件"
+  },
+  {
+    "id": "resource-1030",
+    "title": "小计算器_v1.0",
+    "url": "https://cloud.189.cn/t/3aUJfmyU7V7b",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "数学软件"
+  },
+  {
+    "id": "resource-1031",
+    "title": "极速启动v1.0.2.1",
+    "url": "https://cloud.189.cn/t/ZnEnEfy2aMbe",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "桌面快速启动—文件整理"
+  },
+  {
+    "id": "resource-1032",
+    "title": "光速启动1.1测试版",
+    "url": "https://cloud.189.cn/t/m6bQFz3mUbYf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "桌面快速启动—文件整理"
+  },
+  {
+    "id": "resource-1033",
+    "title": "Rolan_NoUp_v1.3.6.1",
+    "url": "https://cloud.189.cn/t/YB3qYzneMrim",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "桌面快速启动—文件整理"
+  },
+  {
+    "id": "resource-1034",
+    "title": "XLaunchpad超级快速启动",
+    "url": "https://cloud.189.cn/t/YbAbAbfEBJBn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "桌面快速启动—文件整理"
+  },
+  {
+    "id": "resource-1035",
+    "title": "DropIt文件快速整理",
+    "url": "https://cloud.189.cn/t/NZRBVniaaMB3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "桌面快速启动—文件整理"
+  },
+  {
+    "id": "resource-1036",
+    "title": "softwareok.com",
+    "url": "https://softwareok.com/?Download=NewFileTime",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "批量修改文件和文件夹的时间戳(创建/修改时间)"
+  },
+  {
+    "id": "resource-1037",
+    "title": "Adobe 全套2025版本(windows)👍",
+    "url": "https://pan.baidu.com/share/init?surl=SramgG9mgfeThy16VswXLQ&pwd=1111",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1038",
+    "title": "Adobe 全套2025版本(windows)👍",
+    "url": "https://pan.quark.cn/s/e6b67eded834#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1039",
+    "title": "Adobe 全套2025版本(windows)👍",
+    "url": "https://pan.baidu.com/s/1L7VmU-pSFvdjj7D2m2oImw?pwd=2beo",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1040",
+    "title": "Adobe 全套2025版本(windows, 一键安装24套需要占用硬盘70GB左右)👍",
+    "url": "https://pan.quark.cn/s/332939bc1ce8#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1041",
+    "title": "Adobe 全套2024版本(windows)👍",
+    "url": "https://pan.quark.cn/s/502da64f3072#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1042",
+    "title": "Adobe 全套2017-2023版本(windows)👍",
+    "url": "https://pan.quark.cn/s/ffb1ffd6ab10#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1043",
+    "title": "Adobe 全套2021版本(windows)👍",
+    "url": "https://pan.quark.cn/s/ec3c807cb51b#/list/share",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1044",
+    "title": "Adobe全家桶 | AList（天翼云） 👍",
+    "url": "http://182.92.242.149:5244/ty/CLAM%E8%97%8F%E7%BB%8F%E9%98%81%E5%A4%87%E7%94%A8%E5%88%86%E4%BA%AB/Adobe",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1045",
+    "title": "Adobe全家桶 | AList（移动云） 👍",
+    "url": "http://182.92.242.149:5244/cm/Adobe",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1046",
+    "title": "Adobe全家桶 | AList（onedrive） 👍",
+    "url": "http://182.92.242.149:5244/cm/Adobe",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1047",
+    "title": "Adobe全家桶（天翼云）",
+    "url": "https://cloud.189.cn/t/vARZrqiaauyu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1048",
+    "title": "Adobe系列最新PJ版—vposy大佬（微博关注才可见置顶微博）",
+    "url": "https://weibo.com/u/1112829033",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1049",
+    "title": "AE全部插件 名称见目录 全部带安装教程【提取码：dhq2",
+    "url": "https://pan.baidu.com/s/1VcjV2LhfH-blDelxSqUbZw",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1050",
+    "title": "AE PR 调色插件【访问码：7n9z",
+    "url": "https://cloud.189.cn/t/vqy2Mzfiamem",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "Adobe系列"
+  },
+  {
+    "id": "resource-1051",
+    "title": "迷你建筑工具永硕网盘",
+    "url": "http://szmaicy.ys168.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "CAD系列插件"
+  },
+  {
+    "id": "resource-1052",
+    "title": "CAD自学网（提供多版软件下载 和 激活教程）",
+    "url": "https://www.cadzxw.com/download.html",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "CAD系列插件"
+  },
+  {
+    "id": "resource-1053",
+    "title": "CAD 2016~2022（天翼云）",
+    "url": "https://cloud.189.cn/t/rqQ3amVfYvMr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "CAD系列插件"
+  },
+  {
+    "id": "resource-1054",
+    "title": "CAD 典藏版 2008~2020（百度云）【提取码：c7ik",
+    "url": "https://pan.baidu.com/s/1HOfn2fFkCOPkuvrPaYs4gg",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "CAD系列插件"
+  },
+  {
+    "id": "resource-1055",
+    "title": "TaskbarTools桌面美化工具",
+    "url": "https://cloud.189.cn/t/uqM7na7B7Rvu",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1056",
+    "title": "TrayS v1.0.3",
+    "url": "https://cloud.189.cn/t/e6BBVr2Y3MRf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1057",
+    "title": "TraySCode v1.0.3",
+    "url": "https://cloud.189.cn/t/zaaEZzaMBVz2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1058",
+    "title": "时间壁纸",
+    "url": "https://cloud.189.cn/t/7JNRfquERR3q",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1059",
+    "title": "流浪地球",
+    "url": "https://cloud.189.cn/t/3iYN3eRVZBZn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1060",
+    "title": "rWallpaper_1.5.1.0",
+    "url": "https://cloud.189.cn/t/eie6NbNbuqY3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1061",
+    "title": "Win10主题美化",
+    "url": "https://cloud.189.cn/t/UBV3AfrQ3Uvy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1062",
+    "title": "win10 Mac 风打造",
+    "url": "https://cloud.189.cn/t/FFBVFbNBz22e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1063",
+    "title": "主题SkinPack",
+    "url": "https://cloud.189.cn/t/AnamaaZf6BJ3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1064",
+    "title": "桌面猫咪",
+    "url": "https://cloud.189.cn/t/NRzaeeuUBBBn",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1065",
+    "title": "N0vaDesktop（人工桌面）",
+    "url": "https://cloud.189.cn/t/6ziqYjMniIBb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1066",
+    "title": "win动态壁纸+工具",
+    "url": "https://cloud.189.cn/t/Ybe2eiFfYnMz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.win10主题及动态壁纸"
+  },
+  {
+    "id": "resource-1067",
+    "title": "BitDock（模拟Mac系统桌面）",
+    "url": "http://bitdock.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1068",
+    "title": "MyDockFinder（Windows模拟Mac系统桌面）",
+    "url": "https://www.mydockfinder.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1069",
+    "title": "致美化 （最专业的的桌面美化交流平台）👍",
+    "url": "https://zhutix.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1070",
+    "title": "TrafficMonitor_V1.79.1_x64（任务栏显示资源使用状态）",
+    "url": "https://cloud.189.cn/t/2uu2mqINNbuy",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1071",
+    "title": "啤酒落地窗",
+    "url": "https://cloud.189.cn/t/QFrMFvnyMvEz",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1072",
+    "title": "显示网速NetSpeedMonitorX64",
+    "url": "https://cloud.189.cn/t/zARbMvQzUnE3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1073",
+    "title": "桌面布局快速还原",
+    "url": "https://cloud.189.cn/t/QFr6JzZnQvEr",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1074",
+    "title": "桌面快捷栏美化",
+    "url": "https://cloud.189.cn/t/J3uuqij6Vb63",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1075",
+    "title": "Star+Cursor（鼠标拖尾）",
+    "url": "https://cloud.189.cn/t/UZJjIrIjyUZ3",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1076",
+    "title": "超好看字体",
+    "url": "https://cloud.189.cn/t/qu6JvaYvuYVb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1077",
+    "title": "超级喜欢鼠标指针样式",
+    "url": "https://cloud.189.cn/t/qIjuauZF7vmm",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1078",
+    "title": "WIN10桌面天气CNCalendarWeather1.8.3",
+    "url": "https://cloud.189.cn/t/emmeauQziI7f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1079",
+    "title": "鱼屏保",
+    "url": "https://teambition.icu/file/5fb3cb7c39cb037c93b7cf6e/89dca9312f70d85103b47c36795b9844/%E9%B1%BC%E5%B1%8F%E4%BF%9D.zip",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.跟主题相关"
+  },
+  {
+    "id": "resource-1080",
+    "title": "🀄【软件安装管家】的软件合集（天翼云）",
+    "url": "https://cloud.189.cn/t/Ef6rIbfiANju",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "14 大型软件以及安装教程"
+  },
+  {
+    "id": "resource-1081",
+    "title": "🀄【软件通】的软件目录（2020年12月更新）",
+    "url": "https://mp.weixin.qq.com/s/36H271NVI1-eMnGuviNFVA",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "14 大型软件以及安装教程"
+  },
+  {
+    "id": "resource-1082",
+    "title": "🀄【设计狮汇】的软件目录",
+    "url": "https://mp.weixin.qq.com/s/rwiWYEkSgpPBcL08Pm1Xbg",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "14 大型软件以及安装教程"
+  },
+  {
+    "id": "resource-1083",
+    "title": "🀄【软件安装站】 软件目录",
+    "url": "https://mp.weixin.qq.com/s/2bi7Ju2ssom5X3FVB6k7Ow",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "14 大型软件以及安装教程"
+  },
+  {
+    "id": "resource-1084",
+    "title": "🀄【软件管家】的软件目录",
+    "url": "https://mp.weixin.qq.com/s/RH0oCJWD00QFXpuCYwB8oA",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "14 大型软件以及安装教程"
+  },
+  {
+    "id": "resource-1085",
+    "title": "✅bilibili哔哩哔哩B站下载助手",
+    "url": "https://csser.top/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1086",
+    "title": "🥄最新扩展 百度文库免费下载.crx",
+    "url": "https://gmengshuai.lanzoux.com/iS5fhogmkgd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1087",
+    "title": "🥄Chrome插件英雄榜（提供100个蓝奏云下载）",
+    "url": "https://zhaoolee.lanzoux.com/b00nnabad",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1088",
+    "title": "🥄抢购、秒杀插件（秒杀助手）",
+    "url": "https://github.com/gongjunhao/seckill",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1089",
+    "title": "🚫集装箱（可使用谷歌搜索）",
+    "url": "https://a.newday.me/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1090",
+    "title": "🚫iGuge（可使用谷歌搜索等）",
+    "url": "https://iguge.app/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1091",
+    "title": "🚫谷歌访问破解版（可使用谷歌搜索）",
+    "url": "https://github.com/Kenguba/google-access-helper/releases/tag/v2.3.0",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1092",
+    "title": "🥄谷歌插件大师.crx（扩展管理）",
+    "url": "https://gmengshuai.lanzoux.com/idqCylad5yd",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1093",
+    "title": "🥄扩展管理器.crx（扩展管理）",
+    "url": "https://gmengshuai.lanzoux.com/i5tM4lad74f",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1094",
+    "title": "✅二管家（扩展管理）",
+    "url": "https://ainoob.com/zh/project/nooboss",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1095",
+    "title": "🥄图片助手（图片批量下载）",
+    "url": "https://microsoftedge.microsoft.com/addons/detail/odphnbhiddhdpoccbialllejaajemdio?refid=bingshortanswers",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1096",
+    "title": "🥄Fatkun（图片批量下载）.crx",
+    "url": "https://gmengshuai.lanzoux.com/idX9ylad5od",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1097",
+    "title": "🥄Save All Resources_下载网页所有资源并保留文件夹结构.crx",
+    "url": "https://gmengshuai.lanzoux.com/iF5HJlad5uj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1098",
+    "title": "✅uBlock Origin 广告拦截.crx",
+    "url": "https://gmengshuai.lanzoux.com/iSx1Glad5wb",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1099",
+    "title": "🥄Bilibili下载助手",
+    "url": "https://csser.top/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1100",
+    "title": "🥄沙拉查词-聚合词典划词翻译.crx",
+    "url": "https://gmengshuai.lanzoux.com/iT32Qlad78j",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1101",
+    "title": "🥄google-translate.crx",
+    "url": "https://gmengshuai.lanzoux.com/ig1n7lad76h",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1102",
+    "title": "🥄网页截图注释&录屏 v3.9.36.crx",
+    "url": "https://gmengshuai.lanzoux.com/iNWwLlad61g",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1103",
+    "title": "🥄FireShot网页完整截图 局部区域截图 PRO版.rar",
+    "url": "https://gmengshuai.lanzoux.com/iAqcPlad5rg",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1104",
+    "title": "🥄猫抓_1.0.15_m3u8链接抓取.crx",
+    "url": "https://gmengshuai.lanzoux.com/ilgsflad75g",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1105",
+    "title": "✅IDM插件.crx",
+    "url": "https://gmengshuai.lanzoux.com/ikdvklad64j",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1106",
+    "title": "🥄super-history-cache-clean_快速清理浏览器垃圾.crx",
+    "url": "https://gmengshuai.lanzoux.com/idUJClad6za",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1107",
+    "title": "✅tampermonkey_油猴插件.crx",
+    "url": "https://gmengshuai.lanzoux.com/i8yqrlad73e",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1108",
+    "title": "🥄lastpass-free-password-ma_密码管理插件.crx",
+    "url": "https://gmengshuai.lanzoux.com/iU4holad6uf",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1109",
+    "title": "🥄singlefile-1.18.60_原格式保存网页内容.crx",
+    "url": "https://gmengshuai.lanzoux.com/iAm8llad5va",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1110",
+    "title": "✅GitHub加速_1.1.1.crx",
+    "url": "https://gmengshuai.lanzoux.com/il6Ullad5ti",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.优质扩展"
+  },
+  {
+    "id": "resource-1111",
+    "title": "☕KeepChatGPT-ChatGPT网页版的畅聊与增强插件",
+    "url": "https://greasyfork.org/zh-CN/scripts/462804-keepchatgpt",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1112",
+    "title": "☕解除B站区域限制（需要自定义服务器）",
+    "url": "https://greasyfork.org/zh-CN/scripts/25718-%E8%A7%A3%E9%99%A4b%E7%AB%99%E5%8C%BA%E5%9F%9F%E9%99%90%E5%88%B6",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1113",
+    "title": "🔥🔥🔥B站视频下载解析 - 2023 最新 - BILIBILI Download",
+    "url": "https://greasyfork.org/zh-CN/scripts/415789-b%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E8%A7%A3%E6%9E%90-2023-%E6%9C%80%E6%96%B0-bilibili-download",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1114",
+    "title": "☕蓝奏云网盘增强（自动显示更多文件、自动打开分享链接、自动复制分享链接）",
+    "url": "https://greasyfork.org/zh-CN/scripts/419224-%E8%93%9D%E5%A5%8F%E4%BA%91%E7%BD%91%E7%9B%98%E5%A2%9E%E5%BC%BA",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1115",
+    "title": "☕淘宝秒杀软件助手插件 安全-快速-免费",
+    "url": "http://www.6320.net.cn/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1116",
+    "title": "☕淘宝、天猫、聚划算、京东、苏宁、唯品会、华为、耐克、魅族、联想、华硕抢购助手",
+    "url": "https://greasyfork.org/zh-CN/scripts/393577",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1117",
+    "title": "☕网盘链接检查——自动识别并标记云盘的链接状态（有误报现象）",
+    "url": "https://greasyfork.org/zh-CN/scripts/394216-%E7%BD%91%E7%9B%98%E9%93%BE%E6%8E%A5%E6%A3%80%E6%9F%A5",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1118",
+    "title": "☕网盘简易下载助手",
+    "url": "https://greasyfork.org/scripts/418182",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1119",
+    "title": "☕百度网盘在线倍数播放",
+    "url": "https://greasyfork.org/zh-CN/scripts/426952",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1120",
+    "title": "☕吾爱破解论坛增强 - 自动签到、翻页",
+    "url": "https://greasyfork.org/zh-CN/scripts/412680",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1121",
+    "title": "☕吾爱搜索固定导航",
+    "url": "https://greasyfork.org/zh-CN/scripts/413334",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1122",
+    "title": "☕CSDN完全过滤",
+    "url": "https://greasyfork.org/zh-CN/scripts/378351",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1123",
+    "title": "☕searchEngineJump 搜索引擎快捷跳转",
+    "url": "https://www.runningcheese.com/go?url=https://greasyfork.org/zh-CN/scripts/27752",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1124",
+    "title": "☕去百度搜狗谷歌必应广告 / 优化搜索结果",
+    "url": "https://www.runningcheese.com/go?url=https://greasyfork.org/zh-CN/scripts/14178",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.优质脚本"
+  },
+  {
+    "id": "resource-1125",
+    "title": "火狐插件官网",
+    "url": "https://addons.mozilla.org/zh-CN/firefox/extensions/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.各浏览器插件中心官网"
+  },
+  {
+    "id": "resource-1126",
+    "title": "Edge插件官网",
+    "url": "https://microsoftedge.microsoft.com/addons/Microsoft-Edge-Extensions-Home?source=sfw",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "01.各浏览器插件中心官网"
+  },
+  {
+    "id": "resource-1127",
+    "title": "谷歌插件官网 👍",
+    "url": "https://chrome.google.com/webstore/category/extensions",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "01.各浏览器插件中心官网"
+  },
+  {
+    "id": "resource-1128",
+    "title": "chrome666（提供的都是.crx类型的）",
+    "url": "https://www.chrome666.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1129",
+    "title": "免费插件下载-chrome插件大全（提供的都是.zip类型的）",
+    "url": "http://cd.cduukj.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1130",
+    "title": "常用Crx离线安装包下载（提供的都是.crx类型的）",
+    "url": "http://yurl.sinaapp.com/crx2.php",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1131",
+    "title": "Chrome插件英雄榜离线安装包（提供的都是.zip类型的）",
+    "url": "https://zhaoolee.lanzoux.com/b00nnabad",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1132",
+    "title": "极简插件（提供的都是.zip类型的）",
+    "url": "https://chrome.zzzmh.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1133",
+    "title": "CrxDl （先搜索，提供新旧版本）",
+    "url": "https://crxdl.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "02.推荐站点（无广告、无诱导）"
+  },
+  {
+    "id": "resource-1134",
+    "title": "chrome downloads（广告）",
+    "url": "https://www.chromedownloads.net/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.不推荐（有广告 / 有诱导）"
+  },
+  {
+    "id": "resource-1135",
+    "title": "插件迷-chrome插件（提供的都是.crx类型的）",
+    "url": "https://www.chajianmi.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "03.不推荐（有广告 / 有诱导）"
+  },
+  {
+    "id": "resource-1136",
+    "title": "画夹-chrome插件（下载需要关注公众号）",
+    "url": "https://huajiakeji.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.不推荐（有广告 / 有诱导）"
+  },
+  {
+    "id": "resource-1137",
+    "title": "Crx4Chrome（广告）",
+    "url": "https://www.crx4chrome.com/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "03.不推荐（有广告 / 有诱导）"
+  },
+  {
+    "id": "resource-1138",
+    "title": "扩展迷（下载需要关注公众号）",
+    "url": "https://www.extfans.com/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "03.不推荐（有广告 / 有诱导）"
+  },
+  {
+    "id": "resource-1139",
+    "title": "油猴中文网",
+    "url": "https://bbs.tampermonkey.net.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.下载脚本网站"
+  },
+  {
+    "id": "resource-1140",
+    "title": "GitHub/Gist",
+    "url": "https://gist.github.com/search?q=&ref=searchresults",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.下载脚本网站"
+  },
+  {
+    "id": "resource-1141",
+    "title": "Userscript.Zone Search",
+    "url": "https://www.userscript.zone/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "04.下载脚本网站"
+  },
+  {
+    "id": "resource-1142",
+    "title": "OpenUserJS（被墙）",
+    "url": "https://openuserjs.org/",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.下载脚本网站"
+  },
+  {
+    "id": "resource-1143",
+    "title": "Greasy Fork👍",
+    "url": "https://greasyfork.org/zh-CN/help/installing-user-scripts",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "04.下载脚本网站"
+  },
+  {
+    "id": "resource-1144",
+    "title": "去除Chrome请停用以开发者模式运行的扩展程序（适用于Edge、Chrome）",
+    "url": "https://gmengshuai.lanzoux.com/iCouHorv4sj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1145",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=rMf63azIbUf2",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1146",
+    "title": "适用Chrome83版",
+    "url": "https://cloud.189.cn/web/share?code=6VZJVnRve6Fj",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1147",
+    "title": "适用Chrome81版",
+    "url": "https://gmengshuai.lanzoux.com/iS56Yortx4h",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1148",
+    "title": "适用Chrome79版",
+    "url": "https://cloud.189.cn/web/share?code=MZbYzuABNNby",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1149",
+    "title": "👍文章 《安装浏览器插件，看这一篇就够了》",
+    "url": "https://mp.weixin.qq.com/s/IaX3XshH2naLUiwZDp1WXQ",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1150",
+    "title": "👍文章 《安装油猴脚本，看这一篇就够了》",
+    "url": "https://mp.weixin.qq.com/s/vgWbK1nkpvSTGJeGnFIVjA",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "05.解决Chrome浏览器提示"
+  },
+  {
+    "id": "resource-1151",
+    "title": "📜强国战答题库4564题",
+    "url": "https://gmengshuai.lanzoux.com/iu73Cod25la",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1152",
+    "title": "✅浏览器 网课助手专用浏览器（支持超星学习通，智慧树） 👍",
+    "url": "https://weigirl.gq",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1153",
+    "title": "☕脚本 OCS网课脚本（支持超星学习通，智慧树 ） 👍",
+    "url": "https://docs.ocsjs.com",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1154",
+    "title": "☕脚本 超星学习通刷课脚本——TamperMonkey油猴/暴力猴中文网",
+    "url": "https://www.tmchina.net/misc.php?mod=tag&id=129&type=thread",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1155",
+    "title": "☕脚本 超星学习通刷课脚本——油猴中文网",
+    "url": "https://bbs.tampermonkey.net.cn/",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1156",
+    "title": "☕脚本 超星学习通刷课脚本—— Greasy Fork",
+    "url": "https://greasyfork.org/zh-CN/scripts?q=%E8%B6%85%E6%98%9F",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1157",
+    "title": "☕脚本 智慧树刷课脚本—— Greasy Fork",
+    "url": "https://greasyfork.org/zh-CN/scripts?q=%E6%99%BA%E6%85%A7%E6%A0%91",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "16 超星 / 智慧树 / 学习强国等平台刷课"
+  },
+  {
+    "id": "resource-1158",
+    "title": "无水印图片查看（油猴脚本）",
+    "url": "https://greasyfork.org/zh-CN/scripts/16607",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度百科"
+  },
+  {
+    "id": "resource-1159",
+    "title": "添加维基镜像（油猴脚本）",
+    "url": "https://greasyfork.org/zh-CN/scripts/36100",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度百科"
+  },
+  {
+    "id": "resource-1160",
+    "title": "去广告",
+    "url": "https://userstyles.org/styles/130739/theme",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度百科"
+  },
+  {
+    "id": "resource-1161",
+    "title": "去广告",
+    "url": "https://userstyles.org/styles/130901/theme",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度经验"
+  },
+  {
+    "id": "resource-1162",
+    "title": "添目录（油猴脚本）",
+    "url": "https://greasyfork.org/zh-CN/scripts/381414-baidu-jingyan",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度经验"
+  },
+  {
+    "id": "resource-1163",
+    "title": "searchEngineJump",
+    "url": "https://www.runningcheese.com/go?url=https://greasyfork.org/zh-CN/scripts/27752",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度搜索"
+  },
+  {
+    "id": "resource-1164",
+    "title": "AC-baidu-重定向优化百度搜狗谷歌必应搜索",
+    "url": "https://www.runningcheese.com/go?url=https://greasyfork.org/zh-CN/scripts/14178",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度搜索"
+  },
+  {
+    "id": "resource-1165",
+    "title": "贴吧页面精简 (scriptcat.org)",
+    "url": "https://scriptcat.org/script-show-page/183",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度贴吧"
+  },
+  {
+    "id": "resource-1166",
+    "title": "百度贴吧自动签到 (scriptcat.org)",
+    "url": "https://scriptcat.org/script-show-page/108",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度贴吧"
+  },
+  {
+    "id": "resource-1167",
+    "title": "在线倍速播放",
+    "url": "https://greasyfork.org/zh-CN/scripts/411523",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度网盘"
+  },
+  {
+    "id": "resource-1168",
+    "title": "文本选中复制",
+    "url": "https://greasyfork.org/zh-CN/scripts/452595",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度文库"
+  },
+  {
+    "id": "resource-1169",
+    "title": "全文阅读| 开启右键复制",
+    "url": "https://greasyfork.org/zh-CN/scripts/437043",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度文库"
+  },
+  {
+    "id": "resource-1170",
+    "title": "去除广告、精简排版",
+    "url": "https://userstyles.org/styles/130901/theme",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1171",
+    "title": "👍文章 《优化百度，让它回归本质！》",
+    "url": "https://mp.weixin.qq.com/s/4uzlPwYpVINwv9ubzG_I0g",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1172",
+    "title": "优化百度系列广告2",
+    "url": "https://greasyfork.org/zh-CN/scripts/420276",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1173",
+    "title": "优化百度系列广告1",
+    "url": "https://greasyfork.org/zh-CN/scripts/394099",
+    "status": "待核验",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1174",
+    "title": "优化百度系列主题",
+    "url": "https://userstyles.org/styles/173673/pure",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1175",
+    "title": "🥄优化必装插件Stylish 为任意网站自定义主题.crx",
+    "url": "https://gmengshuai.lanzoui.com/i5vQPp45uji",
+    "status": "可用",
+    "category": "02 电脑软件",
+    "section": "优化百度知道"
+  },
+  {
+    "id": "resource-1176",
+    "title": "虚拟定位/多开/分身软件（密码：9527）",
+    "url": "https://gmengshuai.lanzoux.com/b00udw4gb",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "📱可长期使用Android软件"
+  },
+  {
+    "id": "resource-1177",
+    "title": "👍多开/分身软件：比翼多开",
+    "url": "https://support.qq.com/products/174298/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "📱可长期使用Android软件"
+  },
+  {
+    "id": "resource-1178",
+    "title": "外卖软件科技——知识库",
+    "url": "https://flowus.cn/yan1998-28/share/22b9ee36-987d-4bbd-b7dd-e1ffb07ad038",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "📱可长期使用Android软件"
+  },
+  {
+    "id": "resource-1179",
+    "title": "Tim 最新版官网",
+    "url": "https://office.qq.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1180",
+    "title": "豆瓣 v_7.0.1_Mod_清爽版",
+    "url": "https://gmengshuai.lanzoui.com/iXWAangc23g",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1181",
+    "title": "贴吧 lite版 3.8.0.5（无广告）",
+    "url": "https://gmengshuai.lanzoui.com/ij0jEsn346j",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1182",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=ny6rqyb2UzEf",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1183",
+    "title": "微博 谷歌版v3.7.3（无广告）",
+    "url": "https://gmengshuai.lanzoui.com/irJUmngbxad",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1184",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=BZ7VfuRrqqAj",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1185",
+    "title": "知乎 小米定制版（先安装zhihupatch，无广告）",
+    "url": "https://gmengshuai.lanzoui.com/iXS9Pngbyla",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1186",
+    "title": "哔哩哔哩TV和Pad第三方客户端（开源）",
+    "url": "https://github.com/xiaye13579/BBLL",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1187",
+    "title": "AcFun TV和Pad客户端（开源）",
+    "url": "https://github.com/xiaye13579/ACAC",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1188",
+    "title": "👍电报 / TG / 纸飞机",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1768731253431_57885",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1189",
+    "title": "《Instream、Youtube、Niconico、Twitter、微博第三方APP》",
+    "url": "https://www.yuque.com/docs/share/9116b792-cef7-4431-ae57-0d4cbcf78ecd",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1190",
+    "title": "Twitter v_8.76.0（需翻）",
+    "url": "https://gmengshuai.lanzoui.com/iEOXVngbw0h",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.微博/知乎/贴吧/豆瓣/b站/Telegram"
+  },
+  {
+    "id": "resource-1191",
+    "title": "Ps touch（密码：xiao）",
+    "url": "https://gmengshuai.lanzoux.com/b00ue1uvc",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1192",
+    "title": "小男孩证件照制作v1.2",
+    "url": "https://gmengshuai.lanzoux.com/iyfNNngbp5a",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1193",
+    "title": "PicsArt破解中文版 高级权限解锁",
+    "url": "https://gmengshuai.lanzoux.com/ib87gngbnng",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1194",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=uyMBZzAN3Izy",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1195",
+    "title": "傲软抠图_v1.1.6.0",
+    "url": "https://gmengshuai.lanzoux.com/iLgFjngbq6h",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1196",
+    "title": "Photoshop Express-Premium-v5.8.561",
+    "url": "https://gmengshuai.lanzoux.com/iSv2Wngbmfc",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.P图 / 滤镜 / 图片去水印"
+  },
+  {
+    "id": "resource-1197",
+    "title": "阅读3.0 Beta👍",
+    "url": "https://miaogongzi.lanzout.com/b01rgkhhe",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1198",
+    "title": "阅读3.0（原名：轻阅，书源多）- 开源👍",
+    "url": "https://gedoor.github.io/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1199",
+    "title": "蓝奏云",
+    "url": "https://wws.lanzoux.com/b01trfnde",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1200",
+    "title": "博看书苑（免费杂志）",
+    "url": "https://apps.microsoft.com/detail/xpfdtlmt39m79w?hl=zh-CN&gl=CN",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1201",
+    "title": "博看书苑APP",
+    "url": "https://download.bookan.com.cn/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1202",
+    "title": "免费文学阅读 稳定版2.7.2",
+    "url": "https://pan.quark.cn/s/59e46eab66d7",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1203",
+    "title": "笔趣阁无广告版 v3.8.9",
+    "url": "https://wwxj.lanzout.com/icRUZ2tg8bkh",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1204",
+    "title": "静读天下专业版_v6.3 👍",
+    "url": "https://pan.quark.cn/s/5f45571984d5",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1205",
+    "title": "异次元 APP 👍",
+    "url": "https://fairyflower.github.io/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1206",
+    "title": "Github",
+    "url": "https://github.com/FaIryFlower/FairyFlower.github.io",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1207",
+    "title": "阅读APP 精品书源 — 每日更新",
+    "url": "https://yuedu.xiu2.xyz/",
+    "status": "收藏",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1208",
+    "title": "阅读 - 源仓库",
+    "url": "https://www.yckceo.sbs/yuedu/shuyuans/index.html",
+    "status": "收藏",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1209",
+    "title": "各种源大型整合",
+    "url": "https://source.zgqinc.gq/",
+    "status": "收藏",
+    "category": "03 手机软件",
+    "section": "03.电子书/漫画阅读器"
+  },
+  {
+    "id": "resource-1210",
+    "title": "P站助手（Pixiv镜像软件）官网👍",
+    "url": "https://www.pivlite.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "04.动漫图片阅览器"
+  },
+  {
+    "id": "resource-1211",
+    "title": "P站(Pixiv)教程",
+    "url": "https://app-p.hizui.cn/az.html",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "04.动漫图片阅览器"
+  },
+  {
+    "id": "resource-1212",
+    "title": "pixez-第三方客户端，界面美观，功能丰富",
+    "url": "https://console.hizui.cn/app/pixez.apk",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "04.动漫图片阅览器"
+  },
+  {
+    "id": "resource-1213",
+    "title": "shaft-轻量级客户端，启动快速",
+    "url": "https://console.hizui.cn/app/shaft.apk",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "04.动漫图片阅览器"
+  },
+  {
+    "id": "resource-1214",
+    "title": "P站助手Lite-轻量版助手，功能实用",
+    "url": "https://console.hizui.cn/app/P%E7%AB%99%E5%8A%A9%E6%89%8BLite.apk",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "04.动漫图片阅览器"
+  },
+  {
+    "id": "resource-1215",
+    "title": "MX视频播放器 MX Video Player 👍",
+    "url": "https://pan.lanzoux.com/b0f19eo3c",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1216",
+    "title": "MPV播放器（全端）👍",
+    "url": "https://mpv.io/installation/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1217",
+    "title": "VLC media player，最棒的开源播放器👍",
+    "url": "https://www.videolan.org/vlc/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1218",
+    "title": "网极SWF播放器",
+    "url": "https://pan.quark.cn/s/4989decc9796#/list/share",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1219",
+    "title": "X Player v2.1.8.1直装高级会员版",
+    "url": "https://pan.quark.cn/s/1c52b2bb0e74",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1220",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=M732AfMfYrIn",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1221",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=RNzYB3JbIrim",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1222",
+    "title": "nPlayer-pro1.6.1.5",
+    "url": "https://pan.quark.cn/s/a8277d21503d",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "05.本地视频播放器"
+  },
+  {
+    "id": "resource-1223",
+    "title": "🎵Magic Player 👍",
+    "url": "https://wwz.lanzout.com/s/magicplayer",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1224",
+    "title": "🎵QMD 1.6.0",
+    "url": "https://github.com/OJZen/QMD_Android/releases",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1225",
+    "title": "☁️收费歌曲免费下载【蓝奏云链接】",
+    "url": "https://lanzoui.com/b05si87cj",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1226",
+    "title": "🎵安卓唯一支持杜比音效 本地播放器",
+    "url": "https://pan.quark.cn/s/6a765c547d5a#/list/share",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1227",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=MRbemavqYRne",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1228",
+    "title": "🎵网易云_4.3.5纯净版",
+    "url": "https://pan.quark.cn/s/0b35d68cef20",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1229",
+    "title": "🎵Omnia_Pro_v1.4.9（本地播放器，功能多）",
+    "url": "https://cloud.189.cn/web/share?code=zU3Yfaru6Vbi",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1230",
+    "title": "🎵魔音MORIN ——干净简洁的播放器，支持下载（有PC和安卓版本）👍",
+    "url": "http://morin.vin/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1231",
+    "title": "🎵五音助手——全网无损下载APP（安卓软件）",
+    "url": "https://www.sixyin.com/wuyin/index.php",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1232",
+    "title": "🎵听下——全网无损音质下载（长期更新链接）👍",
+    "url": "https://dmla.lanzoui.com/b05m79b3i",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "06.安卓端音乐播放器"
+  },
+  {
+    "id": "resource-1233",
+    "title": "安卓 Chrome浏览器_78.0.3904",
+    "url": "https://pan.quark.cn/s/9e6fc67b1ee7",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1234",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=FzAFN3ArQRjy",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1235",
+    "title": "安卓 QQ浏览器_v11.3.5.5512去广告优化版👍",
+    "url": "https://gmengshuai.lanzoui.com/izOYFnlex5g",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1236",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=yUZFfmnMJVrq",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1237",
+    "title": "安卓 谷歌版 Yandex.browser - 支持安装扩展脚本👍",
+    "url": "https://browser.yandex.com/mobile",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1238",
+    "title": "轻松下载站",
+    "url": "https://www.eyunsou.com/apps/gwapp/yandex/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1239",
+    "title": "apkcombo.com",
+    "url": "https://apkcombo.com/zh/yandex/com.yandex.browser/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1240",
+    "title": "Yandex Browser APK Download",
+    "url": "https://www.malavida.com/en/soft/yandex-browser/android/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1241",
+    "title": "安卓 谷歌版 kiwi浏览器 - 支持安装扩展脚本👍",
+    "url": "https://github.com/kiwibrowser/src.next/releases/tag/14310011181",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1242",
+    "title": "旧版-蓝奏云",
+    "url": "https://gmengshuai.lanzoui.com/iO9HKnlelji",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1243",
+    "title": "安卓 谷歌版 火狐浏览器-84.1.4 - 支持安装扩展脚本👍",
+    "url": "https://www.eyunsou.com/apps/gwapp/firefox/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1244",
+    "title": "蓝奏云，密码:aslk",
+    "url": "https://firepx.lanzoul.com/b00wour5e",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1245",
+    "title": "国际版地址1",
+    "url": "https://ftp.mozilla.org/pub/mobile/releases/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1246",
+    "title": "国际版地址2",
+    "url": "https://ftp.mozilla.org/pub/fenix/nightly/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1247",
+    "title": "安卓 iceraven浏览器-1.7.1 - 支持安装扩展脚本👍",
+    "url": "https://gmengshuai.lanzoui.com/iC3xHnlenqh",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1248",
+    "title": "Github Release Iceraven 2.40.0",
+    "url": "https://github.com/fork-maintainers/iceraven-browser/releases/tag/iceraven-2.40.0",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1249",
+    "title": "安卓 M浏览器 - 2.8.3（酷安）-支持安装扩展脚本",
+    "url": "https://www.coolapk.com/apk/cn.nr19.mbrowser",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1250",
+    "title": "小米应用商店",
+    "url": "https://app.mi.com/details?id=cn.nr19.mbrowser",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1251",
+    "title": "安卓 X浏览器-1M都不到，超简洁设计",
+    "url": "https://www.xbext.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1252",
+    "title": "安卓 Via浏览器-1M都不到，超简洁设计👍",
+    "url": "https://app.mi.com/details?id=mark.via&ref=search",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1253",
+    "title": "安卓 夸克浏览器",
+    "url": "https://app.mi.com/details?id=com.quark.browser&ref=search",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1254",
+    "title": "iOS 夸克浏览器-iOS版",
+    "url": "https://apps.apple.com/cn/app/%E5%A4%B8%E5%85%8B-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%97%97%E4%B8%8B%E6%99%BA%E8%83%BD%E6%90%9C%E7%B4%A2/id1160172628",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "07.浏览器推荐"
+  },
+  {
+    "id": "resource-1255",
+    "title": "有道云笔记破解会员版【长期更新地址】👍",
+    "url": "https://zxltwp.lanzoux.com/b092uma3c",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "08.记笔记推荐"
+  },
+  {
+    "id": "resource-1256",
+    "title": "印象笔记v8.13.3直装破解会员版",
+    "url": "https://pan.quark.cn/s/f57e07598e5f",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "08.记笔记推荐"
+  },
+  {
+    "id": "resource-1257",
+    "title": "有道云笔记v6.7.21会员版",
+    "url": "https://pan.quark.cn/s/e401e3f9e066",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "08.记笔记推荐"
+  },
+  {
+    "id": "resource-1258",
+    "title": "有道云笔记谷歌版_6.6.6",
+    "url": "https://gmengshuai.lanzoui.com/iKxvDsy8rkh",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "08.记笔记推荐"
+  },
+  {
+    "id": "resource-1259",
+    "title": "👍文章 《评测了数款课程表软件，还是这些好用》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488461&idx=1&sn=af09f0cf928531dc1d9f1fd00b9cb9ea&chksm=9b8a6a6eacfde378e023553af43b6713ebd8a1cf63df6d57397774e8f53ebce76a0",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1260",
+    "title": "我是课程表",
+    "url": "https://app.mi.com/details?id=com.sunrain.timetablev4",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1261",
+    "title": "小爱课程表",
+    "url": "https://www.coolapk.com/apk/com.xiaomi.aischedule",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1262",
+    "title": "怪兽课程表",
+    "url": "https://www.coolapk.com/apk/com.zhuangfei.hputimetable",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1263",
+    "title": "课程格子",
+    "url": "https://app.mi.com/details?id=fm.jihua.kecheng",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1264",
+    "title": "超级课程表",
+    "url": "https://www.super.cn/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1265",
+    "title": "Wakeup课程表 👍",
+    "url": "https://app.mi.com/details?id=com.suda.yzune.wakeupschedule",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1266",
+    "title": "Simple课程表 （这个未破解，破解版公众号回复：课程表）👍",
+    "url": "https://app.mi.com/details?id=com.strivexj.timetable",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "09.课程表推荐"
+  },
+  {
+    "id": "resource-1267",
+    "title": "小熊录屏 v2.2.1 修改会员直装版(免登录)",
+    "url": "https://pan.quark.cn/s/be66d86a72fa",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "10.录屏推荐"
+  },
+  {
+    "id": "resource-1268",
+    "title": "乐秀录屏大师 v3.5.1 修改会员直装版",
+    "url": "https://www.yxssp.com/30333.html",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "10.录屏推荐"
+  },
+  {
+    "id": "resource-1269",
+    "title": "超级截图录屏大师",
+    "url": "https://sj.qq.com/appdetail/com.tianxingjian.screenshot?g_f=1185402&fromcase=70052",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "10.录屏推荐"
+  },
+  {
+    "id": "resource-1270",
+    "title": "AZ Screen Recorder",
+    "url": "https://www.yxssp.com/29136.html",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "10.录屏推荐"
+  },
+  {
+    "id": "resource-1271",
+    "title": "PDF Extra（pdf阅读器）",
+    "url": "https://pan.quark.cn/s/6ad72613f26d",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1272",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=2ErqaiaaINFb",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1273",
+    "title": "安卓笔记工具 Noteshelf v8.2.5-夸克网盘分享",
+    "url": "https://pan.quark.cn/s/64696c8a29b6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1274",
+    "title": "【谷歌版】xodopdf编辑器",
+    "url": "https://mdl.ink/VnsDhn",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1275",
+    "title": "Quickoffice6.5.1.12〖无广告版〗",
+    "url": "https://pan.quark.cn/s/c37d53cdc3af",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1276",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/web/share?code=E3uyUfjQVziu",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "11.WPS / OFFICE / PDF"
+  },
+  {
+    "id": "resource-1277",
+    "title": "WPS_Offiice_for_Android【423down长期更新链接】",
+    "url": "https://pan.lanzoui.com/b0f197skb",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "WPS手机版"
+  },
+  {
+    "id": "resource-1278",
+    "title": "WPS手机版下载【小帅提供】",
+    "url": "https://pan.quark.cn/s/f7501a9f5f75",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "WPS手机版"
+  },
+  {
+    "id": "resource-1279",
+    "title": "蓝奏云",
+    "url": "https://gmengshuai.lanzoui.com/b00us579a?password=xiao",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "WPS手机版"
+  },
+  {
+    "id": "resource-1280",
+    "title": "金山WPS移动版，安卓版WPS下载，无广告👍",
+    "url": "https://mo.wps.cn/pc-app/office-pro.html#pro_hp_contact",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "WPS手机版"
+  },
+  {
+    "id": "resource-1281",
+    "title": "每日英语听力最新修改版 👍",
+    "url": "https://pan.quark.cn/s/dd7522c3618d",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1282",
+    "title": "省心英语V4.0.8免VIP 走遍美国英语",
+    "url": "https://pan.quark.cn/s/f92cd3bf0499",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1283",
+    "title": "可可英语破解会员版【长期更新地址】👍",
+    "url": "https://zxltwp.lanzoux.com/b093akyhe",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1284",
+    "title": "可可英语v4.1.3会员版",
+    "url": "https://cloud.189.cn/web/share?code=RnAVZrziyeqm",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1285",
+    "title": "轻听英语V1.9.7.3 安卓会员版",
+    "url": "https://pan.quark.cn/s/0a694d378fa2",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1286",
+    "title": "轻听英语 - 官网下载",
+    "url": "https://qtyy.cn/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1287",
+    "title": "Busuu博树安卓版(学习多语言平台) v32.28.0.1547155 修改版",
+    "url": "https://pan.quark.cn/s/4010121e39231",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1288",
+    "title": "蓝奏云",
+    "url": "https://gndown.lanzoub.com/b048vl0qb",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1289",
+    "title": "学英语必备 新概念英语",
+    "url": "https://app.mi.com/details?id=com.suzhou.concept",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1290",
+    "title": "《新概念英语》在线点读",
+    "url": "https://nce.hoothin.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1291",
+    "title": "WE Learn",
+    "url": "https://app.mi.com/details?id=com.sflep.course&ref=search",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "12.英语学习"
+  },
+  {
+    "id": "resource-1292",
+    "title": "不背单词词库（与不背单词APP同步）👍",
+    "url": "https://pan.quark.cn/s/228da609e836",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1293",
+    "title": "扇贝，知道你在改变👍",
+    "url": "https://web.shanbay.com/web/main",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1294",
+    "title": "墨墨背单词_PJ最新版（26.02.01更新）👍",
+    "url": "https://pan.quark.cn/s/1682bcea7d35",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1295",
+    "title": "AnkiDroid-最新版 【配合Anki单词卡】👍",
+    "url": "https://apps.ankiweb.net/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1296",
+    "title": "Releases · ankidroid/Anki-Android · GitHub",
+    "url": "https://github.com/ankidroid/Anki-Android/releases",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1297",
+    "title": "英语词汇轻松学",
+    "url": "https://thoughts.teambition.com/share/6120e39ce9078100460bc207#title=%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87%E8%BD%BB%E6%9D%BE%E5%AD%A6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1298",
+    "title": "不背单词v3.2.4 解锁付费版",
+    "url": "https://thoughts.teambition.com/share/6120e34e933fb100460186b0#title=%E4%B8%8D%E8%83%8C%E5%8D%95%E8%AF%8Dv3.2.4_%E8%A7%A3%E9%94%81%E4%BB%98%E8%B4%B9%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1299",
+    "title": "Simpler_v2.20.273",
+    "url": "https://thoughts.teambition.com/share/6120e2a5b9352a0041a25039#title=Simpler_v2.20.273",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1300",
+    "title": "傻瓜英语_v2.2.39修改版",
+    "url": "https://thoughts.teambition.com/share/6120fb34e9078100460bc213#title=%E5%82%BB%E7%93%9C%E8%8B%B1%E8%AF%AD_v2.2.39%E4%BF%AE%E6%94%B9%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1301",
+    "title": "美剧听单词_v10.4",
+    "url": "https://thoughts.teambition.com/share/6120e27ab9352a0041a25038#title=%E7%BE%8E%E5%89%A7%E5%90%AC%E5%8D%95%E8%AF%8D_v10.4",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1302",
+    "title": "超级单词王破解V4.5.1PRO直装版 解除单词限制",
+    "url": "https://thoughts.teambition.com/share/6120e1c7b9352a0041a25037#title=%E8%B6%85%E7%BA%A7%E5%8D%95%E8%AF%8D%E7%8E%8B%E7%A0%B4%E8%A7%A3V4.5.1PRO%E7%9B%B4%E8%A3%85%E7%89%88_%E8%A7%A3%E9%99%A4%E5%8D%95%E8%AF%8D%E9%99%90%E5%88%B6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "背单词"
+  },
+  {
+    "id": "resource-1303",
+    "title": "OALD9牛津高阶词典（英英词典）",
+    "url": "https://thoughts.teambition.com/share/6120e566e9078100460bc208#title=OALD9%E7%89%9B%E6%B4%A5%E9%AB%98%E9%98%B6%E8%AF%8D%E5%85%B8%EF%BC%88%E8%8B%B1%E8%8B%B1%E8%AF%8D%E5%85%B8%EF%BC%89",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "翻译"
+  },
+  {
+    "id": "resource-1304",
+    "title": "百度翻译无广告8.4.2",
+    "url": "https://thoughts.teambition.com/share/6120e4f3d71e990041d736de#title=%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91%E6%97%A0%E5%B9%BF%E5%91%8A8.4.2",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "翻译"
+  },
+  {
+    "id": "resource-1305",
+    "title": "欧路词典【谷歌版】",
+    "url": "https://thoughts.teambition.com/share/6120e3ef933fb100460186b1#title=%E6%AC%A7%E8%B7%AF%E8%AF%8D%E5%85%B8%E3%80%90%E8%B0%B7%E6%AD%8C%E7%89%88%E3%80%91",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "翻译"
+  },
+  {
+    "id": "resource-1306",
+    "title": "五笔学习",
+    "url": "https://thoughts.teambition.com/share/6121128fd71e990041d736e6#title=%E4%BA%94%E7%AC%94%E5%AD%A6%E4%B9%A0",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "13.考证app"
+  },
+  {
+    "id": "resource-1307",
+    "title": "二级office",
+    "url": "https://thoughts.teambition.com/share/612112c8d71e990041d736e7#title=%E4%BA%8C%E7%BA%A7office",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "13.考证app"
+  },
+  {
+    "id": "resource-1308",
+    "title": "未来教育破解版【计算机等考题库】",
+    "url": "https://thoughts.teambition.com/share/61211310d9f39a0046f4a0bb#title=%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E7%A0%B4%E8%A7%A3%E7%89%88%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E8%80%83%E9%A2%98%E5%BA%93%E3%80%91",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "13.考证app"
+  },
+  {
+    "id": "resource-1309",
+    "title": "酷安官网下载【玩机社区】",
+    "url": "https://coolapk.com/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "14.专注下载"
+  },
+  {
+    "id": "resource-1310",
+    "title": "52破解手机端_v1.1.8",
+    "url": "https://thoughts.teambition.com/share/612113edd9f39a0046f4a0bc#title=52%E7%A0%B4%E8%A7%A3%E6%89%8B%E6%9C%BA%E7%AB%AF_v1.1.8",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "14.专注下载"
+  },
+  {
+    "id": "resource-1311",
+    "title": "多平台短视频下载软件",
+    "url": "https://thoughts.teambition.com/share/6121146a3a60e70046f93506#title=%E5%A4%9A%E5%B9%B3%E5%8F%B0%E7%9F%AD%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "14.专注下载"
+  },
+  {
+    "id": "resource-1312",
+    "title": "磁力下载软件",
+    "url": "https://thoughts.teambition.com/share/612114f8e9078100460bc216#title=%E7%A3%81%E5%8A%9B%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "14.专注下载"
+  },
+  {
+    "id": "resource-1313",
+    "title": "IDM手机版",
+    "url": "https://thoughts.teambition.com/share/61211535933fb100460186cf#title=IDM%E6%89%8B%E6%9C%BA%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "14.专注下载"
+  },
+  {
+    "id": "resource-1314",
+    "title": "手机淘宝 v8.10.2 Google Play版",
+    "url": "https://thoughts.teambition.com/share/612115a8b9352a0041a25044#title=%E6%89%8B%E6%9C%BA%E6%B7%98%E5%AE%9D_v8.10.2_Google_Play%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "15.淘宝 / 京东"
+  },
+  {
+    "id": "resource-1315",
+    "title": "京东 v9.3.2谷歌市场版.",
+    "url": "https://thoughts.teambition.com/share/612115d8933fb100460186d0#title=%E4%BA%AC%E4%B8%9C_v9.3.2%E8%B0%B7%E6%AD%8C%E5%B8%82%E5%9C%BA%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "15.淘宝 / 京东"
+  },
+  {
+    "id": "resource-1316",
+    "title": "LBE安全大师 官网",
+    "url": "http://www.lbesec.com/#/products/2",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "16.优化清理"
+  },
+  {
+    "id": "resource-1317",
+    "title": "SD Maid_v4.15.8高级解锁版",
+    "url": "https://thoughts.teambition.com/share/61211620933fb100460186d1#title=SD_Maid_v4.15.8%E9%AB%98%E7%BA%A7%E8%A7%A3%E9%94%81%E7%89%88",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "16.优化清理"
+  },
+  {
+    "id": "resource-1318",
+    "title": "清浊_v1.7.2高级解锁版",
+    "url": "https://thoughts.teambition.com/share/60e699e70c22e7004603cc30#title=%E7%BD%91%E7%9B%98%E5%88%86%E4%BA%AB",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "16.优化清理"
+  },
+  {
+    "id": "resource-1319",
+    "title": "高数线代大学必备软件",
+    "url": "https://thoughts.teambition.com/share/61211711d9f39a0046f4a0be#title=%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%A4%A7%E5%AD%A6%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "17.程序编绎器 / 电路模拟器 / 高数软件"
+  },
+  {
+    "id": "resource-1320",
+    "title": "电路模拟器",
+    "url": "https://thoughts.teambition.com/share/6121177db9352a0041a25045#title=%E7%94%B5%E8%B7%AF%E6%A8%A1%E6%8B%9F%E5%99%A8",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "17.程序编绎器 / 电路模拟器 / 高数软件"
+  },
+  {
+    "id": "resource-1321",
+    "title": "程序编绎器",
+    "url": "https://thoughts.teambition.com/share/612117b0b9352a0041a25046#title=%E7%A8%8B%E5%BA%8F%E7%BC%96%E7%BB%8E%E5%99%A8",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "17.程序编绎器 / 电路模拟器 / 高数软件"
+  },
+  {
+    "id": "resource-1322",
+    "title": "刷刷题官网【查题需关注公众号】",
+    "url": "https://shuashuati.com/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "18.网课助手"
+  },
+  {
+    "id": "resource-1323",
+    "title": "超级快查2.0—可以搜索智慧树，和超星尔雅",
+    "url": "https://thoughts.teambition.com/share/612118f1d71e990041d736e8#title=%E8%B6%85%E7%BA%A7%E5%BF%AB%E6%9F%A52.0%E2%80%94%E5%8F%AF%E4%BB%A5%E6%90%9C%E7%B4%A2%E6%99%BA%E6%85%A7%E6%A0%91%EF%BC%8C%E5%92%8C%E8%B6%85%E6%98%9F%E5%B0%94%E9%9B%85",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "18.网课助手"
+  },
+  {
+    "id": "resource-1324",
+    "title": "网课助手v1.1",
+    "url": "https://thoughts.teambition.com/share/6121191bd71e990041d736e9#title=%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8Bv1.1",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "18.网课助手"
+  },
+  {
+    "id": "resource-1325",
+    "title": "学小易【官网】",
+    "url": "https://www.51xuexiaoyi.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "18.网课助手"
+  },
+  {
+    "id": "resource-1326",
+    "title": "百度网盘_最终更新版【共存版】",
+    "url": "https://thoughts.teambition.com/share/612119d2b9352a0041a25047#title=%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98_%E6%9C%80%E7%BB%88%E6%9B%B4%E6%96%B0%E7%89%88%E3%80%90%E5%85%B1%E5%AD%98%E7%89%88%E3%80%91",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "19.网盘推荐"
+  },
+  {
+    "id": "resource-1327",
+    "title": "坚果云【官网】",
+    "url": "https://www.jianguoyun.com/s/downloads",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "19.网盘推荐"
+  },
+  {
+    "id": "resource-1328",
+    "title": "百度网盘v9.0.2完美版【共存版】",
+    "url": "https://thoughts.teambition.com/share/612119853a60e70046f93508#title=%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98v9.0.2%E5%AE%8C%E7%BE%8E%E7%89%88%E3%80%90%E5%85%B1%E5%AD%98%E7%89%88%E3%80%91",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "19.网盘推荐"
+  },
+  {
+    "id": "resource-1329",
+    "title": "GitHub - gkd-kit/gkd: 基于无障碍，高级选择器，订阅规则的自定义屏幕点击安卓应用👍",
+    "url": "https://github.com/gkd-kit/gkd",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1330",
+    "title": "GitHub - zfdang/Android-Touch-Helper: AdSkip👍",
+    "url": "https://github.com/zfdang/Android-Touch-Helper",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1331",
+    "title": "GitHub - GuoXiCheng/SKIP: 自动跳过APP开屏广告👍",
+    "url": "https://github.com/GuoXiCheng/SKIP",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1332",
+    "title": "李跳跳派大星版 - 2026年安卓跳广告神器软件和规则下载👍",
+    "url": "https://ad-litiaotiao.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1333",
+    "title": "VMOSPro（虚拟大师）3.0.9修改版",
+    "url": "https://pan.quark.cn/s/49064d460856",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1334",
+    "title": "安卓｜VMOS Pro虚拟机3.0.9 安卓15可用",
+    "url": "https://www.anlu1314.com/2025/01/23/6515/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1335",
+    "title": "太极官网 虚拟框架 免解锁,免Root,就能使用Xposed框架",
+    "url": "https://www.taichi-app.com/#/index",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "20.去开屏广告"
+  },
+  {
+    "id": "resource-1336",
+    "title": "台湾 Android 台湾中文网（主打安卓破解软件，已被墙）",
+    "url": "https://apk.tw/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1337",
+    "title": "国外 ReXdl（未被国内屏蔽，主打安卓游戏破解）",
+    "url": "https://rexdl.com/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1338",
+    "title": "国外 F-Droid（未被国内屏蔽，收录的全部是免费开源的软件）",
+    "url": "https://f-droid.org/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1339",
+    "title": "国外 androeed（俄罗斯的安卓破解软件分享市场，未被国内屏蔽）",
+    "url": "https://www.androeed.ru/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1340",
+    "title": "国外 XDA社区（全球最大的安卓论坛，XDA让手机更精彩）",
+    "url": "https://forum.xda-developers.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1341",
+    "title": "👍葫芦侠（主打安卓游戏破解）",
+    "url": "http://www.huluxia.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1342",
+    "title": "👍虫部落软件区（主打互联网指南/安卓破解）",
+    "url": "https://www.chongbuluo.com/forum-47-1.html",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1343",
+    "title": "👍手机高手（乐讯旗下的安卓破解软件分享论坛）",
+    "url": "http://sjgs3.lexun.cn/bbs_listbymodel.aspx?forumid=9021",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1344",
+    "title": "👍乐愚社区（主打安卓破解软件/互联网资讯）",
+    "url": "https://bbs.leyuz.net/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1345",
+    "title": "👍酷安（主打安卓破解软件/互联网资讯）",
+    "url": "https://www.coolapk.com/apk/",
+    "status": "待核验",
+    "category": "03 手机软件",
+    "section": "01.安卓社区（软件|游戏|资讯）"
+  },
+  {
+    "id": "resource-1346",
+    "title": "👍熊崩-【网盘搜索聚合引擎】",
+    "url": "http://www.xiongbeng.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.搜蓝奏云资源"
+  },
+  {
+    "id": "resource-1347",
+    "title": "安卓 蓝瘦_v1.0.1（搜蓝奏云软件）",
+    "url": "https://thoughts.teambition.com/share/60682b0a109e3700467feabc#title=%E8%93%9D%E7%98%A6_v1.0.1",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.搜蓝奏云资源"
+  },
+  {
+    "id": "resource-1348",
+    "title": "安卓 聚云搜（搜蓝奏云软件）",
+    "url": "https://jsznopi.lanzoux.com/b01h6ckzc",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.搜蓝奏云资源"
+  },
+  {
+    "id": "resource-1349",
+    "title": "网盘搜索,就上蓝搜搜 - 好用的蓝奏云搜索引擎",
+    "url": "https://lanzou.2su.cc/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "02.搜蓝奏云资源"
+  },
+  {
+    "id": "resource-1350",
+    "title": "iOS PJ | 酷卡网盘👍",
+    "url": "https://pan.kukago.cn/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1351",
+    "title": "iOS PJ | 路灯网盘👍",
+    "url": "https://pan.eqishare.com/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1352",
+    "title": "蜗牛软件库【蜗牛资源发布页：woniu18.club",
+    "url": "http://woniu18.club/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1353",
+    "title": "滚哥网盘资源",
+    "url": "https://www.lanzoui.com/b838976",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1354",
+    "title": "小说漫画专区",
+    "url": "http://www.lanzoux.com/b04ygryij",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1355",
+    "title": "漫画小说专区",
+    "url": "https://lanzoux.com/b01tpsm6h",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1356",
+    "title": "新世界软件合集",
+    "url": "https://www.lanzoux.com/u/adminqizhu",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1357",
+    "title": "漫画软件合集",
+    "url": "https://pan.lanzoui.com/b765262/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1358",
+    "title": "秋颜软件库",
+    "url": "https://lanzoui.com/b341705",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1359",
+    "title": "A分享-全网软件合集",
+    "url": "https://lanzoui.com/b205552/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1360",
+    "title": "少宇团队全网软件合集",
+    "url": "https://lanzoui.com/u/shaoyu",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1361",
+    "title": "小鹏软件合集",
+    "url": "https://www.lanzoui.com/u/xiaopengi",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1362",
+    "title": "软件分享基地",
+    "url": "https://lanzoui.com/u/aiwange",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1363",
+    "title": "软件合集",
+    "url": "https://pan.lanzoui.com/b165784",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1364",
+    "title": "精选破解游戏",
+    "url": "https://pan.lanzoui.com/b888887",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1365",
+    "title": "破解类软件",
+    "url": "https://pan.lanzoui.com/b828085",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1366",
+    "title": "稚初软件",
+    "url": "https://pan.lanzoui.com/b200130",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1367",
+    "title": "分享社",
+    "url": "https://pan.lanzoui.com/b63771/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1368",
+    "title": "大肥爱分享",
+    "url": "https://pan.lanzoui.com/u/qianxun8",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1369",
+    "title": "BhVip",
+    "url": "https://pan.lanzoui.com/u/%E5%BD%AA%E7%85%8Cqq1846055318",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1370",
+    "title": "乐分享",
+    "url": "https://pan.lanzoui.com/b215476/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1371",
+    "title": "精选软件",
+    "url": "https://pan.lanzoui.com/b221497/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1372",
+    "title": "安惠购软件",
+    "url": "https://pan.lanzoui.com/b174576/",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1373",
+    "title": "Bs团队",
+    "url": "https://www.lanzoui.com/b93256",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1374",
+    "title": "GG分享社资源网",
+    "url": "https://www.lanzoux.com/b838976",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1375",
+    "title": "未归类合集",
+    "url": "https://www.lanzoui.com/b01b01h9a",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1376",
+    "title": "好软分享",
+    "url": "https://github.com/yoyodadada/haoruanfenxiang",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1377",
+    "title": "精选破解游戏合集",
+    "url": "https://www.lanzoux.com/b053xt4vg",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1378",
+    "title": "黑科技玩机👍",
+    "url": "https://www.lanzoux.com/b281858",
+    "status": "可用",
+    "category": "03 手机软件",
+    "section": "03.在线下载PJ软件"
+  },
+  {
+    "id": "resource-1379",
+    "title": "👍Telegram中文搜索（被墙） 「集各类资源于一身的电报」",
+    "url": "https://tgso.pro/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1380",
+    "title": "👍吾爱破解论坛 「集各类资源于一身的论坛」",
+    "url": "https://www.52pojie.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1381",
+    "title": "👍小帅同学的储物间 「集各类资源于一身的储物间」",
+    "url": "https://xiaoshuai.link/locker/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1382",
+    "title": "老站",
+    "url": "http://gmengshuai.ys168.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1383",
+    "title": "👍阿虚的博客 「集各类资源于一身的博客」",
+    "url": "http://axutongxue.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1384",
+    "title": "懒得勤快（被墙）「蓝奏云、网盘直链」",
+    "url": "https://ldqk.org/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1385",
+    "title": "423down「蓝奏云、网盘直链」",
+    "url": "https://www.423down.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1386",
+    "title": "不死鸟（被墙） 「分享为王」",
+    "url": "https://iao.su/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1387",
+    "title": "黑域基地「百度云、迅雷、网盘直链」",
+    "url": "http://www.hackhw.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1388",
+    "title": "果核剥壳「城通网盘、百度云盘、天翼云盘」",
+    "url": "https://www.ghpym.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1389",
+    "title": "奔跑中的奶酪「主打电脑浏览器」",
+    "url": "https://www.runningcheese.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.国内精品软件1区"
+  },
+  {
+    "id": "resource-1390",
+    "title": "腾龙工作室【Windows / Android / MAC】",
+    "url": "https://www.tenlonstudio.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1391",
+    "title": "发烧友绿软 【Windows / Android】",
+    "url": "https://fsylr.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1392",
+    "title": "MEFCL【Windows】",
+    "url": "https://www.mefcl.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1393",
+    "title": "Go破解【Windows / Android】",
+    "url": "https://www.gopojie.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1394",
+    "title": "马小帮 【Windows / Android】",
+    "url": "https://www.maxiaobang.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1395",
+    "title": "合集网 【Windows / Android】",
+    "url": "https://233heji.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1396",
+    "title": "备用",
+    "url": "https://233heji.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1397",
+    "title": "兴趣屋 【Windows / Android】",
+    "url": "https://www.xqu5.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1398",
+    "title": "异次元软件 【Windows / Android / MAC / IOS】",
+    "url": "https://www.iplaysoft.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1399",
+    "title": "小笨分享站 【Windows / Android】",
+    "url": "https://zhouxiaoben.info/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1400",
+    "title": "鱼后花园 【Windows / Android】",
+    "url": "https://www.fishlee.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1401",
+    "title": "夜雨聆风 【Windows / Android】",
+    "url": "http://www.yeyulingfeng.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1402",
+    "title": "小众软件 【Windows】",
+    "url": "https://www.appinn.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1403",
+    "title": "大眼仔旭 【Windows / Android】",
+    "url": "http://www.dayanzai.me/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1404",
+    "title": "绿色便携 【Windows / Android】",
+    "url": "https://www.portablesoft.org/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1405",
+    "title": "资源大亨【Windows / Android / IOS】",
+    "url": "https://www.vipsrc.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "02.国内精品软件2区"
+  },
+  {
+    "id": "resource-1406",
+    "title": "lrepacks（俄罗斯十年的老站点，Windows） 👍",
+    "url": "https://lrepacks.ru/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "03.国外精品软件"
+  },
+  {
+    "id": "resource-1407",
+    "title": "Filehippo（Windows / MAC）",
+    "url": "https://filehippo.com/zh/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.国外精品软件"
+  },
+  {
+    "id": "resource-1408",
+    "title": "softonic（欧洲站点，Windows / Android / MAC / IOS）",
+    "url": "https://en.softonic.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.国外精品软件"
+  },
+  {
+    "id": "resource-1409",
+    "title": "👍马克喵 「提供七款云盘下载」",
+    "url": "https://www.macat.vip/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1410",
+    "title": "👍Digit77 「蓝奏云、阿里云、百度云」",
+    "url": "https://www.digit77.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1411",
+    "title": "Mac分享频道 「123云、阿里云、小飞机网盘」",
+    "url": "https://macapp.org.cn/app/?btwaf=67080672",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1412",
+    "title": "麦氪派 「城通网盘」",
+    "url": "https://www.waitsun.com/topics/os",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1413",
+    "title": "1906资源站（提供Adobe系列） 「百度云网盘」",
+    "url": "http://1906zy.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1414",
+    "title": "黑苹果论坛（提供软件和macOS镜像下载）",
+    "url": "https://www.applex.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1415",
+    "title": "马可菠萝（海量Mac软件免费下载）「百度云和城通网盘」",
+    "url": "https://www.macbl.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.Mac破解软件"
+  },
+  {
+    "id": "resource-1416",
+    "title": "路灯网盘",
+    "url": "https://pan.eqishare.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.iOS软件专区"
+  },
+  {
+    "id": "resource-1417",
+    "title": "酷卡网盘",
+    "url": "https://pan.kukago.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.iOS软件专区"
+  },
+  {
+    "id": "resource-1418",
+    "title": "appWall",
+    "url": "http://appwall.today/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.iOS软件专区"
+  },
+  {
+    "id": "resource-1419",
+    "title": "📀系统之家（含有GHOST系统【不纯净】）",
+    "url": "http://www.xitongzhijia.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1420",
+    "title": "📀WIN7系统之家（含有GHOST系统【不纯净】）",
+    "url": "http://www.winwin7.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1421",
+    "title": "📀专注WIN 10",
+    "url": "http://iwin10.net/win10.html",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1422",
+    "title": "📀专注WIN 7（含有GHOST系统）",
+    "url": "https://www.newxitong.com/more/md5.html",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1423",
+    "title": "📀微软WIN10官方镜像一键安装（适用于系统可以正常启动的情况下）👍",
+    "url": "https://cloud.189.cn/t/QnauEvRVviUz",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1424",
+    "title": "📀msdn,我告诉你 👍",
+    "url": "https://msdn.itellyou.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1425",
+    "title": "📀msdn,我告诉你（新站）",
+    "url": "https://next.itellyou.cn/Original/Index",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1426",
+    "title": "📀电脑系统城（WINXP、WIN7、WIN10）",
+    "url": "http://www.dnxtc.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1427",
+    "title": "📀极简系统（WINXP、WIN7、WIN10）",
+    "url": "http://www.sysmini.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1428",
+    "title": "📀WINOS（WINXP、WIN8、WIN7、WIN10 精简版）",
+    "url": "https://www.winos.me/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1429",
+    "title": "📀纯净系统（WINXP、WIN7、WIN10）",
+    "url": "http://lvsexitong.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1430",
+    "title": "📀系统之家（WIN10 镜像）",
+    "url": "http://m.xitongtiandi.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1431",
+    "title": "📀TechBench（WIN 系列镜像）",
+    "url": "https://tb.rg-adguard.net/public.php",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1432",
+    "title": "📀uupdump（WIN10 镜像）",
+    "url": "https://www.uupdump.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1433",
+    "title": "文章 《Ubuntu镜像下载教程》",
+    "url": "https://www.yuque.com/docs/share/b20df6e3-bd2a-4d3f-af86-68ec58c4ad18",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1434",
+    "title": "Ubuntu 阿里云开源镜像下载",
+    "url": "http://mirrors.aliyun.com/ubuntu-releases/?spm=a2c6h.25603864.0.0.23583decwq6Pgy",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1435",
+    "title": "Ubuntu 中科大源下载",
+    "url": "http://mirrors.ustc.edu.cn/ubuntu-releases/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1436",
+    "title": "Ubuntu 浙江大学下载",
+    "url": "http://mirrors.zju.edu.cn/ubuntu-releases/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1437",
+    "title": "Ubuntu 墨尔本开源镜像下载",
+    "url": "http://mirrors.melbourne.co.uk/ubuntu-releases/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1438",
+    "title": "ubuntu 官方下载",
+    "url": "https://cn.ubuntu.com/download",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1439",
+    "title": "Ubuntu 网易下载",
+    "url": "http://mirrors.163.com/ubuntu-releases/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1440",
+    "title": "📀CentOS阿里云镜像",
+    "url": "https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.13651104.0.0.7f5012b2kmgdUI",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1441",
+    "title": "📀CentOS官方下载",
+    "url": "https://www.centos.org/download/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1442",
+    "title": "文章 《CentOS 阿里云镜像下载介绍》",
+    "url": "https://thoughts.teambition.com/share/5ffe7d5d0d65cf00467d5127#title=CentOS_%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1443",
+    "title": "📀Deepin官方下载",
+    "url": "https://www.deepin.org/zh/download/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1444",
+    "title": "📀上海交通大学开源镜像站",
+    "url": "http://ftp.sjtu.edu.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1445",
+    "title": "📀华为开源镜像站",
+    "url": "https://mirrors.huaweicloud.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1446",
+    "title": "📀北京交通大学开源镜像站",
+    "url": "https://mirror.bjtu.edu.cn/cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1447",
+    "title": "📀PNNL开源镜像",
+    "url": "https://mirror.pnl.gov/index.html",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1448",
+    "title": "📀墨尔本开源镜像",
+    "url": "http://mirrors.melbourne.co.uk/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1449",
+    "title": "📀中科大开源镜像",
+    "url": "http://mirrors.ustc.edu.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1450",
+    "title": "📀CentOS阿里云下载",
+    "url": "https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.13651104.0.0.7f5012b2kmgdUI",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1451",
+    "title": "📀清华大学开源软件镜像站",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/#",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1452",
+    "title": "📀阿里云官方镜像站",
+    "url": "https://developer.aliyun.com/mirror/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1453",
+    "title": "📀网易开源镜像站",
+    "url": "http://mirrors.163.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1454",
+    "title": "📀浙江大学开源镜像站",
+    "url": "http://mirrors.zju.edu.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1455",
+    "title": "Win10 Office2019 等 KEY 激活 密钥 实时更新",
+    "url": "https://www.nruan.com/win-key.html",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "06.开源国内镜像"
+  },
+  {
+    "id": "resource-1456",
+    "title": "懒得勤快（被墙）",
+    "url": "https://ldqk.org/special/6",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "01.稀有软件"
+  },
+  {
+    "id": "resource-1457",
+    "title": "脑袋瓜子博客",
+    "url": "https://www.naodai.org/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.稀有软件"
+  },
+  {
+    "id": "resource-1458",
+    "title": "瓜子云盘镜像",
+    "url": "https://go.naodai.org/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "01.稀有软件"
+  },
+  {
+    "id": "resource-1459",
+    "title": "月情的自留地",
+    "url": "https://www.salanghe.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "01.稀有软件"
+  },
+  {
+    "id": "resource-1460",
+    "title": "高木同学（被墙）",
+    "url": "https://t.me/gaomutongxue",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "02.稀有软件TG频道"
+  },
+  {
+    "id": "resource-1461",
+    "title": "FL破解补丁（被墙）",
+    "url": "https://t.me/flstudioc",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "02.稀有软件TG频道"
+  },
+  {
+    "id": "resource-1462",
+    "title": "FXXKMKD Channel（被墙）",
+    "url": "https://t.me/fxxkmkd_channel",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "02.稀有软件TG频道"
+  },
+  {
+    "id": "resource-1463",
+    "title": "👍电报 / TG / 纸飞机",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1768731253431_57885",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1464",
+    "title": "ApkHome官网（网页版）",
+    "url": "https://apkhome.net/?s=%E2%85%A4%CF%81n",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1465",
+    "title": "Aptoide（网页版）",
+    "url": "https://cn.aptoide.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1466",
+    "title": "APKDownload（网页版）",
+    "url": "https://apkdownload.cc/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1467",
+    "title": "APKMirror（网页版）",
+    "url": "https://www.apkmirror.com/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1468",
+    "title": "Google Services Framework（被墙）",
+    "url": "https://www.apkmirror.com/apk/google-inc/google-services-framework/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1469",
+    "title": "google play service（被墙）",
+    "url": "https://www.apkmirror.com/apk/google-inc/google-play-services/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1470",
+    "title": "google play store（被墙）",
+    "url": "https://www.apkmirror.com/apk/google-inc/google-play-store/",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "03.下载谷歌/外网软件"
+  },
+  {
+    "id": "resource-1471",
+    "title": "Get Shadowrocket（小火箭账号分享站）",
+    "url": "https://free.shadowrocket.online/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1472",
+    "title": "好棒的羊毛站（小火箭账号分享站）",
+    "url": "https://wohaobang.cn/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1473",
+    "title": "苹果帝（苹果美区账号 APPLE ID 免费账号共享）",
+    "url": "https://appledi.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1474",
+    "title": "果书分享",
+    "url": "https://idshare.me/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1475",
+    "title": "最新苹果IOS美区账号APPLE ID共享账号 每天自动更新(2025-02-22 23:15:02)-微界资源网",
+    "url": "https://zy.weiaj.com/post/65",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1476",
+    "title": "苹果id分享网|苹果美区账号免费共享APPLE ID海外appstore账号密码 - iddog",
+    "url": "https://iddog.cc/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "04.苹果账号分享"
+  },
+  {
+    "id": "resource-1477",
+    "title": "👍Instream/Youtube/Niconico/Twitter/微博合集地址",
+    "url": "https://www.yuque.com/docs/share/9116b792-cef7-4431-ae57-0d4cbcf78ecd",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1478",
+    "title": "（Instream）insplus",
+    "url": "https://insplusapp.com",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1479",
+    "title": "（Youtube）Pure Tuber",
+    "url": "https://www.puretuber.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1480",
+    "title": "（Youtube）Youtube Vanced",
+    "url": "https://youtubevanced.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1481",
+    "title": "（Youtube）NewPipe",
+    "url": "https://newpipe.net/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1482",
+    "title": "（Niconico）Nicoid",
+    "url": "https://nicoid.cn.uptodown.com/android",
+    "status": "待核验",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1483",
+    "title": "（Twitter）Twidere",
+    "url": "https://twidere.com/",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1484",
+    "title": "（微博）Maipo（MAC / iOS）",
+    "url": "https://weiboformac.sinaapp.com",
+    "status": "可用",
+    "category": "04 全端软件",
+    "section": "05.第三方APP"
+  },
+  {
+    "id": "resource-1485",
+    "title": "B站-bilibili",
+    "url": "https://www.bilibili.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1486",
+    "title": "油管-YouTube",
+    "url": "https://www.youtube.com/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1487",
+    "title": "网易公开课",
+    "url": "https://open.163.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1488",
+    "title": "我要自学网",
+    "url": "https://www.51zxw.net/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1489",
+    "title": "黑马程序员",
+    "url": "http://yun.itheima.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1490",
+    "title": "MOOC",
+    "url": "https://www.icourse163.org/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "00.在线学习"
+  },
+  {
+    "id": "resource-1491",
+    "title": "网盘推荐",
+    "url": "https://mp.weixin.qq.com/s/hgyofeJjM54XRmi5__PA6A",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1492",
+    "title": "夸克云盘",
+    "url": "https://pan.quark.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1493",
+    "title": "天翼云盘",
+    "url": "https://cloud.189.cn/main.action#home",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1494",
+    "title": "百度云盘",
+    "url": "https://pan.baidu.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1495",
+    "title": "123云盘",
+    "url": "https://www.123pan.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1496",
+    "title": "阿里云盘",
+    "url": "https://www.aliyundrive.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1497",
+    "title": "和彩云盘",
+    "url": "https://yun.139.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1498",
+    "title": "坚果云",
+    "url": "https://www.jianguoyun.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1499",
+    "title": "OneDrive",
+    "url": "https://onedrive.live.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1500",
+    "title": "迅雷云盘",
+    "url": "https://pan.xunlei.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1501",
+    "title": "光鸭云盘",
+    "url": "https://www.guangyapan.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1502",
+    "title": "UC网盘-免费大空间丨免费云盘丨上传下载不限速丨大文件分享丨安全存储丨视频云收藏丨UC浏览器出品",
+    "url": "https://drive.uc.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "稳定"
+  },
+  {
+    "id": "resource-1503",
+    "title": "蓝奏云盘",
+    "url": "https://pc.woozooo.com/mydisk.php",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "百兆以下"
+  },
+  {
+    "id": "resource-1504",
+    "title": "文叔叔",
+    "url": "https://www.wenshushu.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1505",
+    "title": "皮皮直连",
+    "url": "https://www.ppzhilian.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1506",
+    "title": "零代码快传（大小上限4GB，临时文件文件传输完全免费无需登录）",
+    "url": "https://lingdaima.com/file/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1507",
+    "title": "轻松传（传文件，传文本，传屏幕，传实时视频）",
+    "url": "https://easychuan.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1508",
+    "title": "File（大文件传输：无文件大小限制）",
+    "url": "https://file.kiwi/zh",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1509",
+    "title": "fastsend.ing（点对点快速传输文件和目录）",
+    "url": "https://fastsend.ing/zh",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "临时互传"
+  },
+  {
+    "id": "resource-1510",
+    "title": "小飞机网盘官网—分享、下载、存储，更简单",
+    "url": "https://www.feijipan.com/?auto=true",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "网赚网盘"
+  },
+  {
+    "id": "resource-1511",
+    "title": "坚果云收件箱👍",
+    "url": "https://workspace.jianguoyun.com/inbox/home/establish/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "收文件/作业"
+  },
+  {
+    "id": "resource-1512",
+    "title": "文叔叔",
+    "url": "https://www.wenshushu.cn/collect",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "收文件/作业"
+  },
+  {
+    "id": "resource-1513",
+    "title": "「综合站点」🌕PanSearch（夸克/阿里/百度/迅雷）",
+    "url": "https://www.pansearch.me/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1514",
+    "title": "「综合站点」🌕皮小宝（夸克/阿里/百度/迅雷）",
+    "url": "http://www.pixiaobao.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1515",
+    "title": "「综合站点」🌕猫狸盘搜（夸克/阿里/百度/天翼）",
+    "url": "https://www.alipansou.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1516",
+    "title": "「综合站点」🌕小站云盘（夸克/阿里/天翼）",
+    "url": "https://kuaikan.ink/forum-5.htm",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1517",
+    "title": "「综合站点」🌕资源潭（夸克/阿里/百度）",
+    "url": "https://ziyuantan.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1518",
+    "title": "「综合站点」🌕天天搜索（夸克/阿里/百度）",
+    "url": "https://www.daysou.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1519",
+    "title": "「综合站点」🌕云盘资源分享社区（夸克/百度/迅雷）",
+    "url": "https://yunpan1.cc/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1520",
+    "title": "「综合站点」🌕咔帕搜索（夸克/阿里/百度）",
+    "url": "https://www.cuppaso.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1521",
+    "title": "「综合站点」🌖云盘资源网发布页（夸克/阿里/百度）",
+    "url": "https://docs.qq.com/doc/DTVhJR1RibVNEUmJB",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1522",
+    "title": "「综合站点」🌖千帆搜索（夸克/阿里/百度/迅雷）",
+    "url": "https://pan.qianfan.app",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1523",
+    "title": "「综合站点」🌖网盘资源站（夸克/阿里/百度/天翼）",
+    "url": "https://daiguaji.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1524",
+    "title": "「综合站点」🌖易搜（夸克/阿里/百度/迅雷）",
+    "url": "https://yiso.fun/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1525",
+    "title": "「综合站点」🌖奇它论坛（天翼/阿里）",
+    "url": "https://www.qitabbs.com/all-circles",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1526",
+    "title": "「综合站点」🌖盘基地资源论坛（夸克/阿里/百度/迅雷）【注册码1元】",
+    "url": "https://www.panjd.com",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "01.综合站点"
+  },
+  {
+    "id": "resource-1527",
+    "title": "「阿里云盘」🌕鸡盒盘（聚合类）",
+    "url": "https://jihepan.top",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "02.阿里云盘"
+  },
+  {
+    "id": "resource-1528",
+    "title": "「阿里云盘」🌕找资源",
+    "url": "https://zhaoziyuan.me/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "02.阿里云盘"
+  },
+  {
+    "id": "resource-1529",
+    "title": "「阿里云盘」🌕盘搜论坛",
+    "url": "https://bbs.alipansou.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "02.阿里云盘"
+  },
+  {
+    "id": "resource-1530",
+    "title": "「阿里云盘」🌕网盘资源分享",
+    "url": "https://aliwp.cn",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "02.阿里云盘"
+  },
+  {
+    "id": "resource-1531",
+    "title": "「夸克云盘」🌕趣盘搜",
+    "url": "https://pan.funletu.com/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "03.夸克云盘"
+  },
+  {
+    "id": "resource-1532",
+    "title": "「夸克云盘」🌕KK网盘资源",
+    "url": "https://www.kkpans.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "03.夸克云盘"
+  },
+  {
+    "id": "resource-1533",
+    "title": "「夸克云盘」🌕KK小站",
+    "url": "https://kkxz.vip/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "03.夸克云盘"
+  },
+  {
+    "id": "resource-1534",
+    "title": "「夸克云盘」🌕share",
+    "url": "https://share.shuoaini.xyz/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "03.夸克云盘"
+  },
+  {
+    "id": "resource-1535",
+    "title": "「夸克云盘」🌕资源江湖网",
+    "url": "https://kk.leijing.xyz/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "03.夸克云盘"
+  },
+  {
+    "id": "resource-1536",
+    "title": "「天翼云盘」🌕天翼小站",
+    "url": "https://jinglei.eu.org/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "04.天翼云盘"
+  },
+  {
+    "id": "resource-1537",
+    "title": "「天翼云盘」🌕天逸搜",
+    "url": "https://www.tianyiso.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.天翼云盘"
+  },
+  {
+    "id": "resource-1538",
+    "title": "「天翼云盘」🌕海绵小站",
+    "url": "https://haimian.eu.org/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.天翼云盘"
+  },
+  {
+    "id": "resource-1539",
+    "title": "「天翼云盘」🌕雷鲸小站",
+    "url": "https://www.leijing.xyz/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.天翼云盘"
+  },
+  {
+    "id": "resource-1540",
+    "title": "☁️超能搜（合集性）",
+    "url": "https://www.chaonengso.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "05.百度云盘搜索"
+  },
+  {
+    "id": "resource-1541",
+    "title": "☁️毕方铺",
+    "url": "https://www.iizhi.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "05.百度云盘搜索"
+  },
+  {
+    "id": "resource-1542",
+    "title": "☁️猪猪盘",
+    "url": "http://www.zhuzhupan.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "05.百度云盘搜索"
+  },
+  {
+    "id": "resource-1543",
+    "title": "☁️小白盘",
+    "url": "https://www.xiaobaipan.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "05.百度云盘搜索"
+  },
+  {
+    "id": "resource-1544",
+    "title": "「TG搜」🌕tgso",
+    "url": "https://tgso.pro/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "06.TG搜"
+  },
+  {
+    "id": "resource-1545",
+    "title": "「TG搜」🌕Meow.TG",
+    "url": "https://meow.tg/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "06.TG搜"
+  },
+  {
+    "id": "resource-1546",
+    "title": "「TG搜」🌕千帆搜索",
+    "url": "https://tg.qianfan.app/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "06.TG搜"
+  },
+  {
+    "id": "resource-1547",
+    "title": "Github",
+    "url": "https://github.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1548",
+    "title": "CSDN",
+    "url": "https://www.csdn.net/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1549",
+    "title": "博客园",
+    "url": "https://www.cnblogs.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1550",
+    "title": "Gitee",
+    "url": "https://gitee.com/explore",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1551",
+    "title": "不死鸟",
+    "url": "https://iui.su/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1552",
+    "title": "猿分天空🔥",
+    "url": "https://yftk.fun/bbs/?t=8",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1553",
+    "title": "少数派",
+    "url": "https://sspai.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1554",
+    "title": "公众号",
+    "url": "https://mp.weixin.qq.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1555",
+    "title": "小红书",
+    "url": "https://www.xiaohongshu.com/explore",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1556",
+    "title": "奔跑中的奶酪",
+    "url": "https://www.runningcheese.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1557",
+    "title": "LINUXDO 👍",
+    "url": "https://linux.do/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1558",
+    "title": "吾爱破解",
+    "url": "https://www.52pojie.cn/index.php",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1559",
+    "title": "姿势小王子",
+    "url": "https://bbs.zsxwz.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1560",
+    "title": "虫部落 - 让搜索更简单",
+    "url": "https://www.chongbuluo.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线论坛"
+  },
+  {
+    "id": "resource-1561",
+    "title": "飞书｜字节跳动旗下AI工作平台 - 飞书官网 👍",
+    "url": "https://www.feishu.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1562",
+    "title": "Notion 👍",
+    "url": "https://app.notion.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1563",
+    "title": "息流",
+    "url": "https://flowus.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1564",
+    "title": "语雀",
+    "url": "https://www.yuque.com/dashboard",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1565",
+    "title": "金山文档",
+    "url": "https://www.kdocs.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1566",
+    "title": "腾讯文档",
+    "url": "https://docs.qq.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1567",
+    "title": "石墨文档",
+    "url": "https://shimo.im/welcome",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1568",
+    "title": "Thoughts",
+    "url": "https://thoughts.teambition.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线文档"
+  },
+  {
+    "id": "resource-1569",
+    "title": "无限容量图床",
+    "url": "https://mp.weixin.qq.com/s/HcDOQs_Hb3Iee3gPwWBraA",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1570",
+    "title": "图床导航 （大量的在线图床）",
+    "url": "https://yaohuo.me/tuchuang/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1571",
+    "title": "👍聚合图床（使用需要注册登录, 接口多，速度快，免费用户单次上传≤5张）",
+    "url": "https://www.superbed.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1572",
+    "title": "骤雨未歇 - 文件上传",
+    "url": "https://file.sang.pub/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1573",
+    "title": "图床-任你流",
+    "url": "https://file.leishennb.icu/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1574",
+    "title": "柯艺云图床-视频床-文件床-永久免费✅",
+    "url": "https://tc.qdqqd.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1575",
+    "title": "妖友云&云像素-图床文件分享",
+    "url": "https://yh.cloudpix.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1576",
+    "title": "PICUI - PICUI图床",
+    "url": "https://picui.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1577",
+    "title": "图壳，图片最稳定的家 | 免费、安全、可靠图床",
+    "url": "https://imgkr.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1578",
+    "title": "ImgURL免费图床",
+    "url": "https://www.imgurl.ink/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1579",
+    "title": "vgy.me（网站本身加载速度慢，速度一般）",
+    "url": "https://vgy.me/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1580",
+    "title": "路过图床（速度还行，预览全图带广告，每日有限制上传）",
+    "url": "https://imgse.com/?ref=zhanid.com",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1581",
+    "title": "imgBB图床（无markdown链接）",
+    "url": "https://imgbb.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1582",
+    "title": "picb.cc（加载速度一般）",
+    "url": "https://www.picb.cc/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1583",
+    "title": "sm.ms图床（加载速度一般）",
+    "url": "https://sm.ms/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1584",
+    "title": "IMGURL",
+    "url": "https://www.imgurl.ink/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1585",
+    "title": "IMGBB",
+    "url": "https://zh-cn.imgbb.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "04.图床/图片"
+  },
+  {
+    "id": "resource-1586",
+    "title": "pixabay",
+    "url": "https://pixabay.com/zh/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1587",
+    "title": "素材图片",
+    "url": "https://www.pexels.com/zh-cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1588",
+    "title": "标小智",
+    "url": "https://www.logosc.cn/so/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1589",
+    "title": "colorHub",
+    "url": "https://colorhub.me/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1590",
+    "title": "极简壁纸",
+    "url": "https://bz.zzzmh.cn/#index",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1591",
+    "title": "Hippopx",
+    "url": "https://www.hippopx.com/zh",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1592",
+    "title": "故宫名画",
+    "url": "https://minghuaji.dpm.org.cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1593",
+    "title": "Wallpaper",
+    "url": "https://wall.alphacoders.com/?lang=Chinese",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1594",
+    "title": "必应壁纸",
+    "url": "https://dailybing.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1595",
+    "title": "pixiv镜像1",
+    "url": "https://pixiv.moe/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1596",
+    "title": "pexels",
+    "url": "https://www.pexels.com/zh-cn/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1597",
+    "title": "哲风壁纸",
+    "url": "https://haowallpaper.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1598",
+    "title": "搜图神器",
+    "url": "http://www.soutushenqi.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1599",
+    "title": "pixiv镜像2",
+    "url": "https://www.huashi6.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线壁纸"
+  },
+  {
+    "id": "resource-1600",
+    "title": "👍Font Awesome 4.7.0",
+    "url": "https://9iphp.com/fa-icons",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1601",
+    "title": "👍dryicons",
+    "url": "https://dryicons.com/free-icons",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1602",
+    "title": "👍flaticon",
+    "url": "https://www.flaticon.com/",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1603",
+    "title": "Font Awesome",
+    "url": "https://fontawesome.com/icons?d=gallery&p=2",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1604",
+    "title": "svg在线转为ico",
+    "url": "https://www.aconvert.com/cn/icon/svg-to-ico/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1605",
+    "title": "iosicon",
+    "url": "https://www.iosicongallery.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1606",
+    "title": "iconshock",
+    "url": "https://www.iconshock.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1607",
+    "title": "materia",
+    "url": "https://material.io/resources/icons/?style=baseline",
+    "status": "待核验",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1608",
+    "title": "Themify Icons",
+    "url": "http://themify.me/themify-icons",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1609",
+    "title": "iconfont",
+    "url": "https://www.iconfont.cn/plus",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1610",
+    "title": "👍iconmonster",
+    "url": "https://iconmonstr.com/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1611",
+    "title": "Font Awesome图标中文网",
+    "url": "http://www.fontawesome.com.cn/faicons/",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1612",
+    "title": "Font Awesome Free’s Cheatsheet",
+    "url": "https://fontawesome.com/cheatsheet?from=io",
+    "status": "可用",
+    "category": "05 实用网站",
+    "section": "在线图标"
+  },
+  {
+    "id": "resource-1613",
+    "title": "👍文章 《以图识图，帮你找到原图出处》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488311&idx=1&sn=88b451040786c67df847c31cb213d24d&chksm=9b8a6a94acfde382e046312092a8dd535779b9d23a839c495aa226ae93dfc80b8992327",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1614",
+    "title": "📸谷歌识图（被墙） 👍",
+    "url": "https://images.google.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1615",
+    "title": "📸谷歌识图镜像1",
+    "url": "https://gfsoso.99lb.net/image.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1616",
+    "title": "📸Yandex识图 👍",
+    "url": "https://yandex.com/images/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1617",
+    "title": "📸必应可视化搜索",
+    "url": "https://www.bing.com/visualsearch",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1618",
+    "title": "📸TinEye（被墙）",
+    "url": "https://tineye.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1619",
+    "title": "📸百度识图",
+    "url": "https://image.baidu.com/?fr=shitu",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1620",
+    "title": "📸搜狗识图",
+    "url": "https://pic.sogou.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1621",
+    "title": "📸Unsplash",
+    "url": "https://unsplash.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1622",
+    "title": "📸EveryPixel（素材反向搜索）",
+    "url": "https://www.everypixel.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1623",
+    "title": "📸Saucenao（被墙）",
+    "url": "http://saucenao.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1624",
+    "title": "📸Ascii2d（被墙）",
+    "url": "http://ascii2d.net/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1625",
+    "title": "📸专搜二次元动漫（被墙）",
+    "url": "http://iqdb.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1626",
+    "title": "📸专搜三次元动漫（被墙）",
+    "url": "http://3d.iqdb.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1627",
+    "title": "📸Trace",
+    "url": "https://trace.moe/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1628",
+    "title": "📸京东识图",
+    "url": "https://jd.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1629",
+    "title": "📸淘宝识图",
+    "url": "https://taobao.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.以图识图"
+  },
+  {
+    "id": "resource-1630",
+    "title": "GIF制作",
+    "url": "https://www.soogif.com/editor",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1631",
+    "title": "logo设计",
+    "url": "http://www.diugai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1632",
+    "title": "将图像几何化",
+    "url": "https://samcodes.co.uk/project/geometrize-haxe-web/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1633",
+    "title": "在线图片编辑",
+    "url": "https://www.iloveimg.com/zh-cn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1634",
+    "title": "GIF在线压缩",
+    "url": "https://www.tutieshi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1635",
+    "title": "图片无损放大",
+    "url": "https://bigjpg.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1636",
+    "title": "最优图片压缩",
+    "url": "https://zh.recompressor.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1637",
+    "title": "GIF工具",
+    "url": "https://ezgif.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1638",
+    "title": "AI 抠图 在线智能抠图",
+    "url": "https://www.remove.bg/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1639",
+    "title": "AI 抠图 本地 AI 抠图 - 隐私保护",
+    "url": "https://koukoukou.cn/local",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1640",
+    "title": "AI 抠图 一键抠图_在线抠图_图片去除背景 | RemovePhotos",
+    "url": "https://remove.photos/zh-cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1641",
+    "title": "AI 抠图 Remove Image Backgrounds for Free – Locally and with Open Source via rmbg.fun. | Background Remover",
+    "url": "https://rmbg.fun/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1642",
+    "title": "AI 抠图 Remove Background from Image, Free, No Signup - Pixian.AI",
+    "url": "https://pixian.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1643",
+    "title": "图片OCR工具",
+    "url": "https://mp.weixin.qq.com/s/DQqQ1FYyoQ9GNG6-g4bcBQ",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1644",
+    "title": "图片批量处理",
+    "url": "https://mp.weixin.qq.com/s/haY0NCYgemGrPjevqXxApw",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1645",
+    "title": "截图工具推荐",
+    "url": "https://mp.weixin.qq.com/s/JCATXzYNvldAeFkPOd211A",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1646",
+    "title": "图片变清晰神器，一键免费升级4k | PhotoGrid",
+    "url": "https://www.photogrid.app/zh-cn/image-enhancer/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1647",
+    "title": "图片变清晰 - AI在线提高图片清晰度 | PhoEdit",
+    "url": "https://phoedit.com/zh/image-upscaler/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.图片处理"
+  },
+  {
+    "id": "resource-1648",
+    "title": "免费一键视频下载工具_视频无水印解析下载器(b站、抖音)平台去水印下载 - i导航解析器👍",
+    "url": "https://www.idaohang123.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1649",
+    "title": "七七视频解析",
+    "url": "https://jajaja.cn/#",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1650",
+    "title": "Youtube下载-支持1080p",
+    "url": "https://www.kedou.life/extract/youtube",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1651",
+    "title": "YouTube高清视频在线下载 - 保存油管4K视频到本地",
+    "url": "https://snapany.com/zh/youtube",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1652",
+    "title": "短视频下载",
+    "url": "https://weibo.iiilab.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1653",
+    "title": "微博视频下载",
+    "url": "https://weibomiaopai.com/online-video-download-helper/weibo",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1654",
+    "title": "b站视频下载🔥",
+    "url": "https://flowus.cn/share/53d1b790-bb5b-4b73-9a7b-926835d63c00",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1655",
+    "title": "视频下载教程",
+    "url": "https://mp.weixin.qq.com/s/H0b4vfs3Xcg1xDmgmSDxqg",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短视频/B站解析"
+  },
+  {
+    "id": "resource-1656",
+    "title": "谷歌插件官网（被墙）",
+    "url": "https://chrome.google.com/webstore/category/extensions",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1657",
+    "title": "Edge插件官网",
+    "url": "https://microsoftedge.microsoft.com/addons/Microsoft-Edge-Extensions-Home?source=sfw",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1658",
+    "title": "火狐插件官网",
+    "url": "https://addons.mozilla.org/zh-CN/firefox/extensions",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1659",
+    "title": "脚本：百度网盘视频播放尊享SVIP",
+    "url": "https://greasyfork.org/zh-CN/scripts/426952",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1660",
+    "title": "👍更多方法：文章 《百度云盘不开SVIP也能在线倍速播放视频「考研党必备」》",
+    "url": "https://mp.weixin.qq.com/s/F8QO_AnpGu2vt7tc_DbD5g",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1661",
+    "title": "百度云不限速🔥",
+    "url": "https://xiaoshuai.link/2023/01/28/%E7%9C%8B%E5%AE%8C%E6%9C%AC%E7%AF%87%EF%BC%8C%E7%99%BE%E5%BA%A6%E4%BA%91%E6%97%A0%E9%99%90%E5%8A%A0%E9%80%9F%E3%80%8C2024%E6%9C%80%E6%96%B0%E3%80%8D/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1662",
+    "title": "天翼云不限速",
+    "url": "https://mp.weixin.qq.com/s/gZjMrwdl0CsFcOncO0y3WQ",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1663",
+    "title": "👍文章 《都2023年了，百度云盘不花钱还能不限速吗？》",
+    "url": "https://mp.weixin.qq.com/s/PIsV3-yK25OGcG-ks2Z4qA",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1664",
+    "title": "👍文章 《天翼云盘终极下载教程，但愿能长久使用》",
+    "url": "https://mp.weixin.qq.com/s/gZjMrwdl0CsFcOncO0y3WQ",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1665",
+    "title": "天翼云盘 解析网站1",
+    "url": "http://189.ly93.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "网盘攻略(倍速/解析)"
+  },
+  {
+    "id": "resource-1666",
+    "title": "百度文库下载♻",
+    "url": "https://www.yuque.com/docs/share/4fc7c1e2-82ca-4d42-916a-e104b8c71fe0",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "百度文库复制和下载"
+  },
+  {
+    "id": "resource-1667",
+    "title": "永久更新地址：👍 文库、CSDN下载器",
+    "url": "https://www.yuque.com/xiaoshuai-09eym/bhsttx/iiyq3v?",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "百度文库复制和下载"
+  },
+  {
+    "id": "resource-1668",
+    "title": "脚本 Wenku Doc Downloader脚本 ✅",
+    "url": "https://greasyfork.org/zh-CN/scripts/435884-wenku-doc-downloader",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "百度文库复制和下载"
+  },
+  {
+    "id": "resource-1669",
+    "title": "vvv大法 在baidu后面加上三个字母vvv，然后回车✅",
+    "url": "http://www.html22.com/zh/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "百度文库复制和下载"
+  },
+  {
+    "id": "resource-1670",
+    "title": "77工具 免费版",
+    "url": "https://www.tool77.com/wenku",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "百度文库复制和下载"
+  },
+  {
+    "id": "resource-1671",
+    "title": "豆包 / 千问 无水印下载器 · 浏览器扩展 👍",
+    "url": "https://www.xiawuyou.com/index/index/extension.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.解析下载"
+  },
+  {
+    "id": "resource-1672",
+    "title": "GitHub - klierbyck/doubao-cleaner: 用于解析下载豆包、千问等页面中无水印的图片/视频素材 · GitHub",
+    "url": "https://github.com/klierbyck/doubao-cleaner",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.解析下载"
+  },
+  {
+    "id": "resource-1673",
+    "title": "千问视频无水印下载",
+    "url": "https://qwen.537.qzz.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.解析下载"
+  },
+  {
+    "id": "resource-1674",
+    "title": "GitHub - ihmily/doubao-nomark: 一键下载无水印豆包AI图片/视频API | 浏览器扩展| 微软Edge插件 | 解析API · GitHub",
+    "url": "https://github.com/ihmily/doubao-nomark",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "07.解析下载"
+  },
+  {
+    "id": "resource-1675",
+    "title": "代码随想录",
+    "url": "https://www.programmercarl.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1676",
+    "title": "labuladong 的算法笔记",
+    "url": "https://labuladong.online/algo/home/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1677",
+    "title": "LeetCode中文版",
+    "url": "https://leetcode-cn.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1678",
+    "title": "英文版",
+    "url": "https://leetcode.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1679",
+    "title": "牛客网 - 找工作神器|笔试题库|面试经验|实习招聘内推，求职就业一站解决_牛客网",
+    "url": "https://www.nowcoder.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1680",
+    "title": "Loading - 洛谷 | 计算机科学教育新生态",
+    "url": "https://www.luogu.com.cn/problem/list",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1681",
+    "title": "卡码网KamaCoder",
+    "url": "https://kamacoder.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1682",
+    "title": "CodeTop 面试题目总结",
+    "url": "https://codetop.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1683",
+    "title": "InterviewGuide大厂面试真题",
+    "url": "https://top.interviewguide.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "在线刷题"
+  },
+  {
+    "id": "resource-1684",
+    "title": "台湾大学李宏毅教授课程专区",
+    "url": "https://aistudio.baidu.com/lhycourse",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1685",
+    "title": "《动手学深度学习》 — 动手学深度学习 2.0.0 documentation",
+    "url": "https://zh.d2l.ai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1686",
+    "title": "神经网络与深度学习",
+    "url": "https://nndl.github.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1687",
+    "title": "AI-EDU",
+    "url": "https://microsoft.github.io/ai-edu/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1688",
+    "title": "leerumor/ai-study: 人工智能学习资料超全整理",
+    "url": "https://github.com/leerumor/ai-study",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1689",
+    "title": "极客时间文档（AI大数据-大模型、RAG、Agent等）",
+    "url": "https://uaxe.github.io/geektime-docs/AI-%E5%A4%A7%E6%95%B0%E6%8D%AE/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "人工智能"
+  },
+  {
+    "id": "resource-1690",
+    "title": "小林coding",
+    "url": "https://xiaolincoding.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1691",
+    "title": "易百教程",
+    "url": "https://www.yiibai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1692",
+    "title": "w3school",
+    "url": "https://www.w3school.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1693",
+    "title": "菜鸟教程",
+    "url": "https://www.runoob.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1694",
+    "title": "菜鸟鸭",
+    "url": "https://www.cainiaoya.com/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1695",
+    "title": "思否",
+    "url": "https://segmentfault.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1696",
+    "title": "stack",
+    "url": "https://stackoverflow.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1697",
+    "title": "开源中国",
+    "url": "https://www.oschina.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1698",
+    "title": "阿秀的学习笔记",
+    "url": "https://interviewguide.cn/#/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1699",
+    "title": "编程指北-计算机自学网站",
+    "url": "https://csguide.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1700",
+    "title": "Home | C++ 全栈知识体系",
+    "url": "https://stibel.icu/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1701",
+    "title": "CppGuide社区",
+    "url": "https://cppguide.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1702",
+    "title": "C 参考手册 - cppreference.com",
+    "url": "https://zh.cppreference.com/w/c",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1703",
+    "title": "cppreference.com",
+    "url": "https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1704",
+    "title": "帅地玩编程-校招|面试|学习路线，你都可以在这里找到",
+    "url": "https://www.iamshuaidi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1705",
+    "title": "Java 面试指南 | JavaGuide",
+    "url": "https://javaguide.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1706",
+    "title": "How2J 的 Java教程",
+    "url": "https://how2j.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1707",
+    "title": "Golang 中文学习文档",
+    "url": "https://golang.halfiisland.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1708",
+    "title": "The Way to Go",
+    "url": "https://learnku.com/docs/the-way-to-go",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1709",
+    "title": "Go 指南 - 带交互",
+    "url": "https://tour.go-zh.org/list",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1710",
+    "title": "GoGuide",
+    "url": "https://github.com/coderit666/GoGuide",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1711",
+    "title": "开始使用 - Go 编程语言",
+    "url": "https://go-lang.org.cn/learn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1712",
+    "title": "Go语言中文网 - Golang中文社区",
+    "url": "https://studygolang.com/?p=2",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1713",
+    "title": "崔庆才",
+    "url": "https://cuiqingcai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1714",
+    "title": "Rust语言圣经(Rust Course)",
+    "url": "https://course.rs/about-book.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1715",
+    "title": "Comprehensive Rust",
+    "url": "https://google.github.io/comprehensive-rust/zh-CN/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1716",
+    "title": "二丫讲梵",
+    "url": "https://wiki.eryajf.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1717",
+    "title": "良许Linux",
+    "url": "https://www.lxlinux.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1718",
+    "title": "炫动空间",
+    "url": "https://whghcyx.gitee.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "后端"
+  },
+  {
+    "id": "resource-1719",
+    "title": "web前端面试 - 面试官系列",
+    "url": "https://vue3js.cn/interview/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1720",
+    "title": "GitHub - xiumubai/coding: 前端面试题仓库，内涵前端八股文和常见手写面试题解题思路",
+    "url": "https://github.com/xiumubai/coding",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1721",
+    "title": "快速入门 – React 中文文档",
+    "url": "https://zh-hans.react.dev/learn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1722",
+    "title": "React 官方中文文档 – 用于构建用户界面的 JavaScript 库",
+    "url": "https://react.xiniushu.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1723",
+    "title": "Vue.js - 渐进式 JavaScript 框架 | Vue.js",
+    "url": "https://cn.vuejs.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1724",
+    "title": "开始使用 Vue - 学习 Web 开发 | MDN",
+    "url": "https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Frameworks_libraries/Vue_getting_started",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1725",
+    "title": "官方指南 | Electron",
+    "url": "https://www.electronjs.org/zh/docs/latest/README",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1726",
+    "title": "开始学习 HTML - 学习 Web 开发 | MDN",
+    "url": "https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1727",
+    "title": "CSS 构建 - 学习 Web 开发 | MDN",
+    "url": "https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Styling_basics",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1728",
+    "title": "创建 JavaScript 代码块 - 学习 Web 开发 | MDN",
+    "url": "https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Scripting",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1729",
+    "title": "Qt Documentation",
+    "url": "https://doc.qt.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1730",
+    "title": "Qt - 中文文档",
+    "url": "http://qt5.digitser.top/en-US.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "前端"
+  },
+  {
+    "id": "resource-1731",
+    "title": "极客时间文档 (产品)",
+    "url": "https://uaxe.github.io/geektime-docs/%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "产品"
+  },
+  {
+    "id": "resource-1732",
+    "title": "有趣的开源社区 - HelloGitHub",
+    "url": "https://hellogithub.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "开源项目"
+  },
+  {
+    "id": "resource-1733",
+    "title": "站长之家👍",
+    "url": "http://tool.chinaz.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1734",
+    "title": "云间",
+    "url": "https://www.shulijp.com/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1735",
+    "title": "toolzl在线工具",
+    "url": "http://www.toolzl.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1736",
+    "title": "爱资料工具",
+    "url": "https://www.toolnb.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1737",
+    "title": "菜鸟工具",
+    "url": "https://c.runoob.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1738",
+    "title": "MikuTools",
+    "url": "https://tools.miku.ac/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1739",
+    "title": "孟坤工具箱",
+    "url": "http://tool.mkblog.cn/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1740",
+    "title": "爬虫工具库",
+    "url": "https://spidertools.cn/#/fixEncode",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1741",
+    "title": "Base64到图像转换器 - 免费工具",
+    "url": "https://base64.imageonline.co/cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1742",
+    "title": "JSON | JSON压缩一行，JSON压缩，JSON转义工具",
+    "url": "https://www.sojson.com/yasuoyihang.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1743",
+    "title": "JSON | JSON在线视图查看器(Online JSON Viewer)👍",
+    "url": "https://www.bejson.com/jsonviewernew/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1744",
+    "title": "JSON | JSON校验格式化工具（Be JSON）👍",
+    "url": "https://www.bejson.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1745",
+    "title": "JSON | JSON For You | 在线JSON工具",
+    "url": "https://json4u.cn/editor",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1746",
+    "title": "字符串 | 在线字符串转义—LZL在线工具👍",
+    "url": "https://lzltool.cn/string-escape",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1747",
+    "title": "字符串 | 在线换行符转换行工具 - UU在线工具",
+    "url": "https://uutool.cn/txt-ln/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1748",
+    "title": "LaTeX | 在线LaTeX公式编辑器-编辑器",
+    "url": "https://www.latexlive.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1749",
+    "title": "C, C++在线编译器 👍",
+    "url": "https://www.onlinegdb.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1750",
+    "title": "C++在线编译器/IDE - 免安装、AI助教、实时编译 | AdaCpp",
+    "url": "https://adacpp.com/ide",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "编程工具"
+  },
+  {
+    "id": "resource-1751",
+    "title": "镜像导航1",
+    "url": "https://so.zizaifan.com/html/google.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1752",
+    "title": "镜像导航2",
+    "url": "http://scholar.hedasudi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1753",
+    "title": "镜像导航3",
+    "url": "https://ac.scmor.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1754",
+    "title": "非原版镜像1",
+    "url": "https://www.aolsearch.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1755",
+    "title": "非原版镜像2",
+    "url": "https://www.enow.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1756",
+    "title": "原版镜像",
+    "url": "https://google.fuckcloudnative.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1757",
+    "title": "镜像导航5",
+    "url": "http://sci.xueshuwu.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1758",
+    "title": "镜像导航4",
+    "url": "https://www.ooopn.com/tool/gglink/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌搜索镜像"
+  },
+  {
+    "id": "resource-1759",
+    "title": "Sci-Hub镜像",
+    "url": "https://ifish.fun/paper/scihub",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌学术镜像"
+  },
+  {
+    "id": "resource-1760",
+    "title": "Sci-Hub",
+    "url": "https://sci-hub.hkvisa.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌学术镜像"
+  },
+  {
+    "id": "resource-1761",
+    "title": "谷歌学术",
+    "url": "https://scholar.google.com.hk/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "谷歌学术镜像"
+  },
+  {
+    "id": "resource-1762",
+    "title": "PapersWithCode",
+    "url": "https://paperswithcode.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1763",
+    "title": "arXiv",
+    "url": "https://arxiv.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1764",
+    "title": "库问搜索",
+    "url": "http://www.koovin.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1765",
+    "title": "知网",
+    "url": "https://www.cnki.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1766",
+    "title": "Sci-Hub镜像",
+    "url": "https://ifish.fun/paper/scihub",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1767",
+    "title": "Sci-Hub",
+    "url": "https://sci-hub.hkvisa.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1768",
+    "title": "谷歌学术",
+    "url": "https://scholar.google.com.hk/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文检索"
+  },
+  {
+    "id": "resource-1769",
+    "title": "ReadPaper",
+    "url": "https://readpaper.com/new",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "论文阅读"
+  },
+  {
+    "id": "resource-1770",
+    "title": "PDF全文翻译🔥",
+    "url": "https://mp.weixin.qq.com/s/l4-f7fMfqcE1entHOEdBog",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1771",
+    "title": "【100%免费】在线 PDF 翻译 - AI 驱动保留排版👍",
+    "url": "https://pdftranslator.org/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1772",
+    "title": "GPT学术优化 👍",
+    "url": "https://academic.chatwithpaper.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1773",
+    "title": "ChinArXiv论文翻译器 👍",
+    "url": "https://chinarxiv.chatpaper.top/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1774",
+    "title": "谷歌翻译 👍",
+    "url": "https://translate.google.com.hk/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1775",
+    "title": "豆包插件 - 浏览器 AI 助手 👍",
+    "url": "https://www.doubao.com/browser-extension/landing?from=ext&extId=dbjibobgilijgolhjdcbdebjhejelffo",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1776",
+    "title": "沉浸式翻译 - AI 双语网页翻译 | PDF翻译 | 视频翻译 | 漫画&图片翻译 👍",
+    "url": "https://www.immersivetranslate.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1777",
+    "title": "ReadPaper",
+    "url": "https://readpaper.com/new",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1778",
+    "title": "Belin Doc - 免费无限制 AI 文档翻译工具，轻松处理PDF、DOCX、EPUB",
+    "url": "https://belindoc.com/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1779",
+    "title": "GitHub - NEKOparapa/AiNiee: 一款专注于Ai翻译的工具，一键自动翻译RPG SLG游戏，Epub TXT小说，PDF Word MD文档，Srt Vtt Lrc字幕等等复杂长文本。 · GitHub",
+    "url": "https://github.com/NEKOparapa/AiNiee",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "09.学术研究"
+  },
+  {
+    "id": "resource-1780",
+    "title": "论文查重教程1.0🔥",
+    "url": "https://mp.weixin.qq.com/s/h4BncgLe8An0CP6vO8PB5A",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1781",
+    "title": "论文查重教程2.0🔥",
+    "url": "https://mp.weixin.qq.com/s/710ARNZmiA7cPvY1py0s_g",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1782",
+    "title": "学术不端报告单验证 👍",
+    "url": "http://check7.cnki.net/codeverify",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1783",
+    "title": "学信网 • 万方数据文献相似性检测服务系统 👍",
+    "url": "https://chsi.wanfangtech.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1784",
+    "title": "学术不端论文查重检测系统 （知网高校版）👍",
+    "url": "https://www.cnkicn.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1785",
+    "title": "源文鉴-学术不端文献检测系统（知网高校版） 👍",
+    "url": "https://yuanwenjian.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1786",
+    "title": "官方-知网个人版 👍",
+    "url": "https://cx.cnki.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1787",
+    "title": "维普高校版",
+    "url": "https://vcps.chachongz.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1788",
+    "title": "官方-维普个人版",
+    "url": "https://www.cqvip.com/paper-check",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1789",
+    "title": "官方-AIGC检测-维普官网 👍",
+    "url": "https://www.cqvip.com/paper-check/aigc",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1790",
+    "title": "英语四六级",
+    "url": "http://cet.neea.edu.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1791",
+    "title": "计算机等级",
+    "url": "http://ncre.neea.edu.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1792",
+    "title": "研究生招生",
+    "url": "https://yz.chsi.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1793",
+    "title": "学信网",
+    "url": "https://www.chsi.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1794",
+    "title": "考公指南",
+    "url": "https://github.com/miss-mumu/developer2gwy",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1795",
+    "title": "学习通",
+    "url": "https://www.chaoxing.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1796",
+    "title": "阳光高考",
+    "url": "https://gaokao.chsi.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1797",
+    "title": "教师资格证",
+    "url": "https://ntce.neea.edu.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1798",
+    "title": "中国会计网",
+    "url": "http://www.canet.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1799",
+    "title": "河南专升本",
+    "url": "http://www.lemedu.com/hnzsb/tiku/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1800",
+    "title": "四六级真题1",
+    "url": "https://zhenti.burningvocabulary.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1801",
+    "title": "四六级真题2",
+    "url": "https://cet.itongzhuo.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1802",
+    "title": "翻译导航",
+    "url": "https://www.wiitrans.com/nav_page.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1803",
+    "title": "查题吧",
+    "url": "http://jk.fm210.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1804",
+    "title": "问答库",
+    "url": "https://www.asklib.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1805",
+    "title": "简答题",
+    "url": "https://www.jiandati.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "10.考试必备"
+  },
+  {
+    "id": "resource-1806",
+    "title": "天眼查👁",
+    "url": "https://www.tianyancha.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "查信息"
+  },
+  {
+    "id": "resource-1807",
+    "title": "扫描不安全软件",
+    "url": "https://virusscan.jotti.org",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "查信息"
+  },
+  {
+    "id": "resource-1808",
+    "title": "扫描不安全软件",
+    "url": "https://metadefender.opswat.com/?lang=en",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "查信息"
+  },
+  {
+    "id": "resource-1809",
+    "title": "视频加音乐 | 音视频合成 | 在线工具",
+    "url": "https://addmusictovideo.net/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1810",
+    "title": "链接转二维码",
+    "url": "https://cli.im/url",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1811",
+    "title": "epubee转换",
+    "url": "http://cn.epubee.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1812",
+    "title": "转换工具大全",
+    "url": "https://cn.office-converter.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1813",
+    "title": "BT／磁力转换",
+    "url": "http://tools.jb51.net/aideddesign/bt2mag",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1814",
+    "title": "格式转换合集",
+    "url": "https://www.alltoall.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1815",
+    "title": "文字转换手写",
+    "url": "http://www.beautifulcarrot.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1816",
+    "title": "video-editor",
+    "url": "https://online-video-cutter.com/cn/video-editor",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "转换工具"
+  },
+  {
+    "id": "resource-1817",
+    "title": "MinerU 在线文档解析 👍",
+    "url": "https://mineru.net/OpenSourceTools/Extractor/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "11.工具箱站"
+  },
+  {
+    "id": "resource-1818",
+    "title": "Doc2X 👍",
+    "url": "https://doc2x.noedgeai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "11.工具箱站"
+  },
+  {
+    "id": "resource-1819",
+    "title": "ilovepdf",
+    "url": "https://www.ilovepdf.com/zh-cn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "11.工具箱站"
+  },
+  {
+    "id": "resource-1820",
+    "title": "在线转换图片格式-在线图片转换器-100% 免费 👍",
+    "url": "https://jinaconvert.com/cn/index.php",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1821",
+    "title": "奇客",
+    "url": "https://www.geekersoft.cn/free-image-convert-online.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1822",
+    "title": "iLoveIMG",
+    "url": "https://www.iloveimg.com/zh-cn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1823",
+    "title": "佐糖",
+    "url": "https://picwish.cn/convert-to-jpg",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1824",
+    "title": "图片处理工具",
+    "url": "https://base64.imageonline.co/cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其他收藏"
+  },
+  {
+    "id": "resource-1825",
+    "title": "Pixabay（免费高清视频素材）",
+    "url": "https://pixabay.com/zh/videos/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.免费视频素材"
+  },
+  {
+    "id": "resource-1826",
+    "title": "Pexels视频素材",
+    "url": "https://www.pexels.com/zh-cn/videos/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.免费视频素材"
+  },
+  {
+    "id": "resource-1827",
+    "title": "知鱼素材",
+    "url": "https://sucai.zhiyu.art/video",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.免费视频素材"
+  },
+  {
+    "id": "resource-1828",
+    "title": "新CG儿（视频素材）",
+    "url": "https://www.newcger.com/shipinsucai/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.免费视频素材"
+  },
+  {
+    "id": "resource-1829",
+    "title": "Free Stock Video",
+    "url": "https://www.videvo.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.免费视频素材"
+  },
+  {
+    "id": "resource-1830",
+    "title": "Canva可画（部分需要付费）",
+    "url": "https://www.canva.cn/templates/search/5rW35oqlX64/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1831",
+    "title": "Chuangkit（部分需要付费）",
+    "url": "https://www.chuangkit.com/polymer/65.html?utm_source=hbzc&utm_campaign=klfz",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1832",
+    "title": "typo/graphic posters（平面海报设计收集站点）",
+    "url": "https://www.typographicposters.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1833",
+    "title": "anthonyboyd（图形/纹理类）",
+    "url": "https://www.anthonyboyd.graphics/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1834",
+    "title": "ad518（商业展览海报集合）",
+    "url": "https://ad518.com/cate/creative/poster/id/81/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1835",
+    "title": "designspiration（灵感来源）",
+    "url": "https://www.designspiration.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1836",
+    "title": "inspirationde（塞伯朋克风格）",
+    "url": "https://www.inspirationde.com/?s=poster",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1837",
+    "title": "typographicposters（字体/几何图形）",
+    "url": "https://www.typographicposters.com/archive",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1838",
+    "title": "PosterMockup（海报模拟网站）",
+    "url": "http://www.postermockup.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "海报素材"
+  },
+  {
+    "id": "resource-1839",
+    "title": "Simpledesktops（极简）",
+    "url": "http://simpledesktops.com/browse/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1840",
+    "title": "Facet（插画）",
+    "url": "http://www.facets.la/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1841",
+    "title": "Gratisography（设计灵感来源）",
+    "url": "https://gratisography.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1842",
+    "title": "极简壁纸",
+    "url": "https://bz.zzzmh.cn/#index",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1843",
+    "title": "彼岸图网",
+    "url": "https://pic.netbian.com/4kdongman/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1844",
+    "title": "pexels",
+    "url": "https://www.pexels.com/zh-cn/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1845",
+    "title": "pixabay",
+    "url": "https://pixabay.com/zh/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1846",
+    "title": "colorHub",
+    "url": "https://colorhub.me/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1847",
+    "title": "Hippopx",
+    "url": "https://www.hippopx.com/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1848",
+    "title": "Wallpaper1",
+    "url": "https://wall.alphacoders.com/?lang=Chinese",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1849",
+    "title": "Wallpaper2",
+    "url": "https://wallhaven.cc/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1850",
+    "title": "免版税图库（被墙）",
+    "url": "https://www.piqsels.com/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "其它图片素材"
+  },
+  {
+    "id": "resource-1851",
+    "title": "新CG儿（视频、音效素材、AE模板）",
+    "url": "https://www.newcger.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1852",
+    "title": "大众脸影视后期特效（AE、PR等）",
+    "url": "https://www.lookae.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1853",
+    "title": "书生CG资源网（模板、插件、素材）",
+    "url": "https://c4dsky.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1854",
+    "title": "92素材网（模板、音效素材）",
+    "url": "http://www.92sucai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1855",
+    "title": "CGUFO （AE模板、视频素材、C4D软件）",
+    "url": "https://www.cgufo.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1856",
+    "title": "CG爱好者（AE、3D等）",
+    "url": "http://www.cgahz.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1857",
+    "title": "龋齿一号",
+    "url": "http://www.gfxcamp.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1858",
+    "title": "CG资源网（AE、C4D、3D、素材等）",
+    "url": "https://www.cgown.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.AE、PR等（模板 / 插件 / 素材）"
+  },
+  {
+    "id": "resource-1859",
+    "title": "素材中国",
+    "url": "http://www.sccnn.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1860",
+    "title": "Vecteezy",
+    "url": "https://www.vecteezy.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1861",
+    "title": "freepik",
+    "url": "https://www.freepik.com/?utm_source=awin&utm_medium=display&utm_campaign=alwayson&awc=18677_1613880469_e15f175f42bbc36cf1f00edbb0f241b4",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1862",
+    "title": "psdboom",
+    "url": "https://psdboom.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1863",
+    "title": "懒人图库",
+    "url": "https://www.lanrentuku.com/psd/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1864",
+    "title": "365PSD（被墙）",
+    "url": "https://cn.365psd.com/free-psd",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1865",
+    "title": "觅元素（每天免费4张）",
+    "url": "http://www.51yuansu.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1866",
+    "title": "站长PSD",
+    "url": "https://sc.chinaz.com/psd/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.免费PSD素材"
+  },
+  {
+    "id": "resource-1867",
+    "title": "Hippter（PPT导航：模板、插件、素材、大神推荐等）👍",
+    "url": "http://www.hippter.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1868",
+    "title": "Just Free Slide（国外站点）",
+    "url": "https://justfreeslide.com/ppt-templates/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1869",
+    "title": "PPT宝藏",
+    "url": "http://www.pptbz.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1870",
+    "title": "PPT之家（下载需关注公众号）",
+    "url": "https://www.52ppt.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1871",
+    "title": "51PPT",
+    "url": "http://www.51pptmoban.com/ppt/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1872",
+    "title": "第一PPT",
+    "url": "http://www.1ppt.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.免费PPT模板"
+  },
+  {
+    "id": "resource-1873",
+    "title": "吾爱论坛悬赏区 👍",
+    "url": "https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=8&filter=specialtype&specialtype=reward&rewardtype=1",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1874",
+    "title": "Zlibrary 官网（支持中英文搜索，收录600多万本书籍）👍",
+    "url": "https://zh.z-library.sk/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1875",
+    "title": "客户端",
+    "url": "https://pan.quark.cn/s/3960a3c1d807",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1876",
+    "title": "Chrome插件",
+    "url": "https://chrome.google.com/webstore/detail/z-library-finder/eebjmekegoofamhbnjoboeifabhbbddn/related",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1877",
+    "title": "Zlibrary镜像站持续更新",
+    "url": "https://www.tboxn.com/560.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1878",
+    "title": "Z-Library镜像站",
+    "url": "https://zlib.app/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1879",
+    "title": "Z-LibraryTG频道",
+    "url": "https://t.me/zlibrary_official",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1880",
+    "title": "鸠摩搜书（支持中英文搜索） 👍",
+    "url": "https://www.jiumodiary.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1881",
+    "title": "LoreFree（支持中英文搜索）👍",
+    "url": "https://ebook2.lorefree.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1882",
+    "title": "阅读链",
+    "url": "https://www.yuedu.pro/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1883",
+    "title": "我爱书籍",
+    "url": "http://www.52book.me/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1884",
+    "title": "D-PDF（免费下载外文电子书）👍",
+    "url": "https://d-pdf.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1885",
+    "title": "TheFuture（只提供购买）",
+    "url": "https://bks.thefuture.top/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1886",
+    "title": "熊猫搜书（聚合性）👍",
+    "url": "https://xmsoushu.com/#/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1887",
+    "title": "资源帝（搜索导航站）👍",
+    "url": "http://shu.ziyuandi.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.书籍综合性搜索"
+  },
+  {
+    "id": "resource-1888",
+    "title": "网站 互助联盟",
+    "url": "https://search.datacdn.cn/sbooklist",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.图书自助下载"
+  },
+  {
+    "id": "resource-1889",
+    "title": "网站 FreeMbook Search",
+    "url": "https://freembook.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.图书自助下载"
+  },
+  {
+    "id": "resource-1890",
+    "title": "脚本 读秀最新脚本",
+    "url": "https://greasyfork.org/zh-CN/scripts?q=%E8%AF%BB%E7%A7%80",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.图书自助下载"
+  },
+  {
+    "id": "resource-1891",
+    "title": "脚本 红太狼的平底锅.txt（提取码：gjgb",
+    "url": "https://pan.xunlei.com/s/VNVcCRo9ETdt1jjHaFZtP_2GA1",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.图书自助下载"
+  },
+  {
+    "id": "resource-1892",
+    "title": "脚本 图书互助",
+    "url": "https://greasyfork.org/zh-CN/scripts/420751-%E5%9B%BE%E4%B9%A6%E4%BA%92%E5%8A%A9",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "02.图书自助下载"
+  },
+  {
+    "id": "resource-1893",
+    "title": "PDF Drive（外文类电子书）",
+    "url": "https://www.pdfdrive.to/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1894",
+    "title": "PDF之家(文学、小说、历史、计算机等等)",
+    "url": "https://honeypdf.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1895",
+    "title": "高教书苑【教材书籍（只能在线看)】",
+    "url": "https://ebook.hep.com.cn/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1896",
+    "title": "Linux命令大全(手册)",
+    "url": "https://www.linuxcool.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1897",
+    "title": "码农之家（计算机电子书资源、编程技术文章、文档、视频推荐）",
+    "url": "https://www.xz577.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1898",
+    "title": "古籍馆搜索",
+    "url": "https://www.gujiguan.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1899",
+    "title": "书格（古籍）",
+    "url": "https://new.shuge.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1900",
+    "title": "国学大师",
+    "url": "http://www.guoxuedashi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1901",
+    "title": "图灵社区",
+    "url": "https://www.ituring.com.cn/book",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1902",
+    "title": "计算机书籍控",
+    "url": "https://book.gptshuo.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1903",
+    "title": "计算机开放电子书汇总",
+    "url": "http://it-ebooks.flygon.net/it-ebooks/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1904",
+    "title": "搬书匠（计算机书籍相关）👍",
+    "url": "http://www.banshujiang.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "03.专业性电子书"
+  },
+  {
+    "id": "resource-1905",
+    "title": "奇漫屋",
+    "url": "https://www.jsj66.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1906",
+    "title": "动漫之家（国漫）",
+    "url": "https://www.dmzj.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1907",
+    "title": "快看（日漫、韩漫、国漫）",
+    "url": "https://www.kuaikanmanhua.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1908",
+    "title": "国产动画之家（国漫）",
+    "url": "http://www.cndonghua.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1909",
+    "title": "极速漫画（国漫）",
+    "url": "http://www.1kkk.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1910",
+    "title": "搜漫（聚合搜索，被墙）",
+    "url": "https://www.soman.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "01.看漫画"
+  },
+  {
+    "id": "resource-1911",
+    "title": "volmoe",
+    "url": "https://volmoe.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下漫画"
+  },
+  {
+    "id": "resource-1912",
+    "title": "漫画补档",
+    "url": "https://www.smgzd.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下漫画"
+  },
+  {
+    "id": "resource-1913",
+    "title": "Kox（支持推送到Kindle/mobi/epub）",
+    "url": "https://kox.moe/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下漫画"
+  },
+  {
+    "id": "resource-1914",
+    "title": "Kindle漫画",
+    "url": "https://volmoe.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下漫画"
+  },
+  {
+    "id": "resource-1915",
+    "title": "阅读软件👍",
+    "url": "https://gedoor.github.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1916",
+    "title": "精品书源",
+    "url": "https://yuedu.xiu2.xyz/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1917",
+    "title": "纵横中文网",
+    "url": "https://www.zongheng.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1918",
+    "title": "无忧书城",
+    "url": "https://www.51shucheng.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1919",
+    "title": "书趣阁",
+    "url": "http://www.sizhicn.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1920",
+    "title": "全本小说网",
+    "url": "https://www.qb5.la/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1921",
+    "title": "笔趣阁",
+    "url": "https://m.piquge.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "01.看小说"
+  },
+  {
+    "id": "resource-1922",
+    "title": "轻小说文库-TXT/UMD/JAR格式下载（注册账号即可全站访问）👍",
+    "url": "https://www.wenku8.net/index.php",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1923",
+    "title": "万本txt小说网",
+    "url": "https://www.10000txt.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1924",
+    "title": "移动txt小说网-笔趣阁txt小说下载,免费txt小说下载,完本小说免费txt下载",
+    "url": "https://www.10086txt.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1925",
+    "title": "东方文学",
+    "url": "https://www.jcdf99.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1926",
+    "title": "云轩阁小说",
+    "url": "https://www.yunxuange.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1927",
+    "title": "书荒部落",
+    "url": "https://noveless.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1928",
+    "title": "宝书网（TXT下载）",
+    "url": "https://www.baoshu7.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1929",
+    "title": "精校吧",
+    "url": "https://www.jingjiaoba.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1930",
+    "title": "贼吧网",
+    "url": "https://www.zei8.me/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1931",
+    "title": "小楼",
+    "url": "https://www.xiaolou.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "02.下小说"
+  },
+  {
+    "id": "resource-1932",
+    "title": "书签导航 iLinks",
+    "url": "https://xydh.fun/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1933",
+    "title": "书签导航 神秘的热心网友",
+    "url": "https://imyshare.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1934",
+    "title": "书签导航 书签地球——浏览器书签分享的平台",
+    "url": "https://www.bookmarkearth.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1935",
+    "title": "资源导航 iMyShare（汇集优质的软件工具，学习资源，网站导航）",
+    "url": "https://imyshare.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1936",
+    "title": "前端导航 Web前端导航-Alloy Team",
+    "url": "http://www.alloyteam.com/nav/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1937",
+    "title": "办公导航 办公网站导航——好学办公导航",
+    "url": "http://hao.xuewps.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1938",
+    "title": "英语导航 英语学习导航",
+    "url": "http://www.yywz123.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1939",
+    "title": "IOS 导航 苦心ios导航",
+    "url": "http://93665.xin/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1940",
+    "title": "书籍导航 我爱书籍——书籍全集（附下载）",
+    "url": "http://www.52book.me/2020/05/06/%E4%B9%A6%E7%B1%8D%E5%85%A8%E9%9B%86/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1941",
+    "title": "磁力导航 BT蚂蚁磁力",
+    "url": "https://btmayi.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1942",
+    "title": "设计导航 HIPPTER——汇总PPT设计利器",
+    "url": "http://www.hippter.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1943",
+    "title": "学术导航 格桑花学术导航",
+    "url": "http://www.20009.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1944",
+    "title": "学术导航 大木虫学术导航",
+    "url": "http://www.4243.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1945",
+    "title": "书籍导航 资源帝——电子书导航",
+    "url": "http://shu.ziyuandi.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1946",
+    "title": "ACG 导航 全网优质ACGN资源二次元资源导航网站",
+    "url": "https://clicli.com.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "14.导航网站"
+  },
+  {
+    "id": "resource-1947",
+    "title": "🌕哔哩哔哩 (゜-゜)つロ 干杯~-bilibili 👍",
+    "url": "https://www.bilibili.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1948",
+    "title": "🌕虎牙一起看（经典影视直播） 👍",
+    "url": "https://m.huya.com/g/seeTogether",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1949",
+    "title": "🌖斗鱼一起看（没有虎牙精彩）",
+    "url": "https://www.douyu.com/g_yqk",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1950",
+    "title": "🌖抖音网页版（短视频在线刷） 👍",
+    "url": "https://www.douyin.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1951",
+    "title": "🌖TikTok 网页版(被墙，国外版抖音)",
+    "url": "https://www.tiktok.com",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1952",
+    "title": "🌕白嫖者联盟 - AI影视搜索与内容发现（无广告，多源，不卡顿） 👍",
+    "url": "https://baipiaozhe.ai/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1953",
+    "title": "🌕乌云影视（无广告，多源，不卡顿）👍",
+    "url": "https://wooyun.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1954",
+    "title": "🌕可可影视（无广告，多源，不卡顿）👍",
+    "url": "https://www.kkys03.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1955",
+    "title": "🌕毒蛇电影 （无广告，多源，不卡顿）👍",
+    "url": "https://www.duse2.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1956",
+    "title": "🌕冷映 - 免费电影电视剧在线观看 （少量广告，多源，不卡顿） 👍",
+    "url": "https://www.len.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1957",
+    "title": "🌕剧情巴士（无广告，多源，不卡顿）👍",
+    "url": "https://www.juqingbs.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1958",
+    "title": "🌕小皮影院（无广告，多源，不卡顿）👍",
+    "url": "https://www.xptv.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1959",
+    "title": "🌕天空影视（无广告，多源，蓝光线路）👍",
+    "url": "https://skyysw.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1960",
+    "title": "🌕稀饭影视（无广告，多源，不卡顿）👍",
+    "url": "https://www.xifanys.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1961",
+    "title": "🌕FreeOk（无广告，多源，不卡顿）👍",
+    "url": "http://www.tahcjn.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1962",
+    "title": "Freeok-追剧也很卷",
+    "url": "https://freeoko.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1963",
+    "title": "🌕蛋蛋影院（无广告，多源，不卡顿）👍",
+    "url": "https://dandanzandy.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1964",
+    "title": "🌕88影视（无广告，多源，不卡顿）👍",
+    "url": "https://www.88tvs.org/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1965",
+    "title": "🌕观影-需注册（无广告，多源，不卡顿）👍",
+    "url": "https://www.gying.org/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1966",
+    "title": "🌕LIBVIO（少量广告，多源，不卡顿）👍",
+    "url": "https://libvio.lol/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1967",
+    "title": "🌕永乐视频（有广告，多源，不卡顿）",
+    "url": "https://ylsp.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1968",
+    "title": "🌕努努影视（有广告，多源，不卡顿）",
+    "url": "https://nunuju.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1969",
+    "title": "🌕爱迪影视（地址发布页，无广告，多源）👍",
+    "url": "https://adys.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1970",
+    "title": "🌖共青春（地址发布页，无广告，多源）",
+    "url": "https://ting.cool/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1971",
+    "title": "🌖Auete（地址发布页，无广告，多源）",
+    "url": "https://v.auete.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1972",
+    "title": "🌕七味网（有广告，多源，不卡顿）👍",
+    "url": "https://www.qn63.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1973",
+    "title": "🌖两个BT（地址发布页，无广告，被墙）",
+    "url": "https://bttwo.vip/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1974",
+    "title": "🌖VIDHUB（地址发布页，有广告）",
+    "url": "https://121310.xyz/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1975",
+    "title": "🌖HDmoli（地址发布页，有广告）",
+    "url": "https://molicp.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1976",
+    "title": "🌖厂长资源（地址发布页，有广告）",
+    "url": "https://www.czzy88.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1977",
+    "title": "🌕KP狂人（地址发布页，有广告）",
+    "url": "https://kpkuang.sbs/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1978",
+    "title": "备用",
+    "url": "https://sway.cloud.microsoft/I7shpE33Fu3XIxb6?ref=Link",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1979",
+    "title": "🌖GimyTV剧迷（有广告，多源）",
+    "url": "https://gimy.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1980",
+    "title": "🌖GimyTV劇迷（无广告，多源）",
+    "url": "https://gimytw.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1981",
+    "title": "🌖网飞猫（无广告，多源）",
+    "url": "https://www.ncat22.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1982",
+    "title": "🌓APP影院（无广告，多源，会卡顿）",
+    "url": "https://www.appmovie.click/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1983",
+    "title": "🌓七味（有广告，多源）",
+    "url": "https://www.pkmp4.xyz/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1984",
+    "title": "🌓FreeOk8（多源）",
+    "url": "https://freeokvod.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1985",
+    "title": "🌓注视影视（片源较少）",
+    "url": "https://gaze.run/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1986",
+    "title": "🌓爱看机器人",
+    "url": "https://v.ikanbot.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1987",
+    "title": "🌓播剧网",
+    "url": "https://maoyan.de/#/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1988",
+    "title": "🌖No视频（国外剧）",
+    "url": "https://www.novipnoad.net/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1989",
+    "title": "🌕美剧天堂 | 海量最新美剧、推荐美剧、美剧排行免费在线观看 👍",
+    "url": "https://mjdex.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1990",
+    "title": "🌕滴滴美剧 - 最新最全的美剧在线观看",
+    "url": "https://ddmeiju.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1991",
+    "title": "🌖粤正影视（香港台湾等影视剧）",
+    "url": "https://www.939394.xyz/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1992",
+    "title": "爱壹帆（海外华人影视站，更新及时，需要魔法）👍",
+    "url": "https://www.yfsp.tv/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1993",
+    "title": "唐人街（海外华人影视站，更新及时，需要魔法）👍",
+    "url": "https://www.chinatownfilm.com/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "01.电影 / 电视剧 / 动漫 / 综艺 / 短剧 / 体育直播【在线观看】"
+  },
+  {
+    "id": "resource-1994",
+    "title": "🌕bilibili",
+    "url": "https://www.bilibili.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-1995",
+    "title": "🌕AniFun 一起发现动漫与ACG的乐趣👍",
+    "url": "https://anifun.cn/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-1996",
+    "title": "🌕OmoFun（地址发布页）👍",
+    "url": "https://www.omoo.app/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-1997",
+    "title": "🌖AGE动漫（地址发布页）👍",
+    "url": "https://github.com/agefanscom/website",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-1998",
+    "title": "🌕番薯动漫（地址发布页）👍",
+    "url": "https://fsdm.top",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-1999",
+    "title": "🌕次元城动漫（地址发布页）👍",
+    "url": "https://www.cycity.pro",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2000",
+    "title": "🌖樱花动漫👍",
+    "url": "https://home.yhdongman.com.cn/zh",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2001",
+    "title": "备用",
+    "url": "https://www.83dm.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2002",
+    "title": "🌕风车动漫-最新最全动漫免费在线观看👍",
+    "url": "https://www.008nnn.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2003",
+    "title": "🌕西瓜卡通",
+    "url": "https://www.xgcartoon.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2004",
+    "title": "🌕次元动漫",
+    "url": "https://icydmw.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2005",
+    "title": "🌕萌道",
+    "url": "https://www.dh-hal.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2006",
+    "title": "🌕AcFun",
+    "url": "https://www.artmtech.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2007",
+    "title": "🌕Zzzfun（Z站）",
+    "url": "http://www.zzzfun.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 动漫"
+  },
+  {
+    "id": "resource-2008",
+    "title": "🌕众短剧 - 短剧在线观看 - 最新热门短剧",
+    "url": "https://zhongduanju.com/zh_CN",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2009",
+    "title": "🌕速剧：短剧爱好者的天堂，免费观看",
+    "url": "https://suju.app/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2010",
+    "title": "🌕短剧免费在线-观看超清最新短剧",
+    "url": "https://mianfei.sensheying.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2011",
+    "title": "🌕短剧|在线看爽剧|免费短剧在线看|短剧种草|短剧app",
+    "url": "https://suju.app/home?tab=series",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2012",
+    "title": "🌕免费短剧大全最新电影电视剧全集在线观看_点众短剧",
+    "url": "https://www.sddqwl.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2013",
+    "title": "🌕免费观看热门短剧、最新短剧 - 华剧 - 您的追剧好伙伴",
+    "url": "https://www.huaju.app/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2014",
+    "title": "🌕短剧网123-不收费的短剧-海量热门短剧免费观看",
+    "url": "http://www.djw123.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2015",
+    "title": "🌕短剧-在线高清全集短剧免费观看-红果果",
+    "url": "https://m.yuerguo.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2016",
+    "title": "🌕大陆短剧 | findshortdrama",
+    "url": "https://www.findshortdrama.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2017",
+    "title": "🌕短劇就看 NetShort - 高分熱播短劇刷不停",
+    "url": "https://netshort.com/zh",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2018",
+    "title": "🌕红果短剧 - 免费追热门短剧！",
+    "url": "https://www.hongguo123.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2019",
+    "title": "🌕河马剧场",
+    "url": "https://www.kuaikaw.cn/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2020",
+    "title": "🌕影视村",
+    "url": "http://www.yingshicun.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2021",
+    "title": "🌕华剧 - 您的追剧好伙伴",
+    "url": "https://m.huaju.app/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2022",
+    "title": "🌕短剧网-全网抖音短剧全集免费在线观看大全「推荐收藏」",
+    "url": "http://www.rzjy985.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 短剧"
+  },
+  {
+    "id": "resource-2023",
+    "title": "🌖在线之家（韩、日、美、泰、动漫）",
+    "url": "https://www.zxzjhd.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2024",
+    "title": "🌕LIBVIO（韩、日、美）👍",
+    "url": "https://www.libvio.com/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2025",
+    "title": "🌕两个BT（韩、日、美），被墙",
+    "url": "https://bttwo.vip/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2026",
+    "title": "🌕韩剧TV👍",
+    "url": "https://hjtva.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2027",
+    "title": "🌕爱韩剧网",
+    "url": "https://www.ihj.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2028",
+    "title": "🌕天天韩剧",
+    "url": "https://www.tthj.cc/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2029",
+    "title": "🌕迷韩网",
+    "url": "https://www.mihanw.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2030",
+    "title": "🌕日剧网",
+    "url": "https://rijuvip.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2031",
+    "title": "🌓看看美剧",
+    "url": "https://www.kankanmeiju.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2032",
+    "title": "🌖美剧星球",
+    "url": "https://www.7654.tv/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2033",
+    "title": "🌖九九美剧",
+    "url": "https://99meiju.com/index.html",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2034",
+    "title": "🌓91美剧",
+    "url": "https://91mjw.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2035",
+    "title": "🌓美剧天堂",
+    "url": "https://www.meijutt.tv/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2036",
+    "title": "🌖人人美剧",
+    "url": "http://www.yyetss.com/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2037",
+    "title": "🌓泰剧网",
+    "url": "https://i.taijuwang.com/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 国外影视剧"
+  },
+  {
+    "id": "resource-2038",
+    "title": "体育直播 腾讯体育直播（足球版权多，画质好、播放流畅）👍",
+    "url": "https://sports.qq.com/kbsweb/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2039",
+    "title": "体育直播 PP体育（画质较差、播放较流畅）",
+    "url": "https://www.ppsport.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2040",
+    "title": "电视直播 好趣网👍",
+    "url": "http://tv.haoqu99.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2041",
+    "title": "电视直播 88看球👍",
+    "url": "http://www.88kq.net/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2042",
+    "title": "体育直播 JRKAN直播👍",
+    "url": "https://www.jrkan.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2043",
+    "title": "体育直播 泡泡直播",
+    "url": "http://www.popozhibo.xyz/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2044",
+    "title": "体育直播 黑白直播",
+    "url": "http://m.hbzmtz.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2045",
+    "title": "体育直播 低调看直播",
+    "url": "https://www.yanghuanyu.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2046",
+    "title": "体育直播 JRS直播",
+    "url": "https://ddkanqiu.net/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2047",
+    "title": "体育直播 CCTV5体育",
+    "url": "http://tv.cctv.com/cctv5/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 体育直播 / 电视"
+  },
+  {
+    "id": "resource-2048",
+    "title": "电影推荐（需关注微信公众号）",
+    "url": "https://www.mvcat.com/",
+    "status": "待核验",
+    "category": "06 影音专区",
+    "section": "在线看 影视垂直搜索"
+  },
+  {
+    "id": "resource-2049",
+    "title": "🌖搜片（全网影视搜）",
+    "url": "https://soupian.icu/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 影视垂直搜索"
+  },
+  {
+    "id": "resource-2050",
+    "title": "🌖茶杯虎（全网影视搜）",
+    "url": "https://www.725998.com/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 影视垂直搜索"
+  },
+  {
+    "id": "resource-2051",
+    "title": "🌖一个简单的影视搜索-7080影视搜（全网影视搜）",
+    "url": "https://7080.wang/",
+    "status": "可用",
+    "category": "06 影音专区",
+    "section": "在线看 影视垂直搜索"
+  },
+  {
+    "id": "resource-2052",
+    "title": "🔷SeedHub | 影视&动漫分享（综合站，提供磁力 / 百度/ 夸克 / UC / 阿里）👍",
+    "url": "https://www.seedhub.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2053",
+    "title": "🔷人人影视下载站（综合站，提供磁力 / 微云/ 夸克 / 百度云）👍",
+    "url": "https://yyets.click/home",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2054",
+    "title": "🔷NEW字幕组（综合站，提供磁力 / 微云/ 夸克 / 百度云）👍",
+    "url": "https://nz99.xyz/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2055",
+    "title": "🔷Grab4K - 专注4K UHD蓝光原盘ISO电影资源👍",
+    "url": "https://grab4k.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2056",
+    "title": "🔷量子资源网（综合站，提供 M3U8 / 直链）👍",
+    "url": "https://lzizy5.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2057",
+    "title": "🔷优质资源库（综合站，提供 M3U8 / 直链）👍",
+    "url": "https://1080zyk.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2058",
+    "title": "🔷金马资源网（综合站，提供 M3U8 / 直链）👍",
+    "url": "https://www.jmzy1.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2059",
+    "title": "🔷暴风资源网（综合站，提供 M3U8 / 直链）👍",
+    "url": "https://bfzy5.tv/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2060",
+    "title": "🔷BT之家1LOU站-回归初心，追求极简（提供磁力）",
+    "url": "https://www.1lou.me/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2061",
+    "title": "🔷电影港（提供百度云 / 磁力）",
+    "url": "http://www.dygang.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2062",
+    "title": "🔷人人电影（提供百度云 / 迅雷云）",
+    "url": "https://www.rrdynb.com/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2063",
+    "title": "🔷电影蜜蜂（提供百度云 / 磁力）",
+    "url": "https://www.meituuan.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2064",
+    "title": "🔷追新番（提供百度云 / 磁力）",
+    "url": "https://www.fanxinzhui.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2065",
+    "title": "🔷FIX字幕侠（提供百度云 / 115 / 磁力）",
+    "url": "https://www.zimuxia.cn/#2",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2066",
+    "title": "🔷日剧跑（提供百度云/磁力）",
+    "url": "https://www.rijupao.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2067",
+    "title": "🔷心动日剧（日剧，提供百度云）",
+    "url": "http://www.doki8.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2068",
+    "title": "🔷韩饭网（提供百度云）",
+    "url": "https://www.hanfan.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2069",
+    "title": "🔷树屋论坛（提供磁力）",
+    "url": "https://treehousesub.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2070",
+    "title": "🔷纪录片（纪录片，提供百度云 / 磁力）",
+    "url": "https://docu-lib.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2071",
+    "title": "🔷大连生活网（提供百度云）（备用域名dlkoo.com、dlkoo.me）",
+    "url": "https://www.dlkoo.cc/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "电影 / 电视剧 / 综艺"
+  },
+  {
+    "id": "resource-2072",
+    "title": "🔷夸克网盘短剧免费在线观看_2025最新热播短剧全集 - 夸克短剧",
+    "url": "https://guankan.kuakeduanju.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2073",
+    "title": "🔷[看剧盘]-免费短剧在线观看平台-海量独家短剧每日更新",
+    "url": "https://guankan.kanjupan.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2074",
+    "title": "🔷短剧资源网 - 新一代夸克云盘搜索引擎",
+    "url": "https://www.duanju.click/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2075",
+    "title": "🔷夸克网盘社-短剧",
+    "url": "https://kuakes.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2076",
+    "title": "🔷短剧查询",
+    "url": "https://www.kdocs.cn/l/cqRbhqazOZHP?R=L1MvMQ==",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2077",
+    "title": "🔷yoyo资源库",
+    "url": "https://www.kdocs.cn/l/ck4zloFnPg8f?R=L1MvMQ==",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2078",
+    "title": "🔷360部爽文短剧大合集（连播版）332GB",
+    "url": "https://pan.quark.cn/s/143714b81bde#/list/share",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "短剧"
+  },
+  {
+    "id": "resource-2079",
+    "title": "发烧友绿软【盒子区】",
+    "url": "https://fsylr.com/tv",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2080",
+    "title": "高清电视【看电视推荐】",
+    "url": "https://www.fengcaizb.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2081",
+    "title": "当贝市场【下应用推荐】",
+    "url": "https://m.dangbei.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2082",
+    "title": "手机 悟空遥控器【手机端控制电视软件】",
+    "url": "http://main.baibianwukong.com/#sixthPage",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2083",
+    "title": "电脑 TV盒子助手 3.6.5.29.exe【电脑端控制电视软件】",
+    "url": "https://gmengshuai.lanzoux.com/ihZC4om000b",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2084",
+    "title": "【电视盒子集2025-9月更新】👍",
+    "url": "https://pan.quark.cn/s/3fc544a51295",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2085",
+    "title": "GitHub - youhunwl/TVAPP: 收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！ 👍",
+    "url": "https://github.com/youhunwl/TVAPP",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2086",
+    "title": "☁️电视机盒软件（克隆窝长期更新）",
+    "url": "https://www.uy5.net/category/tv/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2087",
+    "title": "☁️Android⠀TV⠀Apps（蓝奏云长期更新）",
+    "url": "http://www.lanzoux.com/b0f1944aj",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【TV盒子】"
+  },
+  {
+    "id": "resource-2088",
+    "title": "荐片播放器",
+    "url": "https://www.jianpian6.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "VIP看剧 【电脑软件】"
+  },
+  {
+    "id": "resource-2089",
+    "title": "ZY Player👍",
+    "url": "http://zyplayer.fun/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【电脑软件】"
+  },
+  {
+    "id": "resource-2090",
+    "title": "次元城动漫-1080P日漫免费看",
+    "url": "https://npm.elemecdn.com/cycldstatic@1.1.0/index.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【电脑软件】"
+  },
+  {
+    "id": "resource-2091",
+    "title": "【追番看剧大全 2025.9月更新】👍",
+    "url": "https://pan.quark.cn/s/efe3fe9a8b6d",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2092",
+    "title": "【官网】大师兄影视（地址发布页）👍",
+    "url": "https://dsxys.com/app/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2093",
+    "title": "【官网】稀饭影视（安卓 / ios / TV）👍",
+    "url": "https://www.xifanys.com/index.php/label/app.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2094",
+    "title": "【官网】追剧星球（安卓）",
+    "url": "https://zjxq.cc/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2095",
+    "title": "【官网】佳影（WIN / 安卓 / ios）",
+    "url": "https://i.jojomo.xyz/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2096",
+    "title": "【官网】荐片播放器（WIN / 安卓 / ios）",
+    "url": "https://www.jianpian6.com/android.html",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2097",
+    "title": "【官网】ZY player",
+    "url": "http://zyplayer.fun/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2098",
+    "title": "【官网】肥波影视（安卓 / ios）",
+    "url": "https://www.feibo.me/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2099",
+    "title": "【官网】肚兜看看（安卓 / ios）",
+    "url": "https://www.yuyu163.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2100",
+    "title": "【官网】蛋播星球（安卓 / ios）",
+    "url": "https://danboxingqiu.github.io/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2101",
+    "title": "【官网】优影视（安卓 / ios）",
+    "url": "http://dy.iu5c.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2102",
+    "title": "【谷歌版】爱奇艺 v1.7.5_Google Play",
+    "url": "https://thoughts.teambition.com/share/61211b13d9f39a0046f4a0c0#title=%E3%80%90%E8%B0%B7%E6%AD%8C%E7%89%88%E3%80%91%E7%88%B1%E5%A5%87%E8%89%BA_v1.7.5_Google_Play",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2103",
+    "title": "【谷歌版】腾讯视频 V2.4.0.5570国际版",
+    "url": "https://thoughts.teambition.com/share/61211b38b9352a0041a25048#title=%E3%80%90%E8%B0%B7%E6%AD%8C%E7%89%88%E3%80%91%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91_V2.4.0.5570%E5%9B%BD%E9%99%85%E7%89%88",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2104",
+    "title": "【看剧】海阔视界_V4.21.0124.00",
+    "url": "https://mdl.ink/O2u2B4",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2105",
+    "title": "【谷歌版】bilibili",
+    "url": "https://thoughts.teambition.com/share/61211a4bd9f39a0046f4a0bf#title=%E3%80%90%E8%B0%B7%E6%AD%8C%E7%89%88%E3%80%91bilibili",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2106",
+    "title": "【谷歌版】正版youtube.16.01（需要安装谷歌框架）",
+    "url": "https://thoughts.teambition.com/share/61211a953a60e70046f93509#title=%E6%AD%A3%E7%89%88youtube.16.01%EF%BC%88%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E8%B0%B7%E6%AD%8C%E6%A1%86%E6%9E%B6%EF%BC%89",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2107",
+    "title": "海阔视界 👍【官网：http://haikuoshijie.cn/link/1",
+    "url": "https://www.lanzoux.com/u/GoldRiver",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2108",
+    "title": "iOS影视网盘【ipa文件】",
+    "url": "https://pan.eqishare.com/%E2%98%85%F0%9F%86%93%E8%8B%B9%E6%9E%9CIPA%E5%85%8D%E8%B4%B9%E5%88%86%E4%BA%AB0/4.%E8%A7%86%E9%A2%91",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2109",
+    "title": "影视类软件合集【蓝奏云下载链接】",
+    "url": "https://woniu18.lanzoui.com/b0ejszfif",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2110",
+    "title": "大鱼影视【蓝奏云下载链接】",
+    "url": "https://zxltwp.lanzoux.com/b092t2dwd",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2111",
+    "title": "影视合集【蓝奏云下载链接】",
+    "url": "https://www.lanzoui.com/b0jrkv4b",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "VIP看剧 【手机APP】"
+  },
+  {
+    "id": "resource-2112",
+    "title": "🌕AIO Search（俄国BT网站）",
+    "url": "https://www.aiosearch.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2113",
+    "title": "🌕Rutracker（俄国最大的BT网站）",
+    "url": "http://rutracker.org/forum/index.php",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2114",
+    "title": "🌕AniRena（国外磁力网站）",
+    "url": "https://www.anirena.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2115",
+    "title": "🌕unblocked（国外磁力网站）",
+    "url": "https://unblocked-id.github.io/unblocked-html/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2116",
+    "title": "🌕ImmortalProxy（国外磁力网站）",
+    "url": "https://immortalproxy.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2117",
+    "title": "🌕The Pirate Bay（国外磁力网站）",
+    "url": "https://thepiratebay.org/index.html",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2118",
+    "title": "🌕BT虎牙",
+    "url": "https://bitbucket.org/fabuye/bthuya/src/master/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2119",
+    "title": "🌕海盗湾",
+    "url": "https://piratebayproxy.net/zh/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2120",
+    "title": "🌕无限磁力",
+    "url": "http://wx677.xyz/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2121",
+    "title": "🌕磁力搜索",
+    "url": "http://www.btmovi.kim/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2122",
+    "title": "🌕电影街（开放注册的时间为每天 （21点开始 ， 22点截止））",
+    "url": "https://moviejie.net/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2123",
+    "title": "🌕磁力巴士",
+    "url": "http://www.bv22.xyz/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2124",
+    "title": "🌕磁力多",
+    "url": "https://bt113.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2125",
+    "title": "🌕BTMET",
+    "url": "https://github.com/btmet/home",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2126",
+    "title": "备用",
+    "url": "https://www.btmet20.xyz/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2127",
+    "title": "🌕BT吃力网",
+    "url": "https://cursor.vip/vip",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "04.BT磁力搜索【国内 / 国外】"
+  },
+  {
+    "id": "resource-2128",
+    "title": "洛雪，平台：Win/Mac/Linux/Android",
+    "url": "https://lxmusic.toside.cn",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2129",
+    "title": "洛雪音乐助手自定义音源 v1.0.7",
+    "url": "https://soso.lanzouj.com/ioEEY0z25nmd",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2130",
+    "title": "洛雪音乐助手自定义音源 v1.0.7",
+    "url": "https://gmengshuai.lanzoul.com/imI7P1dk3wje",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2131",
+    "title": "guoyue2010/lxmusic-: lxmusic(洛雪音乐)全网最新最全音源👍",
+    "url": "https://github.com/guoyue2010/lxmusic-",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2132",
+    "title": "音乐源1",
+    "url": "https://file.ddot.top/files/66476d0be89e5/%E5%85%AD%E9%9F%B3%E9%9F%B3%E6%BA%90v1.2.1.js",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2133",
+    "title": "音乐源2",
+    "url": "https://file.ddot.top/files/66476d2a03756/%E9%87%8E%E8%8D%89v1.js",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2134",
+    "title": "音乐源3",
+    "url": "https://file.ddot.top/files/66476d236ed20/%E9%87%8E%E8%8A%B1v1.js",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2135",
+    "title": "音乐源4",
+    "url": "https://file.ddot.top/files/66476d19f370f/%E5%B0%8F%E7%86%8A%E7%8C%ABv1.1.1.js",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2136",
+    "title": "OneCodeMonkey/music-sources: 音乐播放可用源",
+    "url": "https://github.com/OneCodeMonkey/music-sources",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2137",
+    "title": "方格音乐，平台：Win/Android",
+    "url": "http://morin.feiyu.vin",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2138",
+    "title": "Listen1音乐播放器，平台：Win/Mac/Linux/Android/插件",
+    "url": "https://listen1.github.io/listen1",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2139",
+    "title": "酷狗概念版，平台：Android",
+    "url": "https://gmengshuai.lanzoul.com/iwHvk1d6z1ob",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2140",
+    "title": "KW-XG版，Win下载地址",
+    "url": "https://gmengshuai.lanzoul.com/iME4Q1dk3wej",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2141",
+    "title": "KW-XG版，Mac下载地址",
+    "url": "https://gmengshuai.lanzoul.com/ixaHS1dk507c",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2142",
+    "title": "KW-XG版，Android下载地址",
+    "url": "https://pan.quark.cn/s/578aa5e6fa7a",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2143",
+    "title": "KW-XG版，iOS下载地址",
+    "url": "https://gmengshuai.lanzoul.com/izfcP1d6z7mf",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2144",
+    "title": "备用",
+    "url": "https://gmengshuai.lanzoul.com/i5EIi1d6z48d",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2145",
+    "title": "听下，公众号：大明青年",
+    "url": "https://dmla.lanzoui.com/b05m79b3i",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2146",
+    "title": "天天悦听，公众号：AndroidPlayer",
+    "url": "https://www.123pan.com/s/iK6LVv-l26Qh.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2147",
+    "title": "灵悦，公众号：灵悦享",
+    "url": "https://gmengshuai.lanzoul.com/ime5Q1d6ystc",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2148",
+    "title": "歌词适配，公众号：歌词适配",
+    "url": "https://www.123pan.com/s/DGxrVv-MCPBH.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2149",
+    "title": "音乐下载方法🔥",
+    "url": "https://mp.weixin.qq.com/s/doBJuCA9pEbra8so7FdSlQ",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2150",
+    "title": "歌曲宝",
+    "url": "https://www.gequbao.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2151",
+    "title": "音乐海",
+    "url": "https://www.gequhai.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2152",
+    "title": "美妙音符, 乐谱分享平台",
+    "url": "https://www.otokage.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2153",
+    "title": "isflac",
+    "url": "https://www.isflac.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2154",
+    "title": "全网Mp3搜索下载,mp3歌曲免费下载,mp3音乐免费下载网站",
+    "url": "https://www.xzmp3.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2155",
+    "title": "果核音乐",
+    "url": "https://music.ghxi.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2156",
+    "title": "听哇纯音乐",
+    "url": "https://www.itingwa.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2157",
+    "title": "铜钟（支持搜索多平台在线播放）",
+    "url": "https://tonzhon.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2158",
+    "title": "Gimhoy音乐直链生成",
+    "url": "https://music.gimhoy.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2159",
+    "title": "liumingye",
+    "url": "https://tool.liumingye.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2160",
+    "title": "下载吧",
+    "url": "http://music.y444.cn/#/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2161",
+    "title": "YesPlayMusic 第三方网易云（可登录）",
+    "url": "https://music.qier222.com/#/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2162",
+    "title": "幻灵音乐（二次元音乐）",
+    "url": "http://www.huanmusic.com/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2163",
+    "title": "MyfreeMp3",
+    "url": "http://tool.liumingye.cn/music/?page=searchPage",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2164",
+    "title": "无损音乐",
+    "url": "https://www.dtshot.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2165",
+    "title": "音兔",
+    "url": "https://www.in2s.net/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2166",
+    "title": "马克喵音乐",
+    "url": "https://www.mgmusic.vip/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2167",
+    "title": "音乐客",
+    "url": "https://www.yinyueke.net/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2168",
+    "title": "国外音乐",
+    "url": "https://www.tunefind.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2169",
+    "title": "SShPlayer",
+    "url": "https://music-sl1673495.vercel.app/#/discovery",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2170",
+    "title": "陈一发儿全集",
+    "url": "https://www.hercd.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2171",
+    "title": "音乐标签–内置网易/QQ/酷狗/酷我数据源！快速帮你添加歌词/封面等信息，没有任何使用限制",
+    "url": "https://www.cnblogs.com/vinlxc/p/11347744.html",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "05.VIP音乐在线听 / 下载"
+  },
+  {
+    "id": "resource-2172",
+    "title": "🔶SubHD - 分享交流下载字幕平台👍",
+    "url": "https://subhd.tv/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2173",
+    "title": "🔶台词 33台词 - 通过台词找影片素材",
+    "url": "http://33.agilestudio.cn/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2174",
+    "title": "🔶ACI中文字幕组社区",
+    "url": "https://forum.chineseaci.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2175",
+    "title": "🔶字幕 Open Subtitle",
+    "url": "https://www.opensubtitles.org/zh",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2176",
+    "title": "🔶字幕 字幕库",
+    "url": "http://zmk.pw/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2177",
+    "title": "🔶字幕 Moviesubtitles",
+    "url": "http://www.moviesubtitles.org/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2178",
+    "title": "🔶字幕 VCB-S分享论坛",
+    "url": "https://bbs.acgrip.com/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2179",
+    "title": "🔶字幕 射手网",
+    "url": "https://assrt.net/",
+    "status": "待核验",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2180",
+    "title": "🔶字幕 SubHD",
+    "url": "https://subhd.tv/",
+    "status": "可用",
+    "category": "其他收藏",
+    "section": "06.字幕 / 台词"
+  },
+  {
+    "id": "resource-2181",
+    "title": "随乐游",
+    "url": "https://www.suileyoo.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2182",
+    "title": "咪咕快游",
+    "url": "https://pc.migufun.com/?token=1NQKf7nq0Wtg9jhljPFPaWXyozt1iFeg5cTgP%2BOBN64%3D",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2183",
+    "title": "达龙云电脑",
+    "url": "https://www.dalongyun.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2184",
+    "title": "斗鱼云游戏",
+    "url": "https://mgame.douyu.com/cloudgame",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2185",
+    "title": "虎牙云游戏",
+    "url": "https://yowa.huya.com/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2186",
+    "title": "腾讯云游戏",
+    "url": "https://start.qq.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2187",
+    "title": "网易云游戏",
+    "url": "https://cg.163.com/#/mobile",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "01.云游戏"
+  },
+  {
+    "id": "resource-2188",
+    "title": "鲜牛加速器（可实现长时间白嫖使用）",
+    "url": "https://gmengshuai.lanzous.com/iNP4vorsb6b",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2189",
+    "title": "奇妙加速器",
+    "url": "https://www.qimiao.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2190",
+    "title": "biubiu加速器",
+    "url": "https://www.biubiu001.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2191",
+    "title": "蓝泡加速器",
+    "url": "https://www.lpjsq.cn/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2192",
+    "title": "Golink加速器",
+    "url": "https://www.golink.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2193",
+    "title": "薄荷加速器",
+    "url": "https://jiasu.bohe.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2194",
+    "title": "奇妙网游加速器",
+    "url": "https://www.qimiao.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "02.免费加速器"
+  },
+  {
+    "id": "resource-2195",
+    "title": "小霸王 精选集 84合1",
+    "url": "https://gmengshuai.lanzoux.com/ie2asnsfwdg",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2196",
+    "title": "GBT游戏小组2006-2020年游戏种子合集 👍",
+    "url": "https://gmengshuai.lanzoux.com/i7N2Qnb7cwf",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2197",
+    "title": "20000G 单机游戏大全",
+    "url": "https://gmengshuai.lanzoux.com/iRDIynb78ji",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2198",
+    "title": "1298个BT游戏种子",
+    "url": "https://gmengshuai.lanzoux.com/iuXxmnb78fe",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2199",
+    "title": "Switch520 👍",
+    "url": "https://www.gamer520.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2200",
+    "title": "OK模拟器网",
+    "url": "http://www.okemu.com/1/r_20_1.html",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2201",
+    "title": "GBT小组游戏空间（游戏种子合集）👍",
+    "url": "http://gbtgame.ys168.com/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2202",
+    "title": "FC游戏（游戏类）",
+    "url": "http://863513188.ys168.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2203",
+    "title": "吞食天地（游戏类）",
+    "url": "http://tstdzzjb.ys168.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2204",
+    "title": "经典游戏网盘（游戏类）",
+    "url": "http://438985757.ys168.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2205",
+    "title": "资源避难所（游戏类）",
+    "url": "http://flysheep.ys168.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2206",
+    "title": "侠盗飞车罪恶都市MOD（游戏类）",
+    "url": "http://www.gtamod328.ys168.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2207",
+    "title": "PSP游戏最全合集",
+    "url": "http://psp.istudy.win/psp_hack/1021803",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2208",
+    "title": "老男人游戏网（10余TB无敌全，模拟器游戏大全）",
+    "url": "https://www.oldmanemu.net/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2209",
+    "title": "游侠网（老牌破解游戏下载站）",
+    "url": "https://down.ali213.net/pcgame/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2210",
+    "title": "3DM游戏网（老牌破解版游戏下载站）",
+    "url": "https://dl.3dmgame.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2211",
+    "title": "SGAME（赛博2077） 提供最新攻略、单机游戏、汉化资源、游戏补丁等",
+    "url": "https://www.s-sgames.com/?ref=12706",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "03.几十TB游戏下载"
+  },
+  {
+    "id": "resource-2212",
+    "title": "Game-Zone Labs-游戏修改器👍",
+    "url": "https://gamezonelabs.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2213",
+    "title": "🎵音乐实验室",
+    "url": "https://musiclab.chromeexperiments.com/Song-Maker/song/5033608827371520",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2214",
+    "title": "找到隐藏的牛",
+    "url": "https://findtheinvisiblecow.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2215",
+    "title": "🎹 自由钢琴 在线钢琴",
+    "url": "https://www.autopiano.cn/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2216",
+    "title": "吃金币小游戏",
+    "url": "https://pos.biborg.com/fr/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2217",
+    "title": "包含非常多的 在线小游戏",
+    "url": "https://poki.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2218",
+    "title": "171173 在线小游戏",
+    "url": "http://h5.17173.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2219",
+    "title": "Yandex Games",
+    "url": "https://yandex.com/games/zh",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2220",
+    "title": "扫雷 在线小游戏",
+    "url": "https://www.saolei.org.cn/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2221",
+    "title": "画个小人 在线小游戏",
+    "url": "https://www.webhek.com/post/draw-a-stickman.html",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2222",
+    "title": "微伞 在线小游戏",
+    "url": "http://m.wesane.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2223",
+    "title": "80-90后童年时代的黄卡游戏机模拟器",
+    "url": "https://gmengshuai.lanzous.com/ikCvpnb7x3c",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2224",
+    "title": "小鸡模拟器（完全免费多端游戏模拟器）",
+    "url": "https://www.xiaoji001.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2225",
+    "title": "魔方小站（提供魔方教程）",
+    "url": "http://www.rubik.com.cn/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2226",
+    "title": "TapTap（手游社区）",
+    "url": "https://www.taptap.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2227",
+    "title": "灵动在线游戏",
+    "url": "http://www.mhhf.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2228",
+    "title": "DOS 在线游戏",
+    "url": "https://dos.zczc.cz/",
+    "status": "待核验",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2229",
+    "title": "4399 在线游戏（中国最大的小游戏平台）",
+    "url": "http://www.4399.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2230",
+    "title": "lagged 在线游戏",
+    "url": "https://lagged.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2231",
+    "title": "bestgames 在线游戏",
+    "url": "https://www.bestgames.com/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2232",
+    "title": "EMU618社区",
+    "url": "http://2006.emu618.org:6180/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2233",
+    "title": "小霸王 在线游戏",
+    "url": "https://www.yikm.net/",
+    "status": "可用",
+    "category": "07 游戏专栏",
+    "section": "04.在线小游戏 / 论坛 / 模拟器"
+  },
+  {
+    "id": "resource-2234",
+    "title": "🔍夸克搜索（原神马搜索）",
+    "url": "https://quark.sm.cn/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2235",
+    "title": "🔍similarsites（相似网站搜索，需要越狱）",
+    "url": "https://www.similarsites.com",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2236",
+    "title": "🔍快搜（聚合搜索）",
+    "url": "https://search.chongbuluo.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2237",
+    "title": "微信搜索（搜索公众号资源）",
+    "url": "https://weixin.sogou.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2238",
+    "title": "备用",
+    "url": "https://weixin.sogou.com",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2239",
+    "title": "🔍小蛇搜搜（聚合搜索）",
+    "url": "https://xiaoshesoso.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2240",
+    "title": "🔍开发者搜索（程序员搜索）",
+    "url": "https://kaifa.baidu.com/home?qq-pf-to=pcqq.group",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "00.小众资源搜索"
+  },
+  {
+    "id": "resource-2241",
+    "title": "艺术二维码（二维码生成）",
+    "url": "http://tool.mkblog.cn/qrbtf/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2242",
+    "title": "动态二维码生成",
+    "url": "https://www.toolnb.com/tools-qrcode-featureQrcode.html",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2243",
+    "title": "QRBTF（二维码生成）",
+    "url": "https://qrbtf.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2244",
+    "title": "微微（二维码生成）",
+    "url": "https://www.wwei.cn/?rs=pro",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2245",
+    "title": "模板码（二维码生成）",
+    "url": "https://www.mobanma.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2246",
+    "title": "sojson（二维码生成）",
+    "url": "https://www.sojson.com/qr/generate.html",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2247",
+    "title": "联图网（二维码生成及美化）👍",
+    "url": "https://www.liantu.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2248",
+    "title": "草料二维码（二维码生成及美化）👍",
+    "url": "https://cli.im/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "01.链接转二维码"
+  },
+  {
+    "id": "resource-2249",
+    "title": "国内外短信接码平台，2023年4月更新",
+    "url": "https://tmioe.com/3642.html",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "02.接码平台"
+  },
+  {
+    "id": "resource-2250",
+    "title": "接收短信验证码平台，2023年2月更新",
+    "url": "https://www.w3h5.com/post/619.html",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "02.接码平台"
+  },
+  {
+    "id": "resource-2251",
+    "title": "SMS👍",
+    "url": "https://sms-man.com/cn?ref=Yuhao",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "02.接码平台"
+  },
+  {
+    "id": "resource-2252",
+    "title": "短信接码",
+    "url": "http://www.z-sms.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "02.接码平台"
+  },
+  {
+    "id": "resource-2253",
+    "title": "临时邮箱 - linshi-email👍",
+    "url": "https://www.linshi-email.com",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2254",
+    "title": "临时邮箱 - maildrop👍",
+    "url": "https://maildrop.cc",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2255",
+    "title": "临时邮箱 - mail.cx",
+    "url": "https://mail.cx/zh",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2256",
+    "title": "临时邮箱 - awamail",
+    "url": "https://awamail.com/?lang=zh",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2257",
+    "title": "临时邮箱 - minmail",
+    "url": "https://minmail.app/cn",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2258",
+    "title": "临时邮箱 - Guerrilla - 60分钟（域名多）",
+    "url": "https://www.guerrillamail.com/zh",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2259",
+    "title": "临时邮箱 - 24小时（语言：港语）",
+    "url": "http://24mail.chacuo.net/zhtw",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2260",
+    "title": "临时邮箱 - 24小时",
+    "url": "http://www.lsyx24.com/home",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2261",
+    "title": "临时邮箱 - 10分钟",
+    "url": "https://www.linshi-email.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2262",
+    "title": "临时邮箱 - 匿名发送Email邮件",
+    "url": "http://tool.chacuo.net/mailsend",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2263",
+    "title": "临时邮箱 - 24mail 临时邮箱",
+    "url": "http://24mail.chacuo.net/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "03.临时邮箱"
+  },
+  {
+    "id": "resource-2264",
+    "title": "ft12短网址",
+    "url": "https://www.ft12.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2265",
+    "title": "mrw短链接_带数据统计👍",
+    "url": "http://mrw.so/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2266",
+    "title": "缩我短网址",
+    "url": "http://suo.im/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2267",
+    "title": "短网址",
+    "url": "https://www.urlc.cn/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2268",
+    "title": "小码短链接",
+    "url": "https://xiaomark.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2269",
+    "title": "缩我短链接——生成不是永久链接",
+    "url": "https://suowo.cn/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2270",
+    "title": "新浪短网址👍",
+    "url": "https://sina.lt/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "04.网址缩短"
+  },
+  {
+    "id": "resource-2271",
+    "title": "DIY表情包",
+    "url": "https://www.diydoutu.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "05.表情包"
+  },
+  {
+    "id": "resource-2272",
+    "title": "斗图吧",
+    "url": "https://www.doutub.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "05.表情包"
+  },
+  {
+    "id": "resource-2273",
+    "title": "爱斗图",
+    "url": "http://www.adoutu.com/index",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "05.表情包"
+  },
+  {
+    "id": "resource-2274",
+    "title": "发表情",
+    "url": "https://fabiaoqing.com/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "05.表情包"
+  },
+  {
+    "id": "resource-2275",
+    "title": "文章 《这么多可爱的表情包，不进来收藏一波？》👍",
+    "url": "https://mp.weixin.qq.com/s/59e9aZu-vVWZszNUaD6irA",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "05.表情包"
+  },
+  {
+    "id": "resource-2276",
+    "title": "诺基亚短信图片生成器",
+    "url": "https://www.jiuwa.net/nokia/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2277",
+    "title": "🐷知妖 （中国妖怪百集，收集中国古今妖怪）",
+    "url": "https://www.cbaigui.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2278",
+    "title": "😏需要我帮你Baidu么",
+    "url": "https://lmbtfy.cn/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2279",
+    "title": "在线代码截图",
+    "url": "https://www.dute.org/code-snapshot",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2280",
+    "title": "Carbon在线代码截图",
+    "url": "https://carbon.now.sh/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2281",
+    "title": "💣 在线短信轰炸",
+    "url": "https://www.duanxinhongzhaji.com/free/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2282",
+    "title": "老牌的数据泄露查询网站（火狐出品，手机号、邮箱互查）",
+    "url": "https://haveibeenpwned.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2283",
+    "title": "Privacy（个人数据泄露检测 QQ、手机号、微博互查）",
+    "url": "https://privacy.aiuys.com/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "06.有趣更有用"
+  },
+  {
+    "id": "resource-2284",
+    "title": "pixiv官网（被墙）",
+    "url": "https://www.pixiv.net/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2285",
+    "title": "全年龄的动漫图片和壁纸",
+    "url": "https://anime-pictures.net/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2286",
+    "title": "pixiv-viewer",
+    "url": "https://lab.getloli.com/pixiv-viewer",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2287",
+    "title": "Pixiv Illustration Collection (注册账号收费1元)",
+    "url": "https://pixivic.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2288",
+    "title": "插画世界",
+    "url": "https://www.vilipix.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2289",
+    "title": "画师通",
+    "url": "https://www.huashi6.com/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2290",
+    "title": "Pixivel",
+    "url": "https://pixivel.moe/",
+    "status": "待核验",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2291",
+    "title": "pixiv.moe",
+    "url": "https://pixiv.moe/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "07.pixiv镜像站"
+  },
+  {
+    "id": "resource-2292",
+    "title": "线报酷 - 专注线报活动与优惠促销分享的线报网站",
+    "url": "https://new.ixbk.net/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "08.羊毛/购票"
+  },
+  {
+    "id": "resource-2293",
+    "title": "🚌12306Bypass-分流抢车票",
+    "url": "https://www.bypass.cn/",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "08.羊毛/购票"
+  },
+  {
+    "id": "resource-2294",
+    "title": "百度收录提交",
+    "url": "https://ziyuan.baidu.com/linksubmit/?ref=tool.seoshipin.cn",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "09.网站提交收录(SEO)"
+  },
+  {
+    "id": "resource-2295",
+    "title": "谷歌收录提交",
+    "url": "https://search.google.com/search-console/sitemaps",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "09.网站提交收录(SEO)"
+  },
+  {
+    "id": "resource-2296",
+    "title": "必应收录提交",
+    "url": "https://www.bing.com/webmasters/submiturl?ref=tool.seoshipin.cn",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "09.网站提交收录(SEO)"
+  },
+  {
+    "id": "resource-2297",
+    "title": "搜狗收录提交",
+    "url": "https://zhanzhang.sogou.com/index.php/site/index",
+    "status": "可用",
+    "category": "08 冷门网站",
+    "section": "09.网站提交收录(SEO)"
+  },
+  {
+    "id": "resource-2298",
+    "title": "🌕noise自留地（游戏、影视后期、软件、书籍、音乐）",
+    "url": "https://www.noiseyp.top/NV%E8%B5%84%E6%BA%90%E7%9B%98",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2299",
+    "title": "🌕noiseyp（Adobe系列、动漫 - 电子书 - 电影 - 教程 - 游戏 - 软件）",
+    "url": "https://noiseyp.top/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2300",
+    "title": "🌕图欧学习资源库（电子书-学习资料-教材等）",
+    "url": "https://tuostudy.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2301",
+    "title": "🌕 Ahei’s BOX（计算机相关资料）",
+    "url": "http://8.129.146.147:8080/#/1/main/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2302",
+    "title": "🌕Share With You（电影、音乐、壁纸、游戏）",
+    "url": "https://ty.let-me-try.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2303",
+    "title": "🌕小江临时下载站（电影、音乐、软件等）",
+    "url": "https://tdpan.com/#/spo002",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2304",
+    "title": "🌕aihao（机械绘图、编程软件等大型软件下载）",
+    "url": "http://pan.aihao.cc/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2305",
+    "title": "🌕幻想の小屋资源站（二次元，很多动漫+galgame美少女游戏）",
+    "url": "https://od.loliloli.moe/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2306",
+    "title": "🌕ZaproPAN （影视、动漫，密码：2023）",
+    "url": "https://pan.tmioe.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2307",
+    "title": "🌕题目自拟的书库 (tmzn.top)",
+    "url": "https://book.tmzn.top/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2308",
+    "title": "备用",
+    "url": "https://book2.tmzn.top/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.个人网盘（几百个T）私人网盘的资源，值得探索"
+  },
+  {
+    "id": "resource-2309",
+    "title": "100 T🔥",
+    "url": "https://link3.cc/xzmzys",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2310",
+    "title": "学习资源 🔥",
+    "url": "https://www.bd6.net/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2311",
+    "title": "3000T 🔥",
+    "url": "https://tuostudy.top/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2312",
+    "title": "20T 🔥",
+    "url": "https://link3.cc/zichuan",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2313",
+    "title": "1000T 🔥",
+    "url": "https://docs.qq.com/sheet/DVXp5Q2dRTVRXb2VS?tab=oz0lgd&u=4e5e0719f80b4b37acf8183ffe370288",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2314",
+    "title": "180 T🔥",
+    "url": "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.ichat-gpt.cn%2Fdownload%2F%E5%A4%B8%E5%85%8B%E5%A4%A7%E7%A4%BC%E5%8C%85.xlsx&wdOrigin=BROWSELINK",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2315",
+    "title": "壹起共享🔥",
+    "url": "https://docs.qq.com/sheet/DSlZmRHNtREpnaFFO?tab=bqu5yv&u=4e5e0719f80b4b37acf8183ffe370288",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2316",
+    "title": "400T 🔥",
+    "url": "https://docs.qq.com/sheet/DS25FQkJjbkZpUnZh?tab=g73g1s&u=4e5e0719f80b4b37acf8183ffe370288",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2317",
+    "title": "500T 🔥",
+    "url": "https://docs.qq.com/sheet/DRmhsV2djV0FJR2ZK?tab=tagf8b",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2318",
+    "title": "软件+短剧🔥",
+    "url": "https://link3.cc/apps",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2319",
+    "title": "考研考证等资源",
+    "url": "https://pan.baidu.com/s/62SRds1nHJXZH4IMZceBUrA?pwd=Bcm7&belong_fsid=694057783084370",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2320",
+    "title": "【天翼云分享】上百T资源合集",
+    "url": "https://www.yuque.com/docs/share/f363c4b7-7f5d-4e11-9042-6be543f73382",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2321",
+    "title": "【阿里云分享】50のT阿里云盘 - 合集分类分享",
+    "url": "https://docs.qq.com/sheet/DT0pvU0VBd3ZXV3Zu?tab=BB08J2",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2322",
+    "title": "【阿里云分享】阿里云盘长期资源分享文档",
+    "url": "https://docs.qq.com/sheet/DVHpJVmRhT3ViV09Q",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2323",
+    "title": "【阿里云分享】【3000T网盘资源】⭐永久文档地址发布页⭐",
+    "url": "https://docs.qq.com/sheet/DR1FTQW5odWd5ek9F?tab=BB08J2",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2324",
+    "title": "【阿里云分享】【星火】★2400T资源 ⭐永久文档地址发布页⭐",
+    "url": "https://docs.qq.com/sheet/DSndLS0xUaG9WS1Fm?tab=BB08J2",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2325",
+    "title": "【夸克网云分享】⛵资源小海洋⛵80TB超级航海图（长期更新）",
+    "url": "https://docs.qq.com/sheet/DS2dqSVpzYWFsVGh6",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2326",
+    "title": "【夸克网云分享】⭐【240T资源文档】⭐",
+    "url": "https://docs.qq.com/sheet/DR014eEJXd1ZuUWZq?tab=BB08J2&u=607fdf1517864ea6ae8195a773f6745f",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2327",
+    "title": "【网络资源合集】",
+    "url": "https://www.yuque.com/docs/share/1b4329ff-fa7d-471b-9763-0414abf253eb",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2328",
+    "title": "【夸克云分享】夸父资源社-优质夸克网盘资源分享社区",
+    "url": "https://www.kuafuzys.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2329",
+    "title": "【综合分享】5PB精选 | Link3",
+    "url": "https://link3.cc/5000T",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2330",
+    "title": "【夸克云分享】AQ网盘资源",
+    "url": "https://wpzy.cc/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2331",
+    "title": "【综合分享】永裴资源君 | Link3",
+    "url": "https://link3.cc/vip666888",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2332",
+    "title": "【综合分享】橙子剧场 | Link3",
+    "url": "https://link3.cc/cztv",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2333",
+    "title": "【综合分享】资料铺小木 | Link3",
+    "url": "https://link3.cc/mushen",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2334",
+    "title": "【综合分享】可爱美少女 | Link3",
+    "url": "https://link3.cc/kamsn",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2335",
+    "title": "【综合分享】全网资源影视短剧小说音乐游戏",
+    "url": "https://docs.qq.com/sheet/DVXFYSURJRG9qbWJi?tab=x5a2cy&nlc=1",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2336",
+    "title": "【夸克云分】秀才夸克资源文档",
+    "url": "https://docs.qq.com/doc/DYWVia2RudnB5Q3RQ?nlc=1",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2337",
+    "title": "【夸克云分享】 (https://www.kuafuzys.com/)搜源盘-影视剧集网盘资源搜索引擎",
+    "url": "https://www.sogas.top/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2338",
+    "title": "【夸克云短剧】荔枝资源汇总",
+    "url": "https://docs.qq.com/sheet/DTnZwc2dpVUZUbkhx?tab=xcpgqz",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2339",
+    "title": "【夸克云短剧】搜索框内输入，点查询",
+    "url": "https://www.kdocs.cn/l/ctjtWO6dTKDN?R=L1MvMQ==",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2340",
+    "title": "【夸克云短剧】XML Sitemap",
+    "url": "https://www.kuakema.com/sitemap-post/1.xml",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2341",
+    "title": "【夸克云短剧】夸克短剧 - 最全最新的夸克网盘短剧资源网站",
+    "url": "https://www.kuakema.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2342",
+    "title": "【夸克云短剧】全网盘短剧汇总每日更新",
+    "url": "https://docs.qq.com/sheet/DUVJ5bGltcEJYTUZ4?tab=3sborv&nlc=1",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2343",
+    "title": "【夸克云短剧】外星人数据搜索_免费优质资源分享！",
+    "url": "https://www.dayu200.com/sousuo/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.各大云盘上百TB资源 持续更新"
+  },
+  {
+    "id": "resource-2344",
+    "title": "👍文章 《小帅同款类型的储物间将近一百个，再也不用怕找不到资源了》",
+    "url": "https://mp.weixin.qq.com/s/2pScJ-gmMYLG6yFmaQJnLA",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "03.同款储物间 汇聚各类资源"
+  },
+  {
+    "id": "resource-2345",
+    "title": "👍文章 《你确定会使用搜索吗？》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247484104&idx=1&sn=c2b9d9b4096848018472e94e961d6c4a&chksm=9b8a7b6bacfdf27dcef3ae7aa84fdcb811f23066b7f226f33270499ef0b9bd2b417",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "03.同款储物间 汇聚各类资源"
+  },
+  {
+    "id": "resource-2346",
+    "title": "阿虚同学的储物间",
+    "url": "https://axutongxue.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2347",
+    "title": "弃用-小帅同学的储物间",
+    "url": "http://gmengshuai.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2348",
+    "title": "哆啦A梦的神奇口袋",
+    "url": "http://baozangku.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2349",
+    "title": "锋行网络工作室",
+    "url": "http://fengxingit.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2350",
+    "title": "幽灵网安-资源网",
+    "url": "http://tcsn.cccpan.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2351",
+    "title": "舒颜",
+    "url": "http://mr123.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2352",
+    "title": "羽享平台",
+    "url": "http://www.yuzhuyi.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2353",
+    "title": "薛信的资料室",
+    "url": "http://xuexinxs.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2354",
+    "title": "陈蛋蛋的宝藏库",
+    "url": "http://www.chendandan.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2355",
+    "title": "资源汇社区的资源库",
+    "url": "http://ziyuanhuishequ.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2356",
+    "title": "鱼果天晴的资源库",
+    "url": "http://ygtq.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2357",
+    "title": "利爪典藏资源分享",
+    "url": "http://lizhua.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2358",
+    "title": "狐小狗资源库",
+    "url": "http://huxiaogou.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2359",
+    "title": "文武科技柜",
+    "url": "http://itxh.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2360",
+    "title": "相逢储物站",
+    "url": "http://xfyzyyb.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2361",
+    "title": "量子孤岛杂货店",
+    "url": "http://quantumisland.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2362",
+    "title": "油麦同学的藏宝阁",
+    "url": "http://cangbaoge.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2363",
+    "title": "懒人找资源",
+    "url": "http://lazyman.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2364",
+    "title": "八弟的储物间",
+    "url": "http://www.badi.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2365",
+    "title": "嗯呢的储藏室",
+    "url": "http://simple.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2366",
+    "title": "人生苦短，不妨一试",
+    "url": "http://z007.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2367",
+    "title": "其他软件的仓库",
+    "url": "http://qtrj.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2368",
+    "title": "真不错资源网",
+    "url": "http://fendoudeniu.ysepan.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2369",
+    "title": "柠檬的小基地",
+    "url": "http://dnmjun.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2370",
+    "title": "知识船仓·公益知识库·致终身学习者【密码：zscc】",
+    "url": "http://zscc.ysepan.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2371",
+    "title": "万人迷社区",
+    "url": "http://wrm8.ysok.net/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "01.综合储物间 提供各端软件、网站、资料、资源等"
+  },
+  {
+    "id": "resource-2372",
+    "title": "猫",
+    "url": "http://hushuojinpeng.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2373",
+    "title": "洛奇（lokie）",
+    "url": "http://0701.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2374",
+    "title": "流年时迹",
+    "url": "http://kinger.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2375",
+    "title": "IDM储物间",
+    "url": "http://idman.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2376",
+    "title": "五分钱网络交流资料",
+    "url": "http://wfq678.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2377",
+    "title": "VNR吧共享目录",
+    "url": "http://www.vnr-file.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2378",
+    "title": "小天学长的资源分享",
+    "url": "http://py1985.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2379",
+    "title": "DAC导航的文件共享区",
+    "url": "http://nwuzmed.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2380",
+    "title": "软件省流站",
+    "url": "http://crtcbx.ysepan.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "02.软件储物间 主要提供软件"
+  },
+  {
+    "id": "resource-2381",
+    "title": "UIUIUI影视导航",
+    "url": "http://www.uiuiui.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "03.影音储物间 主要提供影音"
+  },
+  {
+    "id": "resource-2382",
+    "title": "a1111影视",
+    "url": "http://www.a1111.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "03.影音储物间 主要提供影音"
+  },
+  {
+    "id": "resource-2383",
+    "title": "音乐典藏",
+    "url": "http://im2008.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "03.影音储物间 主要提供影音"
+  },
+  {
+    "id": "resource-2384",
+    "title": "经典游戏网盘",
+    "url": "http://438985757.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2385",
+    "title": "Yave Yu",
+    "url": "http://firaga.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2386",
+    "title": "网络自治区",
+    "url": "http://155700.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2387",
+    "title": "大头猫米作品",
+    "url": "http://cancandodo.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2388",
+    "title": "FC吧公共网盘",
+    "url": "http://fcnes.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2389",
+    "title": "cyjholic避难所",
+    "url": "http://cyjholic.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2390",
+    "title": "疾风之狼空间",
+    "url": "http://speedwolf.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2391",
+    "title": "边缘星的杂货铺",
+    "url": "http://byx2020.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2392",
+    "title": "秋叶的垃圾箱",
+    "url": "http://qiuye.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2393",
+    "title": "raindy的生物网盘",
+    "url": "http://raindy.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2394",
+    "title": "flysheep资源避难所",
+    "url": "http://flysheep.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2395",
+    "title": "冠军RKO的红警网盘",
+    "url": "http://guanjun.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2396",
+    "title": "韬哥制作组官方网盘",
+    "url": "http://gat3drride.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.游戏储物间 主要提供游戏"
+  },
+  {
+    "id": "resource-2397",
+    "title": "金榜题名",
+    "url": "http://qzbltushu.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2398",
+    "title": "考研学子",
+    "url": "http://www.kyxz.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2399",
+    "title": "轻松考研资料",
+    "url": "http://easyky.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2400",
+    "title": "945KM的资源库",
+    "url": "http://945km.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2401",
+    "title": "kaoyan1122",
+    "url": "http://kaoyanjidi2018.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2402",
+    "title": "记忆力博客网盘",
+    "url": "http://qq351605872.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2403",
+    "title": "法考资料",
+    "url": "http://sifalianmemg.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2404",
+    "title": "司法课程全年更新",
+    "url": "http://mumufakao123.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2405",
+    "title": "一建和二建资料（管理密码：pass）",
+    "url": "http://zhulu.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2406",
+    "title": "免费考博论坛",
+    "url": "http://freekaobo.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2407",
+    "title": "免费考试课件（含会计 / 自考 / 考研 / 建造师 / 造价师 / 消防 / 公务员 / 等）",
+    "url": "http://mfkskj.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2408",
+    "title": "大考研资料库",
+    "url": "http://dakaoyan.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2409",
+    "title": "《英语》翻转课堂 信息化课程教学空间",
+    "url": "http://2006b.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.资料储物间 主要提供考研、考博、考证、学习等资源"
+  },
+  {
+    "id": "resource-2410",
+    "title": "一见如故储物室",
+    "url": "http://yyds007.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "06.电子书储物间 主要提供电子书"
+  },
+  {
+    "id": "resource-2411",
+    "title": "图书馆资源",
+    "url": "http://www.tushuguan.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "06.电子书储物间 主要提供电子书"
+  },
+  {
+    "id": "resource-2412",
+    "title": "旷世奇才电子书",
+    "url": "http://apkbook.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "06.电子书储物间 主要提供电子书"
+  },
+  {
+    "id": "resource-2413",
+    "title": "你大妈的网盘（网络攻防）",
+    "url": "http://lisinan.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2414",
+    "title": "网蜂工具箱",
+    "url": "http://netbee.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2415",
+    "title": "wpbkj网络工具箱",
+    "url": "http://wpbkj.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2416",
+    "title": "周靖的E盘",
+    "url": "http://transbot.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2417",
+    "title": "易语言大漠",
+    "url": "http://www.xiaoyaoxx.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2418",
+    "title": "精彩网络收集",
+    "url": "http://ctdy.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2419",
+    "title": "特洛衣网络维护网盘",
+    "url": "http://866286.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2420",
+    "title": "软件资源交流/飞云",
+    "url": "http://lgpbc.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2421",
+    "title": "蓝天云服务器",
+    "url": "http://peaceserver.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2422",
+    "title": "蓝天云研究所",
+    "url": "http://maorenjie147.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2423",
+    "title": "蓝天云研究所2",
+    "url": "http://blueskycloud.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2424",
+    "title": "蓝天云研究所3",
+    "url": "http://bscmuma.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "07.程序员储物间 提供编程相关资料"
+  },
+  {
+    "id": "resource-2425",
+    "title": "zuliang",
+    "url": "http://zuliang.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2426",
+    "title": "电脑软件",
+    "url": "http://dnrj.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2427",
+    "title": "小懒人工具箱",
+    "url": "http://xlrtool.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2428",
+    "title": "易桥CAD工具箱",
+    "url": "http://ebgsoft.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2429",
+    "title": "三千世界鸦杀尽",
+    "url": "http://3000shijieysj.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2430",
+    "title": "东海资料网盘专区（刷机类）",
+    "url": "http://eastsea.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2431",
+    "title": "迷你建筑工具",
+    "url": "http://szmaicy.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2432",
+    "title": "华哥录音配音（配音承接）",
+    "url": "http://hsyzylypy-9908.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2433",
+    "title": "五笔网盘",
+    "url": "http://leonlee.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2434",
+    "title": "86五笔&09五笔学习资源",
+    "url": "http://gaokuan.ys168.com/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "08.杂物间 比较小众、资源较少"
+  },
+  {
+    "id": "resource-2435",
+    "title": "B站资源合集",
+    "url": "https://www.yuque.com/docs/share/d97ad821-1659-4354-8d00-8e55b9af9a8d",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.B站资源合集"
+  },
+  {
+    "id": "resource-2436",
+    "title": "B站课程分享",
+    "url": "https://support.qq.com/product/497499",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "04.B站资源合集"
+  },
+  {
+    "id": "resource-2437",
+    "title": "电子书 二次寒树书架【支持搜索】",
+    "url": "http://echs.top/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2438",
+    "title": "电子书 建筑类专业必备书：建筑设计资料集第三版【提取码：6666",
+    "url": "https://pan.baidu.com/s/1sUjgaB4NeKRmtsroAPrmKg",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2439",
+    "title": "电子书 小学奥数《举一反三》1~6年级全套【提取码：rzre",
+    "url": "https://pan.baidu.com/s/1Pbm6MI5pLXL_gal6JpgjUw",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2440",
+    "title": "电子书 Python书籍【密码:52lt",
+    "url": "https://windby.lanzoux.com/b00o2yp2d",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2441",
+    "title": "电子书 豆瓣书籍top250本 【访问码:kpo3",
+    "url": "https://cloud.189.cn/t/eM3AjiAJbQne",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2442",
+    "title": "电子书 城通网盘图书馆资源（约2W本）",
+    "url": "https://545c.com/dir/7823036-11625293-090948",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2443",
+    "title": "电子书 城通网盘图书馆资源（掌阅 / kindle / 有声书籍",
+    "url": "https://sn9.us/dir/17192461-27868687-4e3441",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2444",
+    "title": "电子书 中信 / 机械工业 / 清华 / 电子工业出版社（天翼云）访问码：8vkr",
+    "url": "https://cloud.189.cn/t/uAjqAjuyIzE3",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2445",
+    "title": "电子书 精品电子书（共2492本电子书，合计 9.66 GB）",
+    "url": "https://dylanbai8.github.io/ideahub/#X:/%E7%B2%BE%E5%93%81%E8%B5%84%E6%BA%90",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "05.图书漫画资源"
+  },
+  {
+    "id": "resource-2446",
+    "title": "电影 美剧 破产姐妹 1-6季 1080P【天翼云盘，访问码：715j",
+    "url": "https://cloud.189.cn/web/share?code=YnQr2iBnmArm",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电影"
+  },
+  {
+    "id": "resource-2447",
+    "title": "电影 星爷 大话西游三部曲【迅雷网盘，提取码：3tnc",
+    "url": "https://pan.xunlei.com/s/VMhxzgHPICuHKgb3BuAr5Xr-A1",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电影"
+  },
+  {
+    "id": "resource-2448",
+    "title": "电影 古惑仔(1-6) 国粤双语.中字【天翼云盘，访问码：7crp",
+    "url": "https://cloud.189.cn/web/share?code=Y7NFrqBbq2Uj",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电影"
+  },
+  {
+    "id": "resource-2449",
+    "title": "电影 周星驰电影 共40部 【天翼云盘，访问码:ly78",
+    "url": "https://cloud.189.cn/web/share?code=vaMR32BNfaq2",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电影"
+  },
+  {
+    "id": "resource-2450",
+    "title": "电影 流浪地球飞越2020【提取码：h429",
+    "url": "https://pan.baidu.com/s/1VerEDaoyzs3s8UU5cafgFQ",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电影"
+  },
+  {
+    "id": "resource-2451",
+    "title": "电视剧 2001.康熙王朝 50集全【天翼云盘】",
+    "url": "https://cloud.189.cn/web/share?code=3mEjMnfIrMb2",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电视剧"
+  },
+  {
+    "id": "resource-2452",
+    "title": "电视剧 家有儿女1-4部【访问码：lra3",
+    "url": "https://cloud.189.cn/web/share?code=BzuU3eNZRJJb",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电视剧"
+  },
+  {
+    "id": "resource-2453",
+    "title": "电视剧 憨豆先生1990",
+    "url": "https://cloud.189.cn/web/share?code=FzquQ33Q7Fnu",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电视剧"
+  },
+  {
+    "id": "resource-2454",
+    "title": "电视剧 变形计1-19季 【访问码：ukw9",
+    "url": "https://cloud.189.cn/web/share?code=vuYnuizyu632",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "电视剧"
+  },
+  {
+    "id": "resource-2455",
+    "title": "音乐 陈一发儿全集【百度云、天翼云、和彩云】",
+    "url": "https://www.hercd.com/radio/",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "音乐"
+  },
+  {
+    "id": "resource-2456",
+    "title": "音乐 音乐典藏（经典影视音乐）👍",
+    "url": "http://im2008.ys168.com/",
+    "status": "待核验",
+    "category": "09 资源荟萃",
+    "section": "音乐"
+  },
+  {
+    "id": "resource-2457",
+    "title": "音乐 周杰伦专辑合集 【提取码:1314",
+    "url": "https://pan.baidu.com/s/12owtUIHS4jL_vOfMt_Kb4g",
+    "status": "可用",
+    "category": "09 资源荟萃",
+    "section": "音乐"
+  },
+  {
+    "id": "resource-2458",
+    "title": "专升本 2023大雁专升本英语👍",
+    "url": "https://pan.quark.cn/s/8a3d6f2791f4",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2459",
+    "title": "专升本 宋浩2023专升本数学基础精讲👍",
+    "url": "https://pan.quark.cn/s/7021ef53d565",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2460",
+    "title": "专升本 宋浩2022专升本数学全程班👍",
+    "url": "https://pan.baidu.com/s/1rkA1WEVanGuAP0c1E_edcA?pwd=ppdk#list/path=%2F&parentPath=%2F",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2461",
+    "title": "专升本 2023天一教育理论课程(完结)",
+    "url": "https://pan.quark.cn/s/dbc01425ec14",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2462",
+    "title": "专升本 2023天一英语课程（完结）",
+    "url": "https://pan.quark.cn/s/796b014e84c7",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2463",
+    "title": "专升本 专升本英语",
+    "url": "https://pan.quark.cn/s/4864e6a6f7f3",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2464",
+    "title": "专升本 专升本英语【22G】👍",
+    "url": "https://pan.quark.cn/s/b459f95adf1d",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2465",
+    "title": "专升本 专升本高数",
+    "url": "https://pan.quark.cn/s/0f30e04ec9f9",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2466",
+    "title": "专升本 新自考专区",
+    "url": "https://pan.quark.cn/s/5868152e03f8",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2467",
+    "title": "专升本 往年专升本",
+    "url": "https://pan.quark.cn/s/e9b31018562b",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2468",
+    "title": "专升本 专升本资料大全（公众号：阿正学习室）",
+    "url": "https://flowus.cn/share/51b47fac-2a0e-4cf3-88fc-91987f66b089",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2469",
+    "title": "专升本 B站上大量免费课程👍",
+    "url": "https://search.bilibili.com/all?keyword=%E4%B8%93%E5%8D%87%E6%9C%AC",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2470",
+    "title": "专升本 2024会计类精选资料",
+    "url": "https://pan.quark.cn/s/e3d8535ecf3e",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2471",
+    "title": "专升本 宋浩老师：2022专升本数学全程班",
+    "url": "https://www.aliyundrive.com/s/25sxEiEGJHN",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2472",
+    "title": "专升本 高数和英语2021",
+    "url": "https://cloud.189.cn/web/share?code=jqMFv2IreIny",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2473",
+    "title": "专升本 文亮网课专升本资料2021【提取码: 0z39】",
+    "url": "https://pan.baidu.com/s/1dMw0O5a0MEhHtVyngWOqCA",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2474",
+    "title": "专升本 英语计算机内部资料2020【提取码：sa4g】",
+    "url": "https://pan.baidu.com/s/1rDxeafQJmtIxgfBJ5vSonw",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2475",
+    "title": "专升本 库课河南专升本高数英语视频+题2020【提取码: ty4a】",
+    "url": "https://pan.baidu.com/s/1n-jDbnQB7s3FHPoPrAKODQ",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2476",
+    "title": "专升本 河南专升本2021【提取码：8228】（0.1元帮购，来源：itliujia.cn",
+    "url": "https://pan.baidu.com/s/1FsrucH1Yg4mgrMAcCDAnuA",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2477",
+    "title": "专升本 山东专升本2021【提取码：sdwk】",
+    "url": "https://pan.baidu.com/share/init?surl=pj9pJu71WqvJdTp7In20Dw",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2478",
+    "title": "专升本 文亮网课专升本2019【提取码：uy9f】",
+    "url": "https://pan.baidu.com/s/11rPTgbkGKrjwZq7gSCZCYg",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2479",
+    "title": "专升本 河南专升本高数【提取码：m5vv】",
+    "url": "https://pan.baidu.com/s/1a5UDlYpIZW5sM6rrAnVvuQ",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2480",
+    "title": "专升本 河南专升本真题及答案（河南专升本网）",
+    "url": "http://www.lemedu.com/hnzsb/tiku/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2481",
+    "title": "教资 教资重点资料包大全",
+    "url": "https://pan.quark.cn/s/51060153732b",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2482",
+    "title": "教资 教资面试资料大全",
+    "url": "https://pan.quark.cn/s/86aa9362507",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2483",
+    "title": "教资 FB2024网课【小学】笔试",
+    "url": "https://pan.quark.cn/s/df28bbdf792b",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2484",
+    "title": "教资 FB教资网课【初高中】笔试",
+    "url": "https://pan.quark.cn/s/31402a99a6ef",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2485",
+    "title": "专升本/教资/考证/考研/考博/考公等 拉西学习资源站官网/lasee官网/lasee官方网站 - 一切为了助力您的学习成长。",
+    "url": "https://www.bd6.net/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.专升本 / 教资"
+  },
+  {
+    "id": "resource-2486",
+    "title": "考研 2024考研计算机 提取码：2024 👍",
+    "url": "https://pan.baidu.com/share/init?surl=sgMIFJIw6q2ng9cyx8__lA&pwd=2024",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2487",
+    "title": "考研 朱伟2022恋词5500笔记【提取码：5500",
+    "url": "https://pan.baidu.com/s/1b6OEfME1CsGWNMyIBRjHLQ#list/path=/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2488",
+    "title": "考研 2020考研数学【密码:cwrk",
+    "url": "https://pan.baidu.com/s/1TnHBAknOLiOl1Y5aXxTbhg",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2489",
+    "title": "考研 2020张宇考研数学【提取码: 2250",
+    "url": "https://pan.baidu.com/s/1f44jgNxWgumMF0U8rHSgCA",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2490",
+    "title": "考研 2020考研金融431（500G)【提取码：107a",
+    "url": "https://pan.baidu.com/s/1WS4cODb-_5xE851O4LBh1g",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2491",
+    "title": "考研 2020年华成法硕赠送考生打基础必备课程",
+    "url": "http://www.hcfashuo.com/9890.html",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2492",
+    "title": "考研 考研教材【密码：06i4",
+    "url": "https://pan.baidu.com/s/1NY_VsdkXV_no9YVZiuQFxg",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2493",
+    "title": "考研 第一教程网（考研栏）",
+    "url": "https://www.diyijc.com/kaoyan/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2494",
+    "title": "考研 英语真题在线「考研/四六级等真题」",
+    "url": "https://zhenti.burningvocabulary.cn/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2495",
+    "title": "考研 友沃可：「考研/四六级等真题」",
+    "url": "https://pan.uvooc.com",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2496",
+    "title": "考研 轻舟考研「考研真题」",
+    "url": "https://www.kaoyan.com/zhenti/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2497",
+    "title": "考研 考研帮（考研资料下载中心）",
+    "url": "http://download.kaoyan.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2498",
+    "title": "考研 考研论坛",
+    "url": "http://bbs.kaoyan.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2499",
+    "title": "考研 Free考研资料 - 免费考研论坛",
+    "url": "http://bbs.freekaoyan.com/forum.php",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2500",
+    "title": "考研 考研数学、英语、政治、计算机视频&电子书【在线看，不停更】（缺点：需要梯子）👍",
+    "url": "https://yftk.fun/873/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2501",
+    "title": "考研 金榜题名网盘（考研考证类）👍",
+    "url": "http://qzbltushu.ys168.com/?tdsourcetag=s_pctim_aiomsg",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2502",
+    "title": "考研 安心考研网盘（考研类）👍",
+    "url": "http://axky.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2503",
+    "title": "考研 考研学子网盘（考研类）👍",
+    "url": "http://kyxz.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2504",
+    "title": "考研 白嫖の地：（考研/考证）👍",
+    "url": "http://daxuesheng123.ysepan.com",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2505",
+    "title": "备用",
+    "url": "http://daxuesheng123.ysok.net",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2506",
+    "title": "考研 李颜控：「考研-仅支持手机访问」👍",
+    "url": "https://xn--izu34f5t3d.com",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2507",
+    "title": "考研 学习资源船仓：「考研-阿里云」👍",
+    "url": "https://www.aliyundrive.com/s/Qor48UbACSD",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2508",
+    "title": "考研 资源小海洋：「考研-夸克云」👍",
+    "url": "https://pan.quark.cn/s/3a59009c8aa5#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2509",
+    "title": "考公 公务员+事业编+教师类（云群）免费分享👍",
+    "url": "http://www.tikuwang.com/app/index.php?i=2&c=entry&id=3916&do=detail&m=dg_articlemanage",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2510",
+    "title": "考公 24年国考公考文职网课资料👍",
+    "url": "https://www.kdocs.cn/l/cgaMQoRQSchl",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2511",
+    "title": "考公 guokao6688：「国考/省考，实时更新」👍",
+    "url": "http://gongkao6688.edudisk.cn",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2512",
+    "title": "考公 教育网盘 共享文件👍",
+    "url": "http://gbgb400.edudisk.cn/newshare.aspx?page=1",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2513",
+    "title": "考公 SaDuck",
+    "url": "https://saduck.top/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2514",
+    "title": "考博 免费考博网盘（考博类）👍",
+    "url": "http://freekaobo.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2515",
+    "title": "专升本/教资/考证/考研/考博/考公等 拉西学习资源站官网/lasee官网/lasee官方网站 - 一切为了助力您的学习成长👍",
+    "url": "https://www.bd6.net/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.考研 / 考博 / 考公"
+  },
+  {
+    "id": "resource-2516",
+    "title": "四六级&考研作文模板by小帅",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1750142423338_53074",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2517",
+    "title": "四六级翻译(词&短语)整理by小帅",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1750142468232_55504",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2518",
+    "title": "四级翻译真题合集【2016-2024.6】by小帅",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1750142067977_36726",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2519",
+    "title": "六级翻译真题合集【2016-2024.6】by小帅",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1750142338842_42159",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2520",
+    "title": "六级阅读分类型[仔细&长篇阅读]汇总（2015-2023）by小帅",
+    "url": "https://pan.quark.cn/s/799dd395db2f",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2521",
+    "title": "考证 颉斌斌-2024年最新四六级考前冲刺点睛课👍",
+    "url": "https://www.bilibili.com/video/BV1jE421F7FE/?share_source=copy_web&vd_source=6be3bf42c4ce688ba25a771c9e1514cf",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2522",
+    "title": "考证 2025年6月四级和六级VIP网课全程【更新中】👍",
+    "url": "https://pan.quark.cn/s/06bb5e563855",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2523",
+    "title": "考证 2024年6月四级VIP网课全程👍",
+    "url": "https://pan.quark.cn/s/6ee5f42291ec",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2524",
+    "title": "考证 2024年6月六级VIP网课全程👍",
+    "url": "https://pan.quark.cn/s/d62374995577",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2525",
+    "title": "考证 2023年12月四级VIP网课全程【101GB】👍",
+    "url": "https://pan.quark.cn/s/6553bddb5f67",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2526",
+    "title": "考证 2023年12月六级VIP网课全程【103GB】👍",
+    "url": "https://pan.quark.cn/s/24902f4056d9",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2527",
+    "title": "考证 2023年6月四级VIP全程【284GB】👍",
+    "url": "https://pan.quark.cn/s/07ca41968b18",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2528",
+    "title": "考证 2023年6月六级VIP全程【173GB】👍",
+    "url": "https://pan.quark.cn/s/26a879692db9",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2529",
+    "title": "考证 新东方田静英语四六级语法👍",
+    "url": "https://pan.quark.cn/s/2ea1a62102d3",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2530",
+    "title": "考证 📄英语四级历年真题及答案(含2023.6最新真题)",
+    "url": "https://pan.quark.cn/s/aba2fdd7adac",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2531",
+    "title": "考证 📄英语六级历年真题及答案(含2023.6最新真题)",
+    "url": "https://pan.quark.cn/s/90e789423573",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2532",
+    "title": "考证 金榜题名网盘（四六级）👍",
+    "url": "http://qzbltushu.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2533",
+    "title": "考证 安心考研网盘（四六级）👍",
+    "url": "http://axky.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2534",
+    "title": "考证 白嫖の地：（考研/考证）👍",
+    "url": "http://daxuesheng123.ysepan.com",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2535",
+    "title": "备用",
+    "url": "http://daxuesheng123.ysok.net",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2536",
+    "title": "考证 外语学习中心资料空间👍",
+    "url": "http://2006b.ysepan.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2537",
+    "title": "考证 资源中心（教材、四六级等）",
+    "url": "https://okmike.listeneer.com/?btwaf=46243752",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2538",
+    "title": "专升本/教资/考证/考研/考博/考公等 拉西学习资源站官网/lasee官网/lasee官方网站 - 一切为了助力您的学习成长👍",
+    "url": "https://www.bd6.net/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语四六级"
+  },
+  {
+    "id": "resource-2539",
+    "title": "会计师 网课+手机题库+各种电子版资料（下拉更多）！",
+    "url": "https://www.kdocs.cn/l/cllf7xRLvH9A",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2540",
+    "title": "之了课堂2024年激活码来啦！👍",
+    "url": "https://www.zlketang.com/cjkj/learn_detail/43821.html#tc",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2541",
+    "title": "会计师 酷舍网-会计类知识学习分享网站",
+    "url": "https://kushe.com.cn/kaoshi/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2542",
+    "title": "会计师 2024会计资料大合集",
+    "url": "https://pan.quark.cn/s/b085def5e2e6?entry=funletu#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2543",
+    "title": "会计师 2023初级、中级、注册会计师",
+    "url": "https://pan.quark.cn/s/cd61314bda6b?entry=funletu#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2544",
+    "title": "备用",
+    "url": "https://pan.quark.cn/s/ce065cd721a9?entry=funletu#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2545",
+    "title": "会计师 一些初级会计资料",
+    "url": "https://pan.quark.cn/s/11079a758412?entry=funletu",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2546",
+    "title": "造价师、一级、二级建造师【阿里云】",
+    "url": "https://www.aliyundrive.com/s/fVRg6kHiuGH/folder/6165d0e6a0f020df31e14eaa86712d693d184899",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2547",
+    "title": "一级造价 2021年一级造价各大机构【提取码：nvjg",
+    "url": "https://pan.baidu.com/s/1A7xtbJGrHbctHVCt51vfyQ",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2548",
+    "title": "教育网盘 共享文件👍",
+    "url": "http://gbgb400.edudisk.cn/newshare.aspx?page=1",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2549",
+    "title": "教育网盘 共享文件",
+    "url": "http://www.bjmkj.edudisk.cn/allshare.aspx?type=UserName&asc=desc&page=1",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2550",
+    "title": "一建 2024一级建造师全机构👍",
+    "url": "https://pan.quark.cn/s/5a09112884b6",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2551",
+    "title": "一建 2024一级建造师_免费高速下载|百度网盘-分享无限制👍",
+    "url": "https://pan.baidu.com/s/140BF7pTZ_0FjjXcOx1jIqA?dp-logid=57193600844625230002&pwd=yaya#list/path=%2F&parentPath=%2Fsharelink1100577215495-858073407310163",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2552",
+    "title": "二建 2024二级建造师全机构👍",
+    "url": "https://pan.quark.cn/s/808c5e68f3d4#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2553",
+    "title": "二建 2024二级建造师部分机构👍",
+    "url": "https://pan.quark.cn/s/36a642af7b18",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2554",
+    "title": "二建 2024二级建造师电子版资料【所有方向】👍",
+    "url": "https://pan.quark.cn/s/3cecdcc1e532",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2555",
+    "title": "二建 2024二级建造师电子版资料【所有方向】👍",
+    "url": "https://pan.quark.cn/s/10ca1ff931e9#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2556",
+    "title": "二建 2025二级建造师全机构👍",
+    "url": "https://pan.quark.cn/s/24277facb88d",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2557",
+    "title": "二建 2025年二级建造师电子教材",
+    "url": "https://pan.quark.cn/s/196c8dcf3e83#/list/share",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2558",
+    "title": "建造师 一建和二建资料（密码：pass）👍",
+    "url": "http://zhulu.ys168.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2559",
+    "title": "专升本/教资/考证/考研/考博/考公等 拉西学习资源站官网/lasee官网/lasee官方网站 - 一切为了助力您的学习成长👍",
+    "url": "https://www.bd6.net/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.会计 / 建造师 / 造价师"
+  },
+  {
+    "id": "resource-2560",
+    "title": "教资 2021年教资笔试网课【幼儿园、小学、初中】",
+    "url": "https://www.aliyundrive.com/s/b8Qri6R2BqY",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2561",
+    "title": "教资 2014-2020教资笔试、面试网课资料合集",
+    "url": "https://shimo.im/docs/VwqgJy8pYtVcvwY6/read",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2562",
+    "title": "英语 《英语》翻转课堂 信息化课程教学空间（英语资料的网盘）",
+    "url": "http://2006b.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2563",
+    "title": "考试 考试酷（专为各类学校和培训机构提供考试系统）",
+    "url": "https://www.examcoo.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2564",
+    "title": "课件 免费考试课件－含会计 / 自考 / 考研 / 建造师 / 造价师 / 消防 / 监理 / 公务员 / 等",
+    "url": "http://mfkskj.ys168.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2565",
+    "title": "法考 法考（法考资源网站，里面全是关于法考最新资料）",
+    "url": "http://sifalianmemg.ys168.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2566",
+    "title": "考研/考公/四六级/建造师/医学/财会/银行 刺客知识库–密码需要关注公众号获取",
+    "url": "http://xu05218023.ysepan.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "05.中小学课程 / 教师备课"
+  },
+  {
+    "id": "resource-2567",
+    "title": "百度云盘分享",
+    "url": "https://pan.baidu.com/s/1xbdXGqCYLFCVKGpateS56w?pwd=1uz5",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "00.各个科目【小学-初中-高中】"
+  },
+  {
+    "id": "resource-2568",
+    "title": "小学 🔹 学而思1-6年级语文【提取码：f5dg",
+    "url": "https://pan.baidu.com/share/init?surl=VUqAjp5M1J5RkaN0ruoClg",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "01.语文"
+  },
+  {
+    "id": "resource-2569",
+    "title": "1-6年级 🔹 学而思_小学数学思维培养👍",
+    "url": "https://pan.quark.cn/s/60cdab7d575d",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2570",
+    "title": "幼儿园 🔹 学而思小学幼儿园",
+    "url": "https://pan.quark.cn/s/da7afc3ab100",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2571",
+    "title": "小学 🔹 学而思小学数学1-6年级",
+    "url": "https://www.aliyundrive.com/s/zHEE9TrDKUE",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2572",
+    "title": "小学 🔹 学而思小学数学1年级",
+    "url": "https://pan.quark.cn/s/da7afc3ab100",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2573",
+    "title": "小学 🔹 学而思小学数学2年级",
+    "url": "https://pan.quark.cn/s/3cfb5f4d5866",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2574",
+    "title": "小学 🔹 学而思小学数学3年级",
+    "url": "https://pan.quark.cn/s/57caf09e66bc",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2575",
+    "title": "小学 🔹 学而思小学数学4年级",
+    "url": "https://pan.quark.cn/s/fbb32f0a691d",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2576",
+    "title": "小学 🔹 学而思小学数学5年级P1",
+    "url": "https://www.aliyundrive.com/s/RTZYCiEwb8p",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2577",
+    "title": "小学 🔹 学而思小学数学5年级P2",
+    "url": "https://www.aliyundrive.com/s/P2soJREJPbD",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2578",
+    "title": "小学 🔹 学而思小学数学6年级",
+    "url": "https://pan.quark.cn/s/78d77c44c5af",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "02.数学"
+  },
+  {
+    "id": "resource-2579",
+    "title": "小学 🔹 学而思小学英语1-6年级【提取码：t8jr",
+    "url": "https://pan.baidu.com/s/1CUbPxqLaeQizRZF82OEuWQ#list/path=/&parentPath=/sharelink3439847-818826760333555",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "03.英语"
+  },
+  {
+    "id": "resource-2580",
+    "title": "教师备课 教师资源_ISmart",
+    "url": "http://www.cflo.com.cn/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2581",
+    "title": "教师备课 宁夏教育资源公共服务平台（需要注册账户）",
+    "url": "https://res.nxeduyun.com/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2582",
+    "title": "教师备课 贝壳网",
+    "url": "https://www.bakclass.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2583",
+    "title": "教师备课 河南省基础教育资源公共服务平台",
+    "url": "https://www.hner.cn/res/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2584",
+    "title": "教师备课 宁波市中小学实验在线平台",
+    "url": "http://ningbo.syzx-edu.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2585",
+    "title": "教师备课 优翼教学资源网",
+    "url": "http://www.youyi100.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2586",
+    "title": "教师备课 时代天华七彩课堂（内容非常丰富）👍",
+    "url": "https://www.timebook.cc/new/index.html",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "04.教师备课"
+  },
+  {
+    "id": "resource-2587",
+    "title": "👍 中小学全套电子课本PDF【提取码: etby",
+    "url": "https://pan.baidu.com/s/1mCb8PRqNowcaMGMJkxOCOg",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2588",
+    "title": "中国高校课件下载网（需注册）",
+    "url": "http://download.cucdc.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2589",
+    "title": "联图云光盘（教材的配套光盘）",
+    "url": "http://discx.yuntu.io/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2590",
+    "title": "大学教材 高教书苑（在线阅读，不可下载））",
+    "url": "https://ebook.hep.com.cn/ebooks/index.html#/",
+    "status": "待核验",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2591",
+    "title": "课件站（免费下载课件课本）",
+    "url": "http://www.kjzhan.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2592",
+    "title": "好多电子课本网（小初中电子课本）",
+    "url": "http://www.haoduoyun.cc/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2593",
+    "title": "北大出版社电子教材书架（无需注册，在线阅读，不可下载）",
+    "url": "https://pup6.yunzhan365.com/bookcase/kiru/index.html",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2594",
+    "title": "电子课本（中小学教材全涵盖）",
+    "url": "http://www.dzkbw.com/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2595",
+    "title": "免费在线看 中小学教育联盟网",
+    "url": "http://web.g12e.org/s/%E5%85%AC%E5%BC%80%E8%AF%BE",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2596",
+    "title": "付费课程 画啦啦小灯塔",
+    "url": "http://static2.61info.com/service/officialWebsite/pc/index.html",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2597",
+    "title": "付费课程 ahaschool",
+    "url": "https://n.ahaschool.com.cn/#!/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2598",
+    "title": "免费在线看 可汗学院 （需要注册账户）👍",
+    "url": "https://zh.khanacademy.org/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2599",
+    "title": "免费在线看 安徽省基础教育资源应用平台 👍",
+    "url": "http://jiaoxue.ahedu.cn/",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2600",
+    "title": "免费在线看 空中课堂（湖北师生云课堂） 👍",
+    "url": "https://new.hbeducloud.com/home/channel/a73f9f3f-c620-4b59-a89e-b3743754064d",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "05.教材课件"
+  },
+  {
+    "id": "resource-2601",
+    "title": "2024中级软考",
+    "url": "https://pan.quark.cn/s/37fbc46e50db",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "06.计算机证书相关"
+  },
+  {
+    "id": "resource-2602",
+    "title": "大林老师.软考中级网络工程师",
+    "url": "https://pan.quark.cn/s/48cc93d4c44e",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "06.计算机证书相关"
+  },
+  {
+    "id": "resource-2603",
+    "title": "全栈网络工程师",
+    "url": "https://pan.quark.cn/s/014c06a65bcb",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "06.计算机证书相关"
+  },
+  {
+    "id": "resource-2604",
+    "title": "计算机二级资料汇总",
+    "url": "https://pan.quark.cn/s/a63ef33c53b2",
+    "status": "可用",
+    "category": "10 共同进步",
+    "section": "06.计算机证书相关"
+  },
+  {
+    "id": "resource-2605",
+    "title": "还在满网找资源？小帅网站大汇总【粉丝必看】 👍",
+    "url": "https://mp.weixin.qq.com/s/7FUYf8-8KembSqe77m9ZZw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "11 小帅随笔"
+  },
+  {
+    "id": "resource-2606",
+    "title": "👍文章 《各大网盘搜索推荐「解锁数字世界的宝藏！」》",
+    "url": "https://mp.weixin.qq.com/s/1kYBPBB5HG7IIlJgqPVrGA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "01.小帅搜索技巧"
+  },
+  {
+    "id": "resource-2607",
+    "title": "👍文章 《以前的你是怎样找破解软件我不知道，但希望今后你可以这样》",
+    "url": "https://mp.weixin.qq.com/s/fdvLhKXq3-n8dumJScBI3g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "01.小帅搜索技巧"
+  },
+  {
+    "id": "resource-2608",
+    "title": "👍文章 《小帅教你如何优雅的使用谷歌》",
+    "url": "https://mp.weixin.qq.com/s/eX1mCQ0ASxunAeZZAPaziw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "01.小帅搜索技巧"
+  },
+  {
+    "id": "resource-2609",
+    "title": "👍文章 《你确定会使用谷歌搜索吗？》",
+    "url": "https://mp.weixin.qq.com/s/QHyz_GNDpn_i8O5Yo1KVvw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "01.小帅搜索技巧"
+  },
+  {
+    "id": "resource-2610",
+    "title": "👍文章 《以图识图，帮你找到原图出处》",
+    "url": "https://mp.weixin.qq.com/s/N9Vmz193RRINLo-MxgEi7A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "01.小帅搜索技巧"
+  },
+  {
+    "id": "resource-2611",
+    "title": "👍文章 《度盘加速再次回归！全新的 Hyperdown~》",
+    "url": "https://mp.weixin.qq.com/s/UF1V0yKZGYB5zrzQBGIW1A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2612",
+    "title": "👍文章 《全网的PDF电子书任你下载【2024最新】》",
+    "url": "https://mp.weixin.qq.com/s/EBIdCc9ygUF-lY6bx4zkBQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2613",
+    "title": "👍文章 《音乐党福音：全平台的音乐下载方法》",
+    "url": "https://mp.weixin.qq.com/s/doBJuCA9pEbra8so7FdSlQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2614",
+    "title": "👍文章 《哔哩哔哩视频下载器更新》",
+    "url": "https://mp.weixin.qq.com/s/UpdLNFnY6lQiM37N4c8QmA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2615",
+    "title": "👍文章 《都2023年了，百度云盘不花钱还能不限速吗？》",
+    "url": "https://mp.weixin.qq.com/s/PIsV3-yK25OGcG-ks2Z4qA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2616",
+    "title": "👍文章 《下载个哔哩哔哩视频还不简单！》",
+    "url": "https://mp.weixin.qq.com/s/7eh5hFj_MiyGc4imKJ54nw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2617",
+    "title": "👍文章 《冰点凉了？百度文库、道客巴巴、豆丁、CSDN等下载神器》",
+    "url": "https://mp.weixin.qq.com/s/KMmo8u07rPchB9cL6OLfbA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2618",
+    "title": "👍文章 《全网的PDF电子书任你下载，下不到算我输》",
+    "url": "https://mp.weixin.qq.com/s/nS4AxlO-LiLE47G5M7m-BA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2619",
+    "title": "👍文章 《4个方法，2个软件，10个网站，复制和下载百度文库》",
+    "url": "https://mp.weixin.qq.com/s/dCpIiQnXiGR5aoAR6hOC0w",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2620",
+    "title": "👍文章 《天翼云盘终极下载教程，但愿能长久使用》",
+    "url": "https://mp.weixin.qq.com/s/gZjMrwdl0CsFcOncO0y3WQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2621",
+    "title": "👍文章 《这怕是“全网最好使”的下载教程了》",
+    "url": "https://mp.weixin.qq.com/s/H0b4vfs3Xcg1xDmgmSDxqg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2622",
+    "title": "👍文章 《看完本篇，百度云无限加速》",
+    "url": "https://mp.weixin.qq.com/s/WoVYOFDnOwSrqkB1eZ6RZw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "02.小帅下载技巧"
+  },
+  {
+    "id": "resource-2623",
+    "title": "👍文章 《看上一眼就爱上的导航「文末送码」》",
+    "url": "https://mp.weixin.qq.com/s/HfyZj8KOLs8T44yQt3NuBw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2624",
+    "title": "👍文章 《几百T私人云资源，免费送你要不要》",
+    "url": "https://mp.weixin.qq.com/s/XvGVTpbt72ClvZoc37JZSg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2625",
+    "title": "👍文章 《有网就能上，一辆开往P站的直通车！》",
+    "url": "https://mp.weixin.qq.com/s/a93uYXyu9mSY-vMEH_nUVA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2626",
+    "title": "👍文章 《Telegram各种客户端下载》",
+    "url": "https://xiaoshuai.site/xiaoshuai/note_1768731253431_57885",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2627",
+    "title": "👍文章 《这么多可爱的表情包，不进来收藏一波？》",
+    "url": "https://mp.weixin.qq.com/s/59e9aZu-vVWZszNUaD6irA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2628",
+    "title": "👍文章 《你要的不限速网盘它来了，且用且珍惜~》",
+    "url": "https://mp.weixin.qq.com/s/IjX3QlAsc3AWe64_mNx8xQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2629",
+    "title": "👍文章 《机械工业出版社 计算机科学丛书（黑皮书）全套下载 PDF》",
+    "url": "https://mp.weixin.qq.com/s/lh_eOcyXYHbtZKEdoBUIJw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2630",
+    "title": "👍文章 《周星驰电影51部超清全集【国粤双语】》",
+    "url": "https://mp.weixin.qq.com/s/72OncitJbMVdv1irDAlXvQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "03.小帅杂物分享"
+  },
+  {
+    "id": "resource-2631",
+    "title": "文章 《Win系统必备，这些截图工具让你效率飙升！》",
+    "url": "https://mp.weixin.qq.com/s/JCATXzYNvldAeFkPOd211A",
+    "status": "收藏",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2632",
+    "title": "文章 《不知道选择哪一款 OCR，进来让我告诉你》",
+    "url": "https://mp.weixin.qq.com/s/DQqQ1FYyoQ9GNG6-g4bcBQ",
+    "status": "收藏",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2633",
+    "title": "文章 《选择明智，轻量级工具让图片批处理更简单》",
+    "url": "https://mp.weixin.qq.com/s/haY0NCYgemGrPjevqXxApw",
+    "status": "收藏",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2634",
+    "title": "👍文章 《小帅教你用三种方法免费激活Windows系统》",
+    "url": "https://mp.weixin.qq.com/s/aDxnhffxa0zis1gA8D_kZQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2635",
+    "title": "👍文章 《评测了国内外这么多的网盘，总有一款适合你》",
+    "url": "https://mp.weixin.qq.com/s/hgyofeJjM54XRmi5__PA6A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2636",
+    "title": "👍文章 《即使电脑不在身边，依然可以流畅的远程办公》",
+    "url": "https://mp.weixin.qq.com/s/glaAtwDY6wBMrRsQxmSNWw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2637",
+    "title": "👍文章 《学会这些，电脑优化清理方面你也是个高手了》",
+    "url": "https://mp.weixin.qq.com/s/XEee0JJD8gfqcxFpQKtKhQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2638",
+    "title": "👍文章 《文字转语音保姆级教程（可免费白嫖！）》",
+    "url": "https://mp.weixin.qq.com/s/wv7CiYgY-KHtIB7ACorgEg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2639",
+    "title": "👍文章 《装上这些软件，让你的电脑直接起飞》",
+    "url": "https://mp.weixin.qq.com/s/lJAnCJfgHD1R4OXeZH8Iuw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "04.电脑软件评测"
+  },
+  {
+    "id": "resource-2640",
+    "title": "👍文章 《Instagram、Youtube、Niconico、Twitter、微博第三方APP评测》",
+    "url": "https://mp.weixin.qq.com/s/pcX8-FP1OKhQdJ5AzynGkw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "05.手机软件评测"
+  },
+  {
+    "id": "resource-2641",
+    "title": "👍文章 《评测了数款课程表软件，还是这些好用》",
+    "url": "https://mp.weixin.qq.com/s/qwVD0fevrrmxcoE5xq8dHg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "05.手机软件评测"
+  },
+  {
+    "id": "resource-2642",
+    "title": "👍文章 《关于小帅「内含多重福利」》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488703&idx=1&sn=88da27092fa73328a9ec9762feac8638&chksm=9b8a6d1cacfde40a465a9a745616f0341e47330a22c6c0e434fdb5bbf1a4305265a",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "06.科学研究必备"
+  },
+  {
+    "id": "resource-2643",
+    "title": "👍文章 《免翻直连谷歌、YouTube等网站（冒险分享）》",
+    "url": "https://mp.weixin.qq.com/s/rs0ufS21R7P-eZvAbCSjUg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "06.科学研究必备"
+  },
+  {
+    "id": "resource-2644",
+    "title": "文章 《Cursor学生认证享一年会员，恢复中国地区访问（速进）》》",
+    "url": "https://mp.weixin.qq.com/s/MClClgVKY6YHGv6qyPFCkw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "07.编程相关"
+  },
+  {
+    "id": "resource-2645",
+    "title": "文章 《国内免费无限制使用Claude3.5、Claude3.7、GPT4o等「官方渠道」！》",
+    "url": "https://mp.weixin.qq.com/s/3lxoepD890NxYVu1Fa3JaQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "07.编程相关"
+  },
+  {
+    "id": "resource-2646",
+    "title": "文章 《程序员必备《超强大的AI编程插件永久白嫖》》",
+    "url": "https://mp.weixin.qq.com/s/2NASc2DHC3VV5fKzvGks0g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "07.编程相关"
+  },
+  {
+    "id": "resource-2647",
+    "title": "👍文章 《Linux环境搭建保姆级教程》",
+    "url": "https://mp.weixin.qq.com/mp/homepage?__biz=MzAxNDk3MTA4NA==&hid=4&sn=637a228b8cc786cae5ddec73675b403a&scene=18&uin=&key=&devicetype=Windows+10+x64&version=63030522&lang=zh_CN&ascene=7&fontgear=2",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "07.编程相关"
+  },
+  {
+    "id": "resource-2648",
+    "title": "👍文章 《VC++6.0居然比VS使用起来更加丝滑》",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzAxNDk3MTA4NA==&mid=2247488583&idx=1&sn=99b251ce40b7147098c0f1a4229ad4b3&chksm=9b8a6de4acfde4f23447a377d089fd8f2568670537583e3c33b9d775df3ab7e0fba",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "07.编程相关"
+  },
+  {
+    "id": "resource-2649",
+    "title": "我用这个工具，把积压2年的书签一个下午整理完了！",
+    "url": "https://mp.weixin.qq.com/s/LeYlI9QEt_Y51ZABD6KlEA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2650",
+    "title": "文章 《XiaoShuai Notes: 智能书签和笔记管理网站「内测中」》",
+    "url": "https://mp.weixin.qq.com/s/0lxbGlP6m-hVCsyRLlQ8QA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2651",
+    "title": "文章 《曾经被下架的神插件二管家，完美替代方案来了》",
+    "url": "https://mp.weixin.qq.com/s/x25_oAPlt7yrUmr4niPnZA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2652",
+    "title": "我开源了一个智能OCR工具：\"不止于识别，更懂内容\"",
+    "url": "https://mp.weixin.qq.com/s/52y37Sh6SQI4DphIOBwyDA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2653",
+    "title": "文章 《近百款AI对话通用大模型，值得使用的有这些！》",
+    "url": "https://mp.weixin.qq.com/s/zz7_Il6K1ceyluV_TkM59Q",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2654",
+    "title": "文章 《12306抢票攻略-Bypass》",
+    "url": "https://mp.weixin.qq.com/s/IF1a0kmJ8MhlxJMdFRysig",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2655",
+    "title": "文章 《百度云盘不开SVIP也能在线倍速播放视频「考研党必备」》 👍",
+    "url": "https://mp.weixin.qq.com/s/F8QO_AnpGu2vt7tc_DbD5g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2656",
+    "title": "👍文章 《无小帅必装的浏览器插件，拿来吧你！》",
+    "url": "https://mp.weixin.qq.com/s/jYtNWZl7snWku8_pT5piqg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2657",
+    "title": "👍文章 《独家搜集 WPS各版本来袭，满足你的办公需求》",
+    "url": "https://mp.weixin.qq.com/s/cKeA09UKuy1LN1jZ1g6gaw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2658",
+    "title": "👍文章 《解决【你的 Office许可证有问题】Office2016、2019的修正补丁》",
+    "url": "https://mp.weixin.qq.com/s/1WxG7nXe92KsNZPXEw2sow",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2659",
+    "title": "👍文章 《优化百度，让它回归本质！》",
+    "url": "https://mp.weixin.qq.com/s/4uzlPwYpVINwv9ubzG_I0g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2660",
+    "title": "👍文章 《安装油猴脚本，看这一篇就够了》",
+    "url": "https://mp.weixin.qq.com/s/vgWbK1nkpvSTGJeGnFIVjA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2661",
+    "title": "👍文章 《安装浏览器插件，看这一篇就够了》",
+    "url": "https://mp.weixin.qq.com/s/IaX3XshH2naLUiwZDp1WXQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "08.效率办公指南"
+  },
+  {
+    "id": "resource-2662",
+    "title": "👍文章 《关于考研的①点经验》",
+    "url": "https://mp.weixin.qq.com/s/OW9LMIBEGYgXgJJ3FGaIPw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "09.共同进步"
+  },
+  {
+    "id": "resource-2663",
+    "title": "👍文章 《英语渣如何自救？8战四六级的我总结出这些避坑指南》",
+    "url": "https://mp.weixin.qq.com/s/QcWFKhfAPtSE3s3TzPUUuA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "09.共同进步"
+  },
+  {
+    "id": "resource-2664",
+    "title": "试问大学生论文查重降重哪家强？2026最新版，直接用 👍",
+    "url": "https://mp.weixin.qq.com/s/710ARNZmiA7cPvY1py0s_g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2665",
+    "title": "文章 《试问大学生论文查重降重哪家强？》 👍",
+    "url": "https://mp.weixin.qq.com/s/h4BncgLe8An0CP6vO8PB5A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2666",
+    "title": "论文格式调整太折磨人了：我把最常见的 9 个 Word 坑，一次给你整理好了 👍",
+    "url": "https://mp.weixin.qq.com/s/lGoNJK-B7q96ZlxmYiJEag",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2667",
+    "title": "文章 《摆脱烦恼！论文格式调整小技巧大公开！》 👍",
+    "url": "https://mp.weixin.qq.com/s/XtTRFApRwhF2DkE_cnGxag",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2668",
+    "title": "👍文章 《Zotero 第四期「扩展篇」添加常用扩展》",
+    "url": "https://mp.weixin.qq.com/s/FU65l0pENtsL4NQVQA-GBA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2669",
+    "title": "👍文章 《Zotero 第三期「获取篇」完美获取文献》",
+    "url": "https://mp.weixin.qq.com/s/57-znUmlqoVlQIMRpjjVTg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2670",
+    "title": "👍文章 《Zotero 第二期「同步篇」完美多端同步》",
+    "url": "https://mp.weixin.qq.com/s/4mHjjMyY9OSGDqlLySoEkg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2671",
+    "title": "👍文章 《Zotero 第一期「管理篇」完美管理文献》",
+    "url": "https://mp.weixin.qq.com/s/R79igMxP-UKu_Auc383agA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2672",
+    "title": "👍文章 《如何保证在论文中插入的图片不失真？》",
+    "url": "https://mp.weixin.qq.com/s/V7tFXJm8iBW7h28JHmux2w",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2673",
+    "title": "👍文章 《绝了！「GPT学术优化」又放大招了》",
+    "url": "https://mp.weixin.qq.com/s/l4-f7fMfqcE1entHOEdBog",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2674",
+    "title": "👍文章 《英文文献&PDF [全文翻译] 最佳方案》",
+    "url": "https://mp.weixin.qq.com/s/rVC4ICvX0wq_sTaiig7RKQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "10.科研生产力"
+  },
+  {
+    "id": "resource-2675",
+    "title": "👍文章 《小帅Typora使用经验》",
+    "url": "https://mp.weixin.qq.com/s/q8-5LXCqDck3y-gaeJvBLg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "11.Typora及图床"
+  },
+  {
+    "id": "resource-2676",
+    "title": "👍文章 《Typora + PicGo + Github图床详解》",
+    "url": "https://mp.weixin.qq.com/s/aZ01fCb2ho7qCR5UOmlsvA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "11.Typora及图床"
+  },
+  {
+    "id": "resource-2677",
+    "title": "👍文章 《Typora+阿里云图床详解（小白都能学得会）》",
+    "url": "https://mp.weixin.qq.com/s/_0G5iKebK4M_MPfXsLE_KQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "11.Typora及图床"
+  },
+  {
+    "id": "resource-2678",
+    "title": "👍文章 《【建站福利】白嫖域名+免费CDN加速》",
+    "url": "https://mp.weixin.qq.com/s/rBlsJ7J07XmtJLXIotpAFw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2679",
+    "title": "👍文章 《从永硕E盘到智能本地化管理：3次迭代的储物间有多能打！》",
+    "url": "https://mp.weixin.qq.com/s/4iu8ZsqzpAzBF2PsrYgqww",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2680",
+    "title": "👍文章 《Gridea+Github搭建个人静态博客》",
+    "url": "https://mp.weixin.qq.com/s/jHciz8zfmrRfNAxMbROsOQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2681",
+    "title": "👍文章 「第一期」hexo+github搭建博客（初步形成）",
+    "url": "https://mp.weixin.qq.com/s/DGMz0fCLFeAl-bnpwxlp-A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2682",
+    "title": "👍文章 「第二期」 hexo+github搭建博客（发布文章）",
+    "url": "https://mp.weixin.qq.com/s/RoZSaS6aa24F-WGHKcg5yA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2683",
+    "title": "👍文章 「第三期」 hexo+github搭建博客（主题美化）",
+    "url": "https://mp.weixin.qq.com/s/SDeY_bp0cGYu8t63ZD1KyQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2684",
+    "title": "👍文章 「第四期」 hexo+github搭建博客（免费CDN加速）",
+    "url": "https://mp.weixin.qq.com/s/awl_BCJjwdiDElmMmab6IQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2685",
+    "title": "👍文章 《Github或Github.io打开缓慢及无法访问解决方案》",
+    "url": "https://mp.weixin.qq.com/s/d-jlCtKGa2oh7lmcY1DN-A",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "12.搭建网站系列"
+  },
+  {
+    "id": "resource-2686",
+    "title": "国产 AI 套餐省钱攻略：我只推荐这几个，别再花冤枉钱! 👍",
+    "url": "https://mp.weixin.qq.com/s/v-7WQKowMern0YJSPYrUyg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2687",
+    "title": "AI 编程到底买哪个最划算？我把 Coding Plan 和中转站全算清楚了 👍",
+    "url": "https://mp.weixin.qq.com/s/d2BPpM9YNnuyLHoWS_htwg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2688",
+    "title": "2026 最新 Claude Code 安装 & 配置实战：10 分钟避开 99% 踩坑 👍",
+    "url": "https://my.feishu.cn/wiki/U5QbwxYk0i0EcEkAPWXcPKVLnMg?from=from_copylink",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2689",
+    "title": "2026 年 Codex 新手教程，照着做就能跑，无需再折腾 Claude Code 👍",
+    "url": "https://my.feishu.cn/wiki/U5QbwxYk0i0EcEkAPWXcPKVLnMg?from=from_copylink",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2690",
+    "title": "2026 OpenCode 保姆级配置指南：安装、接 API、连 VS Code 一篇讲透 👍",
+    "url": "https://mp.weixin.qq.com/s/ua58epNe_-W-uOqybjmMpw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2691",
+    "title": "【你不知道的 Claude Code】不会配 MCP？那你只用了一半 👍",
+    "url": "https://mp.weixin.qq.com/s/OUOYlAAYBkBOMZs-1i7r0w",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2692",
+    "title": "【你不知道的 Claude Code】大模型的外挂Skill，把你的工作方式固化进去 👍",
+    "url": "https://mp.weixin.qq.com/s/4u1WXaIqj2bBjliDj-Scaw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2693",
+    "title": "【你不知道的 Claude Code】用好这四种交互方式，真正的效率飙升！ 👍",
+    "url": "https://mp.weixin.qq.com/s/eS45r3ku4xOLjd4EO9vYLQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2694",
+    "title": "【你不知道的 Claude Code】斜杠命令记住这几个，日常就够用了 👍",
+    "url": "https://mp.weixin.qq.com/s/rkzGJSHwU0cByI43WyMcqA",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2695",
+    "title": "【你不知道的 Claude Code】这 6 个快捷键，每天能省下半小时 👍",
+    "url": "https://mp.weixin.qq.com/s/Hg701OW7xvZiQ6aPu-oBgw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2696",
+    "title": "Claude Code / OpenCode 每天免费畅享 DeepSeek V4！可长期白嫖",
+    "url": "https://mp.weixin.qq.com/s/sMscKI_BIrVE5eU4BcRN_g",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2697",
+    "title": "2026 实测：让 Claude Code 听话的不是模型，是 Rules",
+    "url": "https://mp.weixin.qq.com/s/GLifN66DSpjeACvU69MLew",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2698",
+    "title": "手机装了 APP 才好用，AI 也一样—Skills 才是真正让它变强的开关",
+    "url": "https://mp.weixin.qq.com/s/FXKGHhgm2vIwOhGhbvfaKg",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2699",
+    "title": "Vibe Coding 指南1：指令(Prompt)，已开源！",
+    "url": "https://mp.weixin.qq.com/s/OSJg2cTfFGGTMYnaUkKOxw?token=1351703111&lang=zh_CN",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2700",
+    "title": "2026 年还在手写代码? 这 17 款 AI 工具让效率提升 5 倍",
+    "url": "https://mp.weixin.qq.com/s/bs3rQ__3nqF2OAJ64bFe7w",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2701",
+    "title": "文章 《近百款AI对话通用大模型，值得使用的有这些！》",
+    "url": "https://mp.weixin.qq.com/s/zz7_Il6K1ceyluV_TkM59Q",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2702",
+    "title": "文章 《Cursor学生认证享一年会员，恢复中国地区访问（速进）》",
+    "url": "https://mp.weixin.qq.com/s/MClClgVKY6YHGv6qyPFCkw",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2703",
+    "title": "文章 《国内免费无限制使用Claude3.5、Claude3.7、GPT4o等「官方渠道」》👍",
+    "url": "https://mp.weixin.qq.com/s/3lxoepD890NxYVu1Fa3JaQ",
+    "status": "可用",
+    "category": "11 小帅随笔",
+    "section": "13 AI效率革命"
+  },
+  {
+    "id": "resource-2704",
+    "title": "简历写好了往哪投？6 大渠道 + 3 套自动投递，一篇讲透 👍",
+    "url": "https://mp.weixin.qq.com/s/r45FxfPkYyRKVpHwufYZfQ",
+    "status": "可用",
+    "category": "12 学习指南",
+    "section": "简历投递指南"
+  },
+  {
+    "id": "resource-2705",
+    "title": "26届计算机普通双非硕秋春招，究竟有多难！ 👍",
+    "url": "https://mp.weixin.qq.com/s/u_Go1x3db-e3iq9d3c3n1Q",
+    "status": "可用",
+    "category": "12 学习指南",
+    "section": "面试经验指南"
+  }
+];
+
+export const categories: ResourceCategory[] = [
+  {
+    "id": "all",
+    "label": "全部索引",
+    "count": 2705
+  },
+  {
+    "id": "01 爆火 AI🔥",
+    "label": "01 爆火 AI🔥",
+    "count": 102
+  },
+  {
+    "id": "02 电脑软件",
+    "label": "02 电脑软件",
+    "count": 814
+  },
+  {
+    "id": "03 手机软件",
+    "label": "03 手机软件",
+    "count": 203
+  },
+  {
+    "id": "04 全端软件",
+    "label": "04 全端软件",
+    "count": 106
+  },
+  {
+    "id": "05 实用网站",
+    "label": "05 实用网站",
+    "count": 128
+  },
+  {
+    "id": "06 影音专区",
+    "label": "06 影音专区",
+    "count": 105
+  },
+  {
+    "id": "07 游戏专栏",
+    "label": "07 游戏专栏",
+    "count": 53
+  },
+  {
+    "id": "08 冷门网站",
+    "label": "08 冷门网站",
+    "count": 64
+  },
+  {
+    "id": "09 资源荟萃",
+    "label": "09 资源荟萃",
+    "count": 160
+  },
+  {
+    "id": "10 共同进步",
+    "label": "10 共同进步",
+    "count": 147
+  },
+  {
+    "id": "11 小帅随笔",
+    "label": "11 小帅随笔",
+    "count": 99
+  },
+  {
+    "id": "12 学习指南",
+    "label": "12 学习指南",
+    "count": 2
+  }
+];
