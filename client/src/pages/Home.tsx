@@ -13,6 +13,8 @@ import {
   CircleHelp,
   FileSearch,
   Globe2,
+  LayoutGrid,
+  List,
   Menu,
   Moon,
   PanelLeftClose,
@@ -33,6 +35,7 @@ const SHELF_IMAGE = "/manus-storage/xiaoshuai-archive-shelf_884bd474.png";
 const LOGO_IMAGE = "/manus-storage/xiaoshuai-archive-logo_6a69d405.png";
 
 const statusOrder: ResourceStatus[] = ["可用", "收藏", "待核验"];
+type ResourceView = "compact" | "cards";
 
 const statusClass: Record<ResourceStatus, string> = {
   可用: "is-live",
@@ -56,6 +59,9 @@ export default function Home() {
   const [searchEngineId, setSearchEngineId] = useState(() => {
     try { return localStorage.getItem("xiaoshuai-search-engine") || DEFAULT_SEARCH_ENGINE; } catch { return DEFAULT_SEARCH_ENGINE; }
   });
+  const [resourceView, setResourceView] = useState<ResourceView>(() => {
+    try { return localStorage.getItem("sky-resource-view") === "cards" ? "cards" : "compact"; } catch { return "compact"; }
+  });
   const [expandedCategoryIds, setExpandedCategoryIds] = useState<Set<string>>(() => new Set(["01 爆火 AI🔥"]));
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -70,6 +76,10 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem("xiaoshuai-search-engine", searchEngineId);
   }, [searchEngineId]);
+
+  useEffect(() => {
+    localStorage.setItem("sky-resource-view", resourceView);
+  }, [resourceView]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -252,7 +262,13 @@ export default function Home() {
           <section className="resource-ledger" aria-label="资源列表" tabIndex={-1}>
             <div className="ledger-topline">
               <div><p className="eyebrow"><span /> CURRENT FILE</p><h2>{selectedSection || (selectedCategory === "all" ? "全部资源索引" : activeCategory?.label || "资源索引")}</h2></div>
-              <div className="result-counter"><FileSearch size={17} /><span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span></div>
+              <div className="ledger-actions">
+                <div className="result-counter"><FileSearch size={17} /><span>{query ? `找到 ${filteredResources.length.toLocaleString()} 条` : `本册 ${filteredResources.length.toLocaleString()} 条`}</span></div>
+                <div className="resource-view-toggle" role="group" aria-label="切换资源浏览视图">
+                  <button type="button" className={resourceView === "compact" ? "is-active" : ""} onClick={() => setResourceView("compact")} aria-pressed={resourceView === "compact"} title="紧凑视图"><List size={15} /><span>紧凑</span></button>
+                  <button type="button" className={resourceView === "cards" ? "is-active" : ""} onClick={() => setResourceView("cards")} aria-pressed={resourceView === "cards"} title="卡片视图"><LayoutGrid size={15} /><span>卡片</span></button>
+                </div>
+              </div>
             </div>
             <div className="filter-strip" aria-label="资源状态筛选">
               <span className="filter-caption">状态筛选</span>
@@ -264,9 +280,9 @@ export default function Home() {
             {displayedGroups.length ? <div className="resource-groups">
               {displayedGroups.map((group, groupIndex) => <section className="resource-group" key={`${group.name}-${groupIndex}`}>
                 <div className="group-header"><div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div><span>{group.items.length} 条记录</span></div>
-                <div className="resource-list">
+                <div className={`resource-list ${resourceView === "cards" ? "resource-list--cards" : "resource-list--compact"}`}>
                   {group.items.map((resource, itemIndex) => <a className="resource-row" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">
-                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
+                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-card-context">{resource.category} · {resource.section}</span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
                   </a>)}
                 </div>
               </section>)}
