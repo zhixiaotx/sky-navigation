@@ -44,6 +44,16 @@ const statusClass: Record<ResourceStatus, string> = {
 };
 
 const cleanCategoryName = (name: string) => name.replace(/^\d{2}\s*/, "").replace(/🔥/g, "").trim();
+const formatResourceUrl = (url: string) => {
+  try {
+    const parsed = new URL(url);
+    const path = parsed.pathname === "/" ? "" : parsed.pathname;
+    const label = `${parsed.hostname.replace(/^www\./, "")}${path}`;
+    return label.length > 52 ? `${label.slice(0, 49)}…` : label;
+  } catch {
+    return url;
+  }
+};
 
 export default function Home() {
   const [archive, setArchive] = useState<ArchiveStore>(() => loadArchiveStore());
@@ -140,19 +150,16 @@ export default function Home() {
   const totalShown = displayedGroups.reduce((total, group) => total + group.items.length, 0);
   const selectedSearchEngine = searchEngines.find((engine) => engine.id === searchEngineId) ?? searchEngines[0];
 
-  const chooseCategory = (id: string, section: string | null = null) => {
+  const chooseCategory = (id: string, section: string | null = null, toggleBranch = false) => {
     setSelectedCategory(id);
     setSelectedSection(section);
-    if (id !== "all") setExpandedCategoryIds((ids) => new Set([...Array.from(ids), id]));
-    setIsDrawerOpen(false);
-  };
-
-  const toggleCategoryBranch = (id: string) => {
-    setExpandedCategoryIds((ids) => {
+    if (id !== "all") setExpandedCategoryIds((ids) => {
       const next = new Set(ids);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (toggleBranch) next.has(id) ? next.delete(id) : next.add(id);
+      else next.add(id);
       return next;
     });
+    setIsDrawerOpen(false);
   };
 
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
@@ -234,12 +241,9 @@ export default function Home() {
                   const isExpanded = expandedCategoryIds.has(category.id);
                   return <div className={`category-branch ${isExpanded ? "is-expanded" : ""}`} key={category.id}>
                     <div className="category-branch-row">
-                      <button type="button" className="tree-expand" onClick={() => toggleCategoryBranch(category.id)} aria-label={isExpanded ? `收起 ${cleanCategoryName(category.label)}` : `展开 ${cleanCategoryName(category.label)}`} aria-expanded={isExpanded}>
-                        {category.children?.length ? <ChevronDown size={14} /> : <span />}
-                      </button>
-                      <button type="button" className={`category-link category-link--root ${selectedCategory === category.id && !selectedSection ? "is-active" : ""}`} onClick={() => chooseCategory(category.id)} title={cleanCategoryName(category.label)}>
+                      <button type="button" className={`category-link category-link--root ${selectedCategory === category.id && !selectedSection ? "is-active" : ""}`} onClick={() => chooseCategory(category.id, null, Boolean(category.children?.length))} title={`${isExpanded ? "点击收起" : "点击展开"} ${cleanCategoryName(category.label)}`} aria-expanded={category.children?.length ? isExpanded : undefined}>
                         <span className="category-icon"><Icon size={15} /></span>
-                        <span className="category-label">{cleanCategoryName(category.label)}</span><span className="category-count">{category.count}</span>
+                        <span className="category-label">{cleanCategoryName(category.label)}</span><span className="category-count">{category.count}</span>{category.children?.length ? <ChevronDown className="category-disclosure" size={14} aria-hidden="true" /> : null}
                       </button>
                     </div>
                     {isExpanded && category.children?.length ? <div className="category-children">
@@ -282,7 +286,7 @@ export default function Home() {
                 <div className="group-header"><div className="group-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.name}</h3></div><span>{group.items.length} 条记录</span></div>
                 <div className={`resource-list ${resourceView === "cards" ? "resource-list--cards" : "resource-list--compact"}`}>
                   {group.items.map((resource, itemIndex) => <a className="resource-row" key={resource.id} href={resource.url} target="_blank" rel="noopener noreferrer">
-                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-card-context">{resource.category} · {resource.section}</span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
+                    <span className={`resource-status ${statusClass[resource.status]}`} aria-label={resource.status} /><span className="resource-order">{String(itemIndex + 1).padStart(2, "0")}</span><span className="resource-title">{resource.title}</span><span className="resource-details"><span className="resource-category-tag">{cleanCategoryName(resource.category)}</span><span className="resource-section-tag">{resource.section}</span><span className="resource-url" title={resource.url}>{formatResourceUrl(resource.url)}</span></span><span className="resource-meta"><span className="status-word">{resource.status}</span><ArrowUpRight size={15} aria-hidden="true" /></span>
                   </a>)}
                 </div>
               </section>)}
